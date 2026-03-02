@@ -1,35 +1,20 @@
-/* ──────────────────────────────────────────────────────────
-   projects.js — Fetch, Render, Filter & Tilt Project Cards
-   ────────────────────────────────────────────────────────── */
+// projects.js - Fetches projects.json and renders filterable, tilt-on-hover project cards.
 
-/** @type {HTMLElement|null} */
 let grid;
-
-/** @type {HTMLElement|null} */
 let filtersContainer;
-
-/** @type {Object[]} */
 let projects = [];
 
-/* ── Card Markup ─────────────────────────────────────── */
-
 /**
- * Build HTML for a single project card.
+ * Builds the HTML string for a single project card.
  * @param {Object} project
  * @returns {string}
  */
 function cardHTML(project) {
   const featuredClass = project.featured ? ' featured' : '';
-
-  // Category data attribute for filtering (join multiple categories)
   const categories = project.categories.join(' ');
+  const tags = project.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
 
-  // Tech‑stack tags
-  const tags = project.tags
-    .map((t) => `<span class="tag-chip">${t}</span>`)
-    .join('');
-
-  // Action buttons (only render if URLs are non-empty)
+  // Only render action buttons for non-empty URLs
   let actions = '';
   if (project.liveUrl) {
     actions += `
@@ -84,28 +69,18 @@ function cardHTML(project) {
     </article>`;
 }
 
-/* ── Render ──────────────────────────────────────────── */
-
 function renderProjects() {
   if (!grid) return;
 
-  // Featured first, then the rest
-  const sorted = [...projects].sort(
-    (a, b) => Number(b.featured) - Number(a.featured)
-  );
+  // Featured cards always appear first
+  const sorted = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured));
 
   grid.innerHTML = sorted.map(cardHTML).join('');
-
-  // Apply simple vanilla-tilt effect
   applyTilt();
 }
 
-/* ── Vanilla Tilt (no dependency) ────────────────────── */
-
 function applyTilt() {
-  const cards = grid.querySelectorAll('.projects__card');
-
-  cards.forEach((card) => {
+  grid.querySelectorAll('.projects__card').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x    = e.clientX - rect.left;
@@ -113,8 +88,8 @@ function applyTilt() {
       const midX = rect.width / 2;
       const midY = rect.height / 2;
 
-      const rotateX = ((y - midY) / midY) * -4; // max ±4 deg
-      const rotateY = ((x - midX) / midX) * 4;
+      const rotateX = ((y - midY) / midY) * -4; // max +-4 deg
+      const rotateY = ((x - midX) / midX) *  4;
 
       card.style.transform =
         `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
@@ -126,16 +101,14 @@ function applyTilt() {
   });
 }
 
-/* ── Filter Logic ────────────────────────────────────── */
-
 function filterProjects(category) {
   if (!grid) return;
 
   const cards = grid.querySelectorAll('.projects__card');
 
   cards.forEach((card) => {
-    const cats   = card.dataset.categories.split(' ');
-    const match  = category === 'all' || cats.includes(category);
+    const cats  = card.dataset.categories.split(' ');
+    const match = category === 'all' || cats.includes(category);
 
     if (!match) {
       card.classList.add('filter-fade-out');
@@ -146,12 +119,10 @@ function filterProjects(category) {
     }
   });
 
-  // Hide after transition ends
+  // Physically hide non-matching cards after the CSS transition completes
   setTimeout(() => {
     cards.forEach((card) => {
-      if (card.classList.contains('filter-fade-out')) {
-        card.classList.add('filter-hidden');
-      }
+      if (card.classList.contains('filter-fade-out')) card.classList.add('filter-hidden');
     });
   }, 300);
 }
@@ -176,8 +147,6 @@ function initFilterTabs() {
   });
 }
 
-/* ── Init ────────────────────────────────────────────── */
-
 export async function initProjects() {
   grid             = document.getElementById('projectsGrid');
   filtersContainer = document.getElementById('projectFilters');
@@ -195,7 +164,7 @@ export async function initProjects() {
   renderProjects();
   initFilterTabs();
 
-  // Re-observe newly rendered cards for scroll-reveal
+  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

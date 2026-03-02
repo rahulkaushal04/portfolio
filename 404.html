@@ -1,21 +1,44 @@
 <!DOCTYPE html>
+<!--
+  404.html
+  Custom error page for rahulkaushal04.github.io/portfolio/
+
+  Shown whenever someone hits a URL that doesn't exist under this site.
+  GitHub Pages automatically serves this file for unmatched routes, so
+  no server config is needed.
+
+  Keep this page self-contained. It should never depend on a JS bundle
+  or any resource that might itself 404. Inline the critical styles so
+  the page looks right even if main.css somehow fails to load.
+-->
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Prevent indexing of error page -->
+  <!--
+    Tell crawlers not to index this error page. "follow" is fine though,
+    so any links on the page (like the home button) can still be followed.
+  -->
   <meta name="robots" content="noindex, follow">
 
-  <title>404 — Page Not Found | Rahul Kaushal</title>
+  <title>404 - Page Not Found | Rahul Kaushal</title>
   <meta name="description" content="Oops! The page you're looking for doesn't exist.">
 
-  <!-- Use root-relative paths to prevent broken assets on nested routes -->
-  <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <!--
+    Paths are written relative to the repo root (/portfolio/...) because
+    this site lives at a subpath on GitHub Pages, not a bare domain.
+  -->
+  <link rel="icon" href="/portfolio/assets/images/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/portfolio/assets/css/main.css">
 
   <style>
-    /* Full-page centered error layout */
+    /*
+      Everything below is scoped to .error-page so there's no risk of
+      leaking styles if this page ever gets embedded or reused somewhere.
+    */
+
+    /* Centers all content vertically and horizontally on the full viewport */
     .error-page {
       min-height: 100dvh;
       display: flex;
@@ -27,7 +50,7 @@
       gap: var(--sp-6);
     }
 
-    /* Floating decorative illustration */
+    /* The big emoji up top, just for personality. Floats up and down on loop. */
     .error-page__illustration {
       font-size: 8rem;
       line-height: 1;
@@ -35,7 +58,11 @@
       animation: float 3s ease-in-out infinite;
     }
 
-    /* Gradient-styled error code */
+    /*
+      The "404" text uses a gradient fill. The trick here is to clip the
+      background to the text shape using background-clip, then make the
+      actual text color transparent so the gradient shows through.
+    */
     .error-page__code {
       font-family: var(--ff-heading);
       font-size: var(--fs-5xl);
@@ -47,6 +74,7 @@
       line-height: 1;
     }
 
+    /* Main heading, nothing fancy */
     .error-page__title {
       font-size: var(--fs-2xl);
       font-weight: var(--fw-bold);
@@ -54,17 +82,19 @@
       margin: 0;
     }
 
+    /* Supporting copy below the heading, capped in width so it doesn't stretch too wide */
     .error-page__message {
       font-size: var(--fs-md);
       color: var(--clr-text-secondary);
       max-width: 480px;
     }
 
+    /* A bit of breathing room above the CTA button */
     .error-page__home-btn {
       margin-top: var(--sp-4);
     }
 
-    /* Subtle floating animation */
+    /* Simple up-down float used on the illustration emoji */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-16px); }
@@ -75,9 +105,13 @@
 <body>
   <main class="error-page">
 
-    <!-- Decorative emoji (safe UTF-8 character) -->
-    <div class="error-page__illustration" aria-hidden="true">🛰️</div>
+    <!--
+      Decorative illustration, purely visual. aria-hidden keeps it out of
+      the accessibility tree so screen readers skip it entirely.
+    -->
+    <div class="error-page__illustration" aria-hidden="true">��️</div>
 
+    <!-- The error code itself, rendered as a styled span rather than a heading -->
     <span class="error-page__code">404</span>
 
     <h1 class="error-page__title">Looks like you're lost</h1>
@@ -87,8 +121,10 @@
       Maybe it was never here, or maybe it's hiding. Either way, let's get you back.
     </p>
 
-    <!-- Root-relative link ensures correct navigation -->
-    <a href="/" class="btn btn-primary error-page__home-btn">
+    <!--
+      Absolute URL so this works regardless of what path the 404 is triggered from.
+    -->
+    <a href="https://rahulkaushal04.github.io/portfolio/" class="btn btn-primary error-page__home-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
            fill="none" stroke="currentColor" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round">

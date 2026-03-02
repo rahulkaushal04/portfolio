@@ -1,12 +1,10 @@
-/* ──────────────────────────────────────────────────────────
-   utils.js — Shared utilities (imported by multiple modules)
-   ────────────────────────────────────────────────────────── */
+// utils.js - Shared utilities imported by multiple modules.
 
 /**
- * Show a toast notification.
- * @param {string} message  — text to display
- * @param {'success'|'error'} [type='success'] — toast variant
- * @param {number} [duration=3000] — ms before auto-dismiss
+ * Shows a toast notification that auto-dismisses after a given duration.
+ * @param {string} message
+ * @param {'success'|'error'} [type='success']
+ * @param {number} [duration=3000] - ms before the toast fades out
  */
 export function showToast(message, type = 'success', duration = 3000) {
   const container = document.getElementById('toastContainer');
@@ -19,13 +17,12 @@ export function showToast(message, type = 'success', duration = 3000) {
 
   container.appendChild(toast);
 
-  // Trigger entrance animation
   requestAnimationFrame(() => toast.classList.add('visible'));
 
   setTimeout(() => {
     toast.classList.remove('visible');
     toast.addEventListener('transitionend', () => toast.remove(), { once: true });
-    // Safety net: remove after 500 ms even if transitionend doesn't fire
+    // Safety net if transitionend never fires
     setTimeout(() => toast.remove(), 500);
   }, duration);
 }

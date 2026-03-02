@@ -1,20 +1,13 @@
-/* ──────────────────────────────────────────────────────────
-   contact.js — Form Validation, Formspree Submit & Email Copy
-   ────────────────────────────────────────────────────────── */
+// contact.js - Form validation, Formspree submission, and real-time field feedback.
 
 import { showToast } from './utils.js';
 
-/** @type {HTMLFormElement|null} */
 let form;
-
-/** @type {HTMLButtonElement|null} */
 let submitBtn;
 
-/* ── Validation Rules ────────────────────────────────── */
-
+// Validation rules keyed by input name attribute.
 const VALIDATORS = {
   name: {
-    /** @param {string} v */
     test: (v) => v.trim().length >= 2,
     message: 'Name must be at least 2 characters.',
   },
@@ -28,20 +21,17 @@ const VALIDATORS = {
   },
 };
 
-/* ── Helpers ─────────────────────────────────────────── */
-
 /**
- * Validate one field and show/clear its inline error.
+ * Validates a single field and toggles its inline error message.
  * @param {HTMLInputElement|HTMLTextAreaElement} input
  * @returns {boolean}
  */
 function validateField(input) {
-  const name      = input.name;              // "name" | "email" | "message"
-  const rule      = VALIDATORS[name];
+  const rule = VALIDATORS[input.name];
   if (!rule) return true;
 
-  const errorSpan = document.getElementById(`${name}Error`);
-  const isValid   = rule.test(input.value);
+  const errorSpan = document.getElementById(`${input.name}Error`);
+  const isValid = rule.test(input.value);
 
   if (!isValid) {
     input.classList.add('error');
@@ -55,22 +45,18 @@ function validateField(input) {
 }
 
 /**
- * Validate all fields in the form.
+ * Validates all form fields and returns whether the form is ready to submit.
  * @returns {boolean}
  */
 function validateAll() {
-  const inputs = form.querySelectorAll('.contact__input');
   let allValid = true;
-
-  inputs.forEach((input) => {
+  form.querySelectorAll('.contact__input').forEach((input) => {
     if (!validateField(input)) allValid = false;
   });
-
   return allValid;
 }
 
-/* ── Submit Button State Machine ─────────────────────── */
-
+// Accepts 'loading' | 'success' | 'idle' and updates the button appearance accordingly.
 function setButtonState(state) {
   if (!submitBtn) return;
 
@@ -85,7 +71,6 @@ function setButtonState(state) {
     case 'success':
       submitBtn.classList.add('success');
       submitBtn.disabled = true;
-      // Reset after 2.5 s
       setTimeout(() => setButtonState('idle'), 2500);
       break;
     case 'idle':
@@ -93,8 +78,6 @@ function setButtonState(state) {
       break;
   }
 }
-
-/* ── Formspree Submission ────────────────────────────── */
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -106,22 +89,18 @@ async function handleSubmit(e) {
 
   try {
     const res = await fetch(form.action, {
-      method:  'POST',
-      body:    formData,
+      method: 'POST',
+      body: formData,
       headers: { Accept: 'application/json' },
     });
 
     if (res.ok) {
       setButtonState('success');
-      showToast('Message sent! I\u2019ll get back to you soon.', 'success');
+      showToast("Message sent! I'll get back to you soon.", 'success');
       form.reset();
-      // Clear any leftover error states
-      form.querySelectorAll('.contact__input').forEach((input) => {
-        input.classList.remove('error');
-      });
-      form.querySelectorAll('.contact__error').forEach((span) => {
-        span.textContent = '';
-      });
+      // Clear any leftover error states from before submission
+      form.querySelectorAll('.contact__input').forEach((input) => input.classList.remove('error'));
+      form.querySelectorAll('.contact__error').forEach((span) => (span.textContent = ''));
     } else {
       throw new Error(`Formspree returned ${res.status}`);
     }
@@ -132,34 +111,25 @@ async function handleSubmit(e) {
   }
 }
 
-
-
-/* ── Real-time Blur Validation ───────────────────────── */
-
 function initBlurValidation() {
   if (!form) return;
 
   form.querySelectorAll('.contact__input').forEach((input) => {
     input.addEventListener('blur', () => validateField(input));
 
-    // Clear error on input (once user starts correcting)
+    // Re-validate on each keystroke once the field is already in an error state
     input.addEventListener('input', () => {
-      if (input.classList.contains('error')) {
-        validateField(input);
-      }
+      if (input.classList.contains('error')) validateField(input);
     });
   });
 }
 
-/* ── Init ────────────────────────────────────────────── */
-
 export function initContact() {
-  form      = document.getElementById('contactForm');
+  form = document.getElementById('contactForm');
   submitBtn = document.getElementById('contactSubmit');
 
   if (form) {
     form.addEventListener('submit', handleSubmit);
     initBlurValidation();
   }
-
 }

@@ -1,37 +1,21 @@
-/* ──────────────────────────────────────────────────────────
-   experience.js — Fetch & Render Timeline Cards
-   ────────────────────────────────────────────────────────── */
+// experience.js - Fetches experience.json and renders the timeline cards.
 
-/** @type {HTMLElement|null} */
 let timeline;
-
-/** @type {Object[]} */
 let entries = [];
 
-/* ── Card Markup ─────────────────────────────────────── */
-
 /**
- * Build HTML for a single timeline item.
+ * Builds the HTML string for a single timeline card.
  * @param {Object} entry
  * @returns {string}
  */
 function itemHTML(entry) {
-  // Description bullets
-  const bullets = entry.description
-    .map((d) => `<li>${d}</li>`)
-    .join('');
+  const bullets = entry.description.map((d) => `<li>${d}</li>`).join('');
+  const tags = entry.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
 
-  // Tech tags
-  const tags = entry.tags
-    .map((t) => `<span class="tag-chip">${t}</span>`)
-    .join('');
+  const dateRange = `${entry.startDate} - ${entry.endDate}`;
 
-  const dateRange = `${entry.startDate} — ${entry.endDate}`;
-
-  // Configurable logo size (default: 40px)
+  // logoSize and showCompanyName are optional fields in the JSON with these defaults
   const logoSize = entry.logoSize ?? 40;
-
-  // Configurable company name visibility (default: true)
   const companyNameHTML = (entry.showCompanyName ?? true)
     ? `<span class="experience__company">${entry.company}</span>`
     : '';
@@ -57,14 +41,10 @@ function itemHTML(entry) {
     </div>`;
 }
 
-/* ── Render ──────────────────────────────────────────── */
-
 function renderTimeline() {
   if (!timeline) return;
   timeline.innerHTML = entries.map(itemHTML).join('');
 }
-
-/* ── Init ────────────────────────────────────────────── */
 
 export async function initExperience() {
   timeline = document.getElementById('experienceTimeline');
@@ -72,7 +52,7 @@ export async function initExperience() {
 
   try {
     const res = await fetch('data/experience.json');
-    entries   = await res.json();
+    entries = await res.json();
   } catch {
     console.warn('[experience] Failed to load experience.json');
     return;
@@ -80,7 +60,7 @@ export async function initExperience() {
 
   renderTimeline();
 
-  // Re-observe newly rendered cards for scroll-reveal
+  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

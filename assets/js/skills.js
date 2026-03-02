@@ -1,52 +1,36 @@
-/* ──────────────────────────────────────────────────────────
-   skills.js — Fetch, Render & Filter Skill Cards
-   ────────────────────────────────────────────────────────── */
+// skills.js - Fetches skills.json and renders filterable, tilt-on-hover skill cards.
+// Icon resolution order: explicit iconImage field -> slug.svg -> slug.png -> devicon -> placeholder.
 
-/** @type {HTMLElement|null} */
 let grid;
-
-/** @type {HTMLElement|null} */
 let filtersContainer;
-
-/** @type {Object[]} */
 let skills = [];
 
-/* ── Icon Resolution ─────────────────────────────────── */
-
-/**
- * Convert a skill name to a filename slug.
- * e.g. "LangChain" → "langchain", "GitHub Actions" → "github-actions"
- * @param {string} name
- * @returns {string}
- */
+// Converts a display name to a filename slug, e.g. "GitHub Actions" -> "github-actions".
 function nameToSlug(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 /**
- * Global onerror handler for skill icon images.
- * Resolution order (auto-detect):  slug.svg → slug.png → devicon → placeholder
- * Resolution order (explicit iconImage field): iconImage → devicon → placeholder
- *
+ * Global onerror handler injected into each skill icon img.
+ * Tries svg -> png, then falls back to a devicon, then a placeholder
+ * if the devicon class renders at zero width.
  * @param {HTMLImageElement} img
  */
 window.__skillIconFallback = function (img) {
-  // If this was an svg auto-detect attempt, try png next
+  // First failure on auto-detect: try .png instead of .svg
   if (img.dataset.step === '0' && !img.dataset.explicit) {
     img.dataset.step = '1';
     img.src = `assets/images/skills/${img.dataset.slug}.png`;
     return;
   }
 
-  // Hide the failed image and reveal the devicon <i> fallback
+  // Show the devicon <i> that sits right after the <img>
   img.style.display = 'none';
   const deviconEl = img.nextElementSibling;
   if (deviconEl) {
     deviconEl.style.display = '';
 
-    // Last resort: if devicon class is unknown devicon will render nothing,
-    // so swap to the placeholder image after a brief check
-    deviconEl.addEventListener('animationend', () => {}, { once: true });
+    // If the devicon class is unrecognised it renders at zero width; swap in the placeholder
     setTimeout(() => {
       if (deviconEl.offsetWidth === 0) {
         deviconEl.style.display = 'none';
@@ -60,18 +44,8 @@ window.__skillIconFallback = function (img) {
   }
 };
 
-/* ── Render ──────────────────────────────────────────── */
-
 /**
- * Build HTML for a single skill card.
- *
- * Icon resolution priority:
- *  1. Explicit `iconImage` field in skills.json  → assets/images/skills/{iconImage}
- *  2. Auto-detect                                → assets/images/skills/{slug}.svg
- *  3. Auto-detect fallback                       → assets/images/skills/{slug}.png
- *  4. Devicon class (`icon` field)
- *  5. Placeholder  (_placeholder.svg)
- *
+ * Builds the HTML string for a single skill card.
  * @param {Object} skill
  * @returns {string}
  */
@@ -111,19 +85,14 @@ function cardHTML(skill) {
     </div>`;
 }
 
-/**
- * Render all skill cards into the grid.
- */
 function renderSkills() {
   if (!grid) return;
   grid.innerHTML = skills.map(cardHTML).join('');
 }
 
-/* ── Filter Logic ────────────────────────────────────── */
-
 /**
- * Filter cards with a fade-out / fade-in animation.
- * @param {string} category — 'all' or a category slug
+ * Shows only cards matching the given category, with a fade transition.
+ * @param {string} category - 'all' or a category slug
  */
 function filterSkills(category) {
   if (!grid) return;
@@ -131,34 +100,26 @@ function filterSkills(category) {
   const cards = grid.querySelectorAll('.skills__card');
 
   cards.forEach((card) => {
-    const match =
-      category === 'all' || card.dataset.category === category;
+    const match = category === 'all' || card.dataset.category === category;
 
     if (!match) {
-      // Fade out
       card.classList.add('fade-out');
       card.classList.remove('fade-in');
     } else {
-      // Fade in (start invisible, then animate)
       card.classList.remove('fade-out');
       card.classList.add('fade-in');
       card.style.display = '';
     }
   });
 
-  // After the fade-out duration, hide non-matching cards
+  // Physically hide faded-out cards after the transition completes
   setTimeout(() => {
     cards.forEach((card) => {
-      if (card.classList.contains('fade-out')) {
-        card.style.display = 'none';
-      }
+      if (card.classList.contains('fade-out')) card.style.display = 'none';
     });
   }, 300);
 }
 
-/**
- * Attach click handlers to filter buttons.
- */
 function initFilterTabs() {
   if (!filtersContainer) return;
 
@@ -168,7 +129,6 @@ function initFilterTabs() {
     const btn = e.target.closest('.skills__filter-btn');
     if (!btn) return;
 
-    // Update active state
     buttons.forEach((b) => {
       b.classList.remove('active');
       b.setAttribute('aria-selected', 'false');
@@ -180,13 +140,10 @@ function initFilterTabs() {
   });
 }
 
-/* ── Vanilla Tilt for Skill Cards ─────────────────────── */
-
 function applySkillTilt() {
   if (!grid) return;
-  const cards = grid.querySelectorAll('.skills__card');
 
-  cards.forEach((card) => {
+  grid.querySelectorAll('.skills__card').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x    = e.clientX - rect.left;
@@ -194,8 +151,8 @@ function applySkillTilt() {
       const midX = rect.width / 2;
       const midY = rect.height / 2;
 
-      const rotateX = ((y - midY) / midY) * -6; // max ±6 deg
-      const rotateY = ((x - midX) / midX) * 6;
+      const rotateX = ((y - midY) / midY) * -6; // max +-6 deg
+      const rotateY = ((x - midX) / midX) *  6;
 
       card.style.transform =
         `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
@@ -207,8 +164,6 @@ function applySkillTilt() {
   });
 }
 
-/* ── Init ────────────────────────────────────────────── */
-
 export async function initSkills() {
   grid             = document.getElementById('skillsGrid');
   filtersContainer = document.getElementById('skillFilters');
@@ -216,8 +171,8 @@ export async function initSkills() {
   if (!grid) return;
 
   try {
-    const res  = await fetch('data/skills.json');
-    skills     = await res.json();
+    const res = await fetch('data/skills.json');
+    skills    = await res.json();
   } catch {
     console.warn('[skills] Failed to load skills.json');
     return;
@@ -227,7 +182,7 @@ export async function initSkills() {
   applySkillTilt();
   initFilterTabs();
 
-  // Re-observe newly rendered cards for scroll-reveal
+  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }
