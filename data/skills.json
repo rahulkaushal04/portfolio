@@ -14,15 +14,22 @@
     "category": "languages",
     "iconImage": "bash.png"
   },
+
+  {
+    "name": "LLM / RAG",
+    "category": "frameworks",
+    "iconImage": "llm-rag.png",
+    "iconSize": 80
+  },
+  {
+    "name": "LangChain",
+    "category": "frameworks",
+    "iconImage": "langchain.png"
+  },
   {
     "name": "FastAPI",
     "category": "frameworks",
     "icon": "devicon-fastapi-plain"
-  },
-  {
-    "name": "Pydantic",
-    "category": "frameworks",
-    "iconImage": "pydantic.png"
   },
   {
     "name": "PyTorch",
@@ -30,14 +37,19 @@
     "icon": "devicon-pytorch-original"
   },
   {
+    "name": "Pydantic",
+    "category": "frameworks",
+    "iconImage": "pydantic.png"
+  },
+  {
     "name": "Scikit-learn",
     "category": "frameworks",
     "icon": "devicon-scikitlearn-plain"
   },
   {
-    "name": "LangChain",
+    "name": "PySpark",
     "category": "frameworks",
-    "iconImage": "langchain.png"
+    "icon": "devicon-apachespark-original"
   },
   {
     "name": "SQLAlchemy",
@@ -46,15 +58,11 @@
     "iconSize": 70
   },
   {
-    "name": "PySpark",
-    "category": "frameworks",
-    "icon": "devicon-apachespark-original"
-  },
-  {
     "name": "Celery",
     "category": "frameworks",
     "iconImage": "celery.png"
   },
+
   {
     "name": "Docker",
     "category": "tools",
@@ -66,14 +74,10 @@
     "icon": "devicon-kubernetes-plain"
   },
   {
-    "name": "Git",
+    "name": "MLflow",
     "category": "tools",
-    "icon": "devicon-git-plain"
-  },
-  {
-    "name": "GitHub Actions",
-    "category": "tools",
-    "iconImage": "github-actions.png"
+    "iconImage": "mlflow.png",
+    "iconSize": 60
   },
   {
     "name": "PostgreSQL",
@@ -86,17 +90,22 @@
     "icon": "devicon-redis-plain"
   },
   {
-    "name": "MLflow",
-    "category": "tools",
-    "iconImage": "mlflow.png",
-    "iconSize": 60
-  },
-  {
     "name": "Kafka",
     "category": "tools",
     "iconImage": "kafka.png",
     "iconSize": 55
   },
+  {
+    "name": "GitHub Actions",
+    "category": "tools",
+    "iconImage": "github-actions.png"
+  },
+  {
+    "name": "Git",
+    "category": "tools",
+    "icon": "devicon-git-plain"
+  },
+
   {
     "name": "Azure Cloud",
     "category": "cloud",
@@ -113,13 +122,7 @@
     "iconImage": "databricks.png",
     "iconSize": 60
   },
-  {
-    "name": "LLM / RAG",
-    "category": "learning",
-    "iconImage": "llm-rag.png",
-    "iconSize": 80,
-    "learning": true
-  },
+
   {
     "name": "Terraform",
     "category": "learning",
@@ -127,15 +130,15 @@
     "learning": true
   },
   {
-    "name": "Go",
-    "category": "learning",
-    "icon": "devicon-go-original-wordmark",
-    "learning": true
-  },
-  {
     "name": "Prometheus",
     "category": "learning",
     "icon": "devicon-prometheus-original",
+    "learning": true
+  },
+  {
+    "name": "Go",
+    "category": "learning",
+    "icon": "devicon-go-original-wordmark",
     "learning": true
   }
 ]

@@ -1,15 +1,15 @@
 {
   "name": "Rahul Kaushal",
-  "headline": "Python & ML Platform Engineer",
-  "tagline": "I build backend systems and ML infrastructure that actually hold up in production.",
-  "roles": ["Backend Engineer", "MLOps Builder", "Open Source Dev"],
+  "headline": "Software Engineer @ Honeywell · Python & Backend",
+  "tagline": "Building ML infrastructure by day, shipping side projects at night.",
+  "roles": ["Backend Engineer", "Python Developer", "Open Source Builder"],
   "email": "kaushalrahul15@gmail.com",
   "location": "Bengaluru, India",
   "availability": "open",
-  "resumeLastUpdated": "Feb 2026",
+  "resumeLastUpdated": "Mar 2026",
   "socials": {
     "github": "https://github.com/rahulkaushal04",
     "linkedin": "https://www.linkedin.com/in/rahul-kaushal04/"
   },
-  "siteUrl": "https://rahulkaushal04.github.io"
+  "siteUrl": "https://rahulkaushal04.github.io/portfolio"
 }

@@ -1,17 +1,11 @@
-/* ──────────────────────────────────────────────────────────
-   blog.js — RSS Fetch → Render Blog Cards (with JSON fallback)
-   ────────────────────────────────────────────────────────── */
+// blog.js - Fetches post data from blogs.json and renders blog cards into the grid.
 
-/** @type {HTMLElement|null} */
 let grid;
 
-
-
-/* ── Card Markup ─────────────────────────────────────── */
-
 /**
- * @param {Object} post — normalised post object
- * @param {number} index — 0-based position (first = latest)
+ * Builds the HTML string for a single blog card.
+ * @param {Object} post - Normalised post object from blogs.json
+ * @param {number} index - 0-based position; index 0 gets the "latest" class
  * @returns {string}
  */
 function cardHTML(post, index) {
@@ -21,7 +15,6 @@ function cardHTML(post, index) {
     .map((t) => `<span class="tag-chip">${t}</span>`)
     .join('');
 
-  // Format date
   const dateStr = new Date(post.publishDate).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -49,46 +42,16 @@ function cardHTML(post, index) {
     </a>`;
 }
 
-/* ── Data Normalisation ──────────────────────────────── */
-
 /**
- * Normalise an rss2json item into our internal shape.
- * @param {Object} item — rss2json item
- * @returns {Object}
- */
-function normaliseRSSItem(item) {
-  // Extract categories from the RSS item (Dev.to puts them in "categories")
-  const tags = Array.isArray(item.categories) ? item.categories.slice(0, 4) : [];
-
-  // Estimate read time from word count (rough average 200 wpm)
-  const wordCount = (item.description || item.content || '')
-    .replace(/<[^>]*>/g, '')
-    .split(/\s+/).length;
-  const minutes   = Math.max(1, Math.round(wordCount / 200));
-
-  return {
-    title:       item.title,
-    url:         item.link,
-    thumbnail:   item.thumbnail || item.enclosure?.link || `https://picsum.photos/seed/${encodeURIComponent(item.title)}/600/340`,
-    publishDate: item.pubDate || item.isoDate || new Date().toISOString(),
-    readTime:    `${minutes} min read`,
-    tags,
-  };
-}
-
-/* ── Fetch & Render ──────────────────────────────────── */
-
-/**
- * Try RSS first; on failure fall back to blogs.json.
- * @returns {Object[]}
+ * Loads posts from blogs.json. Returns an empty array on failure.
+ * @returns {Promise<Object[]>}
  */
 async function fetchPosts() {
   try {
-    const res   = await fetch('data/blogs.json');
-    const posts = await res.json();
-    return posts;
+    const res = await fetch('data/blogs.json');
+    return await res.json();
   } catch {
-    console.warn('[blog] Failed to load blog data from blogs.json');
+    console.warn('[blog] Failed to load blogs.json');
     return [];
   }
 }
@@ -98,8 +61,6 @@ function renderPosts(posts) {
   grid.innerHTML = posts.map(cardHTML).join('');
 }
 
-/* ── Init ────────────────────────────────────────────── */
-
 export async function initBlog() {
   grid = document.getElementById('blogGrid');
   if (!grid) return;
@@ -107,7 +68,7 @@ export async function initBlog() {
   const posts = await fetchPosts();
   renderPosts(posts);
 
-  // Re-observe newly rendered cards for scroll-reveal
+  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

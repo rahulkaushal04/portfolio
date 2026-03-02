@@ -1,14 +1,7 @@
-/* ──────────────────────────────────────────────────────────
-   easter-eggs.js — Konami Code + DevTools Console Message
+// easter-eggs.js - Konami code (up up down down left right left right B A) fires a confetti burst.
+// Also prints a styled message in the browser console for curious developers.
 
-   Konami sequence: ↑ ↑ ↓ ↓ ← → ← → B A
-   On match: canvas-confetti burst (loaded from CDN on demand).
-   Also prints a styled message in the browser console for
-   developers who peek under the hood.
-   ────────────────────────────────────────────────────────── */
-
-/* ── Konami Code ─────────────────────────────────────── */
-
+// Sequence: up up down down left right left right B A
 const KONAMI = [
   'ArrowUp', 'ArrowUp',
   'ArrowDown', 'ArrowDown',
@@ -20,8 +13,8 @@ const KONAMI = [
 let konamiIndex = 0;
 
 /**
- * Load canvas-confetti from CDN on first trigger
- * to avoid bundling it in the main payload.
+ * Lazily loads canvas-confetti from CDN on the first trigger
+ * so it is not bundled into the main payload.
  * @returns {Promise<Function>}
  */
 async function loadConfetti() {
@@ -36,9 +29,6 @@ async function loadConfetti() {
   });
 }
 
-/**
- * Fire a satisfying confetti burst.
- */
 async function fireConfetti() {
   try {
     const confetti = await loadConfetti();
@@ -51,7 +41,7 @@ async function fireConfetti() {
       colors: ['#4F8EF7', '#00D4AA', '#7C3AED', '#F59E0B', '#EF4444'],
     });
 
-    // Side cannons for extra flair
+    // Side cannons after a short delay for extra flair
     setTimeout(() => {
       confetti({
         particleCount: 60,
@@ -69,7 +59,7 @@ async function fireConfetti() {
       });
     }, 250);
   } catch {
-    // Confetti failed to load — no big deal
+    // Confetti failed to load, nothing to do
   }
 }
 
@@ -90,8 +80,6 @@ function initKonami() {
   });
 }
 
-/* ── DevTools Console Message ────────────────────────── */
-
 function printConsoleMessage() {
   const styles = [
     'color: #4F8EF7',
@@ -109,16 +97,14 @@ function printConsoleMessage() {
 
   console.log(
     '%c👋 Hey, fellow developer!%c\n' +
-    "%cCurious how this site works? It's all vanilla HTML, CSS & JS — no frameworks.\n" +
-    'Check out the source: https://github.com/rahulkaushal04/rahulkaushal04.github.io\n' +
-    'Try the Konami code for a surprise! ↑ ↑ ↓ ↓ ← → ← → B A',
+    "%cCurious how this site works? It's all vanilla HTML, CSS & JS - no frameworks.\n" +
+    'Check out the source: https://github.com/rahulkaushal04/portfolio\n' +
+    'Try the Konami code for a surprise! up up down down left right left right B A',
     styles,
     '',
     subtitleStyles
   );
 }
-
-/* ── Init ────────────────────────────────────────────── */
 
 export function initEasterEggs() {
   initKonami();

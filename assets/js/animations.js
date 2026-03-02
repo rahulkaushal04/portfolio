@@ -1,34 +1,13 @@
-/* ──────────────────────────────────────────────────────────
-   animations.js — Scroll-Reveal with Intersection Observer
-   ────────────────────────────────────────────────────────── */
+// animations.js - Scroll-reveal using IntersectionObserver.
+// Elements with .reveal start hidden via CSS. Adding .visible triggers the entrance animation.
+// data-delay="n" staggers the animation by n * 100ms. Direction variants (.reveal-left etc.) are CSS-only.
 
 /**
- * Initialise scroll-reveal animations.
- *
- * Every element with the `.reveal` class starts hidden (via CSS
- * `opacity: 0; transform: translateY(24px)`). When it scrolls into
- * view, the `.visible` class is added, triggering its entrance
- * animation.
- *
- * Staggered delays are supported via the `data-delay` attribute
- * (e.g. `data-delay="1"` → 100 ms offset). Direction variants
- * `.reveal-left`, `.reveal-right`, `.reveal-scale` are handled
- * purely in CSS — this module only toggles `.visible`.
- *
- * If the user has `prefers-reduced-motion: reduce` enabled, all
- * reveal elements are made visible immediately without animation.
+ * Sets up scroll-reveal for all .reveal elements on the page.
+ * Call once on DOMContentLoaded. Skips animation if the user prefers reduced motion.
  */
-
-/* ── Reduced-motion shortcut ─────────────────────────── */
-
-function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-/* ── Observer Setup ──────────────────────────────────── */
-
 export function initAnimations() {
-  const reducedMotion = prefersReducedMotion();
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const observer = reducedMotion
     ? null
@@ -37,7 +16,7 @@ export function initAnimations() {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
 
-            const el    = entry.target;
+            const el = entry.target;
             const delay = parseInt(el.dataset.delay, 10) || 0;
 
             if (delay > 0) {
@@ -46,7 +25,7 @@ export function initAnimations() {
               el.classList.add('visible');
             }
 
-            // Once revealed, stop observing (one-shot animation)
+            // One-shot: stop watching once the element has been revealed
             obs.unobserve(el);
           });
         },
@@ -56,10 +35,8 @@ export function initAnimations() {
         }
       );
 
-  /** Observe all current `.reveal` elements. */
   function observeAll() {
-    const reveals = document.querySelectorAll('.reveal:not(.visible)');
-    reveals.forEach((el) => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
       if (reducedMotion) {
         el.classList.add('visible');
       } else {
@@ -70,10 +47,7 @@ export function initAnimations() {
 
   observeAll();
 
-  /**
-   * Expose a global helper so dynamically-rendered modules
-   * (skills, projects, blog, github) can ask us to observe
-   * their freshly injected `.reveal` elements.
-   */
+  // Exposed so dynamic modules (skills, projects, blog, github) can
+  // register their freshly injected .reveal elements after render.
   window.__reObserveReveals = observeAll;
 }
