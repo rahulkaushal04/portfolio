@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Build Your First RAG Pipeline from Scratch",
+    "url": "https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch",
+    "thumbnail": "assets/images/blogs/build-your-first-rag-pipeline-from-scratch.png",
+    "publishDate": "2026-01-19",
+    "readTime": "16 min read",
+    "tags": [
+      "rag",
+      "llm",
+      "langchain",
+      "embeddings",
+      "vector-search",
+      "faiss",
+      "ollama"
+    ]
+  },
+  {
+    "title": "How AI Finds What You Actually Mean",
+    "url": "https://rahulkaushal.hashnode.dev/how-ai-finds-what-you-actually-mean",
+    "thumbnail": "assets/images/blogs/how-ai-finds-what-you-actually-mean.png",
+    "publishDate": "2026-01-12",
+    "readTime": "19 min read",
+    "tags": [
+      "embeddings",
+      "vector-database",
+      "cosine-similarity",
+      "sentence-transformers"
+    ]
+  },
+  {
+    "title": "Don't Hold the Chef Hostage: A Production Guide to Async FastAPI",
+    "url": "https://rahulkaushal.hashnode.dev/the-async-fastapi-playbook-concurrency-patterns-that-actually-hold-up-in-prod",
+    "thumbnail": "assets/images/blogs/the-async-fastapi-playbook.png",
+    "publishDate": "2025-11-10",
+    "readTime": "17 min read",
+    "tags": [
+      "fastapi",
+      "python",
+      "asyncio",
+      "concurrency",
+      "streaming-api",
+      "backend-development"
+    ]
+  },
+  {
+    "title": "Why Your FastAPI DB Pool Never Fails in Dev (And Explodes in Prod)",
+    "url": "https://rahulkaushal.hashnode.dev/why-your-fastapi-db-pool-never-fails-in-dev-and-explodes-in-prod",
+    "thumbnail": "assets/images/blogs/why-your-fastapi-db-pool-never-fails.png",
+    "publishDate": "2026-11-03",
+    "readTime": "9 min read",
+    "tags": [
+      "fastapi",
+      "python",
+      "sqlalchemy",
+      "async-sqlalchemy",
+      "backend-development",
+      "postgresql",
+      "database-connection-pooling"
+    ]
+  }
+]

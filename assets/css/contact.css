@@ -1,0 +1,395 @@
+/* ============================================================
+   CONTACT SECTION
+   Includes:
+   - Two-column layout
+   - Form inputs + validation states
+   - Submit button morph (idle → loading → success)
+   - Email copy chip
+   - Social links
+   - Toast notifications
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   LAYOUT WRAPPER
+   Form + Info sidebar
+   ────────────────────────────────────────────────────────── */
+.contact__wrapper {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--sp-10);
+  max-width: 900px;
+  margin-inline: auto;
+  align-items: start;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   FORM STRUCTURE
+   ────────────────────────────────────────────────────────── */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.contact__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text-primary);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   INPUT / TEXTAREA
+   ────────────────────────────────────────────────────────── */
+.contact__input {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-base);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-tertiary);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-md);
+
+  transition:
+    border-color var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+}
+
+.contact__input::placeholder {
+  color: var(--clr-text-muted);
+}
+
+/* Focus ring (keyboard-friendly) */
+.contact__input:focus-visible {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px var(--clr-accent-light);
+  outline: none;
+}
+
+/* Validation error state */
+.contact__input.error {
+  border-color: var(--clr-error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.contact__textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   INLINE ERROR MESSAGE
+   Maintains height to prevent layout shift
+   ────────────────────────────────────────────────────────── */
+.contact__error {
+  font-size: var(--fs-xs);
+  color: var(--clr-error);
+  min-height: 1.2em;
+}
+
+
+/* ============================================================
+   SUBMIT BUTTON — MORPHING STATES
+   idle → loading → success
+   ============================================================ */
+.contact__submit {
+  position: relative;
+  min-width: 180px;
+  min-height: 46px;
+  overflow: hidden;
+}
+
+/* Layered state elements */
+.contact__submit-text,
+.contact__submit-loader,
+.contact__submit-check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    opacity var(--duration-base) var(--ease-default),
+    transform var(--duration-base) var(--ease-default);
+}
+
+/* Default visible state */
+.contact__submit-text {
+  position: relative;
+}
+
+.contact__submit-loader,
+.contact__submit-check {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+
+/* ── Loading State ───────────────────────────────────── */
+.contact__submit.loading {
+  pointer-events: none;
+}
+
+.contact__submit.loading .contact__submit-text {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.contact__submit.loading .contact__submit-loader {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Spinner animation isolated from parent transform */
+.contact__submit-loader::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ── Success State ───────────────────────────────────── */
+.contact__submit.success {
+  background-color: var(--clr-success);
+  border-color: var(--clr-success);
+  pointer-events: none;
+}
+
+.contact__submit.success .contact__submit-text,
+.contact__submit.success .contact__submit-loader {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.contact__submit.success .contact__submit-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ============================================================
+   CONTACT INFO SIDEBAR
+   ============================================================ */
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  padding-top: var(--sp-4);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   EMAIL COPY CHIP
+   ────────────────────────────────────────────────────────── */
+.contact__email-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-5);
+
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+
+  cursor: pointer;
+  position: relative;
+
+  transition:
+    border-color var(--duration-base) var(--ease-default),
+    background-color var(--duration-base) var(--ease-default);
+}
+
+.contact__email-chip:hover,
+.contact__email-chip:focus-visible {
+  border-color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+  outline: none;
+}
+
+.contact__email-chip svg {
+  color: var(--clr-accent);
+  flex-shrink: 0;
+}
+
+.contact__email-text {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-primary);
+}
+
+/* Copied tooltip */
+.contact__email-copied {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--sp-1) var(--sp-3);
+
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+
+  color: #fff;
+  background-color: var(--clr-success);
+
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+
+.contact__email-chip.copied .contact__email-copied {
+  opacity: 1;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   SOCIAL LINKS
+   ────────────────────────────────────────────────────────── */
+.contact__socials {
+  display: flex;
+  gap: var(--sp-4);
+}
+
+.contact__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: var(--radius-md);
+  color: var(--clr-text-secondary);
+  border: 1px solid var(--clr-border);
+
+  transition:
+    color var(--duration-base) var(--ease-default),
+    background-color var(--duration-base) var(--ease-default),
+    border-color var(--duration-base) var(--ease-default),
+    transform var(--duration-base) var(--ease-bounce);
+}
+
+.contact__social-link:hover,
+.contact__social-link:focus-visible {
+  color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+  border-color: var(--clr-accent);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+.toast-container {
+  position: fixed;
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+  z-index: var(--z-modal);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+
+  pointer-events: none;
+}
+
+.toast {
+  padding: var(--sp-3) var(--sp-6);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+
+  color: #fff;
+  background-color: var(--clr-bg-secondary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+
+  pointer-events: auto;
+  animation: slideUp 0.4s var(--ease-out) forwards;
+}
+
+.toast.toast--success {
+  border-left: 3px solid var(--clr-success);
+}
+
+.toast.toast--error {
+  border-left: 3px solid var(--clr-error);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE
+   Single column on small screens
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .contact__wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+  }
+
+  .contact__info {
+    align-items: center;
+  }
+
+  .contact__socials {
+    justify-content: center;
+  }
+
+  .toast-container {
+    left: var(--sp-4);
+    right: var(--sp-4);
+    bottom: var(--sp-4);
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced Motion
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .contact__submit-loader::after,
+  .toast {
+    animation: none;
+  }
+
+  .contact__social-link {
+    transform: none !important;
+  }
+
+}

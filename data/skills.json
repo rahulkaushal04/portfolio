@@ -1,0 +1,141 @@
+[
+  {
+    "name": "Python",
+    "category": "languages",
+    "icon": "devicon-python-plain"
+  },
+  {
+    "name": "SQL",
+    "category": "languages",
+    "icon": "devicon-azuresqldatabase-plain"
+  },
+  {
+    "name": "Bash",
+    "category": "languages",
+    "iconImage": "bash.png"
+  },
+  {
+    "name": "FastAPI",
+    "category": "frameworks",
+    "icon": "devicon-fastapi-plain"
+  },
+  {
+    "name": "Pydantic",
+    "category": "frameworks",
+    "iconImage": "pydantic.png"
+  },
+  {
+    "name": "PyTorch",
+    "category": "frameworks",
+    "icon": "devicon-pytorch-original"
+  },
+  {
+    "name": "Scikit-learn",
+    "category": "frameworks",
+    "icon": "devicon-scikitlearn-plain"
+  },
+  {
+    "name": "LangChain",
+    "category": "frameworks",
+    "iconImage": "langchain.png"
+  },
+  {
+    "name": "SQLAlchemy",
+    "category": "frameworks",
+    "iconImage": "sqlalchemy.png",
+    "iconSize": 70
+  },
+  {
+    "name": "PySpark",
+    "category": "frameworks",
+    "icon": "devicon-apachespark-original"
+  },
+  {
+    "name": "Celery",
+    "category": "frameworks",
+    "iconImage": "celery.png"
+  },
+  {
+    "name": "Docker",
+    "category": "tools",
+    "icon": "devicon-docker-plain"
+  },
+  {
+    "name": "Kubernetes",
+    "category": "tools",
+    "icon": "devicon-kubernetes-plain"
+  },
+  {
+    "name": "Git",
+    "category": "tools",
+    "icon": "devicon-git-plain"
+  },
+  {
+    "name": "GitHub Actions",
+    "category": "tools",
+    "iconImage": "github-actions.png"
+  },
+  {
+    "name": "PostgreSQL",
+    "category": "tools",
+    "icon": "devicon-postgresql-plain"
+  },
+  {
+    "name": "Redis",
+    "category": "tools",
+    "icon": "devicon-redis-plain"
+  },
+  {
+    "name": "MLflow",
+    "category": "tools",
+    "iconImage": "mlflow.png",
+    "iconSize": 60
+  },
+  {
+    "name": "Kafka",
+    "category": "tools",
+    "iconImage": "kafka.png",
+    "iconSize": 55
+  },
+  {
+    "name": "Azure Cloud",
+    "category": "cloud",
+    "icon": "devicon-azure-plain"
+  },
+  {
+    "name": "AWS",
+    "category": "cloud",
+    "icon": "devicon-amazonwebservices-plain-wordmark"
+  },
+  {
+    "name": "Databricks",
+    "category": "cloud",
+    "iconImage": "databricks.png",
+    "iconSize": 60
+  },
+  {
+    "name": "LLM / RAG",
+    "category": "learning",
+    "iconImage": "llm-rag.png",
+    "iconSize": 80,
+    "learning": true
+  },
+  {
+    "name": "Terraform",
+    "category": "learning",
+    "icon": "devicon-terraform-plain",
+    "learning": true
+  },
+  {
+    "name": "Go",
+    "category": "learning",
+    "icon": "devicon-go-original-wordmark",
+    "learning": true
+  },
+  {
+    "name": "Prometheus",
+    "category": "learning",
+    "icon": "devicon-prometheus-original",
+    "learning": true
+  }
+]

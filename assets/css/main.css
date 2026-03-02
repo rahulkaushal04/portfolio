@@ -1,0 +1,324 @@
+/* ============================================================
+   MAIN STYLESHEET
+   Imports every other CSS file in the correct cascade order,
+   sets global body styles, containers, section layout,
+   base typography, and utility classes.
+   ============================================================ */
+
+/* ── Imports (order matters) ─────────────────────────── */
+@import url("variables.css");
+@import url("reset.css");
+@import url("themes.css");
+@import url("animations.css");
+@import url("navbar.css");
+@import url("hero.css");
+@import url("about.css");
+@import url("skills.css");
+@import url("experience.css");
+@import url("projects.css");
+@import url("blog.css");
+@import url("contact.css");
+@import url("footer.css");
+
+/* ── Self-Hosted Fonts ───────────────────────────────── */
+@font-face {
+  font-family: "Clash Display";
+  src: url("../fonts/ClashDisplay.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* ── Global Body ─────────────────────────────────────── */
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-primary);
+  overflow-x: hidden;
+  transition: background-color var(--duration-base) var(--ease-default),
+              color var(--duration-base) var(--ease-default);
+}
+
+/* ── Container ───────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-px);
+}
+
+/* ── Section Defaults ────────────────────────────────── */
+section {
+  padding-block: var(--section-py);
+  position: relative;
+}
+
+/* ── Headings ────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: var(--clr-text-primary);
+}
+
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-3xl);  }
+h3 { font-size: var(--fs-2xl);  }
+h4 { font-size: var(--fs-xl);   }
+h5 { font-size: var(--fs-lg);   }
+h6 { font-size: var(--fs-md);   }
+
+/* ── Links (global) ──────────────────────────────────── */
+a {
+  transition: var(--transition-colors);
+}
+
+a:hover {
+  color: var(--clr-accent);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Paragraph ───────────────────────────────────────── */
+p {
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+}
+
+p + p {
+  margin-top: var(--sp-4);
+}
+
+/* ── Selection ───────────────────────────────────────── */
+::selection {
+  background-color: var(--clr-accent);
+  color: var(--clr-bg-primary);
+}
+
+/* ── Scrollbar (Webkit) ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-text-muted);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-border) var(--clr-bg-secondary);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* ── Layout ──────────────────────────────────────────── */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-center {
+  display: grid;
+  place-items: center;
+}
+
+/* ── Section Title ───────────────────────────────────── */
+.section-title {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  margin-bottom: var(--sp-4);
+}
+
+.section-subtitle {
+  font-size: var(--fs-md);
+  color: var(--clr-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-16);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sp-3);
+  text-align: center;
+  width: 100%;
+}
+
+/* ── Tag Chip ────────────────────────────────────────── */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-colors),
+              var(--transition-transform),
+              var(--transition-shadow);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: var(--clr-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-accent-hover);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-outline {
+  color: var(--clr-accent);
+  border: 1.5px solid var(--clr-accent);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--clr-accent-light);
+  color: var(--clr-accent);
+}
+
+/* ── Card Base ───────────────────────────────────────── */
+.card {
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  transition: var(--transition-transform),
+              var(--transition-shadow);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Glass Panel ─────────────────────────────────────── */
+.glass {
+  background: var(--clr-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--clr-glass-border);
+}
+
+/* ── Visibility ──────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Text Utilities ──────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-success));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-center { text-align: center; }
+.text-muted  { color: var(--clr-text-muted); }
+
+/* ── Spacing Helpers ─────────────────────────────────── */
+.mt-auto { margin-top: auto; }
+.mb-0    { margin-bottom: 0; }
+.gap-2   { gap: var(--sp-2); }
+.gap-4   { gap: var(--sp-4); }
+.gap-6   { gap: var(--sp-6); }
+
+/* ── Responsive Breakpoints (reference only — used via @media) ──
+   sm  :  640px
+   md  :  768px
+   lg  : 1024px
+   xl  : 1280px
+   ──────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  :root {
+    --section-py: var(--sp-16);
+    --container-px: var(--sp-4);
+  }
+
+  h2 { font-size: var(--fs-2xl); }
+  h3 { font-size: var(--fs-xl);  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-py: var(--sp-12);
+  }
+}

@@ -1,0 +1,190 @@
+/* ============================================================
+   FOOTER
+   Includes:
+   - Tech stack badge row
+   - Copyright
+   - Back-to-top floating button
+   - Custom cursor dot (global utility)
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   FOOTER CONTAINER
+   ────────────────────────────────────────────────────────── */
+.footer {
+  padding-block: var(--sp-12);
+  border-top: 1px solid var(--clr-border);
+  background-color: var(--clr-bg-secondary);
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TECH STACK BADGES
+   ────────────────────────────────────────────────────────── */
+.footer__tech-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.footer__tech-label {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  font-weight: var(--fw-medium);
+}
+
+.footer__tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   COPYRIGHT
+   ────────────────────────────────────────────────────────── */
+.footer__copy {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  text-align: center;
+}
+
+
+/* ============================================================
+   BACK TO TOP BUTTON
+   Fixed floating action button
+   Visibility toggled via JS (.visible)
+   ============================================================ */
+.footer__back-to-top {
+  position: fixed;
+  bottom: var(--sp-8);
+  right: var(--sp-8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: var(--radius-full);
+  background-color: var(--clr-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-sticky);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+
+  transition:
+    opacity var(--duration-base) var(--ease-default),
+    visibility var(--duration-base) var(--ease-default),
+    transform var(--duration-base) var(--ease-default),
+    background-color var(--duration-base) var(--ease-default);
+
+  will-change: transform, opacity;
+}
+
+/* Hover + keyboard focus */
+.footer__back-to-top:hover,
+.footer__back-to-top:focus-visible {
+  background-color: var(--clr-accent-hover);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Visible state (after scroll threshold) */
+.footer__back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   CUSTOM CURSOR DOT
+   Lightweight visual enhancement (desktop only)
+   Positioned via JS with transform: translate()
+   ============================================================ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 8px;
+  height: 8px;
+
+  background-color: var(--clr-accent);
+  border-radius: 50%;
+  pointer-events: none;
+
+  z-index: var(--z-cursor);
+  opacity: 0;
+
+  transition:
+    width var(--duration-fast) var(--ease-default),
+    height var(--duration-fast) var(--ease-default),
+    opacity var(--duration-fast) var(--ease-default);
+
+  mix-blend-mode: difference;
+}
+
+/* Activated by JS */
+.cursor-dot.visible {
+  opacity: 1;
+}
+
+/* Enlarged when hovering interactive elements */
+.cursor-dot.cursor-hover {
+  width: 32px;
+  height: 32px;
+  background-color: var(--clr-accent-light);
+}
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) {
+  .cursor-dot {
+    display: none !important;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE
+   Adjust FAB positioning on small screens
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer__back-to-top {
+    bottom: var(--sp-4);
+    right: var(--sp-4);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced Motion
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .footer__back-to-top,
+  .cursor-dot {
+    transition: none;
+    transform: none !important;
+  }
+
+}
