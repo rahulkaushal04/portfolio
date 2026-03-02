@@ -1,0 +1,209 @@
+/* ============================================================
+   BLOG SECTION
+   Responsive card grid with:
+   - Thumbnail (16:9)
+   - Truncated title (2 lines)
+   - Meta row (date + read time)
+   - Tag chips
+   - "Latest Post" badge
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   BLOG GRID
+   Auto-fill responsive cards with minimum width
+   ────────────────────────────────────────────────────────── */
+.blog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-6);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   BLOG CARD
+   Clickable container styled as anchor
+   ────────────────────────────────────────────────────────── */
+.blog__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  text-decoration: none;
+  color: inherit;
+
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+
+  will-change: transform; /* optimize hover animation */
+}
+
+/* Hover + keyboard focus state */
+.blog__card:hover,
+.blog__card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  color: inherit;
+  outline: none;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   THUMBNAIL
+   Maintains consistent 16:9 ratio
+   ────────────────────────────────────────────────────────── */
+.blog__card-img-wrapper {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.blog__card-img {
+  display: block; /* removes inline image baseline gap */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
+  transition: transform var(--duration-slow) var(--ease-default);
+  will-change: transform;
+}
+
+/* Subtle zoom on hover */
+.blog__card:hover .blog__card-img,
+.blog__card:focus-visible .blog__card-img {
+  transform: scale(1.05);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CARD BODY
+   Flexible layout ensures tags stick to bottom
+   ────────────────────────────────────────────────────────── */
+.blog__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  flex: 1;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TITLE
+   Multi-line truncation (2 lines)
+   WebKit-based clamping with safe overflow
+   ────────────────────────────────────────────────────────── */
+.blog__card-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text-primary);
+  line-height: var(--lh-tight);
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  overflow: hidden;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   META ROW (Date + Read Time)
+   ────────────────────────────────────────────────────────── */
+.blog__card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+}
+
+/* Read-time badge */
+.blog__card-read-time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+
+  color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+
+  border-radius: var(--radius-full);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TAG CHIPS
+   Sticks to bottom via margin-top:auto
+   ────────────────────────────────────────────────────────── */
+.blog__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: auto;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   "LATEST POST" BADGE
+   Absolute positioned overlay label
+   ────────────────────────────────────────────────────────── */
+.blog__card.latest::before {
+  content: "Latest Post";
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+
+  padding: var(--sp-1) var(--sp-3);
+
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    var(--clr-accent),
+    var(--clr-success)
+  );
+
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE
+   Single column on small screens
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .blog__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ACCESSIBILITY: Reduced Motion
+   Disables hover transforms if user prefers less motion
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .blog__card,
+  .blog__card-img {
+    transition: none;
+    transform: none !important;
+  }
+
+}

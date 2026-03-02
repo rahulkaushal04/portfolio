@@ -1,0 +1,132 @@
+/* ============================================================
+   DESIGN TOKENS
+   All colors, fonts, spacing, radii, shadows, and transitions.
+   Every other CSS file references these custom properties.
+   ============================================================ */
+
+:root {
+  /* ── Color Palette ─────────────────────────────────── */
+
+  /* Primary accent */
+  --clr-accent:          #4F8EF7;
+  --clr-accent-hover:    #3A7AE6;
+  --clr-accent-light:    #4F8EF720;   /* 12 % opacity for subtle fills */
+
+  /* Backgrounds */
+  --clr-bg-primary:      #0F1117;
+  --clr-bg-secondary:    #161922;
+  --clr-bg-tertiary:     #1C1F2E;
+  --clr-bg-card:         #1C1F2E;
+
+  /* Surfaces / Glassmorphism */
+  --clr-glass-bg:        rgba(255, 255, 255, 0.05);
+  --clr-glass-border:    rgba(255, 255, 255, 0.1);
+
+  /* Text */
+  --clr-text-primary:    #F0F2F5;
+  --clr-text-secondary:  #A0A6B8;
+  --clr-text-muted:      #6B7280;
+
+  /* Borders & Dividers */
+  --clr-border:          #2A2D3A;
+
+  /* Status */
+  --clr-success:         #00D4AA;
+  --clr-error:           #EF4444;
+  --clr-warning:         #F59E0B;
+
+  /* ── Typography ────────────────────────────────────── */
+
+  /* Font families (self-hosted WOFF2 loaded in main.css) */
+  --ff-heading:          "Clash Display", system-ui, sans-serif;
+  --ff-body:             "Inter", system-ui, sans-serif;
+  --ff-mono:             "JetBrains Mono", "Fira Code", monospace;
+
+  /* Font-size scale (major-third ratio ≈ 1.25) */
+  --fs-xs:               0.75rem;    /* 12 px */
+  --fs-sm:               0.875rem;   /* 14 px */
+  --fs-base:             1rem;       /* 16 px */
+  --fs-md:               1.125rem;   /* 18 px */
+  --fs-lg:               1.25rem;    /* 20 px */
+  --fs-xl:               1.5rem;     /* 24 px */
+  --fs-2xl:              2rem;       /* 32 px */
+  --fs-3xl:              2.5rem;     /* 40 px */
+  --fs-4xl:              3rem;       /* 48 px */
+  --fs-5xl:              3.75rem;    /* 60 px */
+  --fs-hero:             clamp(2.5rem, 6vw, 5rem);
+
+  /* Font weights */
+  --fw-regular:          400;
+  --fw-medium:           500;
+  --fw-semibold:         600;
+  --fw-bold:             700;
+  --fw-extrabold:        800;
+
+  /* Line heights */
+  --lh-tight:            1.2;
+  --lh-base:             1.6;
+  --lh-loose:            1.8;
+
+  /* ── Spacing (8 px base grid) ──────────────────────── */
+  --sp-1:                0.25rem;    /*  4 px */
+  --sp-2:                0.5rem;     /*  8 px */
+  --sp-3:                0.75rem;    /* 12 px */
+  --sp-4:                1rem;       /* 16 px */
+  --sp-5:                1.25rem;    /* 20 px */
+  --sp-6:                1.5rem;     /* 24 px */
+  --sp-8:                2rem;       /* 32 px */
+  --sp-10:               2.5rem;     /* 40 px */
+  --sp-12:               3rem;       /* 48 px */
+  --sp-16:               4rem;       /* 64 px */
+  --sp-20:               5rem;       /* 80 px */
+  --sp-24:               6rem;       /* 96 px */
+  --sp-32:               8rem;       /* 128 px */
+
+  /* Section vertical padding */
+  --section-py:          var(--sp-24);
+
+  /* Container */
+  --container-max:       1200px;
+  --container-px:        var(--sp-6);
+
+  /* ── Border Radius ─────────────────────────────────── */
+  --radius-sm:           0.375rem;   /*  6 px */
+  --radius-md:           0.75rem;    /* 12 px */
+  --radius-lg:           1rem;       /* 16 px */
+  --radius-xl:           1.5rem;     /* 24 px */
+  --radius-full:         9999px;
+
+  /* ── Box Shadows ───────────────────────────────────── */
+  --shadow-sm:           0  1px  2px rgba(0, 0, 0, 0.25);
+  --shadow-md:           0  4px  8px rgba(0, 0, 0, 0.3);
+  --shadow-lg:           0  8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-xl:           0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-glow:         0  0  20px var(--clr-accent-light);
+
+  /* ── Transitions ───────────────────────────────────── */
+  --ease-default:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:             cubic-bezier(0.4, 0, 1,   1);
+  --ease-out:            cubic-bezier(0,   0, 0.2, 1);
+  --ease-bounce:         cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast:       150ms;
+  --duration-base:       300ms;
+  --duration-slow:       500ms;
+
+  --transition-colors:   color var(--duration-base) var(--ease-default),
+                         background-color var(--duration-base) var(--ease-default),
+                         border-color var(--duration-base) var(--ease-default);
+  --transition-transform: transform var(--duration-base) var(--ease-default);
+  --transition-opacity:   opacity var(--duration-base) var(--ease-default);
+  --transition-shadow:    box-shadow var(--duration-base) var(--ease-default);
+
+  /* ── Z-Index Scale ─────────────────────────────────── */
+  --z-behind:            -1;
+  --z-base:               0;
+  --z-dropdown:           10;
+  --z-sticky:             20;
+  --z-navbar:             100;
+  --z-overlay:            200;
+  --z-modal:              300;
+  --z-cursor:             9999;
+}

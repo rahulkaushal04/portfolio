@@ -1,0 +1,359 @@
+/* ============================================================
+   PROJECTS SECTION
+   Includes:
+   - Filter tabs
+   - Bento-style responsive grid
+   - Featured card spanning 2 columns
+   - Hover overlay
+   - GitHub pinned repositories grid
+   ============================================================ */
+
+
+/* ============================================================
+   FILTER TABS
+   ============================================================ */
+.projects__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-10);
+}
+
+.projects__filter-btn {
+  padding: var(--sp-2) var(--sp-5);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+
+  color: var(--clr-text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+
+  cursor: pointer;
+
+  transition:
+    var(--transition-colors),
+    border-color var(--duration-base) var(--ease-default);
+}
+
+.projects__filter-btn:hover,
+.projects__filter-btn:focus-visible {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
+  outline: none;
+}
+
+.projects__filter-btn.active {
+  color: #fff;
+  background-color: var(--clr-accent);
+  border-color: var(--clr-accent);
+}
+
+
+/* ============================================================
+   BENTO GRID
+   ============================================================ */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-6);
+}
+
+
+/* ============================================================
+   PROJECT CARD
+   ============================================================ */
+.projects__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+
+  will-change: transform;
+}
+
+.projects__card:hover,
+.projects__card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Featured card spans two columns (desktop only) */
+.projects__card.featured {
+  grid-column: span 2;
+}
+
+
+/* ============================================================
+   CARD IMAGE
+   ============================================================ */
+.projects__card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.projects__card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform var(--duration-slow) var(--ease-default);
+  will-change: transform;
+}
+
+.projects__card:hover .projects__card-img,
+.projects__card:focus-within .projects__card-img {
+  transform: scale(1.06);
+}
+
+
+/* ============================================================
+   HOVER OVERLAY
+   ============================================================ */
+.projects__card-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    transparent 60%
+  );
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: var(--sp-6);
+  opacity: 0;
+
+  transition: opacity var(--duration-base) var(--ease-default);
+  pointer-events: none;
+}
+
+.projects__card:hover .projects__card-overlay,
+.projects__card:focus-within .projects__card-overlay {
+  opacity: 1;
+}
+
+.projects__card-overlay-text {
+  font-size: var(--fs-sm);
+  color: #fff;
+  text-align: center;
+  line-height: var(--lh-base);
+}
+
+
+/* ============================================================
+   CARD BODY
+   ============================================================ */
+.projects__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  flex: 1;
+}
+
+.projects__card-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text-primary);
+}
+
+.projects__card-description {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+  flex: 1;
+}
+
+
+/* ============================================================
+   TECH TAGS
+   ============================================================ */
+.projects__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+.projects__card-actions {
+  display: flex;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.projects__card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+
+  color: var(--clr-accent);
+  border: 1px solid var(--clr-accent);
+  border-radius: var(--radius-md);
+
+  transition:
+    var(--transition-colors),
+    background-color var(--duration-base) var(--ease-default);
+}
+
+.projects__card-link:hover,
+.projects__card-link:focus-visible {
+  color: #fff;
+  background-color: var(--clr-accent);
+  outline: none;
+}
+
+.projects__card-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* ============================================================
+   FILTER ANIMATION STATES
+   JS should toggle classes in sequence
+   ============================================================ */
+.projects__card {
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default),
+    opacity var(--duration-base) var(--ease-default);
+}
+
+.projects__card.filter-hidden {
+  display: none;
+}
+
+.projects__card.filter-fade-out {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.projects__card.filter-fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ============================================================
+   GITHUB PINNED REPOS
+   ============================================================ */
+.projects__github-repos {
+  margin-top: var(--sp-10);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+
+.projects__github-repos:empty {
+  display: none;
+}
+
+.projects__repo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+
+  padding: var(--sp-5);
+
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+
+  will-change: transform;
+}
+
+.projects__repo-card:hover,
+.projects__repo-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.projects__repo-name {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-accent);
+}
+
+.projects__repo-desc {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+}
+
+.projects__repo-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+
+  margin-top: auto;
+}
+
+.projects__repo-lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects__card.featured {
+    grid-column: span 1;
+  }
+
+  .projects__github-repos {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   ACCESSIBILITY — Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  .projects__card,
+  .projects__repo-card,
+  .projects__card-img {
+    transition: none !important;
+    transform: none !important;
+  }
+
+}

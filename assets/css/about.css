@@ -1,0 +1,204 @@
+/* ============================================================
+   ABOUT SECTION
+   Two-column layout:
+   - Left: Sticky avatar card
+   - Right: Bio, Currently widget, metadata
+   Depends on design tokens + animations.css
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   GRID LAYOUT
+   Fixed avatar column + flexible content column
+   ────────────────────────────────────────────────────────── */
+.about__grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   AVATAR CARD
+   Sticky within viewport below header offset
+   ────────────────────────────────────────────────────────── */
+.about__avatar-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+  position: sticky;
+  top: calc(80px + var(--sp-6)); /* header height offset */
+}
+
+.about__avatar-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: var(--shadow-md);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   BIO SECTION
+   Vertical rhythm optimized for readability
+   ────────────────────────────────────────────────────────── */
+.about__bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.about__bio p {
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+}
+
+/* Highlight callout (Fun fact / personality note) */
+.about__fun-fact {
+  font-size: var(--fs-base);
+  color: var(--clr-accent);
+  font-weight: var(--fw-medium);
+  padding: var(--sp-4);
+  background-color: var(--clr-accent-light);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--clr-accent);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CURRENTLY WIDGET
+   Displays current focus / work items
+   ────────────────────────────────────────────────────────── */
+.about__currently {
+  padding: var(--sp-6);
+}
+
+.about__currently-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text-primary);
+  margin-bottom: var(--sp-4);
+}
+
+.about__currently-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.about__currently-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-size: var(--fs-base);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+}
+
+.about__currently-icon {
+  flex-shrink: 0;
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+}
+
+.about__currently-list strong {
+  color: var(--clr-text-primary);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   META SECTION
+   Location + availability indicator
+   ────────────────────────────────────────────────────────── */
+.about__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  flex-wrap: wrap;
+}
+
+.about__location {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+}
+
+.about__location svg {
+  color: var(--clr-text-muted);
+  flex-shrink: 0;
+}
+
+.about__availability {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--clr-success);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   AVAILABILITY PULSE DOT
+   Uses pulseGlow keyframe from animations.css
+   ────────────────────────────────────────────────────────── */
+.about__pulse-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  flex-shrink: 0;
+}
+
+.about__pulse-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  opacity: 0.6;
+  transform: scale(1);
+  animation: pulseGlow 2s ease-out infinite;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE (≤768px)
+   Converts grid into single column
+   Sticky disabled for mobile UX
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+  }
+
+  .about__avatar-card {
+    position: static;
+    max-width: 260px;
+    margin-inline: auto;
+  }
+
+  .about__meta {
+    justify-content: center;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ACCESSIBILITY
+   Disable pulse animation for reduced motion users
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .about__pulse-dot::before {
+    animation: none;
+  }
+}

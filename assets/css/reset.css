@@ -1,0 +1,184 @@
+/* ============================================================
+   MODERN CSS RESET
+   Lightweight, opinionated baseline.
+   - Normalises box model
+   - Removes inconsistent browser defaults
+   - Preserves accessibility
+   - Keeps specificity low
+   ============================================================ */
+
+
+/* ============================================================
+   BOX MODEL
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   ROOT / DOCUMENT
+   ============================================================ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  -moz-tab-size: 4;
+  tab-size: 4;
+
+  scroll-behavior: smooth;
+}
+
+
+/* ============================================================
+   BODY BASELINE
+   ============================================================ */
+body {
+  min-height: 100dvh;
+  line-height: var(--lh-base, 1.6);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ============================================================
+   TYPOGRAPHY
+   Prevent overflow and preserve inheritance control
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p,
+li,
+figcaption {
+  overflow-wrap: break-word;
+}
+
+
+/* ============================================================
+   LISTS
+   Remove default list styling (design system controls this)
+   ============================================================ */
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* ============================================================
+   LINKS
+   Remove default underline (component styles re-apply)
+   ============================================================ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   MEDIA
+   Prevent overflow & inline spacing issues
+   ============================================================ */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ============================================================
+   FORM ELEMENTS
+   Preserve typography but avoid destructive resets
+   ============================================================ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Only remove background/border where needed via components */
+/* Avoid forcing background:none globally to prevent UA breakage */
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* ============================================================
+   MISC ELEMENTS
+   ============================================================ */
+fieldset {
+  border: none;
+}
+
+summary {
+  cursor: pointer;
+}
+
+dialog {
+  padding: 0;
+}
+
+
+/* Remove WebKit search cancel button */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+
+/* Hidden attribute support */
+[hidden] {
+  display: none !important;
+}
+
+
+/* ============================================================
+   ACCESSIBILITY — Reduced Motion
+   Safer approach: do not globally destroy animations,
+   just drastically reduce motion.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}

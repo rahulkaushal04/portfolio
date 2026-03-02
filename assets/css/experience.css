@@ -1,0 +1,289 @@
+/* ============================================================
+   EXPERIENCE SECTION
+   Vertical timeline with alternating left/right cards.
+   Includes:
+   - Center guideline
+   - Timeline dots
+   - Company header (logo + name)
+   - Role + dates
+   - Bullet description
+   - Tech tags
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   TIMELINE CONTAINER
+   Holds center vertical line
+   ────────────────────────────────────────────────────────── */
+.experience__timeline {
+  position: relative;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-block: var(--sp-8);
+}
+
+/* Center vertical guideline */
+.experience__timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--clr-border) 10%,
+    var(--clr-border) 90%,
+    transparent
+  );
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TIMELINE ITEM
+   Each occupies half width and alternates sides
+   ────────────────────────────────────────────────────────── */
+.experience__item {
+  position: relative;
+  width: 50%;
+  padding: var(--sp-4);
+}
+
+/* Left side (odd) */
+.experience__item:nth-child(odd) {
+  left: 0;
+  padding-right: var(--sp-10);
+  text-align: right;
+}
+
+/* Right side (even) */
+.experience__item:nth-child(even) {
+  left: 50%;
+  padding-left: var(--sp-10);
+  text-align: left;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TIMELINE DOT
+   Centered on guideline
+   ────────────────────────────────────────────────────────── */
+.experience__item::before {
+  content: "";
+  position: absolute;
+  top: var(--sp-8);
+
+  width: 14px;
+  height: 14px;
+
+  background-color: var(--clr-accent);
+  border: 3px solid var(--clr-bg-primary);
+  border-radius: 50%;
+
+  z-index: 1;
+}
+
+/* Offset dot to center line (half dot width = 7px) */
+.experience__item:nth-child(odd)::before {
+  right: -7px;
+}
+
+.experience__item:nth-child(even)::before {
+  left: -7px;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CARD
+   ────────────────────────────────────────────────────────── */
+.experience__card {
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--sp-4) var(--sp-4);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+
+  will-change: transform;
+}
+
+.experience__card:hover,
+.experience__card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   COMPANY HEADER
+   ────────────────────────────────────────────────────────── */
+.experience__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-bottom: 0;
+}
+
+/* Reverse header layout for right-aligned cards */
+.experience__item:nth-child(odd) .experience__header {
+  flex-direction: row-reverse;
+}
+
+.experience__logo {
+  /* Size is driven by the logoSize field in experience.json via inline style */
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+  background-color: var(--clr-bg-tertiary);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.experience__company {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text-primary);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ROLE + DATE
+   ────────────────────────────────────────────────────────── */
+.experience__role {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text-primary);
+  margin-bottom: var(--sp-1);
+}
+
+.experience__date {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  margin-bottom: var(--sp-4);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   DESCRIPTION BULLETS
+   ────────────────────────────────────────────────────────── */
+.experience__description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.experience__description li {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+
+  position: relative;
+  padding-left: var(--sp-5);
+}
+
+/* Left-pointing bullet */
+.experience__description li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--clr-accent);
+  font-weight: var(--fw-bold);
+}
+
+/* Reverse bullets for right-aligned cards */
+.experience__item:nth-child(odd) .experience__description li {
+  padding-left: 0;
+  padding-right: var(--sp-5);
+}
+
+.experience__item:nth-child(odd) .experience__description li::before {
+  left: auto;
+  right: 0;
+  content: "◂";
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   TECH TAG CHIPS
+   ────────────────────────────────────────────────────────── */
+.experience__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* Align tags to card edge */
+.experience__item:nth-child(odd) .experience__tags {
+  justify-content: flex-end;
+}
+
+
+/* ============================================================
+   RESPONSIVE — SINGLE COLUMN
+   Converts timeline to left-aligned vertical layout
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* Move guideline to left side */
+  .experience__timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  /* Full width items */
+  .experience__item,
+  .experience__item:nth-child(odd),
+  .experience__item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    padding-left: calc(40px + var(--sp-4));
+    padding-right: 0;
+    text-align: left;
+  }
+
+  /* Dot aligned with left guideline */
+  .experience__item::before {
+    left: 13px;
+    right: auto;
+  }
+
+  /* Normalize layout */
+  .experience__item:nth-child(odd) .experience__header {
+    flex-direction: row;
+  }
+
+  .experience__item:nth-child(odd) .experience__description li {
+    padding-left: var(--sp-5);
+    padding-right: 0;
+  }
+
+  .experience__item:nth-child(odd) .experience__description li::before {
+    left: 0;
+    right: auto;
+    content: "▸";
+  }
+
+  .experience__item:nth-child(odd) .experience__tags {
+    justify-content: flex-start;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced Motion
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .experience__card {
+    transition: none;
+    transform: none !important;
+  }
+}
