@@ -1,0 +1,10 @@
+[
+  {
+    "repo": "tiangolo/fastapi",
+    "prTitle": "Fix typo in dependency injection docs",
+    "prUrl": "https://github.com/tiangolo/fastapi/pull/00000",
+    "description": "Corrected misleading documentation around nested dependency injection that was causing confusion for new users.",
+    "tags": ["Python", "FastAPI", "Docs"],
+    "mergedDate": "2025-11-15"
+  }
+]
