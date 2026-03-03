@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--sp-6);
+  padding: var(--sp-4) !important;
   position: sticky;
   top: calc(80px + var(--sp-6)); /* header height offset */
 }

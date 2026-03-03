@@ -98,7 +98,7 @@
 
 
 /* ============================================================
-   SUBMIT BUTTON — MORPHING STATES
+   SUBMIT BUTTON: MORPHING STATES
    idle → loading → success
    ============================================================ */
 .contact__submit {
@@ -379,7 +379,7 @@
 
 
 /* ──────────────────────────────────────────────────────────
-   ACCESSIBILITY — Reduced Motion
+   ACCESSIBILITY: Reduced Motion
    ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 

@@ -301,7 +301,7 @@ html {
 .gap-4   { gap: var(--sp-4); }
 .gap-6   { gap: var(--sp-6); }
 
-/* ── Responsive Breakpoints (reference only — used via @media) ──
+/* ── Responsive Breakpoints (reference only, used via @media) ──
    sm  :  640px
    md  :  768px
    lg  : 1024px

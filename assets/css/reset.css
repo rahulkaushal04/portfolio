@@ -163,7 +163,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 /* ============================================================
-   ACCESSIBILITY — Reduced Motion
+   ACCESSIBILITY: Reduced Motion
    Safer approach: do not globally destroy animations,
    just drastically reduce motion.
    ============================================================ */

@@ -144,22 +144,22 @@
   background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 
-/* Beta — blue */
+/* Beta: blue */
 .projects__card-status[data-status="beta"] {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
-/* Alpha — orange */
+/* Alpha: orange */
 .projects__card-status[data-status="alpha"] {
   background: linear-gradient(135deg, #f97316, #ea580c);
 }
 
-/* Work in progress — amber */
+/* Work in progress: amber */
 .projects__card-status[data-status="wip"] {
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-/* No release yet — muted slate */
+/* No release yet: muted slate */
 .projects__card-status[data-status="no-release"] {
   background: linear-gradient(135deg, #64748b, #475569);
 }
@@ -327,7 +327,7 @@
   transform: translateX(4px);
 }
 
-/* Homepage projects grid — always 2 equal columns so both
+/* Homepage projects grid: always 2 equal columns so both
    featured cards sit side-by-side in a single row           */
 #projects .projects__grid {
   grid-template-columns: repeat(2, 1fr);
@@ -603,7 +603,7 @@
 
 
 /* ============================================================
-   ACCESSIBILITY — Reduced Motion
+   ACCESSIBILITY: Reduced Motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
 
