@@ -1,10 +1,10 @@
 [
   {
-    "repo": "tiangolo/fastapi",
-    "prTitle": "Fix typo in dependency injection docs",
-    "prUrl": "https://github.com/tiangolo/fastapi/pull/00000",
-    "description": "Corrected misleading documentation around nested dependency injection that was causing confusion for new users.",
-    "tags": ["Python", "FastAPI", "Docs"],
-    "mergedDate": "2025-11-15"
+    "repo": "facebookresearch/exca",
+    "prTitle": "fix: minor bugs in __eq__, cache eviction, and cleanup",
+    "prUrl": "https://github.com/facebookresearch/exca/pull/206",
+    "description": "Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.",
+    "tags": ["Python", "Bug Fix"],
+    "mergedDate": "2026-03-01"
   }
 ]
