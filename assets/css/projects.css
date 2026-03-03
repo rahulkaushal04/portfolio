@@ -119,6 +119,53 @@
 
 
 /* ============================================================
+   STATUS BADGE
+   Overlaid on the card image (top-left), similar to the
+   blog "Latest Post" badge. Colour varies via data-status.
+   ============================================================ */
+.projects__card-status {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 2;
+
+  padding: var(--sp-1) var(--sp-3);
+
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  color: #fff;
+  border-radius: var(--radius-full);
+
+  /* default (stable) */
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* Beta — blue */
+.projects__card-status[data-status="beta"] {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* Alpha — orange */
+.projects__card-status[data-status="alpha"] {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+/* Work in progress — amber */
+.projects__card-status[data-status="wip"] {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* No release yet — muted slate */
+.projects__card-status[data-status="no-release"] {
+  background: linear-gradient(135deg, #64748b, #475569);
+}
+
+
+/* ============================================================
    HOVER OVERLAY
    ============================================================ */
 .projects__card-overlay {
@@ -257,6 +304,198 @@
 
 
 /* ============================================================
+   VIEW ALL PROJECTS CTA
+   Centered button below the projects grid on the homepage
+   ============================================================ */
+.projects__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-10);
+}
+
+.projects__view-all-btn {
+  padding: var(--sp-3) var(--sp-8);
+  font-size: var(--fs-base);
+  gap: var(--sp-2);
+}
+
+.projects__view-all-btn svg {
+  transition: transform var(--duration-base) var(--ease-default);
+}
+
+.projects__view-all-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Homepage projects grid — always 2 equal columns so both
+   featured cards sit side-by-side in a single row           */
+#projects .projects__grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* On the homepage, featured cards should NOT span 2 cols    */
+#projects .projects__card.featured {
+  grid-column: span 1;
+}
+
+
+/* ============================================================
+   PROJECTS LISTING PAGE  (projects.html)
+   Full-page project archive with search & category filtering
+   ============================================================ */
+
+/* ── Projects Page Hero ──────────────────────────────── */
+.projects-page__hero {
+  padding-top: var(--sp-20);
+  padding-bottom: var(--sp-10);
+}
+
+.projects-page__title {
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-extrabold);
+  text-align: center;
+  margin-bottom: var(--sp-4);
+  background: linear-gradient(135deg, var(--clr-text-primary), var(--clr-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-page__subtitle {
+  font-size: var(--fs-md);
+  color: var(--clr-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-10);
+}
+
+/* ── Search + Category Toolbar ───────────────────────── */
+.projects-page__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.projects-page__search-wrapper {
+  position: relative;
+}
+
+.projects-page__search-icon {
+  position: absolute;
+  left: var(--sp-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--clr-text-muted);
+  pointer-events: none;
+}
+
+.projects-page__search {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) calc(var(--sp-4) + 26px);
+  font-family: var(--ff-body);
+  font-size: var(--fs-base);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+}
+
+.projects-page__search::placeholder {
+  color: var(--clr-text-muted);
+}
+
+.projects-page__search:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px var(--clr-accent-light);
+}
+
+/* ── Category Filter Chips ───────────────────────────── */
+.projects-page__cat-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+.projects-page__cat-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sp-1) var(--sp-3);
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  color: var(--clr-text-secondary);
+  background-color: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-colors);
+}
+
+.projects-page__cat-btn:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+}
+
+.projects-page__cat-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-hover));
+  border-color: transparent;
+}
+
+/* ── Project Count ───────────────────────────────────── */
+.projects-page__count {
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  margin-top: var(--sp-5);
+}
+
+/* ── Listing Section ─────────────────────────────────── */
+.projects-page__listing {
+  padding-bottom: var(--sp-24);
+}
+
+/* Full-page grid variant */
+.projects__grid--full {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* On full page, featured cards should NOT span 2 cols */
+.projects__grid--full .projects__card.featured {
+  grid-column: span 1;
+}
+
+/* ── Empty State ─────────────────────────────────────── */
+.projects-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-16) var(--sp-4);
+  text-align: center;
+  color: var(--clr-text-muted);
+}
+
+.projects-page__empty svg {
+  opacity: 0.4;
+}
+
+.projects-page__empty p {
+  font-size: var(--fs-lg);
+}
+
+
+/* ============================================================
    GITHUB PINNED REPOS
    ============================================================ */
 .projects__github-repos {
@@ -330,12 +569,31 @@
    ============================================================ */
 @media (max-width: 768px) {
 
-  .projects__grid {
+  .projects__grid,
+  #projects .projects__grid {
     grid-template-columns: 1fr;
   }
 
-  .projects__card.featured {
+  .projects__card.featured,
+  #projects .projects__card.featured {
     grid-column: span 1;
+  }
+
+  .projects__grid--full {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-page__title {
+    font-size: var(--fs-2xl);
+  }
+
+  .projects-page__hero {
+    padding-top: var(--sp-16);
+    padding-bottom: var(--sp-6);
+  }
+
+  .projects-page__toolbar {
+    gap: var(--sp-4);
   }
 
   .projects__github-repos {

@@ -13,13 +13,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - Developer Portfolio">
   <meta property="og:description" content="Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
-  <meta property="og:url" content="https://rahulkaushal04.github.io">
-  <meta property="og:image" content="https://rahulkaushal04.github.io/assets/images/og-image.png">
+  <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio">
+  <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- ── Canonical ──────────────────────────────────── -->
-  <link rel="canonical" href="https://rahulkaushal04.github.io">
+  <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio">
 
   <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -318,23 +318,20 @@
         <h2 class="section-title reveal">Things I've Built</h2>
         <p class="section-subtitle reveal">Side projects, open source work, and the occasional rabbit hole.</p>
 
-        <!-- Filter Tabs -->
-        <div class="projects__filters reveal" id="projectFilters" role="tablist" aria-label="Filter projects by category">
-          <button class="projects__filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
-          <button class="projects__filter-btn" data-category="web" role="tab" aria-selected="false">Web</button>
-          <button class="projects__filter-btn" data-category="mobile" role="tab" aria-selected="false">Mobile</button>
-          <button class="projects__filter-btn" data-category="open-source" role="tab" aria-selected="false">Open Source</button>
-          <button class="projects__filter-btn" data-category="side-projects" role="tab" aria-selected="false">Side Projects</button>
-        </div>
-
         <!-- Project Cards Grid (rendered by JS from projects.json) -->
         <div class="projects__grid" id="projectsGrid" role="tabpanel">
-          <!-- JS will inject project cards here -->
+          <!-- JS will inject featured project cards here -->
         </div>
 
-        <!-- GitHub Pinned Repos (optional secondary row) — hidden for now, re-enable when ready -->
-        <div class="projects__github-repos" id="githubRepos" hidden>
-          <!-- JS will inject GitHub repo mini-cards here -->
+        <!-- View All Projects CTA -->
+        <div class="projects__cta reveal">
+          <a href="projects.html" class="btn btn-outline projects__view-all-btn">
+            <span>View All Projects</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -351,6 +348,17 @@
         <!-- Blog Cards Grid (rendered by JS from RSS or blogs.json) -->
         <div class="blog__grid" id="blogGrid">
           <!-- JS will inject blog cards here -->
+        </div>
+
+        <!-- View All Articles CTA -->
+        <div class="blog__cta reveal">
+          <a href="blog.html" class="btn btn-outline blog__view-all-btn">
+            <span>View All Articles</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

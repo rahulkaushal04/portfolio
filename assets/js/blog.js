@@ -66,7 +66,10 @@ export async function initBlog() {
   if (!grid) return;
 
   const posts = await fetchPosts();
-  renderPosts(posts);
+
+  // Show only featured posts (max 3) on the homepage
+  const featured = posts.filter((p) => p.featured).slice(0, 3);
+  renderPosts(featured);
 
   // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
