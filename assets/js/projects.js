@@ -9,10 +9,22 @@ let projects = [];
  * @param {Object} project
  * @returns {string}
  */
+const STATUS_LABELS = {
+  stable:     'Stable Release',
+  beta:       'Beta',
+  alpha:      'Alpha',
+  wip:        'In Progress',
+  'no-release': 'No Release Yet',
+};
+
 function cardHTML(project) {
   const featuredClass = project.featured ? ' featured' : '';
   const categories = project.categories.join(' ');
   const tags = project.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
+
+  const statusBadge = project.status
+    ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
+    : '';
 
   // Only render action buttons for non-empty URLs
   let actions = '';
@@ -52,6 +64,7 @@ function cardHTML(project) {
     <article class="projects__card reveal${featuredClass}"
              data-categories="${categories}">
       <div class="projects__card-img-wrapper">
+        ${statusBadge}
         <img src="${project.thumbnail}"
              alt="${project.title} screenshot"
              class="projects__card-img"
@@ -72,10 +85,10 @@ function cardHTML(project) {
 function renderProjects() {
   if (!grid) return;
 
-  // Featured cards always appear first
-  const sorted = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured));
+  // Show only featured projects (max 2) on the homepage
+  const featured = projects.filter((p) => p.featured).slice(0, 2);
 
-  grid.innerHTML = sorted.map(cardHTML).join('');
+  grid.innerHTML = featured.map(cardHTML).join('');
   applyTilt();
 }
 
@@ -162,7 +175,7 @@ export async function initProjects() {
   }
 
   renderProjects();
-  initFilterTabs();
+  // Filter tabs are on the full projects page; skip on homepage
 
   // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {

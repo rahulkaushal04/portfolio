@@ -1,0 +1,415 @@
+/* ============================================================
+   OPEN SOURCE CONTRIBUTIONS SECTION
+   Card-based layout for merged PRs to external repositories.
+   Includes:
+   - Contribution cards with repo name, PR link, description
+   - Merged status badge
+   - Git-merge icon and external link styling
+   - Responsive grid
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   CONTRIBUTIONS GRID
+   ────────────────────────────────────────────────────────── */
+.contributions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-6);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CONTRIBUTION CARD
+   ────────────────────────────────────────────────────────── */
+.contributions__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+
+  background-color: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+
+  transition:
+    transform var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default),
+    border-color var(--duration-base) var(--ease-default);
+}
+
+.contributions__card:hover,
+.contributions__card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--clr-accent-light);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CARD HEADER (repo name + merged badge)
+   ────────────────────────────────────────────────────────── */
+.contributions__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.contributions__repo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-secondary);
+}
+
+.contributions__repo-icon {
+  flex-shrink: 0;
+  color: var(--clr-text-muted);
+}
+
+/* Merged badge */
+.contributions__merged-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+
+  padding: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+
+  color: var(--clr-success);
+  background-color: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: var(--radius-full);
+
+  white-space: nowrap;
+}
+
+.contributions__merged-icon {
+  flex-shrink: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   PR TITLE (clickable link)
+   ────────────────────────────────────────────────────────── */
+.contributions__pr-title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  color: var(--clr-text-primary);
+}
+
+.contributions__pr-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+
+  transition: color var(--duration-base) var(--ease-default);
+}
+
+.contributions__pr-link:hover {
+  color: var(--clr-accent);
+}
+
+.contributions__pr-link:hover .contributions__external-icon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.contributions__external-icon {
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition:
+    opacity var(--duration-base) var(--ease-default),
+    transform var(--duration-base) var(--ease-default);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   DESCRIPTION
+   ────────────────────────────────────────────────────────── */
+.contributions__description {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-base);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   CARD FOOTER (tags + date)
+   ────────────────────────────────────────────────────────── */
+.contributions__card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.contributions__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.contributions__date {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+  white-space: nowrap;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   VIEW ALL CTA
+   ────────────────────────────────────────────────────────── */
+.contributions__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-10);
+}
+
+.contributions__view-all-btn {
+  gap: var(--sp-2);
+}
+
+.contributions__view-all-btn svg {
+  transition: transform var(--duration-base) var(--ease-default);
+}
+
+.contributions__view-all-btn:hover svg {
+  transform: translateX(4px);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   STATS ROW (total contributions count)
+   ────────────────────────────────────────────────────────── */
+.contributions__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-10);
+}
+
+.contributions__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.contributions__stat-number {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--clr-accent);
+}
+
+.contributions__stat-label {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contributions__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contributions__stats {
+    gap: var(--sp-6);
+  }
+
+  .contributions__stat-number {
+    font-size: var(--fs-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .contributions__card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contributions__card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* ============================================================
+   CONTRIBUTIONS LISTING PAGE  (contributions.html)
+   Full-page contribution archive with search & repo filtering
+   ============================================================ */
+
+/* ── Page Hero ───────────────────────────────────────── */
+.contributions-page__hero {
+  padding-top: var(--sp-20);
+  padding-bottom: var(--sp-10);
+}
+
+.contributions-page__title {
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-extrabold);
+  text-align: center;
+  margin-bottom: var(--sp-4);
+  background: linear-gradient(135deg, var(--clr-text-primary), var(--clr-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contributions-page__subtitle {
+  font-size: var(--fs-md);
+  color: var(--clr-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-10);
+}
+
+/* ── Search + Repo Filter Toolbar ────────────────────── */
+.contributions-page__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.contributions-page__search-wrapper {
+  position: relative;
+}
+
+.contributions-page__search-icon {
+  position: absolute;
+  left: var(--sp-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--clr-text-muted);
+  pointer-events: none;
+}
+
+.contributions-page__search {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) calc(var(--sp-4) + 26px);
+  font-family: var(--ff-body);
+  font-size: var(--fs-base);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--duration-base) var(--ease-default),
+    box-shadow var(--duration-base) var(--ease-default);
+}
+
+.contributions-page__search::placeholder {
+  color: var(--clr-text-muted);
+}
+
+.contributions-page__search:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px var(--clr-accent-light);
+}
+
+/* ── Repo Filter Chips ───────────────────────────────── */
+.contributions-page__repo-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+.contributions-page__repo-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sp-1) var(--sp-3);
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  color: var(--clr-text-secondary);
+  background-color: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-colors);
+}
+
+.contributions-page__repo-btn:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
+  background-color: var(--clr-accent-light);
+}
+
+.contributions-page__repo-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-hover));
+  border-color: transparent;
+}
+
+/* ── Count ───────────────────────────────────────────── */
+.contributions-page__count {
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  margin-top: var(--sp-5);
+}
+
+/* ── Listing Section ─────────────────────────────────── */
+.contributions-page__listing {
+  padding-bottom: var(--sp-24);
+}
+
+/* ── Empty State ─────────────────────────────────────── */
+.contributions-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-16) var(--sp-4);
+  text-align: center;
+  color: var(--clr-text-muted);
+}
+
+.contributions-page__empty svg {
+  opacity: 0.4;
+}
+
+.contributions-page__empty p {
+  font-size: var(--fs-lg);
+}
+
+/* ── Responsive (full page) ──────────────────────────── */
+@media (max-width: 768px) {
+  .contributions-page__title {
+    font-size: var(--fs-2xl);
+  }
+
+  .contributions-page__hero {
+    padding-top: var(--sp-16);
+  }
+
+  .contributions-page__toolbar {
+    gap: var(--sp-4);
+  }
+}

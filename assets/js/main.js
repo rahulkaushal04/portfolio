@@ -6,8 +6,9 @@ import { initAnimations } from './animations.js';
 
 import { initSkills }     from './skills.js';
 import { initExperience } from './experience.js';
-import { initProjects }   from './projects.js';
-import { initBlog }       from './blog.js';
+import { initProjects }       from './projects.js';
+import { initContributions } from './contributions.js';
+import { initBlog }           from './blog.js';
 import { initGitHub }     from './github.js';
 import { initContact }    from './contact.js';
 
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkills();
   initExperience();
   initProjects();
+  initContributions();
   initBlog();
   // initGitHub();  // TODO: re-enable when the GitHub section is ready
   initContact();

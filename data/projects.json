@@ -1,13 +1,14 @@
 [
   {
     "title": "DepKeeper - Python Dependency Manager",
-    "description": "A smart CLI tool for managing Python dependencies in requirements.txt files — detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.",
+    "description": "A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.",
     "categories": ["cli", "open-source"],
     "tags": ["Python", "Click", "Rich", "httpx", "PyPI API", "Async"],
     "thumbnail": "assets/images/projects/depkeeper.png",
     "liveUrl": "https://rahulkaushal04.github.io/depkeeper/",
     "githubUrl": "https://github.com/rahulkaushal04/depkeeper",
-    "featured": true
+    "featured": true,
+    "status": "stable"
   },
   {
     "title": "Hollow Knight Analyzer",
@@ -17,6 +18,7 @@
     "thumbnail": "assets/images/projects/hollow-knight-analyzer.png",
     "liveUrl": "",
     "githubUrl": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
-    "featured": false
+    "featured": true,
+    "status": "alpha"
   }
 ]

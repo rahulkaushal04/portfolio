@@ -103,7 +103,7 @@
   background-color: var(--clr-bg-card);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
-  padding: 0 var(--sp-4) var(--sp-4);
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
   box-shadow: var(--shadow-sm);
 
   transition:
@@ -228,7 +228,7 @@
 
 
 /* ============================================================
-   RESPONSIVE — SINGLE COLUMN
+   RESPONSIVE: SINGLE COLUMN
    Converts timeline to left-aligned vertical layout
    ============================================================ */
 @media (max-width: 768px) {
@@ -279,7 +279,7 @@
 
 
 /* ──────────────────────────────────────────────────────────
-   ACCESSIBILITY — Reduced Motion
+   ACCESSIBILITY: Reduced Motion
    ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .experience__card {

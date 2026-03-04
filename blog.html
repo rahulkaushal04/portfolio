@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- ── Core Meta ──────────────────────────────────── -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Rahul Kaushal</title>
+  <meta name="description" content="Articles on backend development, Python, ML infrastructure, and software engineering by Rahul Kaushal.">
+  <meta name="author" content="Rahul Kaushal">
+  <meta name="theme-color" content="#0F1117">
+
+  <!-- ── Open Graph ─────────────────────────────────── -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog - Rahul Kaushal">
+  <meta property="og:description" content="Articles on backend development, Python, ML infrastructure, and software engineering.">
+  <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/blog.html">
+  <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
+
+  <!-- ── Canonical ──────────────────────────────────── -->
+  <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/blog.html">
+
+  <!-- ── Favicons ───────────────────────────────────── -->
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+  <!-- ── Stylesheets ────────────────────────────────── -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+  <!-- ── Scroll Progress Bar ────────────────────────── -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ── Custom Cursor (desktop only) ───────────────── -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ================================================================
+       NAVBAR (Simplified for subpage)
+       ================================================================ -->
+  <header class="navbar navbar--subpage" id="navbar">
+    <nav class="container flex-between">
+      <!-- Logo: links back to portfolio home -->
+      <a href="index.html" class="navbar__logo" aria-label="Back to portfolio">
+        <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
+      </a>
+
+      <!-- Back link -->
+      <a href="index.html#blog" class="btn btn-outline blog-page__back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Portfolio</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==============================================================
+         BLOG PAGE HERO
+         ============================================================== -->
+    <section class="blog-page__hero">
+      <div class="container">
+        <span class="section-label">Blog</span>
+        <h1 class="blog-page__title reveal">All Articles</h1>
+        <p class="blog-page__subtitle reveal">
+          Writing about things I build, break, and figure out along the way.
+        </p>
+
+        <!-- Search & Filter Bar -->
+        <div class="blog-page__toolbar reveal">
+          <div class="blog-page__search-wrapper">
+            <svg class="blog-page__search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="blog-page__search" id="blogSearch"
+                   placeholder="Search articles..." aria-label="Search articles">
+          </div>
+
+          <!-- Tag filter chips (populated by JS) -->
+          <div class="blog-page__tag-filters" id="blogTagFilters" role="group" aria-label="Filter by tag">
+            <button class="blog-page__tag-btn active" data-tag="all">All</button>
+          </div>
+        </div>
+
+        <!-- Article count -->
+        <p class="blog-page__count reveal" id="blogCount"></p>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         BLOG GRID (all posts)
+         ============================================================== -->
+    <section class="blog-page__listing">
+      <div class="container">
+        <div class="blog__grid blog__grid--full" id="blogGrid">
+          <!-- JS will inject all blog cards here -->
+        </div>
+
+        <!-- Empty state (shown when filters match nothing) -->
+        <div class="blog-page__empty" id="blogEmpty" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <p>No articles match your search.</p>
+          <button class="btn btn-outline" id="blogClearFilters">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__tech-stack reveal">
+        <span class="footer__tech-label">Built with</span>
+        <div class="footer__tech-badges">
+          <span class="tag-chip">HTML5</span>
+          <span class="tag-chip">CSS3</span>
+          <span class="tag-chip">JavaScript</span>
+          <span class="tag-chip">GitHub Pages</span>
+        </div>
+      </div>
+
+      <p class="footer__copy">
+        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
+      </p>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+  </footer>
+
+  <!-- ── Noscript Fallback ──────────────────────────── -->
+  <noscript>
+    <style>
+      .cursor-dot, .scroll-progress { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+
+  <!-- ── Scripts ────────────────────────────────────── -->
+  <script type="module" src="assets/js/blog-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[
+  {
+    "repo": "facebookresearch/exca",
+    "prTitle": "fix: minor bugs in __eq__, cache eviction, and cleanup",
+    "prUrl": "https://github.com/facebookresearch/exca/pull/206",
+    "description": "Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.",
+    "tags": ["Python", "Bug Fix"],
+    "mergedDate": "2026-03-01"
+  }
+]
