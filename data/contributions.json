@@ -6,5 +6,19 @@
     "description": "Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.",
     "tags": ["Python", "Bug Fix"],
     "mergedDate": "2026-03-01"
+  },
+  {
+    "repo": "aio-libs/async-lru",
+    "prTitle": "feat: add cache_contains() for read-only key lookup",
+    "prUrl": "https://github.com/aio-libs/async-lru/pull/746",
+    "description": "Adds cache_contains(*args, **kwargs) -> bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.",
+    "status": "open",
+    "tags": [
+      "Python",
+      "asyncio",
+      "LRU Cache",
+      "New Feature",
+      "Cache Introspection"
+    ]
   }
 ]

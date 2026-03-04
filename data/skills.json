@@ -112,11 +112,6 @@
     "icon": "devicon-azure-plain"
   },
   {
-    "name": "AWS",
-    "category": "cloud",
-    "icon": "devicon-amazonwebservices-plain-wordmark"
-  },
-  {
     "name": "Databricks",
     "category": "cloud",
     "iconImage": "databricks.png",

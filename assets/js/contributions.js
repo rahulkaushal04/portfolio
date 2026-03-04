@@ -31,7 +31,7 @@ function renderStats() {
   statsContainer.innerHTML = `
     <div class="contributions__stat reveal">
       <span class="contributions__stat-number">${totalPRs}</span>
-      <span class="contributions__stat-label">PRs Merged</span>
+      <span class="contributions__stat-label">PRs</span>
     </div>
     <div class="contributions__stat reveal">
       <span class="contributions__stat-number">${totalRepos}</span>
@@ -69,6 +69,20 @@ function cardHTML(contribution) {
           </svg>
           ${contribution.repo}
         </span>
+        ${contribution.status === 'open' ? `
+        <span class="contributions__open-badge">
+          <!-- Git PR icon -->
+          <svg class="contributions__merged-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M6 9v12"></path>
+            <path d="M18 9V6"></path>
+            <circle cx="18" cy="6" r="3"></circle>
+          </svg>
+          Open
+        </span>` : `
         <span class="contributions__merged-badge">
           <!-- Git merge icon -->
           <svg class="contributions__merged-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
@@ -79,7 +93,7 @@ function cardHTML(contribution) {
             <path d="M6 21V9a9 9 0 0 0 9 9"></path>
           </svg>
           Merged
-        </span>
+        </span>`}
       </div>
 
       <!-- PR title as link -->

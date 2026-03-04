@@ -215,3 +215,80 @@
   }
 
 }
+
+
+/* ============================================================
+   EASTER EGG ANIMATIONS
+   ============================================================ */
+
+/* ── Matrix Rain Canvas ───────────────────────────────── */
+.matrix-rain-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.92);
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
+}
+
+/* ── Hire Me Banner ───────────────────────────────────── */
+@keyframes hireMeEnter {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.3); filter: blur(12px); }
+  40%  { opacity: 1; transform: translate(-50%, -50%) scale(1.08); filter: blur(0);    }
+  55%  { transform: translate(-50%, -50%) scale(0.97); }
+  70%  { transform: translate(-50%, -50%) scale(1.02); }
+  80%  { transform: translate(-50%, -50%) scale(1);    }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6);  filter: blur(8px);  }
+}
+
+@keyframes hireMeGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(79, 142, 247, 0.6), 0 0 60px rgba(124, 58, 237, 0.3); }
+  50%      { text-shadow: 0 0 40px rgba(79, 142, 247, 0.9), 0 0 80px rgba(124, 58, 237, 0.5), 0 0 120px rgba(79, 142, 247, 0.2); }
+}
+
+@keyframes hireMeScanline {
+  0%   { top: -4px; }
+  100% { top: calc(100% + 4px); }
+}
+
+.hire-me-banner {
+  position: fixed;
+  z-index: 10001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  animation: hireMeEnter 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hire-me-banner__text {
+  position: relative;
+  display: block;
+  padding: 1.2rem 3.5rem;
+  font-family: var(--ff-heading, system-ui, sans-serif);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(135deg, #4F8EF7, #7C3AED, #4F8EF7);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hireMeGlow 1.5s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* Subtle scan-line sweeping across the text */
+.hire-me-banner__text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  border-radius: 2px;
+  animation: hireMeScanline 0.8s linear infinite;
+}
