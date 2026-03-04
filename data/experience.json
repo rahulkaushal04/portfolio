@@ -8,12 +8,10 @@
     "startDate": "Jul 2024",
     "endDate": "Present",
     "description": [
-      "Built an internal MLOps platform using FastAPI for 15+ data scientists to train & deploy ML models.",
-      "Supported 35+ production models monthly with 99.5% deployment success rate on Databricks & AKS.",
-      "Automated model packaging & container deployment, cutting deploy time from 3 days to 30 minutes.",
-      "Reduced infrastructure costs by 35% through smart container sharing across Kubernetes clusters.",
-      "Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BDH) into CI/CD pipeline.",
-      "Caught 40+ critical vulnerabilities pre-deployment, achieving SOC2 compliance standards."
+      "Built an internal MLOps platform supporting 35+ production models monthly with a 99.5% deployment success rate across Databricks and AKS.",
+      "Fine-tuned an LLM on Vertex AI to convert Skyspark code into a custom DSL, achieving 80%+ translation accuracy.",
+      "Automated model packaging and container deployment using Shell, FastAPI and AKS, reducing deploy time from 3 days to 30 minutes for 15+ data scientists.",
+      "Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BlackDuckHub) into CI/CD pipeline, catching 40+ vulnerabilities pre-deployment."
     ],
     "tags": [
       "FastAPI",
@@ -38,7 +36,6 @@
     "description": [
       "Built and deployed large-scale data pipelines using PySpark and Databricks to process 500K+ service tickets and 10K+ PDF documents weekly, powering AI chatbot for 10+ enterprise customers.",
       "Created automated PDF parsing system using PySpark and PyMuPDF to extract data from technical manuals and schematics with 95% accuracy, eliminating manual data entry.",
-      "Developed real-time data ingestion system leveraging change data capture (CDC), reducing data update latency from 24 hours to under 15 minutes for critical service tickets.",
       "Improved data pipeline efficiency by 70% with automated quality checks and schema validation, cutting ML team's development time from weeks to days."
     ],
     "tags": [
