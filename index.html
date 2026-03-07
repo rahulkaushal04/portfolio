@@ -4,6 +4,7 @@
   <!-- ── Core Meta ──────────────────────────────────── -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
   <title>Rahul Kaushal - Developer Portfolio</title>
   <meta name="description" content="Rahul Kaushal - Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
   <meta name="author" content="Rahul Kaushal">
@@ -13,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - Developer Portfolio">
   <meta property="og:description" content="Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
-  <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio">
+  <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- ── Canonical ──────────────────────────────────── -->
-  <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio">
+  <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/">
 
   <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -287,6 +288,15 @@
         <!-- Skills Grid (rendered by JS from skills.json) -->
         <div class="skills__grid" id="skillsGrid" role="tabpanel">
           <!-- JS will inject skill cards here -->
+          <noscript>
+            <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;">
+              <li><strong>Languages:</strong> Python, SQL, Bash</li>
+              <li><strong>Frameworks:</strong> LLM / RAG, LangChain, FastAPI, PyTorch, Pydantic, Scikit-learn, PySpark, SQLAlchemy, Celery</li>
+              <li><strong>Tools:</strong> Docker, Kubernetes, MLflow, PostgreSQL, Redis, Kafka, GitHub Actions, Git</li>
+              <li><strong>Cloud:</strong> Azure Cloud, Databricks</li>
+              <li><strong>Learning:</strong> Terraform, Prometheus, Go</li>
+            </ul>
+          </noscript>
         </div>
       </div>
     </section>
@@ -303,6 +313,29 @@
         <!-- Timeline (rendered by JS from experience.json) -->
         <div class="experience__timeline" id="experienceTimeline">
           <!-- JS will inject timeline cards here -->
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h3>Software Engineer II &mdash; Honeywell</h3>
+              <p>Jul 2024 &ndash; Present</p>
+              <ul>
+                <li>Built an internal MLOps platform supporting 35+ production models monthly with a 99.5% deployment success rate across Databricks and AKS.</li>
+                <li>Fine-tuned an LLM on Vertex AI to convert Skyspark code into a custom DSL, achieving 80%+ translation accuracy.</li>
+                <li>Automated model packaging and container deployment using Shell, FastAPI and AKS, reducing deploy time from 3 days to 30 minutes for 15+ data scientists.</li>
+                <li>Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BlackDuckHub) into CI/CD pipeline, catching 40+ vulnerabilities pre-deployment.</li>
+              </ul>
+              <p><em>FastAPI &middot; Python &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Docker &middot; MLflow &middot; Helm &middot; Coverity &middot; REST APIs</em></p>
+            </article>
+            <article>
+              <h3>Data Engineer II &mdash; Honeywell</h3>
+              <p>Jun 2022 &ndash; Dec 2023</p>
+              <ul>
+                <li>Built and deployed large-scale data pipelines using PySpark and Databricks to process 500K+ service tickets and 10K+ PDF documents weekly, powering AI chatbot for 10+ enterprise customers.</li>
+                <li>Created automated PDF parsing system using PySpark and PyMuPDF to extract data from technical manuals and schematics with 95% accuracy, eliminating manual data entry.</li>
+                <li>Improved data pipeline efficiency by 70% with automated quality checks and schema validation, cutting ML team's development time from weeks to days.</li>
+              </ul>
+              <p><em>PySpark &middot; Databricks &middot; Apache Spark &middot; PostgreSQL &middot; Python &middot; SQL &middot; Delta Lake &middot; PyMuPDF &middot; unstructured.io</em></p>
+            </article>
+          </noscript>
         </div>
       </div>
     </section>
@@ -319,6 +352,20 @@
         <!-- Project Cards Grid (rendered by JS from projects.json) -->
         <div class="projects__grid" id="projectsGrid" role="tabpanel">
           <!-- JS will inject featured project cards here -->
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h3><a href="https://github.com/rahulkaushal04/depkeeper">DepKeeper &mdash; Python Dependency Manager</a></h3>
+              <p>A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.</p>
+              <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
+              <p><a href="https://rahulkaushal04.github.io/depkeeper/">Live Site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
+            </article>
+            <article>
+              <h3><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">Hollow Knight Analyzer</a></h3>
+              <p>A Streamlit-based web app for Hollow Knight players to analyze save files &mdash; decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.</p>
+              <p><em>Python &middot; Streamlit &middot; Folium &middot; Plotly &middot; Pillow &middot; PyPI</em></p>
+              <p><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
+            </article>
+          </noscript>
         </div>
 
         <!-- View All Projects CTA -->
@@ -351,6 +398,18 @@
         <!-- Contribution Cards Grid (rendered by JS from contributions.json) -->
         <div class="contributions__grid" id="contributionsGrid">
           <!-- JS will inject contribution cards here -->
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca &mdash; fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
+              <p>Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.</p>
+              <p><em>Python &middot; Bug Fix</em> &middot; Merged: Mar 2026</p>
+            </article>
+            <article>
+              <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru &mdash; feat: add cache_contains() for read-only key lookup</a></h3>
+              <p>Adds cache_contains(*args, **kwargs) -&gt; bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.</p>
+              <p><em>Python &middot; asyncio &middot; LRU Cache &middot; New Feature &middot; Cache Introspection</em></p>
+            </article>
+          </noscript>
         </div>
 
         <!-- View All Contributions CTA -->
@@ -378,6 +437,14 @@
         <!-- Blog Cards Grid (rendered by JS from RSS or blogs.json) -->
         <div class="blog__grid" id="blogGrid">
           <!-- JS will inject blog cards here -->
+          <noscript>
+            <ul style="list-style:none;padding:0;">
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch">Build Your First RAG Pipeline from Scratch</a> &mdash; Jan 19, 2026 &middot; 16 min read &middot; <em>python, ai-ml, llm</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/how-ai-finds-what-you-actually-mean">How AI Finds What You Actually Mean</a> &mdash; Jan 12, 2026 &middot; 19 min read &middot; <em>python, ai-ml</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/the-async-fastapi-playbook-concurrency-patterns-that-actually-hold-up-in-prod">Don&rsquo;t Hold the Chef Hostage: A Production Guide to Async FastAPI</a> &mdash; Nov 10, 2025 &middot; 17 min read &middot; <em>python, fastapi, backend</em></li>
+              <li><a href="https://rahulkaushal.hashnode.dev/why-your-fastapi-db-pool-never-fails-in-dev-and-explodes-in-prod">Why Your FastAPI DB Pool Never Fails in Dev (And Explodes in Prod)</a> &mdash; Nov 3, 2026 &middot; 9 min read &middot; <em>python, fastapi, database</em></li>
+            </ul>
+          </noscript>
         </div>
 
         <!-- View All Articles CTA -->
