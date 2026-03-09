@@ -11,7 +11,7 @@
     "status": "stable"
   },
   {
-    "title": "Hollow Knight Analyzer",
+    "title": "Hallownest Codex - Hollow Knight Analyzer",
     "description": "A Streamlit-based web app for Hollow Knight players to analyze save files - decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.",
     "categories": ["web", "side-projects"],
     "tags": ["Python", "Streamlit", "Folium", "Plotly", "Pillow", "PyPI"],
