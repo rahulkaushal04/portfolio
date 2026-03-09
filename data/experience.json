@@ -11,7 +11,8 @@
       "Architected ForgeML, Honeywell's enterprise MLOps platform, as 8 production microservices with 30+ FastAPI REST endpoints covering the full ML lifecycle across training orchestration, model registration, security scanning, multi-target deployment, and real-time monitoring for multi-tenant workloads on Azure and Databricks.",
       "Engineered a multi-target deployment orchestration service for Databricks Serving Endpoints, AKS, and Edge/IoT devices with Git-based artifact packaging, rollback support, and dual async status-polling loops, reducing model deployment time from 3 days to 30 minutes for 15+ data scientists.",
       "Designed an AI-powered rule translation pipeline on Google Vertex AI (Gemini) with automated fine-tuning job submission, GCS training data upload, and async status polling, achieving 80%+ accuracy converting SkySpark Axon DSL rules into Honeywell Forge DSL.",
-      "Built an asynchronous Azure Event Hub batch processing pipeline with Factory Pattern event dispatching, fault-isolated per-event parsing, and concurrent dual writes to PostgreSQL and Databricks Unity Catalog via asyncio.gather, reducing write latency by 50% with exactly-once semantics via Azure Blob checkpointing.",
+      "Built an asynchronous Azure Event Hub batch processing pipeline with Factory Pattern event dispatching, fault-isolated per-event parsing, and concurrent dual writes to PostgreSQL and Databricks Unity Catalog via asyncio.gather, cutting write latency by 50% with exactly-once semantics via Azure Blob checkpointing.",
+      "Developed an AFO rule migration service with SCRAM authentication against SkySpark, full Trio/Zinc format parsing, and a 6-step API orchestration pipeline for algorithm publishing, storing rules in parallel to PostgreSQL and Databricks Unity Catalog via asyncio and ThreadPoolExecutor, reducing total write time by 50%.",
       "Integrated 5 security scanners (Coverity, BlackDuckHub, TwistLock, ModelScan, AST Parser) using the Strategy Pattern alongside JWT RS256 authentication, OPA policy enforcement with 20+ fine-grained permissions, and a 7-layer SQL injection defense, catching 40+ vulnerabilities pre-deployment.",
       "Built a BDD automated acceptance testing framework (Behave/Gherkin) with parallel multi-tenant test execution via Python threading and Locust performance testing, covering onboarding, training, deployment, and scanning scenarios end-to-end."
     ],
@@ -38,20 +39,28 @@
     "startDate": "Jun 2022",
     "endDate": "Dec 2023",
     "description": [
-      "Built and deployed large-scale data pipelines using PySpark and Databricks to process 500K+ service tickets and 10K+ PDF documents weekly, powering AI chatbot for 10+ enterprise customers.",
-      "Created automated PDF parsing system using PySpark and PyMuPDF to extract data from technical manuals and schematics with 95% accuracy, eliminating manual data entry.",
-      "Improved data pipeline efficiency by 70% with automated quality checks and schema validation, cutting ML team's development time from weeks to days."
+      "Built 15+ PySpark ingestion pipelines on Databricks pulling from SQL Server, Salesforce, SharePoint, and REST APIs into Delta Lake, using incremental watermark-based loading to avoid full re-scans on every run.",
+      "Engineered a Spark Structured Streaming pipeline that picked up PDF files from Azure Blob Storage in real time, applied SCD Type 2 upsert logic to track document changes across micro-batches, and detected deleted files by cross-referencing Blob Storage with processed records.",
+      "Built a sync layer that pushed curated Delta Lake data into PostgreSQL using batch upserts (1000 rows per batch) with ON CONFLICT DO UPDATE semantics, keeping the serving database in sync without full table reloads.",
+      "Wrote SQL transformation pipelines for field service analytics, producing weekly/monthly/quarterly aggregations for incident resolution trends, contract health, maintenance metrics, and NPS scores consumed by the customer-facing DSP dashboard.",
+      "Wired the data pipeline output into the RAG indexing layer by enabling Change Data Feed on Delta tables and triggering downstream Databricks vectorization jobs on incremental inserts, updates, and deletes.",
+      "Contributed to the Maintenance Assist LLM chatbot by building the document vectorization pipeline into PGVector and an automated eval framework that used Azure OpenAI as an LLM judge alongside BLEU/ROUGE scoring to measure chatbot response quality."
     ],
     "tags": [
       "PySpark",
       "Databricks",
+      "Delta Lake",
       "Apache Spark",
       "PostgreSQL",
       "Python",
       "SQL",
-      "Delta Lake",
-      "PyMuPDF",
-      "unstructured.io"
+      "LangChain",
+      "PGVector",
+      "Azure OpenAI",
+      "Azure ML",
+      "Salesforce API",
+      "LangSmith",
+      "MLflow"
     ]
   }
 ]
