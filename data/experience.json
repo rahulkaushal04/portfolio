@@ -8,21 +8,25 @@
     "startDate": "Jul 2024",
     "endDate": "Present",
     "description": [
-      "Built an internal MLOps platform supporting 35+ production models monthly with a 99.5% deployment success rate across Databricks and AKS.",
-      "Fine-tuned an LLM on Vertex AI to convert Skyspark code into a custom DSL, achieving 80%+ translation accuracy.",
-      "Automated model packaging and container deployment using Shell, FastAPI and AKS, reducing deploy time from 3 days to 30 minutes for 15+ data scientists.",
-      "Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BlackDuckHub) into CI/CD pipeline, catching 40+ vulnerabilities pre-deployment."
+      "Architected ForgeML, Honeywell's enterprise MLOps platform, as 8 production microservices with 30+ FastAPI REST endpoints covering the full ML lifecycle across training orchestration, model registration, security scanning, multi-target deployment, and real-time monitoring for multi-tenant workloads on Azure and Databricks.",
+      "Engineered a multi-target deployment orchestration service for Databricks Serving Endpoints, AKS, and Edge/IoT devices with Git-based artifact packaging, rollback support, and dual async status-polling loops, reducing model deployment time from 3 days to 30 minutes for 15+ data scientists.",
+      "Designed an AI-powered rule translation pipeline on Google Vertex AI (Gemini) with automated fine-tuning job submission, GCS training data upload, and async status polling, achieving 80%+ accuracy converting SkySpark Axon DSL rules into Honeywell Forge DSL.",
+      "Built an asynchronous Azure Event Hub batch processing pipeline with Factory Pattern event dispatching, fault-isolated per-event parsing, and concurrent dual writes to PostgreSQL and Databricks Unity Catalog via asyncio.gather, reducing write latency by 50% with exactly-once semantics via Azure Blob checkpointing.",
+      "Integrated 5 security scanners (Coverity, BlackDuckHub, TwistLock, ModelScan, AST Parser) using the Strategy Pattern alongside JWT RS256 authentication, OPA policy enforcement with 20+ fine-grained permissions, and a 7-layer SQL injection defense, catching 40+ vulnerabilities pre-deployment.",
+      "Built a BDD automated acceptance testing framework (Behave/Gherkin) with parallel multi-tenant test execution via Python threading and Locust performance testing, covering onboarding, training, deployment, and scanning scenarios end-to-end."
     ],
     "tags": [
-      "FastAPI",
       "Python",
+      "FastAPI",
       "Databricks",
       "Azure Kubernetes (AKS)",
-      "Docker",
+      "Google Vertex AI",
       "MLflow",
-      "Helm",
-      "Coverity",
-      "REST APIs"
+      "Azure Event Hub",
+      "PostgreSQL",
+      "PySpark",
+      "Docker",
+      "Prometheus"
     ]
   },
   {

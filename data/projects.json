@@ -16,7 +16,7 @@
     "categories": ["web", "side-projects"],
     "tags": ["Python", "Streamlit", "Folium", "Plotly", "Pillow", "PyPI"],
     "thumbnail": "assets/images/projects/hollow-knight-analyzer.png",
-    "liveUrl": "",
+    "liveUrl": "https://hollow-knight-analyzer.streamlit.app",
     "githubUrl": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
     "featured": true,
     "status": "alpha"
