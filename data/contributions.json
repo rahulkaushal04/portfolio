@@ -12,13 +12,13 @@
     "prTitle": "feat: add cache_contains() for read-only key lookup",
     "prUrl": "https://github.com/aio-libs/async-lru/pull/746",
     "description": "Adds cache_contains(*args, **kwargs) -> bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.",
-    "status": "open",
     "tags": [
       "Python",
       "asyncio",
       "LRU Cache",
       "New Feature",
       "Cache Introspection"
-    ]
+    ],
+    "mergedDate": "2026-03-16"
   }
 ]
