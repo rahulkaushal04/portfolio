@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- ── Core Meta ──────────────────────────────────── -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
@@ -10,7 +9,6 @@
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
-  <!-- ── Open Graph ─────────────────────────────────── -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - Developer Portfolio">
   <meta property="og:description" content="Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
@@ -19,27 +17,21 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- ── Canonical ──────────────────────────────────── -->
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/">
 
-  <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-  <!-- ── Fonts (Space Grotesk / Inter / JetBrains Mono) ─ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 
-  <!-- ── Stylesheets ────────────────────────────────── -->
   <link rel="stylesheet" href="assets/css/main.css">
 
-  <!-- ── Devicon CDN (skill icon fallback only — loaded non-blocking) ── -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"></noscript>
 
-  <!-- ── JSON-LD Structured Data ────────────────────── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,29 +48,21 @@
 </head>
 
 <body>
-  <!-- ── Availability Banner ──────────────────────────── -->
   <div class="availability-banner" role="status">
     <span class="availability-banner__dot" aria-hidden="true"></span>
     Open to new roles; <a href="#contact">let's talk</a>
   </div>
 
-  <!-- ── Scroll Progress Bar ────────────────────────── -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ── Custom Cursor (desktop only) ───────────────── -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- ================================================================
-       NAVBAR
-       ================================================================ -->
   <header class="navbar" id="navbar">
     <nav class="container flex-between">
-      <!-- Logo -->
       <a href="#hero" class="navbar__logo" aria-label="Go to top">
         <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
       </a>
 
-      <!-- Desktop Nav Links -->
       <ul class="navbar__links" id="navLinks">
         <li><a href="#about" class="navbar__link">About</a></li>
         <li><a href="#skills" class="navbar__link">Skills</a></li>
@@ -89,9 +73,7 @@
         <li><a href="#contact" class="navbar__link">Contact</a></li>
       </ul>
 
-      <!-- Right Actions -->
       <div class="navbar__actions flex-center gap-4">
-        <!-- Resume Download -->
         <div class="navbar__resume-wrap">
           <a href="resume/Rahul_Resume.pdf" download class="btn btn-primary navbar__resume-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -104,7 +86,6 @@
           <span class="resume-updated" id="resumeUpdatedNav">Updated: Mar 2026</span>
         </div>
 
-        <!-- Mobile Hamburger -->
         <button class="navbar__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false">
           <span class="navbar__hamburger-line"></span>
           <span class="navbar__hamburger-line"></span>
@@ -113,7 +94,6 @@
       </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
     <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
       <ul class="navbar__mobile-links">
         <li><a href="#about" class="navbar__mobile-link">About</a></li>
@@ -128,33 +108,25 @@
   </header>
 
   <main>
-    <!-- ==============================================================
-         HERO SECTION
-         ============================================================== -->
     <section id="hero" class="hero">
-      <!-- Particle / Mesh Canvas Background -->
       <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
       <div class="container hero__layout">
-        <!-- Primary column: identity + CTAs -->
         <div class="hero__main">
           <p class="hero__greeting reveal">Hi, I'm</p>
 
           <h1 class="hero__name headline-signal reveal">Rahul Kaushal<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
 
-          <!-- Animated Typing Roles -->
           <p class="hero__roles reveal">
-            <span class="hero__roles-prefix">I'm a </span>
+            <span class="hero__roles-prefix" id="rolesPrefix">I'm a </span>
             <span class="hero__typewriter" id="typewriter"></span>
             <span class="hero__cursor" aria-hidden="true">|</span>
           </p>
 
-          <!-- Short Tagline -->
           <p class="hero__tagline reveal">
             Building ML infrastructure at Honeywell using Python and FastAPI. Strong backend engineer. Occasionally ships things for fun.
           </p>
 
-          <!-- CTA Buttons -->
           <div class="hero__cta reveal gap-4">
             <a href="#projects" class="btn btn-primary">
               View My Work
@@ -174,7 +146,6 @@
             <span class="resume-updated" id="resumeUpdatedHero">Updated: Mar 2026</span>
           </div>
 
-          <!-- Social Badges -->
           <div class="hero__socials reveal">
             <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -194,7 +165,6 @@
           </div>
         </div>
 
-        <!-- Secondary column: framed photo + status readout -->
         <aside class="hero__aside reveal" data-delay="2">
           <div class="hero__avatar bracket-frame">
             <img src="assets/images/profile_short.jpeg" alt="Rahul Kaushal" width="220" height="220" class="hero__avatar-img">
@@ -202,7 +172,7 @@
           <dl class="hero__specs">
             <div class="hero__spec">
               <dt>Role</dt>
-              <dd>Backend Engineer</dd>
+              <dd>Advanced Software Engineer</dd>
             </div>
             <div class="hero__spec">
               <dt>Base</dt>
@@ -217,9 +187,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         ABOUT SECTION
-         ============================================================== -->
     <section id="about" class="about">
       <div class="container">
         <span class="section-label">About Me</span>
@@ -227,17 +194,15 @@
         <p class="section-subtitle reveal">A quick snapshot of who I am, what I do, and what drives me.</p>
 
         <div class="about__grid">
-          <!-- Left Column: Avatar Card -->
           <div class="about__avatar-card reveal">
             <div class="bracket-frame">
               <img src="assets/images/profile_main.jpeg" alt="Rahul Kaushal" width="280" height="280" loading="lazy" class="about__avatar-img">
             </div>
           </div>
 
-          <!-- Right Column: Bio + Widgets -->
           <div class="about__bio reveal">
             <p>
-              I'm a software engineer at Honeywell, focused on ML platform infrastructure. 
+              I'm a software engineer at Honeywell, focused on ML platform infrastructure.
               I started by building a Databricks-style platform from the ground up and have since moved to working with Google Vertex AI. I mainly use Python and FastAPI.
             </p>
             <p>
@@ -249,7 +214,6 @@
               Players can upload their save file and see details about their run.
             </p>
 
-            <!-- Currently Widget -->
             <div class="about__currently card">
               <h4 class="about__currently-title">Currently</h4>
               <ul class="about__currently-list">
@@ -272,7 +236,6 @@
               </ul>
             </div>
 
-            <!-- Location & Availability -->
             <div class="about__meta">
               <div class="about__location">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -291,16 +254,12 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         SKILLS SECTION
-         ============================================================== -->
     <section id="skills" class="skills">
       <div class="container">
         <span class="section-label">Skills</span>
         <h2 class="section-title reveal">My Tech Toolbox</h2>
         <p class="section-subtitle reveal">Tools and technologies I work with regularly.</p>
 
-        <!-- Filter Tabs -->
         <div class="skills__filters reveal" id="skillFilters" role="tablist" aria-label="Filter skills by category">
           <button class="skills__filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
           <button class="skills__filter-btn" data-category="languages" role="tab" aria-selected="false">Languages</button>
@@ -309,9 +268,7 @@
           <button class="skills__filter-btn" data-category="cloud" role="tab" aria-selected="false">Cloud</button>
         </div>
 
-        <!-- Skills Grid (rendered by JS from skills.json) -->
         <div class="skills__grid" id="skillsGrid" role="tabpanel">
-          <!-- JS will inject skill cards here -->
           <noscript>
             <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;">
               <li><strong>Languages:</strong> Python, SQL, Bash, Go</li>
@@ -324,9 +281,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         EXPERIENCE SECTION
-         ============================================================== -->
     <section id="experience" class="experience">
       <div class="container">
         <div class="section-header--left">
@@ -335,9 +289,7 @@
           <p class="section-subtitle reveal">A timeline of my professional journey.</p>
         </div>
 
-        <!-- Timeline (rendered by JS from experience.json) -->
         <div class="experience__timeline" id="experienceTimeline">
-          <!-- JS will inject timeline cards here -->
           <noscript>
             <article style="margin-bottom:2rem;">
               <h3>Software Engineer II &mdash; Honeywell</h3>
@@ -365,9 +317,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         PROJECTS SECTION
-         ============================================================== -->
     <section id="projects" class="projects">
       <div class="container">
         <div class="section-header--left">
@@ -376,9 +325,7 @@
           <p class="section-subtitle reveal">Side projects, open source work, and the occasional rabbit hole.</p>
         </div>
 
-        <!-- Project Cards Grid (rendered by JS from projects.json) -->
         <div class="projects__grid" id="projectsGrid" role="tabpanel">
-          <!-- JS will inject featured project cards here -->
           <noscript>
             <article style="margin-bottom:2rem;">
               <h3><a href="https://github.com/rahulkaushal04/depkeeper">DepKeeper &mdash; Python Dependency Manager</a></h3>
@@ -395,7 +342,6 @@
           </noscript>
         </div>
 
-        <!-- View All Projects CTA -->
         <div class="projects__cta reveal">
           <a href="projects.html" class="btn btn-outline projects__view-all-btn">
             <span>View All Projects</span>
@@ -408,9 +354,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         OPEN SOURCE CONTRIBUTIONS SECTION
-         ============================================================== -->
     <section id="contributions" class="contributions">
       <div class="container">
         <div class="section-header--left">
@@ -419,14 +362,9 @@
           <p class="section-subtitle reveal">Pull requests I've submitted to projects I use and care about.</p>
         </div>
 
-        <!-- Stats Row (rendered by JS) -->
-        <div class="contributions__stats" id="contributionsStats">
-          <!-- JS will inject stat counters here -->
-        </div>
+        <div class="contributions__stats" id="contributionsStats"></div>
 
-        <!-- Contribution Cards Grid (rendered by JS from contributions.json) -->
         <div class="contributions__grid" id="contributionsGrid">
-          <!-- JS will inject contribution cards here -->
           <noscript>
             <article style="margin-bottom:2rem;">
               <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca &mdash; fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
@@ -441,7 +379,6 @@
           </noscript>
         </div>
 
-        <!-- View All Contributions CTA -->
         <div class="contributions__cta reveal">
           <a href="contributions.html" class="btn btn-outline contributions__view-all-btn">
             <span>View All Contributions</span>
@@ -454,9 +391,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         BLOG SECTION
-         ============================================================== -->
     <section id="blog" class="blog">
       <div class="container">
         <div class="section-header--left">
@@ -465,9 +399,7 @@
           <p class="section-subtitle reveal">Writing about things I build, break, and figure out along the way.</p>
         </div>
 
-        <!-- Blog Cards Grid (rendered by JS from RSS or blogs.json) -->
         <div class="blog__grid" id="blogGrid">
-          <!-- JS will inject blog cards here -->
           <noscript>
             <ul style="list-style:none;padding:0;">
               <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch">Build Your First RAG Pipeline from Scratch</a> &mdash; Jan 19, 2026 &middot; 16 min read &middot; <em>python, ai-ml, llm</em></li>
@@ -478,7 +410,6 @@
           </noscript>
         </div>
 
-        <!-- View All Articles CTA -->
         <div class="blog__cta reveal">
           <a href="blog.html" class="btn btn-outline blog__view-all-btn">
             <span>View All Articles</span>
@@ -491,9 +422,6 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         CONTACT SECTION
-         ============================================================== -->
     <section id="contact" class="contact">
       <div class="container">
         <span class="section-label">Contact</span>
@@ -501,9 +429,7 @@
         <p class="section-subtitle reveal">Have a project, a role, or just want to say hi? My inbox is always open.</p>
 
         <div class="contact__wrapper">
-          <!-- Contact Form -->
           <form class="contact__form card reveal" id="contactForm" action="https://formspree.io/f/mykdbjpw" method="POST" novalidate>
-            <!-- Name -->
             <div class="contact__field">
               <label for="contactName" class="contact__label">Name</label>
               <input
@@ -518,7 +444,6 @@
               <span class="contact__error" id="nameError" aria-live="polite"></span>
             </div>
 
-            <!-- Email -->
             <div class="contact__field">
               <label for="contactEmail" class="contact__label">Email</label>
               <input
@@ -533,7 +458,6 @@
               <span class="contact__error" id="emailError" aria-live="polite"></span>
             </div>
 
-            <!-- Message -->
             <div class="contact__field">
               <label for="contactMessage" class="contact__label">Message</label>
               <textarea
@@ -547,7 +471,6 @@
               <span class="contact__error" id="messageError" aria-live="polite"></span>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary contact__submit" id="contactSubmit">
               <span class="contact__submit-text">Send Message</span>
               <span class="contact__submit-loader" aria-hidden="true"></span>
@@ -559,9 +482,7 @@
             </button>
           </form>
 
-          <!-- Contact Info Sidebar -->
           <div class="contact__info reveal">
-            <!-- Availability Chip -->
             <div class="contact__availability-chip">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -573,7 +494,6 @@
               <span class="contact__avail-dot" aria-hidden="true"></span>
             </div>
 
-            <!-- Response Time -->
             <div class="contact__meta-row">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -581,7 +501,6 @@
               <span>Usually replies within 24 hours</span>
             </div>
 
-            <!-- Location -->
             <div class="contact__meta-row">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -591,7 +510,6 @@
               <span>Bengaluru, India</span>
             </div>
 
-            <!-- Social Links Row -->
             <div class="contact__socials">
               <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -610,12 +528,8 @@
     </section>
   </main>
 
-  <!-- ================================================================
-       FOOTER
-       ================================================================ -->
   <footer class="footer">
     <div class="container">
-      <!-- Tech Stack Badges -->
       <div class="footer__tech-stack reveal">
         <span class="footer__tech-label">Built with</span>
         <div class="footer__tech-badges">
@@ -626,13 +540,11 @@
         </div>
       </div>
 
-      <!-- Copyright -->
       <p class="footer__copy">
         &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
       </p>
     </div>
 
-    <!-- Back to Top -->
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -641,10 +553,8 @@
     </button>
   </footer>
 
-  <!-- ── Toast Notification Container ───────────────── -->
   <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- ── Noscript Fallback ──────────────────────────── -->
   <noscript>
     <style>
       .hero__typewriter, .cursor-dot, .scroll-progress, .hero__canvas { display: none !important; }
@@ -655,7 +565,6 @@
     </div>
   </noscript>
 
-  <!-- ── Scripts (ES Modules) ───────────────────────── -->
   <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>

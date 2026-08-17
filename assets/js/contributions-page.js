@@ -1,33 +1,21 @@
-// contributions-page.js - Full contributions listing page with search and repo filtering.
-// Standalone entry point for contributions.html.
-
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
-/* ── State ─────────────────────────────────────────── */
 let allContributions = [];
 let activeRepo       = 'all';
 let searchTerm       = '';
 
-/* ── DOM refs (set in init) ────────────────────────── */
 let grid, statsContainer, emptyState, countEl, searchInput, repoContainer, clearBtn;
 
-/**
- * Formats a date string (YYYY-MM-DD) into "Nov 2025".
- */
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 
-/**
- * Returns unique repo count.
- */
 function uniqueRepos(contribs) {
   return new Set(contribs.map((c) => c.repo));
 }
 
-/* ── Stats Row ─────────────────────────────────────── */
 function renderStats() {
   if (!statsContainer) return;
 
@@ -46,7 +34,6 @@ function renderStats() {
   `;
 }
 
-/* ── Card HTML (mirrors contributions.js) ──────────── */
 function cardHTML(contribution) {
   const tags = contribution.tags
     .map((t) => `<span class="tag-chip">${t}</span>`)
@@ -119,7 +106,6 @@ function cardHTML(contribution) {
     </article>`;
 }
 
-/* ── Fetch ─────────────────────────────────────────── */
 async function fetchContributions() {
   try {
     const res = await fetch('data/contributions.json');
@@ -130,7 +116,6 @@ async function fetchContributions() {
   }
 }
 
-/* ── Filtering logic ───────────────────────────────── */
 function getFiltered() {
   return allContributions.filter((c) => {
     const matchesRepo =
@@ -147,11 +132,9 @@ function getFiltered() {
   });
 }
 
-/* ── Render ────────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
 
-  // Update count
   const total = allContributions.length;
   const shown = filtered.length;
   countEl.textContent =
@@ -159,13 +142,11 @@ function render() {
       ? `${total} contribution${total !== 1 ? 's' : ''}`
       : `${shown} of ${total} contribution${total !== 1 ? 's' : ''}`;
 
-  // Toggle empty state
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
   grid.hidden = isEmpty;
 
   if (!isEmpty) {
-    // Sort by date descending
     const sorted = [...filtered].sort(
       (a, b) => new Date(b.mergedDate) - new Date(a.mergedDate)
     );
@@ -174,7 +155,6 @@ function render() {
   }
 }
 
-/* ── Build repo filter buttons ─────────────────────── */
 function buildRepoFilters() {
   const repos = [...uniqueRepos(allContributions)].sort();
   const btns = repos
@@ -185,7 +165,6 @@ function buildRepoFilters() {
     `<button class="contributions-page__repo-btn active" data-repo="all">All</button>` + btns;
 }
 
-/* ── Event Handlers ────────────────────────────────── */
 function onRepoClick(e) {
   const btn = e.target.closest('.contributions-page__repo-btn');
   if (!btn) return;
@@ -212,7 +191,6 @@ function onClearFilters() {
   render();
 }
 
-/* ── Scroll-progress bar ───────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
@@ -224,7 +202,6 @@ function initScrollProgress() {
   }, { passive: true });
 }
 
-/* ── Back to top ───────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -236,13 +213,11 @@ function initBackToTop() {
   });
 }
 
-/* ── Footer year ───────────────────────────────────── */
 function setFooterYear() {
   const el = document.getElementById('footerYear');
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ── Init ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   grid           = document.getElementById('contributionsGrid');
   statsContainer = document.getElementById('contributionsStats');
@@ -252,20 +227,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   repoContainer  = document.getElementById('contributionRepoFilters');
   clearBtn       = document.getElementById('contributionsClearFilters');
 
-  // Init shared modules
   initAnimations();
   initCursor();
   initScrollProgress();
   initBackToTop();
   setFooterYear();
 
-  // Load contributions
   allContributions = await fetchContributions();
   renderStats();
   buildRepoFilters();
   render();
 
-  // Bind events
   repoContainer.addEventListener('click', onRepoClick);
   searchInput.addEventListener('input', onSearchInput);
   if (clearBtn) clearBtn.addEventListener('click', onClearFilters);

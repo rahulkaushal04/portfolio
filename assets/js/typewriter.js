@@ -1,15 +1,22 @@
-// typewriter.js - Types and deletes role strings in the hero section on a continuous loop.
-
-const TYPE_SPEED   = 100;  // ms per character when typing
-const DELETE_SPEED = 60;   // ms per character when deleting
-const PAUSE_AFTER  = 2000; // ms to hold after the full word is typed
-const PAUSE_BEFORE = 400;  // ms to wait before typing the next word
+const TYPE_SPEED   = 100;
+const DELETE_SPEED = 60;
+const PAUSE_AFTER  = 2000;
+const PAUSE_BEFORE = 400;
 
 let el;
+let prefixEl;
 let roles = [];
 let roleIdx = 0;
 let charIdx = 0;
 let isDeleting = false;
+
+function article(word) {
+  return /^[aeiou]/i.test(word) ? 'an' : 'a';
+}
+
+function updatePrefix() {
+  if (prefixEl) prefixEl.textContent = `I'm ${article(roles[roleIdx])} `;
+}
 
 function tick() {
   if (!el || roles.length === 0) return;
@@ -23,6 +30,7 @@ function tick() {
     if (charIdx === 0) {
       isDeleting = false;
       roleIdx = (roleIdx + 1) % roles.length;
+      updatePrefix();
       setTimeout(tick, PAUSE_BEFORE);
       return;
     }
@@ -42,12 +50,9 @@ function tick() {
   }
 }
 
-/**
- * Loads role strings from meta.json and starts the typewriter loop.
- * Falls back to a hardcoded list if the fetch fails.
- */
 export async function initTypewriter() {
   el = document.getElementById('typewriter');
+  prefixEl = document.getElementById('rolesPrefix');
   if (!el) return;
 
   try {
@@ -64,5 +69,6 @@ export async function initTypewriter() {
     roles = ['Developer', 'Builder', 'Problem Solver'];
   }
 
+  updatePrefix();
   tick();
 }

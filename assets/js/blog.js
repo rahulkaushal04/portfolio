@@ -1,13 +1,5 @@
-// blog.js - Fetches post data from blogs.json and renders blog cards into the grid.
-
 let grid;
 
-/**
- * Builds the HTML string for a single blog card.
- * @param {Object} post - Normalised post object from blogs.json
- * @param {number} index - 0-based position; index 0 gets the "latest" class
- * @returns {string}
- */
 function cardHTML(post, index) {
   const latestClass = index === 0 ? ' latest' : '';
 
@@ -42,10 +34,6 @@ function cardHTML(post, index) {
     </a>`;
 }
 
-/**
- * Loads posts from blogs.json. Returns an empty array on failure.
- * @returns {Promise<Object[]>}
- */
 async function fetchPosts() {
   try {
     const res = await fetch('data/blogs.json');
@@ -67,11 +55,9 @@ export async function initBlog() {
 
   const posts = await fetchPosts();
 
-  // Show only featured posts (max 3) on the homepage
   const featured = posts.filter((p) => p.featured).slice(0, 3);
   renderPosts(featured);
 
-  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

@@ -1,5 +1,3 @@
-// main.js - Entry point. Imports every module and initialises them after the DOM is ready.
-
 import { initNavbar }     from './navbar.js';
 import { initTypewriter } from './typewriter.js';
 import { initAnimations } from './animations.js';
@@ -15,13 +13,11 @@ import { initParticles }  from './particles.js';
 import { initCursor }     from './cursor.js';
 import { initEasterEggs } from './easter-eggs.js';
 
-// showToast is exported from utils.js and imported directly by modules that need it.
-
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
 
-  const SHOW_AFTER = 600; // px scrolled before the button appears
+  const SHOW_AFTER = 600;
 
   window.addEventListener('scroll', () => {
     btn.classList.toggle('visible', window.scrollY > SHOW_AFTER);
@@ -37,7 +33,6 @@ function setFooterYear() {
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-// Handles all in-page anchor clicks via delegation, including links injected by JS after load.
 function initSmoothScroll() {
   document.addEventListener('click', (e) => {
     const anchor = e.target.closest('a[href^="#"]');
@@ -54,9 +49,6 @@ function initSmoothScroll() {
   });
 }
 
-/**
- * Fetches meta.json and populates .resume-updated elements with the last updated date.
- */
 async function initResumeUpdated() {
   try {
     const res  = await fetch('data/meta.json');

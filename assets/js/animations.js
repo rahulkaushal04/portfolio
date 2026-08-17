@@ -1,11 +1,3 @@
-// animations.js - Scroll-reveal using IntersectionObserver.
-// Elements with .reveal start hidden via CSS. Adding .visible triggers the entrance animation.
-// data-delay="n" staggers the animation by n * 100ms.
-
-/**
- * Sets up scroll-reveal for all .reveal elements on the page.
- * Call once on DOMContentLoaded. Skips animation if the user prefers reduced motion.
- */
 export function initAnimations() {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -18,7 +10,6 @@ export function initAnimations() {
       el.classList.add('visible');
     }
 
-    // One-shot: stop watching once the element has been revealed
     if (obs) obs.unobserve(el);
   }
 

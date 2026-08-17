@@ -1,25 +1,9 @@
-/* ============================================================
-   PROJECTS SECTION
-   Includes:
-   - Bento-style responsive grid
-   - Featured card spanning 2 columns
-   - Hover overlay
-   ============================================================ */
-
-
-/* ============================================================
-   BENTO GRID
-   ============================================================ */
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--sp-6);
 }
 
-
-/* ============================================================
-   PROJECT CARD
-   ============================================================ */
 .projects__card {
   position: relative;
   display: flex;
@@ -43,15 +27,10 @@
   box-shadow: var(--shadow-xl);
 }
 
-/* Featured card spans two columns (desktop only) */
 .projects__card.featured {
   grid-column: span 2;
 }
 
-
-/* ============================================================
-   CARD IMAGE
-   ============================================================ */
 .projects__card-img-wrapper {
   position: relative;
   overflow: hidden;
@@ -73,12 +52,6 @@
   transform: scale(1.06);
 }
 
-
-/* ============================================================
-   STATUS BADGE
-   Overlaid on the card image (top-left), similar to the
-   blog "Latest Post" badge. Colour varies via data-status.
-   ============================================================ */
 .projects__card-status {
   position: absolute;
   top: var(--sp-3);
@@ -96,34 +69,25 @@
   color: #fff;
   border-radius: var(--radius-full);
 
-  /* default (stable) */
   background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 
-/* Beta: blue */
 .projects__card-status[data-status="beta"] {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
-/* Alpha: orange */
 .projects__card-status[data-status="alpha"] {
   background: linear-gradient(135deg, #f97316, #ea580c);
 }
 
-/* Work in progress: amber */
 .projects__card-status[data-status="wip"] {
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-/* No release yet: muted slate */
 .projects__card-status[data-status="no-release"] {
   background: linear-gradient(135deg, #64748b, #475569);
 }
 
-
-/* ============================================================
-   HOVER OVERLAY
-   ============================================================ */
 .projects__card-overlay {
   position: absolute;
   inset: 0;
@@ -157,10 +121,6 @@
   line-height: var(--lh-base);
 }
 
-
-/* ============================================================
-   CARD BODY
-   ============================================================ */
 .projects__card-body {
   display: flex;
   flex-direction: column;
@@ -182,20 +142,12 @@
   flex: 1;
 }
 
-
-/* ============================================================
-   TECH TAGS
-   ============================================================ */
 .projects__card-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-
-/* ============================================================
-   ACTION BUTTONS
-   ============================================================ */
 .projects__card-actions {
   display: flex;
   gap: var(--sp-3);
@@ -232,11 +184,6 @@
   height: 14px;
 }
 
-
-/* ============================================================
-   VIEW ALL PROJECTS CTA
-   Centered button below the projects grid on the homepage
-   ============================================================ */
 .projects__cta {
   display: flex;
   justify-content: center;
@@ -257,24 +204,14 @@
   transform: translateX(4px);
 }
 
-/* Homepage projects grid: always 2 equal columns so both
-   featured cards sit side-by-side in a single row           */
 #projects .projects__grid {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* On the homepage, featured cards should NOT span 2 cols    */
 #projects .projects__card.featured {
   grid-column: span 1;
 }
 
-
-/* ============================================================
-   PROJECTS LISTING PAGE  (projects.html)
-   Full-page project archive with search & category filtering
-   ============================================================ */
-
-/* ── Projects Page Hero ──────────────────────────────── */
 .projects-page__hero {
   padding-top: var(--sp-20);
   padding-bottom: var(--sp-10);
@@ -296,7 +233,6 @@
   margin-bottom: var(--sp-10);
 }
 
-/* ── Search + Category Toolbar ───────────────────────── */
 .projects-page__toolbar {
   display: flex;
   flex-direction: column;
@@ -342,7 +278,6 @@
   box-shadow: 0 0 0 3px var(--clr-accent-light);
 }
 
-/* ── Category Filter Chips ───────────────────────────── */
 .projects-page__cat-filters {
   display: flex;
   flex-wrap: wrap;
@@ -378,7 +313,6 @@
   border-color: transparent;
 }
 
-/* ── Project Count ───────────────────────────────────── */
 .projects-page__count {
   text-align: center;
   font-size: var(--fs-sm);
@@ -386,22 +320,18 @@
   margin-top: var(--sp-5);
 }
 
-/* ── Listing Section ─────────────────────────────────── */
 .projects-page__listing {
   padding-bottom: var(--sp-24);
 }
 
-/* Full-page grid variant */
 .projects__grid--full {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }
 
-/* On full page, featured cards should NOT span 2 cols */
 .projects__grid--full .projects__card.featured {
   grid-column: span 1;
 }
 
-/* ── Empty State ─────────────────────────────────────── */
 .projects-page__empty {
   display: flex;
   flex-direction: column;
@@ -420,10 +350,6 @@
   font-size: var(--fs-lg);
 }
 
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
 
   .projects__grid,
@@ -454,10 +380,6 @@
   }
 }
 
-
-/* ============================================================
-   ACCESSIBILITY: Reduced Motion
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
 
   .projects__card,

@@ -1,6 +1,3 @@
-// cursor.js - Custom dot cursor that smoothly trails the mouse on desktop.
-// Scales up over interactive elements. Skipped entirely on touch devices.
-
 let dot;
 
 let mouseX = 0;
@@ -26,7 +23,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// Adds/removes the enlarged state when the pointer moves over interactive elements.
 function initHoverDetection() {
   const selector = 'a, button, [role="button"], input, textarea, select, label';
 
@@ -55,7 +51,6 @@ export function initCursor() {
     }
   });
 
-  // Hide the dot when the pointer leaves the browser window
   document.addEventListener('mouseleave', () => {
     dot.classList.remove('visible');
     isActive = false;

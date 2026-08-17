@@ -1,14 +1,6 @@
-// projects.js - Fetches projects.json and renders tilt-on-hover project cards for the homepage.
-// Category filtering lives on the dedicated projects page (projects-page.js).
-
 let grid;
 let projects = [];
 
-/**
- * Builds the HTML string for a single project card.
- * @param {Object} project
- * @returns {string}
- */
 const STATUS_LABELS = {
   stable:     'Stable Release',
   beta:       'Beta',
@@ -26,7 +18,6 @@ function cardHTML(project) {
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
     : '';
 
-  // Only render action buttons for non-empty URLs
   let actions = '';
   if (project.liveUrl) {
     actions += `
@@ -85,7 +76,6 @@ function cardHTML(project) {
 function renderProjects() {
   if (!grid) return;
 
-  // Show only featured projects (max 2) on the homepage
   const featured = projects.filter((p) => p.featured).slice(0, 2);
 
   grid.innerHTML = featured.map(cardHTML).join('');
@@ -101,7 +91,7 @@ function applyTilt() {
       const midX = rect.width / 2;
       const midY = rect.height / 2;
 
-      const rotateX = ((y - midY) / midY) * -4; // max +-4 deg
+      const rotateX = ((y - midY) / midY) * -4;
       const rotateY = ((x - midX) / midX) *  4;
 
       card.style.transform =
@@ -129,7 +119,6 @@ export async function initProjects() {
 
   renderProjects();
 
-  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

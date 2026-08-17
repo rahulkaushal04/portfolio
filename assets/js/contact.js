@@ -1,11 +1,8 @@
-// contact.js - Form validation, Formspree submission, and real-time field feedback.
-
 import { showToast } from './utils.js';
 
 let form;
 let submitBtn;
 
-// Validation rules keyed by input name attribute.
 const VALIDATORS = {
   name: {
     test: (v) => v.trim().length >= 2,
@@ -21,11 +18,6 @@ const VALIDATORS = {
   },
 };
 
-/**
- * Validates a single field and toggles its inline error message.
- * @param {HTMLInputElement|HTMLTextAreaElement} input
- * @returns {boolean}
- */
 function validateField(input) {
   const rule = VALIDATORS[input.name];
   if (!rule) return true;
@@ -44,10 +36,6 @@ function validateField(input) {
   return isValid;
 }
 
-/**
- * Validates all form fields and returns whether the form is ready to submit.
- * @returns {boolean}
- */
 function validateAll() {
   let allValid = true;
   form.querySelectorAll('.contact__input').forEach((input) => {
@@ -56,7 +44,6 @@ function validateAll() {
   return allValid;
 }
 
-// Accepts 'loading' | 'success' | 'idle' and updates the button appearance accordingly.
 function setButtonState(state) {
   if (!submitBtn) return;
 
@@ -98,7 +85,6 @@ async function handleSubmit(e) {
       setButtonState('success');
       showToast("Message sent! I'll get back to you soon.", 'success');
       form.reset();
-      // Clear any leftover error states from before submission
       form.querySelectorAll('.contact__input').forEach((input) => input.classList.remove('error'));
       form.querySelectorAll('.contact__error').forEach((span) => (span.textContent = ''));
     } else {

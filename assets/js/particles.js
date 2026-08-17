@@ -1,6 +1,3 @@
-// particles.js - Floating particle mesh drawn on the hero canvas.
-// Particles drift slowly and repel from the mouse. Nearby particles are connected by faint lines.
-
 let canvas;
 let ctx;
 let particles = [];
@@ -12,10 +9,10 @@ let animId = 0;
 const mouse = { x: -9999, y: -9999 };
 
 const PARTICLE_COUNT = 80;
-const CONNECT_DIST   = 140;  // max distance (px) to draw a connecting line
-const MOUSE_RADIUS   = 180;  // repulsion radius in px
-const MOUSE_FORCE    = 0.04; // how strongly the mouse pushes particles
-const BASE_SPEED     = 0.3;  // max random drift speed per frame
+const CONNECT_DIST   = 140;
+const MOUSE_RADIUS   = 180;
+const MOUSE_FORCE    = 0.04;
+const BASE_SPEED     = 0.3;
 const PARTICLE_R_MIN = 1.2;
 const PARTICLE_R_MAX = 2.4;
 
@@ -75,7 +72,6 @@ function tick() {
     p.vx *= 0.99;
     p.vy *= 0.99;
 
-    // Wrap around canvas edges
     if (p.x < -10)         p.x = width  + 10;
     if (p.x > width  + 10) p.x = -10;
     if (p.y < -10)         p.y = height + 10;

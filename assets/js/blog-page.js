@@ -1,18 +1,12 @@
-// blog-page.js - Full blog listing page with search and tag filtering.
-// Standalone entry point for blog.html (does NOT import main.js modules).
-
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
-/* ── State ─────────────────────────────────────────── */
 let allPosts   = [];
 let activeTag  = 'all';
 let searchTerm = '';
 
-/* ── DOM refs (set in init) ────────────────────────── */
 let grid, emptyState, countEl, searchInput, tagContainer, clearBtn;
 
-/* ── Card HTML (mirrors blog.js) ───────────────────── */
 function cardHTML(post, index) {
   const latestClass = index === 0 ? ' latest' : '';
 
@@ -47,7 +41,6 @@ function cardHTML(post, index) {
     </a>`;
 }
 
-/* ── Fetch ─────────────────────────────────────────── */
 async function fetchPosts() {
   try {
     const res = await fetch('data/blogs.json');
@@ -58,7 +51,6 @@ async function fetchPosts() {
   }
 }
 
-/* ── Filtering logic ───────────────────────────────── */
 function getFilteredPosts() {
   return allPosts.filter((post) => {
     const matchesTag =
@@ -74,11 +66,9 @@ function getFilteredPosts() {
   });
 }
 
-/* ── Render ────────────────────────────────────────── */
 function render() {
   const filtered = getFilteredPosts();
 
-  // Update count
   const total = allPosts.length;
   const shown = filtered.length;
   countEl.textContent =
@@ -86,19 +76,16 @@ function render() {
       ? `${total} article${total !== 1 ? 's' : ''}`
       : `${shown} of ${total} article${total !== 1 ? 's' : ''}`;
 
-  // Toggle empty state
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
   grid.hidden = isEmpty;
 
   if (!isEmpty) {
     grid.innerHTML = filtered.map(cardHTML).join('');
-    // Trigger scroll-reveal for freshly injected cards
     if (window.__reObserveReveals) window.__reObserveReveals();
   }
 }
 
-/* ── Collect unique tags & build filter buttons ──── */
 function buildTagFilters() {
   const tagSet = new Set();
   allPosts.forEach((p) => (p.tags || []).forEach((t) => tagSet.add(t)));
@@ -109,19 +96,16 @@ function buildTagFilters() {
     .map((t) => `<button class="blog-page__tag-btn" data-tag="${t}">${t}</button>`)
     .join('');
 
-  // Prepend "All" button
   tagContainer.innerHTML =
     `<button class="blog-page__tag-btn active" data-tag="all">All</button>` + btns;
 }
 
-/* ── Event Handlers ────────────────────────────────── */
 function onTagClick(e) {
   const btn = e.target.closest('.blog-page__tag-btn');
   if (!btn) return;
 
   activeTag = btn.dataset.tag;
 
-  // Update active state on all tag buttons
   tagContainer.querySelectorAll('.blog-page__tag-btn').forEach((b) => {
     b.classList.toggle('active', b.dataset.tag === activeTag);
   });
@@ -146,7 +130,6 @@ function onClearFilters() {
   render();
 }
 
-/* ── Scroll-progress bar ───────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
@@ -159,7 +142,6 @@ function initScrollProgress() {
   }, { passive: true });
 }
 
-/* ── Back to top ───────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -173,13 +155,11 @@ function initBackToTop() {
   });
 }
 
-/* ── Footer year ───────────────────────────────────── */
 function setFooterYear() {
   const el = document.getElementById('footerYear');
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ── Init ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   grid         = document.getElementById('blogGrid');
   emptyState   = document.getElementById('blogEmpty');
@@ -188,23 +168,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   tagContainer = document.getElementById('blogTagFilters');
   clearBtn     = document.getElementById('blogClearFilters');
 
-  // Init shared modules
   initAnimations();
   initCursor();
   initScrollProgress();
   initBackToTop();
   setFooterYear();
 
-  // Load posts
   allPosts = await fetchPosts();
 
-  // Sort by date descending
   allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
 
   buildTagFilters();
   render();
 
-  // Bind events
   tagContainer.addEventListener('click', onTagClick);
   searchInput.addEventListener('input', onSearchInput);
   if (clearBtn) clearBtn.addEventListener('click', onClearFilters);

@@ -1,18 +1,10 @@
-// experience.js - Fetches experience.json and renders the timeline cards.
-
 const PREVIEW_BULLETS = 4;
 const PREVIEW_TAGS    = 6;
 
 let timeline;
 let entries = [];
 
-/**
- * Builds the HTML string for a single timeline card.
- * @param {Object} entry
- * @returns {string}
- */
 function itemHTML(entry) {
-  // — Description bullets (preview + collapsible extras) ——————————
   const allBullets    = entry.description;
   const previewHTML   = allBullets.slice(0, PREVIEW_BULLETS).map((d) => `<li>${d}</li>`).join('');
   const extraHTML     = allBullets.slice(PREVIEW_BULLETS)
@@ -30,7 +22,6 @@ function itemHTML(entry) {
        </button>`
     : '';
 
-  // — Tags (preview + "+N more" overflow) ————————————————————————
   const allTags       = entry.tags;
   const previewTags   = allTags.slice(0, PREVIEW_TAGS).map((t) => `<span class="tag-chip">${t}</span>`).join('');
   const extraTags     = allTags.slice(PREVIEW_TAGS)
@@ -76,7 +67,6 @@ function itemHTML(entry) {
 }
 
 function handleInteraction(e) {
-  // — Bullet toggle ——————————————————————————————————————————————
   const bulletBtn = e.target.closest('.experience__toggle');
   if (bulletBtn) {
     const card      = bulletBtn.closest('.experience__card');
@@ -91,7 +81,6 @@ function handleInteraction(e) {
     return;
   }
 
-  // — Tag overflow toggle ————————————————————————————————————————
   const tagBtn = e.target.closest('.experience__tags-more');
   if (tagBtn) {
     const card   = tagBtn.closest('.experience__card');
@@ -125,7 +114,6 @@ export async function initExperience() {
 
   renderTimeline();
 
-  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

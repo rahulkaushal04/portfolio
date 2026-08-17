@@ -1,24 +1,3 @@
-/* ============================================================
-   EXPERIENCE SECTION
-   Single-column, left-rail timeline. Cards run full width to the
-   right of the rail so long technical bullets get a comfortable
-   reading measure instead of being squeezed into a 460px zigzag
-   column. Same structure at every viewport — no layout swap needed
-   at the mobile breakpoint.
-   Includes:
-   - Left guideline + signal fill
-   - Timeline dots ("Current" role gets a live pulse dot)
-   - Company header (logo + name)
-   - Role + dates
-   - Bullet description
-   - Tech tags
-   ============================================================ */
-
-
-/* ──────────────────────────────────────────────────────────
-   TIMELINE CONTAINER
-   Holds the left guideline
-   ────────────────────────────────────────────────────────── */
 .experience__timeline {
   position: relative;
   max-width: 760px;
@@ -26,7 +5,6 @@
   padding-block: var(--sp-4);
 }
 
-/* Left guideline */
 .experience__timeline::before {
   content: "";
   position: absolute;
@@ -44,10 +22,10 @@
   );
 }
 
-/* Signal fill — traces over the guideline as the timeline scrolls
-   through view, visualising progress through the career history.
-   Native scroll-driven animation: no JS, no-op (stays hidden) on
-   browsers that don't yet support animation-timeline. */
+/* Traces over the guideline as the timeline scrolls through view,
+   visualising progress through the career history. Native scroll-driven
+   animation: no JS, no-op (stays hidden) on browsers that don't yet
+   support animation-timeline. */
 .experience__timeline::after {
   content: "";
   position: absolute;
@@ -74,11 +52,6 @@
   to   { transform: scaleY(1); }
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TIMELINE ITEM
-   Full width, offset from the rail
-   ────────────────────────────────────────────────────────── */
 .experience__item {
   position: relative;
   padding-left: calc(var(--sp-10) + 4px);
@@ -89,11 +62,6 @@
   padding-bottom: 0;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TIMELINE DOT
-   Centered on the rail
-   ────────────────────────────────────────────────────────── */
 .experience__item::before {
   content: "";
   position: absolute;
@@ -110,7 +78,6 @@
   z-index: 1;
 }
 
-/* Current role gets a live "signal" dot instead of a static one */
 .experience__item--current::before {
   background-color: var(--clr-success);
 }
@@ -128,10 +95,6 @@
   animation: pulseGlow 2s ease-out infinite;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CARD
-   ────────────────────────────────────────────────────────── */
 .experience__card {
   background-color: var(--clr-bg-card);
   border: 1px solid var(--clr-border);
@@ -153,10 +116,6 @@
   outline: none;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   COMPANY HEADER
-   ────────────────────────────────────────────────────────── */
 .experience__header {
   display: flex;
   align-items: center;
@@ -165,7 +124,6 @@
 }
 
 .experience__logo {
-  /* Size is driven by the logoSize field in experience.json via inline style */
   width: auto;
   height: auto;
   border-radius: var(--radius-md);
@@ -181,7 +139,6 @@
   color: var(--clr-text-primary);
 }
 
-/* "Current" badge — shown on the role with endDate "Present" */
 .experience__current-badge {
   display: inline-flex;
   align-items: center;
@@ -220,10 +177,6 @@
   animation: pulseGlow 2s ease-out infinite;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   ROLE + DATE
-   ────────────────────────────────────────────────────────── */
 .experience__role {
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
@@ -239,10 +192,6 @@
   margin-bottom: var(--sp-4);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   DESCRIPTION BULLETS
-   ────────────────────────────────────────────────────────── */
 .experience__description {
   display: flex;
   flex-direction: column;
@@ -259,7 +208,6 @@
   padding-left: var(--sp-5);
 }
 
-/* Left-pointing bullet */
 .experience__description li::before {
   content: "▸";
   position: absolute;
@@ -268,10 +216,6 @@
   font-weight: var(--fw-bold);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   DESCRIPTION COLLAPSE TOGGLE
-   ────────────────────────────────────────────────────────── */
 .experience__toggle {
   display: inline-flex;
   align-items: center;
@@ -301,17 +245,12 @@
   transform: rotate(180deg);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TECH TAG CHIPS
-   ────────────────────────────────────────────────────────── */
 .experience__tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-/* "+N more" overflow chip — styled like tag-chip but with a dashed border */
 .experience__tags-more {
   cursor: pointer;
   background: none;
@@ -325,12 +264,6 @@
   opacity: 1;
 }
 
-
-/* ============================================================
-   RESPONSIVE
-   Layout is already single-column at every width; only spacing
-   and the "Current" badge placement need to tighten up on mobile.
-   ============================================================ */
 @media (max-width: 480px) {
 
   .experience__item {
@@ -352,10 +285,6 @@
   }
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   ACCESSIBILITY: Reduced Motion
-   ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .experience__card {
     transition: none;

@@ -1,27 +1,9 @@
-/* ============================================================
-   OPEN SOURCE CONTRIBUTIONS SECTION
-   Card-based layout for merged PRs to external repositories.
-   Includes:
-   - Contribution cards with repo name, PR link, description
-   - Merged status badge
-   - Git-merge icon and external link styling
-   - Responsive grid
-   ============================================================ */
-
-
-/* ──────────────────────────────────────────────────────────
-   CONTRIBUTIONS GRID
-   ────────────────────────────────────────────────────────── */
 .contributions__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--sp-6);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CONTRIBUTION CARD
-   ────────────────────────────────────────────────────────── */
 .contributions__card {
   position: relative;
   display: flex;
@@ -46,10 +28,6 @@
   border-color: var(--clr-accent-light);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CARD HEADER (repo name + merged badge)
-   ────────────────────────────────────────────────────────── */
 .contributions__card-header {
   display: flex;
   align-items: center;
@@ -74,7 +52,6 @@
   color: var(--clr-text-muted);
 }
 
-/* Merged badge */
 .contributions__merged-badge {
   display: inline-flex;
   align-items: center;
@@ -93,7 +70,6 @@
   white-space: nowrap;
 }
 
-/* Open (unmerged) badge */
 .contributions__open-badge {
   display: inline-flex;
   align-items: center;
@@ -116,10 +92,6 @@
   flex-shrink: 0;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   PR TITLE (clickable link)
-   ────────────────────────────────────────────────────────── */
 .contributions__pr-title {
   font-family: var(--ff-heading);
   font-size: var(--fs-lg);
@@ -155,20 +127,12 @@
     transform var(--duration-base) var(--ease-default);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   DESCRIPTION
-   ────────────────────────────────────────────────────────── */
 .contributions__description {
   font-size: var(--fs-sm);
   color: var(--clr-text-secondary);
   line-height: var(--lh-base);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CARD FOOTER (tags + date)
-   ────────────────────────────────────────────────────────── */
 .contributions__card-footer {
   display: flex;
   align-items: center;
@@ -191,10 +155,6 @@
   white-space: nowrap;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   VIEW ALL CTA
-   ────────────────────────────────────────────────────────── */
 .contributions__cta {
   display: flex;
   justify-content: center;
@@ -213,10 +173,6 @@
   transform: translateX(4px);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   STATS ROW (total contributions count)
-   ────────────────────────────────────────────────────────── */
 .contributions__stats {
   display: flex;
   justify-content: center;
@@ -243,10 +199,6 @@
   color: var(--clr-text-muted);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   RESPONSIVE
-   ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .contributions__grid {
     grid-template-columns: 1fr;
@@ -273,13 +225,6 @@
   }
 }
 
-
-/* ============================================================
-   CONTRIBUTIONS LISTING PAGE  (contributions.html)
-   Full-page contribution archive with search & repo filtering
-   ============================================================ */
-
-/* ── Page Hero ───────────────────────────────────────── */
 .contributions-page__hero {
   padding-top: var(--sp-20);
   padding-bottom: var(--sp-10);
@@ -301,7 +246,6 @@
   margin-bottom: var(--sp-10);
 }
 
-/* ── Search + Repo Filter Toolbar ────────────────────── */
 .contributions-page__toolbar {
   display: flex;
   flex-direction: column;
@@ -347,7 +291,6 @@
   box-shadow: 0 0 0 3px var(--clr-accent-light);
 }
 
-/* ── Repo Filter Chips ───────────────────────────────── */
 .contributions-page__repo-filters {
   display: flex;
   flex-wrap: wrap;
@@ -383,7 +326,6 @@
   border-color: transparent;
 }
 
-/* ── Count ───────────────────────────────────────────── */
 .contributions-page__count {
   text-align: center;
   font-size: var(--fs-sm);
@@ -391,12 +333,10 @@
   margin-top: var(--sp-5);
 }
 
-/* ── Listing Section ─────────────────────────────────── */
 .contributions-page__listing {
   padding-bottom: var(--sp-24);
 }
 
-/* ── Empty State ─────────────────────────────────────── */
 .contributions-page__empty {
   display: flex;
   flex-direction: column;
@@ -415,7 +355,6 @@
   font-size: var(--fs-lg);
 }
 
-/* ── Responsive (full page) ──────────────────────────── */
 @media (max-width: 768px) {
   .contributions-page__title {
     font-size: var(--fs-2xl);

@@ -1,16 +1,3 @@
-/* ============================================================
-   SKILLS SECTION
-   Includes:
-   - Filter tabs
-   - Auto-fill responsive grid
-   - Skill cards with hover lift
-   - Tooltip
-   ============================================================ */
-
-
-/* ============================================================
-   FILTER TABS
-   ============================================================ */
 .skills__filters {
   display: flex;
   flex-wrap: wrap;
@@ -52,20 +39,12 @@
   border-color: var(--clr-accent);
 }
 
-
-/* ============================================================
-   SKILLS GRID
-   ============================================================ */
 .skills__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
   gap: var(--sp-4);
 }
 
-
-/* ============================================================
-   SKILL CARD
-   ============================================================ */
 .skills__card {
   position: relative;
   display: flex;
@@ -97,16 +76,9 @@
   border-color: var(--clr-accent-light);
 }
 
-
-/* ============================================================
-   ICON
-   Fixed-height (64 px) container keeps every card's label at
-   the same vertical position. The container is tall enough to
-   accommodate the largest iconSize value (75 px). Icons are
-   centred inside it; inline `iconSize` styles from skills.json
-   override the 40 px default; inline styles win over class
-   styles so no extra specificity tricks are needed.
-   ============================================================ */
+/* Fixed-height container keeps every card's label at the same vertical
+   position regardless of icon size; inline iconSize styles from
+   skills.json override this 52px default via source order. */
 .skills__card-icon {
   display: flex;
   align-items: center;
@@ -117,7 +89,6 @@
   color: var(--clr-text-primary);
 }
 
-/* Custom image icons: 40 px default; inline iconSize overrides */
 .skills__custom-icon {
   display: block;
   width: 40px;
@@ -126,22 +97,16 @@
   image-rendering: auto;
 }
 
-/* Devicon fallback: match the default icon size */
 .skills__card-icon i {
   font-size: 2.5rem;
   line-height: 1;
 }
 
-/* Placeholder icon: dim it slightly so it reads as "no icon" */
 .skills__icon-placeholder {
   opacity: 0.35;
   filter: var(--icon-placeholder-filter, none);
 }
 
-
-/* ============================================================
-   LABEL
-   ============================================================ */
 .skills__card-name {
   font-family: var(--ff-mono);
   font-size: 0.7rem;
@@ -151,11 +116,6 @@
   line-height: var(--lh-tight);
 }
 
-
-/* ============================================================
-   TOOLTIP
-   Visible on hover OR keyboard focus
-   ============================================================ */
 .skills__card-tooltip {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -192,16 +152,11 @@
   border-top-color: var(--clr-border);
 }
 
-/* Show tooltip */
 .skills__card:hover .skills__card-tooltip,
 .skills__card:focus-within .skills__card-tooltip {
   opacity: 1;
 }
 
-
-/* ============================================================
-   FILTER ANIMATION STATES
-   ============================================================ */
 .skills__card.fade-out {
   opacity: 0;
   transform: scale(0.9);
@@ -213,10 +168,6 @@
   transform: scale(1);
 }
 
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
 
   .skills__grid {
@@ -233,10 +184,6 @@
   }
 }
 
-
-/* ============================================================
-   ACCESSIBILITY: Reduced Motion
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
 
   .skills__card {

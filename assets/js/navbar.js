@@ -1,5 +1,3 @@
-// navbar.js - Sticky nav with scroll progress bar, active section highlighting, and mobile menu.
-
 let navbar;
 let scrollProgress;
 let hamburger;
@@ -9,7 +7,7 @@ let mobileLinks;
 let sectionIds;
 let sectionEls;
 
-const SCROLL_THRESHOLD = 80; // px scrolled before the frosted-glass style kicks in
+const SCROLL_THRESHOLD = 80;
 
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
@@ -30,10 +28,6 @@ function onSectionIntersect(entries) {
   });
 }
 
-/**
- * Marks the nav link matching the given section id as active.
- * @param {string} id - Section element id, e.g. "about"
- */
 function setActiveLink(id) {
   const href = `#${id}`;
   navLinks.forEach((link) => {
@@ -77,13 +71,12 @@ export function initNavbar() {
     handleNavbarScroll();
   }, { passive: true });
 
-  // Run once so the state is correct if the page loads already scrolled
   updateScrollProgress();
   handleNavbarScroll();
 
   if (sectionEls.length > 0) {
     const observer = new IntersectionObserver(onSectionIntersect, {
-      rootMargin: '-40% 0px -55% 0px', // fires when a section reaches the centre of the viewport
+      rootMargin: '-40% 0px -55% 0px',
       threshold: 0,
     });
     sectionEls.forEach((el) => observer.observe(el));

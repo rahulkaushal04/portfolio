@@ -1,21 +1,13 @@
-// skills.js - Fetches skills.json and renders filterable, tilt-on-hover skill cards.
 // Icon resolution order: explicit iconImage field -> slug.svg -> slug.png -> devicon -> placeholder.
 
 let grid;
 let filtersContainer;
 let skills = [];
 
-// Converts a display name to a filename slug, e.g. "GitHub Actions" -> "github-actions".
 function nameToSlug(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-/**
- * Global onerror handler injected into each skill icon img.
- * Tries svg -> png, then falls back to a devicon, then a placeholder
- * if the devicon class renders at zero width.
- * @param {HTMLImageElement} img
- */
 window.__skillIconFallback = function (img) {
   // First failure on auto-detect: try .png instead of .svg
   if (img.dataset.step === '0' && !img.dataset.explicit) {
@@ -24,7 +16,6 @@ window.__skillIconFallback = function (img) {
     return;
   }
 
-  // Show the devicon <i> that sits right after the <img>
   img.style.display = 'none';
   const deviconEl = img.nextElementSibling;
   if (deviconEl) {
@@ -44,11 +35,6 @@ window.__skillIconFallback = function (img) {
   }
 };
 
-/**
- * Builds the HTML string for a single skill card.
- * @param {Object} skill
- * @returns {string}
- */
 function cardHTML(skill) {
   const slug      = nameToSlug(skill.name);
   const sizeStyle = skill.iconSize
@@ -102,10 +88,6 @@ function renderSkills() {
   grid.innerHTML = skills.map(cardHTML).join('');
 }
 
-/**
- * Shows only cards matching the given category, with a fade transition.
- * @param {string} category - 'all' or a category slug
- */
 function filterSkills(category) {
   if (!grid) return;
 
@@ -124,7 +106,6 @@ function filterSkills(category) {
     }
   });
 
-  // Physically hide faded-out cards after the transition completes
   setTimeout(() => {
     cards.forEach((card) => {
       if (card.classList.contains('fade-out')) card.style.display = 'none';
@@ -163,7 +144,7 @@ function applySkillTilt() {
       const midX = rect.width / 2;
       const midY = rect.height / 2;
 
-      const rotateX = ((y - midY) / midY) * -6; // max +-6 deg
+      const rotateX = ((y - midY) / midY) * -6;
       const rotateY = ((x - midX) / midX) *  6;
 
       card.style.transform =
@@ -194,7 +175,6 @@ export async function initSkills() {
   applySkillTilt();
   initFilterTabs();
 
-  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

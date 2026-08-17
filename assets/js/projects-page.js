@@ -1,15 +1,10 @@
-// projects-page.js - Full projects listing page with search and category filtering.
-// Standalone entry point for projects.html.
-
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
-/* ── State ─────────────────────────────────────────── */
 let allProjects = [];
 let activeCat   = 'all';
 let searchTerm  = '';
 
-/* ── DOM refs (set in init) ────────────────────────── */
 let grid, emptyState, countEl, searchInput, catContainer, clearBtn;
 
 const STATUS_LABELS = {
@@ -20,7 +15,6 @@ const STATUS_LABELS = {
   'no-release': 'No Release Yet',
 };
 
-/* ── Card HTML (mirrors projects.js) ───────────────── */
 function cardHTML(project) {
   const featuredClass = project.featured ? ' featured' : '';
   const categories = project.categories.join(' ');
@@ -85,7 +79,6 @@ function cardHTML(project) {
     </article>`;
 }
 
-/* ── Tilt effect ───────────────────────────────────── */
 function applyTilt() {
   grid.querySelectorAll('.projects__card').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
@@ -105,7 +98,6 @@ function applyTilt() {
   });
 }
 
-/* ── Fetch ─────────────────────────────────────────── */
 async function fetchProjects() {
   try {
     const res = await fetch('data/projects.json');
@@ -116,7 +108,6 @@ async function fetchProjects() {
   }
 }
 
-/* ── Filtering logic ───────────────────────────────── */
 function getFiltered() {
   return allProjects.filter((p) => {
     const matchesCat =
@@ -133,11 +124,9 @@ function getFiltered() {
   });
 }
 
-/* ── Render ────────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
 
-  // Update count
   const total = allProjects.length;
   const shown = filtered.length;
   countEl.textContent =
@@ -145,13 +134,11 @@ function render() {
       ? `${total} project${total !== 1 ? 's' : ''}`
       : `${shown} of ${total} project${total !== 1 ? 's' : ''}`;
 
-  // Toggle empty state
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
   grid.hidden = isEmpty;
 
   if (!isEmpty) {
-    // Featured first
     const sorted = [...filtered].sort((a, b) => Number(b.featured) - Number(a.featured));
     grid.innerHTML = sorted.map(cardHTML).join('');
     applyTilt();
@@ -159,7 +146,6 @@ function render() {
   }
 }
 
-/* ── Collect unique categories & build filter buttons ── */
 function buildCatFilters() {
   const catSet = new Set();
   allProjects.forEach((p) => (p.categories || []).forEach((c) => catSet.add(c)));
@@ -173,7 +159,6 @@ function buildCatFilters() {
     `<button class="projects-page__cat-btn active" data-cat="all">All</button>` + btns;
 }
 
-/* ── Event Handlers ────────────────────────────────── */
 function onCatClick(e) {
   const btn = e.target.closest('.projects-page__cat-btn');
   if (!btn) return;
@@ -200,7 +185,6 @@ function onClearFilters() {
   render();
 }
 
-/* ── Scroll-progress bar ───────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
@@ -212,7 +196,6 @@ function initScrollProgress() {
   }, { passive: true });
 }
 
-/* ── Back to top ───────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -224,13 +207,11 @@ function initBackToTop() {
   });
 }
 
-/* ── Footer year ───────────────────────────────────── */
 function setFooterYear() {
   const el = document.getElementById('footerYear');
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ── Init ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   grid         = document.getElementById('projectsGrid');
   emptyState   = document.getElementById('projectsEmpty');
@@ -239,19 +220,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   catContainer = document.getElementById('projectCatFilters');
   clearBtn     = document.getElementById('projectsClearFilters');
 
-  // Init shared modules
   initAnimations();
   initCursor();
   initScrollProgress();
   initBackToTop();
   setFooterYear();
 
-  // Load projects
   allProjects = await fetchProjects();
   buildCatFilters();
   render();
 
-  // Bind events
   catContainer.addEventListener('click', onCatClick);
   searchInput.addEventListener('input', onSearchInput);
   if (clearBtn) clearBtn.addEventListener('click', onClearFilters);

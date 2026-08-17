@@ -1,11 +1,3 @@
-/* ============================================================
-   MAIN STYLESHEET
-   Imports every other CSS file in the correct cascade order,
-   sets global body styles, containers, section layout,
-   base typography, and utility classes.
-   ============================================================ */
-
-/* ── Imports (order matters) ─────────────────────────── */
 @import url("variables.css");
 @import url("reset.css");
 @import url("animations.css");
@@ -20,14 +12,9 @@
 @import url("contact.css");
 @import url("footer.css");
 
-/* Fonts are loaded via a preconnected Google Fonts <link> in <head>
-   (Space Grotesk, Inter, JetBrains Mono) with the system stack above
-   as the fallback while they load / if the request fails. */
-
-/* ── Cross-document View Transitions ──────────────────
-   Native API: smooths navigation between index.html and the
-   projects/blog/contributions pages with a crossfade instead of
-   a hard white/black flash. Zero JS, no-op on unsupported browsers. */
+/* Native View Transitions: crossfades navigation between index.html and
+   the projects/blog/contributions pages instead of a hard flash. No JS,
+   no-op on unsupported browsers. */
 @view-transition {
   navigation: auto;
 }
@@ -38,7 +25,6 @@
   }
 }
 
-/* ── Global Body ─────────────────────────────────────── */
 body {
   font-family: var(--ff-body);
   font-size: var(--fs-base);
@@ -51,7 +37,6 @@ body {
               color var(--duration-base) var(--ease-default);
 }
 
-/* ── Container ───────────────────────────────────────── */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -59,7 +44,6 @@ body {
   padding-inline: var(--container-px);
 }
 
-/* ── Section Defaults ────────────────────────────────── */
 main {
   counter-reset: section-index;
 }
@@ -69,8 +53,8 @@ section {
   position: relative;
 }
 
-/* Faint schematic rule between sections — replaces implicit whitespace-only
-   separation with an intentional "spec sheet" divider. */
+/* Faint schematic rule between sections — an intentional "spec sheet"
+   divider rather than implicit whitespace-only separation. */
 section + section::before {
   content: "";
   position: absolute;
@@ -81,7 +65,6 @@ section + section::before {
   background: var(--clr-grid-line);
 }
 
-/* ── Headings ────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--ff-heading);
   font-weight: var(--fw-bold);
@@ -96,7 +79,6 @@ h4 { font-size: var(--fs-xl);   }
 h5 { font-size: var(--fs-lg);   }
 h6 { font-size: var(--fs-md);   }
 
-/* ── Links (global) ──────────────────────────────────── */
 a {
   transition: var(--transition-colors);
 }
@@ -111,7 +93,6 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-/* ── Paragraph ───────────────────────────────────────── */
 p {
   color: var(--clr-text-secondary);
   line-height: var(--lh-base);
@@ -121,13 +102,11 @@ p + p {
   margin-top: var(--sp-4);
 }
 
-/* ── Selection ───────────────────────────────────────── */
 ::selection {
   background-color: var(--clr-accent);
   color: var(--clr-bg-primary);
 }
 
-/* ── Scrollbar (Webkit) ──────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -145,17 +124,11 @@ p + p {
   background: var(--clr-text-muted);
 }
 
-/* Firefox scrollbar */
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--clr-border) var(--clr-bg-secondary);
 }
 
-/* ============================================================
-   UTILITY CLASSES
-   ============================================================ */
-
-/* ── Layout ──────────────────────────────────────────── */
 .flex-center {
   display: flex;
   align-items: center;
@@ -168,7 +141,6 @@ html {
   justify-content: space-between;
 }
 
-/* ── Section Title ───────────────────────────────────── */
 .section-title {
   font-size: var(--fs-3xl);
   font-weight: var(--fw-bold);
@@ -186,10 +158,9 @@ html {
   margin-bottom: var(--sp-16);
 }
 
-/* ── Section Label ───────────────────────────────────────
-   Mono "spec sheet" index tag, e.g. "01 — SKILLS". The index
-   number is generated automatically from document order, so
-   sections can be reordered without renumbering by hand. */
+/* Mono "spec sheet" index tag, e.g. "01 — SKILLS". The index number is
+   generated from document order via a CSS counter, so sections can be
+   reordered without renumbering by hand. */
 .section-label {
   counter-increment: section-index;
   display: flex;
@@ -219,10 +190,8 @@ html {
   background: var(--clr-border);
 }
 
-/* ── Bracket Frame ─────────────────────────────────────
-   Viewfinder-style corner brackets. Applied around photos and
-   featured media as a technical/schematic framing device in
-   place of generic circular avatars or plain rounded corners. */
+/* Viewfinder-style corner brackets, used around photos in place of a
+   generic circular avatar or plain rounded corners. */
 .bracket-frame {
   position: relative;
 }
@@ -252,7 +221,6 @@ html {
   border-top: none;
 }
 
-/* ── Tag Chip ────────────────────────────────────────── */
 .tag-chip {
   display: inline-flex;
   align-items: center;
@@ -267,7 +235,6 @@ html {
   white-space: nowrap;
 }
 
-/* ── Buttons ─────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -311,7 +278,6 @@ html {
   color: var(--clr-accent);
 }
 
-/* ── Card Base ───────────────────────────────────────── */
 .card {
   background-color: var(--clr-bg-card);
   border: 1px solid var(--clr-border);
@@ -326,7 +292,6 @@ html {
   box-shadow: var(--shadow-lg);
 }
 
-/* ── Text Utilities ──────────────────────────────────── */
 .text-gradient {
   background: linear-gradient(135deg, var(--clr-accent), var(--clr-success));
   -webkit-background-clip: text;
@@ -334,12 +299,10 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Headline Signal ─────────────────────────────────────
-   Shared treatment for the hero name and page-listing titles.
-   Solid, high-contrast text instead of a gradient-clip fade, with
-   a small blinking mono accent glyph that echoes the hero
-   typewriter's cursor (.hero__cursor / @keyframes blink in
-   animations.css) — a "live" indicator rather than decoration. */
+/* Shared treatment for the hero name and page-listing titles: solid,
+   high-contrast text with a small blinking mono accent glyph that echoes
+   the hero typewriter's cursor (.hero__cursor / @keyframes blink), instead
+   of a gradient-clip fade. */
 .headline-signal {
   color: var(--clr-text-primary);
 }
@@ -357,12 +320,10 @@ html {
   }
 }
 
-/* ── Section Header Rhythm ─────────────────────────────
-   Default section headers (.section-label/.section-title/
-   .section-subtitle) are centered — suited to utility sections
-   (Skills, Contact). Narrative sections (Experience, Projects,
-   Open Source, Blog) use this modifier to left-align instead,
-   breaking the repeated centered silhouette across the page. */
+/* Default section headers are centered — suited to utility sections
+   (Skills, Contact). Narrative sections (Experience, Projects, Open
+   Source, Blog) use this modifier to left-align instead, so the page
+   isn't seven identical centered silhouettes in a row. */
 .section-header--left .section-label {
   justify-content: flex-start;
   text-align: left;
@@ -374,15 +335,7 @@ html {
   margin-inline: 0;
 }
 
-/* ── Spacing Helpers ─────────────────────────────────── */
 .gap-4 { gap: var(--sp-4); }
-
-/* ── Responsive Breakpoints (reference only, used via @media) ──
-   sm  :  640px
-   md  :  768px
-   lg  : 1024px
-   xl  : 1280px
-   ──────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
   :root {
