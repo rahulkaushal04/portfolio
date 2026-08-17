@@ -120,20 +120,17 @@
 
   {
     "name": "Terraform",
-    "category": "learning",
-    "icon": "devicon-terraform-plain",
-    "learning": true
+    "category": "tools",
+    "icon": "devicon-terraform-plain"
   },
   {
     "name": "Prometheus",
-    "category": "learning",
-    "icon": "devicon-prometheus-original",
-    "learning": true
+    "category": "tools",
+    "icon": "devicon-prometheus-original"
   },
   {
     "name": "Go",
-    "category": "learning",
-    "icon": "devicon-go-original-wordmark",
-    "learning": true
+    "category": "languages",
+    "icon": "devicon-go-original-wordmark"
   }
 ]

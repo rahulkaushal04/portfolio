@@ -201,29 +201,6 @@
 
 
 /* ============================================================
-   "LEARNING" BADGE
-   ============================================================ */
-.skills__badge-learning {
-  position: absolute;
-  top: var(--sp-2);
-  right: var(--sp-2);
-
-  padding: 2px var(--sp-2);
-
-  font-size: 0.625rem;
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-
-  color: #fff;
-  background-color: var(--clr-warning);
-
-  border-radius: var(--radius-full);
-  line-height: 1.4;
-}
-
-
-/* ============================================================
    FILTER ANIMATION STATES
    ============================================================ */
 .skills__card.fade-out {

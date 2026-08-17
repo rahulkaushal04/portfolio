@@ -50,10 +50,6 @@ window.__skillIconFallback = function (img) {
  * @returns {string}
  */
 function cardHTML(skill) {
-  const learningBadge = skill.learning
-    ? '<span class="skills__badge-learning">Learning</span>'
-    : '';
-
   const slug      = nameToSlug(skill.name);
   const sizeStyle = skill.iconSize
     ? `style="width:${skill.iconSize}px;height:${skill.iconSize}px"`
@@ -71,7 +67,6 @@ function cardHTML(skill) {
           <i class="${skill.icon} colored" aria-hidden="true"></i>
         </span>
         <span class="skills__card-name">${skill.name}</span>
-        ${learningBadge}
         <span class="skills__card-tooltip">${skill.name}</span>
       </div>`;
   }
@@ -98,7 +93,6 @@ function cardHTML(skill) {
         <i class="${skill.icon ?? `devicon-${slug}-plain`} colored" style="display:none" aria-hidden="true"></i>
       </span>
       <span class="skills__card-name">${skill.name}</span>
-      ${learningBadge}
       <span class="skills__card-tooltip">${skill.name}</span>
     </div>`;
 }
