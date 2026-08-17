@@ -14,7 +14,22 @@
     "category": "languages",
     "iconImage": "bash.webp"
   },
+  {
+    "name": "Go",
+    "category": "languages",
+    "icon": "devicon-go-original-wordmark"
+  },
 
+  {
+    "name": "FastAPI",
+    "category": "frameworks",
+    "icon": "devicon-fastapi-plain"
+  },
+  {
+    "name": "PySpark",
+    "category": "frameworks",
+    "icon": "devicon-apachespark-original"
+  },
   {
     "name": "LLM / RAG",
     "category": "frameworks",
@@ -27,9 +42,15 @@
     "iconImage": "langchain.webp"
   },
   {
-    "name": "FastAPI",
+    "name": "Pydantic",
     "category": "frameworks",
-    "icon": "devicon-fastapi-plain"
+    "iconImage": "pydantic.webp"
+  },
+  {
+    "name": "SQLAlchemy",
+    "category": "frameworks",
+    "iconImage": "sqlalchemy.webp",
+    "iconSize": 70
   },
   {
     "name": "PyTorch",
@@ -37,25 +58,9 @@
     "icon": "devicon-pytorch-original"
   },
   {
-    "name": "Pydantic",
-    "category": "frameworks",
-    "iconImage": "pydantic.webp"
-  },
-  {
     "name": "Scikit-learn",
     "category": "frameworks",
     "icon": "devicon-scikitlearn-plain"
-  },
-  {
-    "name": "PySpark",
-    "category": "frameworks",
-    "icon": "devicon-apachespark-original"
-  },
-  {
-    "name": "SQLAlchemy",
-    "category": "frameworks",
-    "iconImage": "sqlalchemy.webp",
-    "iconSize": 70
   },
   {
     "name": "Celery",
@@ -74,15 +79,20 @@
     "icon": "devicon-kubernetes-plain"
   },
   {
+    "name": "PostgreSQL",
+    "category": "tools",
+    "icon": "devicon-postgresql-plain"
+  },
+  {
     "name": "MLflow",
     "category": "tools",
     "iconImage": "mlflow.webp",
     "iconSize": 60
   },
   {
-    "name": "PostgreSQL",
+    "name": "Prometheus",
     "category": "tools",
-    "icon": "devicon-postgresql-plain"
+    "icon": "devicon-prometheus-original"
   },
   {
     "name": "Redis",
@@ -105,32 +115,21 @@
     "category": "tools",
     "icon": "devicon-git-plain"
   },
-
   {
-    "name": "Azure Cloud",
-    "category": "cloud",
-    "icon": "devicon-azure-plain"
+    "name": "Terraform",
+    "category": "tools",
+    "icon": "devicon-terraform-plain"
   },
+
   {
     "name": "Databricks",
     "category": "cloud",
     "iconImage": "databricks.webp",
     "iconSize": 60
   },
-
   {
-    "name": "Terraform",
-    "category": "tools",
-    "icon": "devicon-terraform-plain"
-  },
-  {
-    "name": "Prometheus",
-    "category": "tools",
-    "icon": "devicon-prometheus-original"
-  },
-  {
-    "name": "Go",
-    "category": "languages",
-    "icon": "devicon-go-original-wordmark"
+    "name": "Azure Cloud",
+    "category": "cloud",
+    "icon": "devicon-azure-plain"
   }
 ]
