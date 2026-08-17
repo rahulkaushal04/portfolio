@@ -1,6 +1,6 @@
 // animations.js - Scroll-reveal using IntersectionObserver.
 // Elements with .reveal start hidden via CSS. Adding .visible triggers the entrance animation.
-// data-delay="n" staggers the animation by n * 100ms. Direction variants (.reveal-left etc.) are CSS-only.
+// data-delay="n" staggers the animation by n * 100ms.
 
 /**
  * Sets up scroll-reveal for all .reveal elements on the page.

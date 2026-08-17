@@ -22,8 +22,11 @@
 
 .skills__filter-btn {
   padding: var(--sp-2) var(--sp-5);
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 
   color: var(--clr-text-secondary);
   background-color: transparent;
@@ -141,7 +144,8 @@
    LABEL
    ============================================================ */
 .skills__card-name {
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
   font-weight: var(--fw-medium);
   color: var(--clr-text-secondary);
   text-align: center;

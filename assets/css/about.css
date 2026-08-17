@@ -30,15 +30,21 @@
   padding: var(--sp-4) !important;
   position: sticky;
   top: calc(80px + var(--sp-6)); /* header height offset */
+  background: none !important;
+  border: none !important;
+}
+
+.about__avatar-card:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .about__avatar-img {
   width: 100%;
-  max-width: 280px;
+  max-width: 260px;
   height: auto;
   border-radius: var(--radius-lg);
   object-fit: cover;
-  box-shadow: var(--shadow-md);
 }
 
 
@@ -78,9 +84,12 @@
 }
 
 .about__currently-title {
-  font-size: var(--fs-lg);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
-  color: var(--clr-text-primary);
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: var(--sp-4);
 }
 

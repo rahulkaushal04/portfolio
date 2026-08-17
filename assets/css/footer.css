@@ -36,9 +36,12 @@
 }
 
 .footer__tech-label {
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   color: var(--clr-text-muted);
   font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .footer__tech-badges {

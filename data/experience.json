@@ -1,7 +1,7 @@
 [
   {
     "company": "Honeywell",
-    "logo": "assets/images/companies/honeywell.png",
+    "logo": "assets/images/companies/honeywell.webp",
     "logoSize": 120,
     "showCompanyName": false,
     "role": "Software Engineer II",
@@ -32,7 +32,7 @@
   },
   {
     "company": "Honeywell",
-    "logo": "assets/images/companies/honeywell.png",
+    "logo": "assets/images/companies/honeywell.webp",
     "logoSize": 120,
     "showCompanyName": false,
     "role": "Data Engineer II",

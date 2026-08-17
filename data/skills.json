@@ -12,19 +12,19 @@
   {
     "name": "Bash",
     "category": "languages",
-    "iconImage": "bash.png"
+    "iconImage": "bash.webp"
   },
 
   {
     "name": "LLM / RAG",
     "category": "frameworks",
-    "iconImage": "llm-rag.png",
+    "iconImage": "llm-rag.webp",
     "iconSize": 80
   },
   {
     "name": "LangChain",
     "category": "frameworks",
-    "iconImage": "langchain.png"
+    "iconImage": "langchain.webp"
   },
   {
     "name": "FastAPI",
@@ -39,7 +39,7 @@
   {
     "name": "Pydantic",
     "category": "frameworks",
-    "iconImage": "pydantic.png"
+    "iconImage": "pydantic.webp"
   },
   {
     "name": "Scikit-learn",
@@ -54,13 +54,13 @@
   {
     "name": "SQLAlchemy",
     "category": "frameworks",
-    "iconImage": "sqlalchemy.png",
+    "iconImage": "sqlalchemy.webp",
     "iconSize": 70
   },
   {
     "name": "Celery",
     "category": "frameworks",
-    "iconImage": "celery.png"
+    "iconImage": "celery.webp"
   },
 
   {
@@ -76,7 +76,7 @@
   {
     "name": "MLflow",
     "category": "tools",
-    "iconImage": "mlflow.png",
+    "iconImage": "mlflow.webp",
     "iconSize": 60
   },
   {
@@ -92,13 +92,13 @@
   {
     "name": "Kafka",
     "category": "tools",
-    "iconImage": "kafka.png",
+    "iconImage": "kafka.webp",
     "iconSize": 55
   },
   {
     "name": "GitHub Actions",
     "category": "tools",
-    "iconImage": "github-actions.png"
+    "iconImage": "github-actions.webp"
   },
   {
     "name": "Git",
@@ -114,7 +114,7 @@
   {
     "name": "Databricks",
     "category": "cloud",
-    "iconImage": "databricks.png",
+    "iconImage": "databricks.webp",
     "iconSize": 60
   },
 

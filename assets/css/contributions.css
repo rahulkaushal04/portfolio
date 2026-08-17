@@ -185,6 +185,7 @@
 }
 
 .contributions__date {
+  font-family: var(--ff-mono);
   font-size: var(--fs-xs);
   color: var(--clr-text-muted);
   white-space: nowrap;

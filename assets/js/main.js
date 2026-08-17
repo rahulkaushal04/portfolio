@@ -9,7 +9,6 @@ import { initExperience } from './experience.js';
 import { initProjects }       from './projects.js';
 import { initContributions } from './contributions.js';
 import { initBlog }           from './blog.js';
-import { initGitHub }     from './github.js';
 import { initContact }    from './contact.js';
 
 import { initParticles }  from './particles.js';
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjects();
   initContributions();
   initBlog();
-  // initGitHub();  // TODO: re-enable when the GitHub section is ready
   initContact();
 
   initParticles();

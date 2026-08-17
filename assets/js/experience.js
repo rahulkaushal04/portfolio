@@ -47,8 +47,13 @@ function itemHTML(entry) {
     ? `<span class="experience__company">${entry.company}</span>`
     : '';
 
+  const isCurrent = entry.endDate.trim().toLowerCase() === 'present';
+  const currentBadgeHTML = isCurrent
+    ? `<span class="experience__current-badge"><span class="experience__current-dot" aria-hidden="true"></span>Current</span>`
+    : '';
+
   return `
-    <div class="experience__item reveal">
+    <div class="experience__item reveal${isCurrent ? ' experience__item--current' : ''}">
       <div class="experience__card">
         <div class="experience__header">
           <img src="${entry.logo}"
@@ -59,6 +64,7 @@ function itemHTML(entry) {
                loading="lazy"
                onerror="this.style.display='none'">
           ${companyNameHTML}
+          ${currentBadgeHTML}
         </div>
         <h3 class="experience__role">${entry.role}</h3>
         <p class="experience__date">${dateRange}</p>

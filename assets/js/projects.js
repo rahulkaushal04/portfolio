@@ -1,7 +1,7 @@
-// projects.js - Fetches projects.json and renders filterable, tilt-on-hover project cards.
+// projects.js - Fetches projects.json and renders tilt-on-hover project cards for the homepage.
+// Category filtering lives on the dedicated projects page (projects-page.js).
 
 let grid;
-let filtersContainer;
 let projects = [];
 
 /**
@@ -114,55 +114,8 @@ function applyTilt() {
   });
 }
 
-function filterProjects(category) {
-  if (!grid) return;
-
-  const cards = grid.querySelectorAll('.projects__card');
-
-  cards.forEach((card) => {
-    const cats  = card.dataset.categories.split(' ');
-    const match = category === 'all' || cats.includes(category);
-
-    if (!match) {
-      card.classList.add('filter-fade-out');
-      card.classList.remove('filter-fade-in');
-    } else {
-      card.classList.remove('filter-fade-out', 'filter-hidden');
-      card.classList.add('filter-fade-in');
-    }
-  });
-
-  // Physically hide non-matching cards after the CSS transition completes
-  setTimeout(() => {
-    cards.forEach((card) => {
-      if (card.classList.contains('filter-fade-out')) card.classList.add('filter-hidden');
-    });
-  }, 300);
-}
-
-function initFilterTabs() {
-  if (!filtersContainer) return;
-
-  const buttons = filtersContainer.querySelectorAll('.projects__filter-btn');
-
-  filtersContainer.addEventListener('click', (e) => {
-    const btn = e.target.closest('.projects__filter-btn');
-    if (!btn) return;
-
-    buttons.forEach((b) => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-
-    filterProjects(btn.dataset.category);
-  });
-}
-
 export async function initProjects() {
-  grid             = document.getElementById('projectsGrid');
-  filtersContainer = document.getElementById('projectFilters');
+  grid = document.getElementById('projectsGrid');
 
   if (!grid) return;
 
@@ -175,7 +128,6 @@ export async function initProjects() {
   }
 
   renderProjects();
-  // Filter tabs are on the full projects page; skip on homepage
 
   // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {

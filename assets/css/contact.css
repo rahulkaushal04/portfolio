@@ -40,9 +40,12 @@
 }
 
 .contact__label {
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
   color: var(--clr-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 
@@ -193,73 +196,6 @@
   flex-direction: column;
   gap: var(--sp-8);
   padding-top: var(--sp-4);
-}
-
-
-/* ──────────────────────────────────────────────────────────
-   EMAIL COPY CHIP
-   ────────────────────────────────────────────────────────── */
-.contact__email-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-5);
-
-  background-color: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-full);
-
-  cursor: pointer;
-  position: relative;
-
-  transition:
-    border-color var(--duration-base) var(--ease-default),
-    background-color var(--duration-base) var(--ease-default);
-}
-
-.contact__email-chip:hover,
-.contact__email-chip:focus-visible {
-  border-color: var(--clr-accent);
-  background-color: var(--clr-accent-light);
-  outline: none;
-}
-
-.contact__email-chip svg {
-  color: var(--clr-accent);
-  flex-shrink: 0;
-}
-
-.contact__email-text {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: var(--clr-text-primary);
-}
-
-/* Copied tooltip */
-.contact__email-copied {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: var(--sp-1) var(--sp-3);
-
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-
-  color: #fff;
-  background-color: var(--clr-success);
-
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity var(--duration-fast) var(--ease-default);
-}
-
-.contact__email-chip.copied .contact__email-copied {
-  opacity: 1;
 }
 
 

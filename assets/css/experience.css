@@ -1,9 +1,13 @@
 /* ============================================================
    EXPERIENCE SECTION
-   Vertical timeline with alternating left/right cards.
+   Single-column, left-rail timeline. Cards run full width to the
+   right of the rail so long technical bullets get a comfortable
+   reading measure instead of being squeezed into a 460px zigzag
+   column. Same structure at every viewport — no layout swap needed
+   at the mobile breakpoint.
    Includes:
-   - Center guideline
-   - Timeline dots
+   - Left guideline + signal fill
+   - Timeline dots ("Current" role gets a live pulse dot)
    - Company header (logo + name)
    - Role + dates
    - Bullet description
@@ -13,71 +17,91 @@
 
 /* ──────────────────────────────────────────────────────────
    TIMELINE CONTAINER
-   Holds center vertical line
+   Holds the left guideline
    ────────────────────────────────────────────────────────── */
 .experience__timeline {
   position: relative;
-  max-width: 1000px;
+  max-width: 760px;
   margin-inline: auto;
-  padding-block: var(--sp-8);
+  padding-block: var(--sp-4);
 }
 
-/* Center vertical guideline */
+/* Left guideline */
 .experience__timeline::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: 7px;
   width: 2px;
-  transform: translateX(-50%);
 
   background: linear-gradient(
     to bottom,
     transparent,
-    var(--clr-border) 10%,
-    var(--clr-border) 90%,
+    var(--clr-border) 6%,
+    var(--clr-border) 94%,
     transparent
   );
+}
+
+/* Signal fill — traces over the guideline as the timeline scrolls
+   through view, visualising progress through the career history.
+   Native scroll-driven animation: no JS, no-op (stays hidden) on
+   browsers that don't yet support animation-timeline. */
+.experience__timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+
+  background: linear-gradient(to bottom, var(--clr-accent), var(--clr-success));
+}
+
+@supports (animation-timeline: view()) {
+  .experience__timeline::after {
+    animation: experience-fill linear;
+    animation-timeline: view(block);
+    animation-range: entry 0% cover 70%;
+  }
+}
+
+@keyframes experience-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
 }
 
 
 /* ──────────────────────────────────────────────────────────
    TIMELINE ITEM
-   Each occupies half width and alternates sides
+   Full width, offset from the rail
    ────────────────────────────────────────────────────────── */
 .experience__item {
   position: relative;
-  width: 50%;
-  padding: var(--sp-4);
+  padding-left: calc(var(--sp-10) + 4px);
+  padding-bottom: var(--sp-10);
 }
 
-/* Right side (odd) */
-.experience__item:nth-child(odd) {
-  left: 50%;
-  padding-left: var(--sp-10);
-  text-align: left;
-}
-
-/* Left side (even) */
-.experience__item:nth-child(even) {
-  left: 0;
-  padding-right: var(--sp-10);
-  text-align: right;
+.experience__item:last-child {
+  padding-bottom: 0;
 }
 
 
 /* ──────────────────────────────────────────────────────────
    TIMELINE DOT
-   Centered on guideline
+   Centered on the rail
    ────────────────────────────────────────────────────────── */
 .experience__item::before {
   content: "";
   position: absolute;
-  top: var(--sp-8);
+  top: var(--sp-1);
+  left: 0;
 
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 
   background-color: var(--clr-accent);
   border: 3px solid var(--clr-bg-primary);
@@ -86,13 +110,22 @@
   z-index: 1;
 }
 
-/* Offset dot to center line (half dot width = 7px) */
-.experience__item:nth-child(odd)::before {
-  left: -7px;
+/* Current role gets a live "signal" dot instead of a static one */
+.experience__item--current::before {
+  background-color: var(--clr-success);
 }
 
-.experience__item:nth-child(even)::before {
-  right: -7px;
+.experience__item--current::after {
+  content: "";
+  position: absolute;
+  top: var(--sp-1);
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  opacity: 0.6;
+  animation: pulseGlow 2s ease-out infinite;
 }
 
 
@@ -103,7 +136,7 @@
   background-color: var(--clr-bg-card);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
-  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
   box-shadow: var(--shadow-sm);
 
   transition:
@@ -127,13 +160,8 @@
 .experience__header {
   display: flex;
   align-items: center;
-  gap: var(--sp-1);
-  margin-bottom: 0;
-}
-
-/* Reverse header layout for left-aligned cards */
-.experience__item:nth-child(even) .experience__header {
-  flex-direction: row-reverse;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-1);
 }
 
 .experience__logo {
@@ -153,6 +181,45 @@
   color: var(--clr-text-primary);
 }
 
+/* "Current" badge — shown on the role with endDate "Present" */
+.experience__current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: auto;
+  padding: var(--sp-1) var(--sp-3);
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--clr-success);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  border: 1px solid var(--clr-success);
+  border-radius: var(--radius-full);
+  background: rgba(0, 212, 170, 0.08);
+}
+
+.experience__current-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  flex-shrink: 0;
+}
+
+.experience__current-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  opacity: 0.6;
+  animation: pulseGlow 2s ease-out infinite;
+}
+
 
 /* ──────────────────────────────────────────────────────────
    ROLE + DATE
@@ -165,8 +232,10 @@
 }
 
 .experience__date {
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   color: var(--clr-text-muted);
+  letter-spacing: 0.04em;
   margin-bottom: var(--sp-4);
 }
 
@@ -177,15 +246,14 @@
 .experience__description {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
-  margin-bottom: var(--sp-2);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
 }
 
 .experience__description li {
   font-size: var(--fs-sm);
   color: var(--clr-text-secondary);
-  line-height: var(--lh-base);
-  text-wrap: justify;
+  line-height: var(--lh-loose);
 
   position: relative;
   padding-left: var(--sp-5);
@@ -198,18 +266,6 @@
   left: 0;
   color: var(--clr-accent);
   font-weight: var(--fw-bold);
-}
-
-/* Reverse bullets for left-aligned cards */
-.experience__item:nth-child(even) .experience__description li {
-  padding-left: 0;
-  padding-right: var(--sp-5);
-}
-
-.experience__item:nth-child(even) .experience__description li::before {
-  left: auto;
-  right: 0;
-  content: "◂";
 }
 
 
@@ -255,11 +311,6 @@
   gap: var(--sp-2);
 }
 
-/* Align tags to card edge */
-.experience__item:nth-child(even) .experience__tags {
-  justify-content: flex-end;
-}
-
 /* "+N more" overflow chip — styled like tag-chip but with a dashed border */
 .experience__tags-more {
   cursor: pointer;
@@ -276,52 +327,28 @@
 
 
 /* ============================================================
-   RESPONSIVE: SINGLE COLUMN
-   Converts timeline to left-aligned vertical layout
+   RESPONSIVE
+   Layout is already single-column at every width; only spacing
+   and the "Current" badge placement need to tighten up on mobile.
    ============================================================ */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
 
-  /* Move guideline to left side */
-  .experience__timeline::before {
-    left: 20px;
-    transform: none;
+  .experience__item {
+    padding-left: calc(var(--sp-8) + 4px);
+    padding-bottom: var(--sp-8);
   }
 
-  /* Full width items */
-  .experience__item,
-  .experience__item:nth-child(odd),
-  .experience__item:nth-child(even) {
-    width: 100%;
-    left: 0;
-    padding-left: calc(40px + var(--sp-4));
-    padding-right: 0;
-    text-align: left;
+  .experience__card {
+    padding: var(--sp-4);
   }
 
-  /* Dot aligned with left guideline */
-  .experience__item::before {
-    left: 13px;
-    right: auto;
+  .experience__header {
+    flex-wrap: wrap;
+    row-gap: var(--sp-2);
   }
 
-  /* Normalize layout */
-  .experience__item:nth-child(even) .experience__header {
-    flex-direction: row;
-  }
-
-  .experience__item:nth-child(even) .experience__description li {
-    padding-left: var(--sp-5);
-    padding-right: 0;
-  }
-
-  .experience__item:nth-child(even) .experience__description li::before {
-    left: 0;
-    right: auto;
-    content: "▸";
-  }
-
-  .experience__item:nth-child(even) .experience__tags {
-    justify-content: flex-start;
+  .experience__current-badge {
+    margin-left: 0;
   }
 }
 
@@ -333,5 +360,14 @@
   .experience__card {
     transition: none;
     transform: none !important;
+  }
+
+  .experience__timeline::after {
+    animation: none !important;
+    transform: scaleY(1);
+  }
+
+  .experience__current-dot::before {
+    animation: none !important;
   }
 }

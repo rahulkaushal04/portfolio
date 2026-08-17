@@ -8,7 +8,6 @@
 /* ── Imports (order matters) ─────────────────────────── */
 @import url("variables.css");
 @import url("reset.css");
-@import url("themes.css");
 @import url("animations.css");
 @import url("navbar.css");
 @import url("hero.css");
@@ -21,19 +20,22 @@
 @import url("contact.css");
 @import url("footer.css");
 
-/* ── Self-Hosted Fonts ───────────────────────────────── */
-@font-face {
-  font-family: "Clash Display";
-  src: url("../fonts/ClashDisplay.woff2") format("woff2");
-  font-weight: 400 700;
-  font-display: swap;
+/* Fonts are loaded via a preconnected Google Fonts <link> in <head>
+   (Space Grotesk, Inter, JetBrains Mono) with the system stack above
+   as the fallback while they load / if the request fails. */
+
+/* ── Cross-document View Transitions ──────────────────
+   Native API: smooths navigation between index.html and the
+   projects/blog/contributions pages with a crossfade instead of
+   a hard white/black flash. Zero JS, no-op on unsupported browsers. */
+@view-transition {
+  navigation: auto;
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter.woff2") format("woff2");
-  font-weight: 400 700;
-  font-display: swap;
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 /* ── Global Body ─────────────────────────────────────── */
@@ -58,9 +60,25 @@ body {
 }
 
 /* ── Section Defaults ────────────────────────────────── */
+main {
+  counter-reset: section-index;
+}
+
 section {
   padding-block: var(--section-py);
   position: relative;
+}
+
+/* Faint schematic rule between sections — replaces implicit whitespace-only
+   separation with an intentional "spec sheet" divider. */
+section + section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--clr-grid-line);
 }
 
 /* ── Headings ────────────────────────────────────────── */
@@ -150,20 +168,11 @@ html {
   justify-content: space-between;
 }
 
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.grid-center {
-  display: grid;
-  place-items: center;
-}
-
 /* ── Section Title ───────────────────────────────────── */
 .section-title {
   font-size: var(--fs-3xl);
   font-weight: var(--fw-bold);
+  letter-spacing: -0.01em;
   text-align: center;
   margin-bottom: var(--sp-4);
 }
@@ -177,16 +186,70 @@ html {
   margin-bottom: var(--sp-16);
 }
 
+/* ── Section Label ───────────────────────────────────────
+   Mono "spec sheet" index tag, e.g. "01 — SKILLS". The index
+   number is generated automatically from document order, so
+   sections can be reordered without renumbering by hand. */
 .section-label {
-  display: inline-block;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
+  counter-increment: section-index;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
   color: var(--clr-accent);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   margin-bottom: var(--sp-3);
   text-align: center;
   width: 100%;
+}
+
+.section-label::before {
+  content: counter(section-index, decimal-leading-zero);
+  color: var(--clr-text-muted);
+}
+
+.section-label::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--clr-border);
+}
+
+/* ── Bracket Frame ─────────────────────────────────────
+   Viewfinder-style corner brackets. Applied around photos and
+   featured media as a technical/schematic framing device in
+   place of generic circular avatars or plain rounded corners. */
+.bracket-frame {
+  position: relative;
+}
+
+.bracket-frame::before,
+.bracket-frame::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--clr-accent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bracket-frame::before {
+  top: -8px;
+  left: -8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.bracket-frame::after {
+  bottom: -8px;
+  right: -8px;
+  border-left: none;
+  border-top: none;
 }
 
 /* ── Tag Chip ────────────────────────────────────────── */
@@ -195,7 +258,8 @@ html {
   align-items: center;
   gap: var(--sp-1);
   padding: var(--sp-1) var(--sp-3);
-  font-size: var(--fs-xs);
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
   font-weight: var(--fw-medium);
   color: var(--clr-accent);
   background-color: var(--clr-accent-light);
@@ -262,27 +326,6 @@ html {
   box-shadow: var(--shadow-lg);
 }
 
-/* ── Glass Panel ─────────────────────────────────────── */
-.glass {
-  background: var(--clr-glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--clr-glass-border);
-}
-
-/* ── Visibility ──────────────────────────────────────── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 /* ── Text Utilities ──────────────────────────────────── */
 .text-gradient {
   background: linear-gradient(135deg, var(--clr-accent), var(--clr-success));
@@ -291,15 +334,8 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-.text-center { text-align: center; }
-.text-muted  { color: var(--clr-text-muted); }
-
 /* ── Spacing Helpers ─────────────────────────────────── */
-.mt-auto { margin-top: auto; }
-.mb-0    { margin-bottom: 0; }
-.gap-2   { gap: var(--sp-2); }
-.gap-4   { gap: var(--sp-4); }
-.gap-6   { gap: var(--sp-6); }
+.gap-4 { gap: var(--sp-4); }
 
 /* ── Responsive Breakpoints (reference only, used via @media) ──
    sm  :  640px

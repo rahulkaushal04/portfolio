@@ -182,38 +182,6 @@
 
 
 /* ============================================================
-   THEME TOGGLE
-   ============================================================ */
-.navbar__theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-
-  border-radius: var(--radius-md);
-  color: var(--clr-text-secondary);
-
-  transition:
-    color var(--duration-base) var(--ease-default),
-    background-color var(--duration-base) var(--ease-default),
-    transform var(--duration-base) var(--ease-bounce);
-}
-
-.navbar__theme-toggle:hover,
-.navbar__theme-toggle:focus-visible {
-  color: var(--clr-accent);
-  background-color: var(--clr-accent-light);
-  outline: none;
-}
-
-.navbar__theme-toggle.animate {
-  transform: rotate(360deg);
-}
-
-
-/* ============================================================
    RESUME BUTTON
    ============================================================ */
 .navbar__resume-btn {
@@ -393,7 +361,6 @@
   .navbar,
   .navbar__mobile-menu,
   .navbar__hamburger-line,
-  .navbar__theme-toggle,
   .navbar__resume-btn {
     transition: none !important;
     animation: none !important;
