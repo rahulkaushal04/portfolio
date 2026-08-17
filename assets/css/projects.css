@@ -285,10 +285,6 @@
   font-weight: var(--fw-extrabold);
   text-align: center;
   margin-bottom: var(--sp-4);
-  background: linear-gradient(135deg, var(--clr-text-primary), var(--clr-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .projects-page__subtitle {

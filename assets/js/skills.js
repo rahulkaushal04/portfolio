@@ -54,14 +54,32 @@ function cardHTML(skill) {
     ? '<span class="skills__badge-learning">Learning</span>'
     : '';
 
-  const slug    = nameToSlug(skill.name);
-  const imgSrc  = skill.iconImage
-    ? `assets/images/skills/${skill.iconImage}`
-    : `assets/images/skills/${slug}.svg`;
-  const explicit  = skill.iconImage ? 'data-explicit="1"' : '';
+  const slug      = nameToSlug(skill.name);
   const sizeStyle = skill.iconSize
     ? `style="width:${skill.iconSize}px;height:${skill.iconSize}px"`
     : '';
+
+  // Skills with an explicit devicon `icon` and no custom `iconImage` render
+  // the devicon directly — no point probing for a local .svg/.png that was
+  // never provided, that's two wasted 404s per skill for no visual payoff.
+  if (skill.icon && !skill.iconImage) {
+    return `
+      <div class="skills__card reveal"
+           data-category="${skill.category}"
+           title="${skill.name}">
+        <span class="skills__card-icon">
+          <i class="${skill.icon} colored" aria-hidden="true"></i>
+        </span>
+        <span class="skills__card-name">${skill.name}</span>
+        ${learningBadge}
+        <span class="skills__card-tooltip">${skill.name}</span>
+      </div>`;
+  }
+
+  const imgSrc   = skill.iconImage
+    ? `assets/images/skills/${skill.iconImage}`
+    : `assets/images/skills/${slug}.svg`;
+  const explicit = skill.iconImage ? 'data-explicit="1"' : '';
 
   return `
     <div class="skills__card reveal"
@@ -77,7 +95,7 @@ function cardHTML(skill) {
              ${sizeStyle}
              onerror="window.__skillIconFallback(this)"
              loading="lazy">
-        <i class="${skill.icon} colored" style="display:none" aria-hidden="true"></i>
+        <i class="${skill.icon ?? `devicon-${slug}-plain`} colored" style="display:none" aria-hidden="true"></i>
       </span>
       <span class="skills__card-name">${skill.name}</span>
       ${learningBadge}

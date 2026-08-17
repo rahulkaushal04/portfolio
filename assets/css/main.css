@@ -334,6 +334,46 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+/* ── Headline Signal ─────────────────────────────────────
+   Shared treatment for the hero name and page-listing titles.
+   Solid, high-contrast text instead of a gradient-clip fade, with
+   a small blinking mono accent glyph that echoes the hero
+   typewriter's cursor (.hero__cursor / @keyframes blink in
+   animations.css) — a "live" indicator rather than decoration. */
+.headline-signal {
+  color: var(--clr-text-primary);
+}
+
+.headline-signal__blip {
+  display: inline-block;
+  color: var(--clr-accent);
+  font-family: var(--ff-mono);
+  animation: blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headline-signal__blip {
+    animation: none;
+  }
+}
+
+/* ── Section Header Rhythm ─────────────────────────────
+   Default section headers (.section-label/.section-title/
+   .section-subtitle) are centered — suited to utility sections
+   (Skills, Contact). Narrative sections (Experience, Projects,
+   Open Source, Blog) use this modifier to left-align instead,
+   breaking the repeated centered silhouette across the page. */
+.section-header--left .section-label {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.section-header--left .section-title,
+.section-header--left .section-subtitle {
+  text-align: left;
+  margin-inline: 0;
+}
+
 /* ── Spacing Helpers ─────────────────────────────────── */
 .gap-4 { gap: var(--sp-4); }
 

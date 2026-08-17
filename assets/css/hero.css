@@ -83,23 +83,13 @@
 
 
 /* ──────────────────────────────────────────────────────────
-   NAME (Gradient Text)
+   NAME (Headline Signal — see .headline-signal in main.css)
    ────────────────────────────────────────────────────────── */
 .hero__name {
   font-size: var(--fs-hero);
   font-weight: var(--fw-extrabold);
   line-height: var(--lh-tight);
   letter-spacing: -0.02em;
-
-  background: linear-gradient(
-    135deg,
-    var(--clr-text-primary) 40%,
-    var(--clr-accent)
-  );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 
