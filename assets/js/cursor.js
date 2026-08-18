@@ -3,7 +3,6 @@ let dot;
 let mouseX = 0;
 let mouseY = 0;
 
-// dotX/dotY lag behind the mouse; the gap closes each frame via lerp.
 let dotX = 0;
 let dotY = 0;
 
@@ -46,8 +45,6 @@ function initHoverDetection() {
 export function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
 
-  // This module had no reduced-motion check, so a lerped rAF loop ran
-  // permanently even for users who asked for no animation.
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   dot = document.getElementById('cursorDot');

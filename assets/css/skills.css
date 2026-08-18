@@ -7,8 +7,6 @@
   gap: var(--sp-10);
 }
 
-/* Two groups per row on wide screens keeps the section from becoming a
-   very tall single column, and gives each group a readable measure. */
 @media (min-width: 900px) {
   .skills__groups {
     grid-template-columns: repeat(2, 1fr);
@@ -80,8 +78,6 @@
   flex-shrink: 0;
 }
 
-/* Icons are authored at wildly different intrinsic sizes, so they are
-   contained into a fixed box instead of being trusted to match. */
 .skills__icon {
   max-width: 100%;
   max-height: 100%;

@@ -19,8 +19,6 @@ function uniqueRepos(contribs) {
 
 const STATS_MIN_PRS = 6;
 
-/* The counter renders only once the numbers help. Below that threshold a
-   large accent "2" is worse than showing the pull requests themselves. */
 function renderStats() {
   if (!statsContainer) return;
 
@@ -53,7 +51,7 @@ function cardHTML(contribution) {
 
   const dateLabel = contribution.mergedDate
     ? formatDate(contribution.mergedDate)
-   : '';
+    : '';
 
   return `
     <article class="contributions__card reveal">

@@ -21,8 +21,6 @@
   z-index: var(--z-behind);
   pointer-events: none;
 
-  /* Fades the mesh out near the edges so it reads as atmosphere, not
-     noise, behind the text column. */
   mask-image: radial-gradient(ellipse 70% 70% at 30% 45%, black 40%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 45%, black 40%, transparent 90%);
 }
@@ -71,9 +69,6 @@
   color: var(--clr-text-secondary);
 }
 
-/* The role line used to be a typewriter. It cycled three role names, so
-   the single most important sentence on the page was mid-word most of the
-   time, and it auto-updated forever with no way to pause it (WCAG 2.2.2). */
 .hero__role {
   font-weight: var(--fw-semibold);
   color: var(--clr-accent);
@@ -167,9 +162,6 @@
   outline-offset: 3px;
 }
 
-/* stretch, not center: the avatar and spec card are a fixed 220px, so
-   centring them inside the 380px grid column left them floating with an
-   80px gap on the right and nothing aligned to the container edge. */
 .hero__aside {
   display: flex;
   flex-direction: column;
@@ -213,9 +205,6 @@
   background: var(--clr-glass-bg);
 }
 
-/* Stacked (label above value) rather than side-by-side, so a long value
-   like a job title doesn't collide with the label at this 220px width :
-   every row stays legible regardless of how long its value is. */
 .hero__spec {
   display: flex;
   flex-direction: column;

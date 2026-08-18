@@ -98,11 +98,6 @@
     transform var(--duration-slow) var(--ease-out);
 }
 
-/* will-change used to sit on .reveal permanently, which held a compositor
-   layer open for all 30+ of them for the whole life of the page and produced
-   intermittent blank sections where content was laid out but never painted.
-   The hint is applied only while an element is actually animating in, and
-   animations.js clears it again on transitionend. */
 .reveal.is-animating {
   will-change: opacity, transform;
 }

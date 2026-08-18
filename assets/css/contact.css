@@ -271,8 +271,6 @@
 
 }
 
-/* The address was only ever in meta.json, never rendered. Recruiters copy an
-   address into their ATS; a Formspree form is a dead end for them. */
 .contact__email {
   display: inline-flex;
   align-items: center;

@@ -37,8 +37,6 @@ function setActiveLink(id) {
   navLinks.forEach((link) => {
     const isActive = link.getAttribute('href') === href;
     link.classList.toggle('active', isActive);
-    // aria-current is what a screen reader actually announces; the class
-    // alone is invisible to assistive tech.
     if (isActive) {
       link.setAttribute('aria-current', 'true');
     } else {
@@ -54,8 +52,7 @@ function isMenuOpen() {
   return mobileMenu.classList.contains('open');
 }
 
-/* Everything outside the panel is marked inert while it is open, so Tab
-   cannot walk into the links sitting behind the overlay. */
+// Keeps Tab from reaching the page behind the open panel.
 function setOutsideInert(on) {
   [...document.body.children].forEach((el) => {
     if (el === mobileMenu || el === backdrop) return;
@@ -95,10 +92,9 @@ function closeMobileMenu() {
 
   setOutsideInert(false);
 
-  // Return focus to whatever opened the menu rather than dropping it on <body>.
   const target = (lastFocused && lastFocused !== document.body && document.contains(lastFocused))
     ? lastFocused
-   : hamburger;
+    : hamburger;
   if (target) target.focus();
   lastFocused = null;
 }
@@ -174,8 +170,6 @@ export function initNavbar() {
 
     document.addEventListener('keydown', trapFocus);
 
-    // Resizing past the breakpoint with the menu open would otherwise leave
-    // the body scroll-locked and the rest of the page inert.
     window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
       if (e.matches && isMenuOpen()) closeMobileMenu();
     });

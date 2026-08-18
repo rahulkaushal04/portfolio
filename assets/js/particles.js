@@ -11,16 +11,12 @@ const mouse = { x: -9999, y: -9999 };
 let accent = '#4F8EF7';
 let running = false;
 
-// The accent colour was read with getComputedStyle on every frame "so it
-// responds to theme changes". There is no theme switcher, so that was a
-// forced style recalculation 60 times a second for a constant.
 function readAccent() {
   accent = getComputedStyle(document.documentElement)
     .getPropertyValue('--clr-accent').trim() || '#4F8EF7';
 }
 
-// Connection drawing is O(n^2): 80 particles is 3,160 distance checks per
-// frame, which is a lot of work to hand a phone for a background texture.
+// Connection drawing is O(n^2), so the count stays modest.
 const PARTICLE_COUNT_DESKTOP = 64;
 const PARTICLE_COUNT_MOBILE  = 28;
 const CONNECT_DIST   = 140;
@@ -78,7 +74,6 @@ function tick() {
     p.x += p.vx;
     p.y += p.vy;
 
-    // Light damping keeps velocity from growing unbounded
     p.vx *= 0.99;
     p.vy *= 0.99;
 
@@ -141,13 +136,12 @@ export function initParticles() {
 
   const count = window.matchMedia('(max-width: 768px)').matches
     ? PARTICLE_COUNT_MOBILE
-   : PARTICLE_COUNT_DESKTOP;
+    : PARTICLE_COUNT_DESKTOP;
 
   for (let i = 0; i < count; i++) {
     particles.push(createParticle());
   }
 
-  // Track mouse position relative to the hero section, not the whole page
   const hero = canvas.closest('.hero') || canvas.parentElement;
 
   hero.addEventListener('mousemove', (e) => {
@@ -166,7 +160,6 @@ export function initParticles() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       resize();
-      // Re-clamp any particles that landed outside the new canvas bounds
       particles.forEach((p) => {
         if (p.x > width)  p.x = Math.random() * width;
         if (p.y > height) p.y = Math.random() * height;
@@ -174,8 +167,6 @@ export function initParticles() {
     }, 200);
   });
 
-  // The loop used to run forever, including when the hero was a full page
-  // out of view and when the tab was in the background.
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => (entry.isIntersecting ? start(): stop()));
   }, { threshold: 0 });

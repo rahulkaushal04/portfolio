@@ -166,9 +166,6 @@
     transform: none !important;
   }
 
-  /* The custom cursor is driven by inline transforms from cursor.js. Pinning
-     it here used to strand the dot in the top-left corner, so it is hidden
-     outright when reduced motion is requested. */
   .cursor-dot {
     display: none !important;
   }

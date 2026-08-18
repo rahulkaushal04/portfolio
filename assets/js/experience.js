@@ -29,7 +29,7 @@ function itemHTML(entry, index) {
            <polyline points="6 9 12 15 18 9"></polyline>
          </svg>
        </button>`
-   : '';
+    : '';
 
   const tags = entry.tags
     .map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`).join('');
@@ -37,11 +37,11 @@ function itemHTML(entry, index) {
   const isCurrent = entry.endDate.trim().toLowerCase() === 'present';
   const badge = isCurrent
     ? `<span class="experience__current-badge"><span class="experience__current-dot" aria-hidden="true"></span>Current</span>`
-   : '';
+    : '';
 
   const summary = entry.summary
     ? `<p class="experience__summary">${escapeHTML(entry.summary)}</p>`
-   : '';
+    : '';
 
   return `
     <div class="experience__item reveal${isCurrent ? ' experience__item--current': ''}">
@@ -61,9 +61,6 @@ function itemHTML(entry, index) {
     </div>`;
 }
 
-/* Consecutive entries at the same employer render under one company header
-   with a single logo. Two separate cards each stamped "Honeywell" read as
-   two unrelated jobs and hide the fact that it was a promotion. */
 function groupByCompany(list) {
   const groups = [];
 
@@ -85,7 +82,7 @@ function groupHTML(group) {
 
   const promotion = roleCount > 1
     ? `<span class="experience__promotion">${roleCount} roles</span>`
-   : '';
+    : '';
 
   return `
     <section class="experience__company-group" aria-label="${escapeHTML(group.company)}">

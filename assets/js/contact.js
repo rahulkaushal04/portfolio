@@ -103,7 +103,6 @@ function initBlurValidation() {
   form.querySelectorAll('.contact__input').forEach((input) => {
     input.addEventListener('blur', () => validateField(input));
 
-    // Re-validate on each keystroke once the field is already in an error state
     input.addEventListener('input', () => {
       if (input.classList.contains('error')) validateField(input);
     });

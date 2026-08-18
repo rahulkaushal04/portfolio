@@ -47,7 +47,6 @@ function initSmoothScroll() {
   });
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initAnimations();
@@ -66,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setFooterYear();
   initSmoothScroll();
 
-  // 11KB of confetti, matrix rain and disco mode used to load on every visit
-  // for features nobody discovers by accident. It now waits for the first
-  // keystroke that could plausibly start one.
   loadEasterEggsOnDemand();
 });
 
@@ -82,8 +78,7 @@ function loadEasterEggsOnDemand() {
     import('./easter-eggs.js')
       .then(({ initEasterEggs }) => {
         initEasterEggs();
-        // Replay the keystroke that triggered the load so the sequence
-        // the user already started is not one key short.
+        // Replay the keystroke that triggered the load.
         window.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
         document.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
       })

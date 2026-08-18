@@ -1,6 +1,3 @@
-/* The section header is left-aligned, so the timeline is too. It used to be
-   margin-inline: auto, which centred it and left a 240px step between the
-   heading and the content it belongs to. */
 .experience__timeline {
   position: relative;
   max-width: 860px;
@@ -25,10 +22,6 @@
   );
 }
 
-/* Traces over the guideline as the timeline scrolls through view,
-   visualising progress through the career history. Native scroll-driven
-   animation: no JS, no-op (stays hidden) on browsers that don't yet
-   support animation-timeline. */
 .experience__timeline::after {
   content: "";
   position: absolute;
@@ -304,17 +297,10 @@
   }
 }
 
-/* ---- Company grouping -------------------------------------------------
-   Both roles are at the same employer. Rendering the logo once above the
-   pair, with a role count, reads as one tenure with a promotion instead of
-   two unconnected jobs.                                                  */
-
 .experience__company-group + .experience__company-group {
   margin-top: var(--sp-16);
 }
 
-/* Sits on the same left inset as the role cards so it clears the timeline
-   spine and the milestone dots. */
 .experience__company-head {
   display: flex;
   align-items: center;
@@ -353,8 +339,6 @@
   margin-bottom: var(--sp-1);
 }
 
-/* One plain-language line per role, above the bullets, so the section can
-   be understood without reading any of them. */
 .experience__summary {
   font-size: var(--fs-md);
   color: var(--clr-text-primary);

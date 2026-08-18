@@ -3,8 +3,6 @@ import { initCursor }     from './cursor.js';
 
 const TOOLBAR_MIN_ITEMS = 6;
 
-/* Tags are lowercase slugs in the JSON ("ai-ml", "llm"). They were printed
-   into the filter chips verbatim. */
 function labelForTag(slug) {
   const overrides = {
     'ai-ml': 'AI / ML',
@@ -102,8 +100,8 @@ function render() {
   const shown = filtered.length;
   countEl.textContent =
     shown === total
-      ? `${total} article${total !== 1 ? 's': ''}`
-     : `${shown} of ${total} article${total !== 1 ? 's': ''}`;
+      ? `${total} article${total !== 1 ? 's' : ''}`
+      : `${shown} of ${total} article${total !== 1 ? 's' : ''}`;
 
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;

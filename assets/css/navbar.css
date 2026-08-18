@@ -16,8 +16,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
 
-  /* Dark text, not white: this gradient runs to #00D4AA, where white text
-     lands at 1.9:1. Near-black holds 6:1 or better across the whole ramp. */
+  /* Dark, not white: this gradient runs to #00D4AA where white is 1.9:1. */
   color: #0B0D12;
   background: linear-gradient(90deg, var(--clr-accent), var(--clr-success));
 }
@@ -28,7 +27,6 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
 
-  /* The link was a 52x19px target sitting first in the tab order. */
   display: inline-flex;
   align-items: center;
   min-height: 32px;
@@ -119,8 +117,6 @@
 .navbar__link {
   position: relative;
 
-  /* The text is 25px tall on its own. The extra block padding grows the
-     click area toward the 44px guideline without moving the label. */
   display: inline-flex;
   align-items: center;
   min-height: 40px;
@@ -137,8 +133,6 @@
   color: var(--clr-text-primary);
 }
 
-/* The expanding underline alone is a 2px indicator. Keep it, but restore a
-   real focus ring alongside it. */
 .navbar__link:focus-visible {
   color: var(--clr-text-primary);
   outline: 2px solid var(--clr-accent);
@@ -180,9 +174,6 @@
   animation: bounceSubtle 0.4s var(--ease-bounce);
 }
 
-/* The outline used to be removed here and replaced with a 400ms bounce,
-   which left the site's primary CTA with no focus indicator at all once
-   the animation finished. */
 .navbar__resume-btn:focus-visible {
   outline: 2px solid var(--clr-accent);
   outline-offset: 3px;
@@ -205,7 +196,6 @@
   align-items: center;
   gap: 5px;
 
-  /* 32px was under the 44px minimum touch target. */
   width: 44px;
   height: 44px;
   cursor: pointer;
@@ -247,10 +237,8 @@
 
   z-index: var(--z-overlay);
 
-  /* visibility, not just the off-screen transform: a translated panel is
-     still focusable, so on desktop Tab walked through the close button and
-     all seven links of a menu that can never be opened there. Delaying the
-     visibility switch until the slide finishes keeps the animation intact. */
+  /* visibility, not just the transform: an off-screen panel stays focusable.
+     The delay lets the slide finish before it is hidden. */
   visibility: hidden;
   transform: translateX(100%);
   transition:
@@ -267,8 +255,6 @@
   overscroll-behavior: contain;
 }
 
-/* The panel sits above the navbar, so the hamburger's animated X was
-   covered and the menu had no visible way out. This is the close control. */
 .navbar__mobile-close {
   position: absolute;
   top: var(--sp-4);
@@ -295,8 +281,6 @@
   border-color: var(--clr-border-strong);
 }
 
-/* The menu carried only section links. On mobile the navbar resume button
-   is hidden, so without these the primary actions were unreachable. */
 .navbar__mobile-actions {
   margin-top: auto;
   display: flex;
@@ -391,8 +375,6 @@
   border-radius: var(--radius-sm);
 }
 
-/* This was a ::before on the panel, so it could never receive a click and
-   tapping outside the menu did nothing. It is a real element now. */
 .navbar__backdrop {
   position: fixed;
   inset: 0;
@@ -416,10 +398,8 @@
     display: none;
   }
 
-  /* .btn sets display:inline-flex in main.css, which is loaded after this
-     file and has equal specificity, so a bare `.navbar__resume-btn` rule
-     lost the cascade and the button stayed visible on phones. Scoping it
-     to the wrapper wins on specificity without !important. */
+  /* Scoped to the wrapper: a bare .navbar__resume-btn loses to .btn in
+     main.css, which loads later at equal specificity. */
   .navbar__actions .navbar__resume-wrap {
     display: none;
   }

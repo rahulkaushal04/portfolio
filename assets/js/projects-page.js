@@ -7,8 +7,7 @@ let searchTerm  = '';
 
 let grid, emptyState, countEl, searchInput, catContainer, clearBtn, toolbar;
 
-/* Search and category filters over two items advertise how few items there
-   are. The toolbar appears once there is enough to be worth filtering. */
+// Below this many items, the filter toolbar is hidden.
 const TOOLBAR_MIN_ITEMS = 6;
 
 function escapeHTML(str) {
@@ -17,8 +16,6 @@ function escapeHTML(str) {
   ));
 }
 
-/* Category values are slugs in the JSON. They were being printed straight
-   into the UI as "open-source" and "side-projects". */
 function labelForCategory(slug) {
   const overrides = { cli: 'CLI', api: 'API', ml: 'ML', 'open-source': 'Open Source' };
   if (overrides[slug]) return overrides[slug];
@@ -43,7 +40,7 @@ function cardHTML(project) {
 
   const statusBadge = project.status
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
-   : '';
+    : '';
 
   let actions = '';
   if (project.liveUrl) {
@@ -100,7 +97,6 @@ function cardHTML(project) {
     </article>`;
 }
 
-
 async function fetchProjects() {
   try {
     const res = await fetch('data/projects.json');
@@ -134,8 +130,8 @@ function render() {
   const shown = filtered.length;
   countEl.textContent =
     shown === total
-      ? `${total} project${total !== 1 ? 's': ''}`
-     : `${shown} of ${total} project${total !== 1 ? 's': ''}`;
+      ? `${total} project${total !== 1 ? 's' : ''}`
+      : `${shown} of ${total} project${total !== 1 ? 's' : ''}`;
 
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;

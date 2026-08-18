@@ -3,10 +3,8 @@
   --clr-accent-hover:   #2A66D6;
   --clr-accent-light:   #4F8EF720;
 
-  /* Accent tuned for white text: #4F8EF7 only reaches 3.2:1 against white,
-     which fails WCAG AA on every filled button. This darker step clears
-     4.5:1 and is used for solid backgrounds only. The lighter --clr-accent
-     stays for text and borders on the dark background, where it reads 6:1. */
+  /* Solid backgrounds only. --clr-accent is 3.2:1 against white and fails
+     AA on filled buttons; use it for text and borders instead. */
   --clr-accent-solid:   #2A66D6;
   --clr-accent-strong:  #1F55BC;
 
@@ -24,9 +22,7 @@
   --clr-text-secondary: #A0A6B8;
   --clr-text-muted:     #8A91A6;
 
-  /* Two tiers: --clr-border draws decorative card outlines, --clr-border-strong
-     is for the boundary of real controls (inputs, outline buttons) which WCAG
-     1.4.11 requires to reach 3:1 against the page background. */
+  /* --clr-border is decorative. Controls that need 3:1 use -strong. */
   --clr-border:         #2E323F;
   --clr-border-strong:  #5A6175;
 

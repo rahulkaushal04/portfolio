@@ -56,7 +56,7 @@ function cardHTML(contribution) {
 
   const dateLabel = contribution.mergedDate
     ? formatDate(contribution.mergedDate)
-   : '';
+    : '';
 
   return `
     <article class="contributions__card reveal" data-repo="${escapeHTML(contribution.repo)}">
@@ -154,8 +154,8 @@ function render() {
   const shown = filtered.length;
   countEl.textContent =
     shown === total
-      ? `${total} contribution${total !== 1 ? 's': ''}`
-     : `${shown} of ${total} contribution${total !== 1 ? 's': ''}`;
+      ? `${total} contribution${total !== 1 ? 's' : ''}`
+      : `${shown} of ${total} contribution${total !== 1 ? 's' : ''}`;
 
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;

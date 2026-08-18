@@ -1,9 +1,3 @@
-// Skills render as labelled groups rather than one flat grid behind filter
-// tabs. The old version declared role="tab"/role="tabpanel" without
-// aria-controls, roving tabindex or arrow-key handling, so screen readers
-// announced a tab interface that did not behave like one. Grouping also
-// lets each cluster carry a line of context, which a logo cannot.
-
 let container;
 let groups = [];
 
@@ -17,11 +11,7 @@ function iconHTML(item) {
   const src  = `assets/images/skills/${item.icon}`;
   const size = item.iconSize
     ? ` style="width:${item.iconSize}px;height:${item.iconSize}px"`
-   : '';
-
-  // Icons are self-hosted now. The previous build probed for a local .svg,
-  // then a .png, then fell back to a devicon webfont class, which cost two
-  // 404s per skill and pulled a 127KB stylesheet off a CDN pinned to @latest.
+    : '';
   return `<img src="${src}" class="skills__icon" alt=""${size}
                width="40" height="40" loading="lazy" decoding="async">`;
 }

@@ -22,7 +22,7 @@ function cardHTML(project) {
 
   const statusBadge = project.status
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
-   : '';
+    : '';
 
   let actions = '';
   if (project.liveUrl) {

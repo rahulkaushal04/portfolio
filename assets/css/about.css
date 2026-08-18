@@ -11,7 +11,7 @@
   justify-content: flex-start;
   padding: 0 !important;
   position: sticky;
-  top: calc(80px + var(--sp-6)); /* navbar height + breathing room */
+  top: calc(80px + var(--sp-6));
   background: none !important;
   border: none !important;
 }

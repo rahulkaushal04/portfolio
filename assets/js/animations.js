@@ -14,10 +14,6 @@ export function initAnimations() {
 
     if (obs) obs.unobserve(el);
 
-    // will-change is set in CSS to hint the compositor before the transition.
-    // Leaving it on afterwards keeps a GPU layer alive for every one of the
-    // 30+ reveal elements for the life of the page, which is exactly the kind
-    // of layer pressure that produces intermittent paint failures.
     el.addEventListener('transitionend', () => {
       el.classList.remove('is-animating');
     }, { once: true });
@@ -28,7 +24,7 @@ export function initAnimations() {
 
   const observer = reducedMotion
     ? null
-   : new IntersectionObserver(
+    : new IntersectionObserver(
         (entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) reveal(entry.target, obs);
@@ -52,16 +48,11 @@ export function initAnimations() {
 
   observeAll();
 
-  // Exposed so dynamic modules (skills, projects, blog, github) can
-  // register their freshly injected .reveal elements after render.
+  // Lets dynamic modules register freshly injected .reveal elements.
   window.__reObserveReveals = observeAll;
 
-  // Safety net: a very fast/instant scroll (flick, Page Down, a jump from
-  // a hash link) can move an element across the whole viewport within a
-  // single check cycle, so the IntersectionObserver never sees it cross
-  // the threshold and it stays invisible forever. On scroll, sweep for any
-  // .reveal element that's already past where it should have revealed and
-  // force it in. Stops listening once nothing is left to catch.
+  // A fast scroll can carry an element across the viewport between observer
+  // checks, so it never fires and the element stays hidden. Sweep for those.
   if (!reducedMotion) {
     let ticking = false;
 

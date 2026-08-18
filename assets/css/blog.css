@@ -28,8 +28,6 @@
   color: inherit;
 }
 
-/* Focus gets the hover treatment plus a ring. Lifting the card alone is the
-   same state as hover, so a keyboard user could not tell the two apart. */
 .blog__card:focus-visible {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);

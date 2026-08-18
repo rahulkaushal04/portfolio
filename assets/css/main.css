@@ -1,12 +1,6 @@
-/* The partials used to be pulled in here with @import, which forced the
-   browser to download and parse this file before it could even discover
-   them, serialising 13 render-blocking requests. They are now <link>ed
-   directly from each page's <head> so they are found and fetched in
-   parallel. Order still matters: variables and reset come first. */
+/* Partials are <link>ed from each page's <head>, not @imported. Load order
+   matters: variables and reset first, this file last. */
 
-/* Native View Transitions: crossfades navigation between index.html and
-   the projects/blog/contributions pages instead of a hard flash. No JS,
-   no-op on unsupported browsers. */
 @view-transition {
   navigation: auto;
 }
@@ -29,9 +23,6 @@ body {
               color var(--duration-base) var(--ease-default);
 }
 
-/* Skip link: keyboard and screen-reader users otherwise traverse the
-   banner, logo, seven nav links and the resume button on every single
-   page load before reaching any content. */
 .skip-link {
   position: absolute;
   top: 0;
@@ -59,10 +50,17 @@ body {
   outline-offset: 2px;
 }
 
-/* Anchor targets sit under the fixed navbar without this. */
+/* Clears the fixed banner (28px) plus navbar (69px). */
 :target,
 section[id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 116px;
+}
+
+@media (max-width: 768px) {
+  :target,
+  section[id] {
+    scroll-margin-top: 96px;
+  }
 }
 
 .container {
@@ -76,17 +74,13 @@ main {
   counter-reset: section-index;
 }
 
-/* Scoped to direct children of <main>. These are page-level section rules:
-   applied to every <section>, they also hit nested grouping sections such as
-   .skills__group and .experience__company-group, which then inherited 96px of
-   padding top and bottom and drew a stray divider across their own top edge. */
+/* Direct children only: nested grouping sections (.skills__group,
+   .experience__company-group) must not inherit page-level section spacing. */
 main > section {
   padding-block: var(--section-py);
   position: relative;
 }
 
-/* Faint schematic rule between sections: an intentional "spec sheet"
-   divider rather than implicit whitespace-only separation. */
 main > section + section::before {
   content: "";
   position: absolute;
@@ -193,9 +187,7 @@ html {
   margin-bottom: var(--sp-16);
 }
 
-/* Mono "spec sheet" index tag, e.g. "01: SKILLS". The index number is
-   generated from document order via a CSS counter, so sections can be
-   reordered without renumbering by hand. */
+/* Index number comes from document order, so sections renumber themselves. */
 .section-label {
   counter-increment: section-index;
   display: flex;
@@ -225,8 +217,6 @@ html {
   background: var(--clr-border);
 }
 
-/* Viewfinder-style corner brackets, used around photos in place of a
-   generic circular avatar or plain rounded corners. */
 .bracket-frame {
   position: relative;
 }
@@ -308,9 +298,6 @@ html {
   background-color: transparent;
 }
 
-/* Every button is a touch target before it is anything else. 44px is the
-   floor from WCAG 2.5.5 and the iOS/Android guidelines; padding alone was
-   leaving several controls at 37px. */
 .btn {
   min-height: 44px;
 }
@@ -341,9 +328,6 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* Shared treatment for the hero name and page-listing titles: solid,
-   high-contrast text with a small blinking mono accent glyph, instead of a
-   gradient-clip fade. */
 .headline-signal {
   color: var(--clr-text-primary);
 }
@@ -361,10 +345,6 @@ html {
   }
 }
 
-/* Default section headers are centered: suited to utility sections
-   (Skills, Contact). Narrative sections (Experience, Projects, Open
-   Source, Blog) use this modifier to left-align instead, so the page
-   isn't seven identical centered silhouettes in a row. */
 .section-header--left .section-label {
   justify-content: flex-start;
   text-align: left;

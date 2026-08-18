@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <!--
-  GitHub Pages serves this file for any unmatched route, at any depth. That
-  makes both relative and absolute asset paths unreliable: a relative href
-  resolves against the URL that was requested, not against this file, and an
-  absolute /portfolio/ href breaks the moment a custom domain is attached.
-  So this page ships completely self-contained. No external CSS, no JS, no
-  images. It cannot fail to render.
+  Served for any unmatched route at any depth, so relative and absolute asset
+  paths are both unreliable here. Keep this page self-contained.
 -->
 <html lang="en" data-theme="dark">
 <head>
@@ -154,7 +150,7 @@
     </p>
 
     <div class="error-page__actions">
-      <!-- Absolute, so these work no matter what path triggered the 404. -->
+      <!-- Absolute: the 404 can be served from any path. -->
       <a href="https://rahulkaushal04.github.io/portfolio/" class="btn btn--primary">Back to portfolio</a>
       <a href="https://rahulkaushal04.github.io/portfolio/projects.html" class="btn btn--outline">See projects</a>
     </div>
