@@ -1,181 +1,63 @@
-// Icon resolution order: explicit iconImage field -> slug.svg -> slug.png -> devicon -> placeholder.
+// Skills render as labelled groups rather than one flat grid behind filter
+// tabs. The old version declared role="tab"/role="tabpanel" without
+// aria-controls, roving tabindex or arrow-key handling, so screen readers
+// announced a tab interface that did not behave like one. Grouping also
+// lets each cluster carry a line of context, which a logo cannot.
 
-let grid;
-let filtersContainer;
-let skills = [];
+let container;
+let groups = [];
 
-function nameToSlug(name) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
 }
 
-window.__skillIconFallback = function (img) {
-  // First failure on auto-detect: try .png instead of .svg
-  if (img.dataset.step === '0' && !img.dataset.explicit) {
-    img.dataset.step = '1';
-    img.src = `assets/images/skills/${img.dataset.slug}.png`;
-    return;
-  }
+function iconHTML(item) {
+  const src  = `assets/images/skills/${item.icon}`;
+  const size = item.iconSize
+    ? ` style="width:${item.iconSize}px;height:${item.iconSize}px"`
+   : '';
 
-  img.style.display = 'none';
-  const deviconEl = img.nextElementSibling;
-  if (deviconEl) {
-    deviconEl.style.display = '';
+  // Icons are self-hosted now. The previous build probed for a local .svg,
+  // then a .png, then fell back to a devicon webfont class, which cost two
+  // 404s per skill and pulled a 127KB stylesheet off a CDN pinned to @latest.
+  return `<img src="${src}" class="skills__icon" alt=""${size}
+               width="40" height="40" loading="lazy" decoding="async">`;
+}
 
-    // If the devicon class is unrecognised it renders at zero width; swap in the placeholder
-    setTimeout(() => {
-      if (deviconEl.offsetWidth === 0) {
-        deviconEl.style.display = 'none';
-        const ph = document.createElement('img');
-        ph.src = 'assets/images/skills/_placeholder.svg';
-        ph.className = 'skills__custom-icon skills__icon-placeholder';
-        ph.alt = '';
-        deviconEl.insertAdjacentElement('afterend', ph);
-      }
-    }, 200);
-  }
-};
-
-function cardHTML(skill) {
-  const slug      = nameToSlug(skill.name);
-  const sizeStyle = skill.iconSize
-    ? `style="width:${skill.iconSize}px;height:${skill.iconSize}px"`
-    : '';
-
-  // Skills with an explicit devicon `icon` and no custom `iconImage` render
-  // the devicon directly — no point probing for a local .svg/.png that was
-  // never provided, that's two wasted 404s per skill for no visual payoff.
-  if (skill.icon && !skill.iconImage) {
-    return `
-      <div class="skills__card reveal"
-           data-category="${skill.category}"
-           title="${skill.name}">
-        <span class="skills__card-icon">
-          <i class="${skill.icon} colored" aria-hidden="true"></i>
-        </span>
-        <span class="skills__card-name">${skill.name}</span>
-        <span class="skills__card-tooltip">${skill.name}</span>
-      </div>`;
-  }
-
-  const imgSrc   = skill.iconImage
-    ? `assets/images/skills/${skill.iconImage}`
-    : `assets/images/skills/${slug}.svg`;
-  const explicit = skill.iconImage ? 'data-explicit="1"' : '';
-
+function itemHTML(item) {
   return `
-    <div class="skills__card reveal"
-         data-category="${skill.category}"
-         title="${skill.name}">
-      <span class="skills__card-icon">
-        <img src="${imgSrc}"
-             class="skills__custom-icon"
-             alt="${skill.name} icon"
-             data-slug="${slug}"
-             data-step="0"
-             ${explicit}
-             ${sizeStyle}
-             onerror="window.__skillIconFallback(this)"
-             loading="lazy">
-        <i class="${skill.icon ?? `devicon-${slug}-plain`} colored" style="display:none" aria-hidden="true"></i>
-      </span>
-      <span class="skills__card-name">${skill.name}</span>
-      <span class="skills__card-tooltip">${skill.name}</span>
-    </div>`;
+    <li class="skills__item">
+      <span class="skills__item-icon">${iconHTML(item)}</span>
+      <span class="skills__item-name">${escapeHTML(item.name)}</span>
+    </li>`;
 }
 
-function renderSkills() {
-  if (!grid) return;
-  grid.innerHTML = skills.map(cardHTML).join('');
-}
-
-function filterSkills(category) {
-  if (!grid) return;
-
-  const cards = grid.querySelectorAll('.skills__card');
-
-  cards.forEach((card) => {
-    const match = category === 'all' || card.dataset.category === category;
-
-    if (!match) {
-      card.classList.add('fade-out');
-      card.classList.remove('fade-in');
-    } else {
-      card.classList.remove('fade-out');
-      card.classList.add('fade-in');
-      card.style.display = '';
-    }
-  });
-
-  setTimeout(() => {
-    cards.forEach((card) => {
-      if (card.classList.contains('fade-out')) card.style.display = 'none';
-    });
-  }, 300);
-}
-
-function initFilterTabs() {
-  if (!filtersContainer) return;
-
-  const buttons = filtersContainer.querySelectorAll('.skills__filter-btn');
-
-  filtersContainer.addEventListener('click', (e) => {
-    const btn = e.target.closest('.skills__filter-btn');
-    if (!btn) return;
-
-    buttons.forEach((b) => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-
-    filterSkills(btn.dataset.category);
-  });
-}
-
-function applySkillTilt() {
-  if (!grid) return;
-
-  grid.querySelectorAll('.skills__card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x    = e.clientX - rect.left;
-      const y    = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-
-      const rotateX = ((y - midY) / midY) * -6;
-      const rotateY = ((x - midX) / midX) *  6;
-
-      card.style.transform =
-        `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
+function groupHTML(group) {
+  return `
+    <section class="skills__group reveal" aria-labelledby="skillgroup-${group.id}">
+      <div class="skills__group-head">
+        <h3 class="skills__group-title" id="skillgroup-${group.id}">${escapeHTML(group.label)}</h3>
+        <p class="skills__group-note">${escapeHTML(group.note)}</p>
+      </div>
+      <ul class="skills__list">${group.items.map(itemHTML).join('')}</ul>
+    </section>`;
 }
 
 export async function initSkills() {
-  grid             = document.getElementById('skillsGrid');
-  filtersContainer = document.getElementById('skillFilters');
-
-  if (!grid) return;
+  container = document.getElementById('skillsGroups');
+  if (!container) return;
 
   try {
     const res = await fetch('data/skills.json');
-    skills    = await res.json();
+    groups    = await res.json();
   } catch {
     console.warn('[skills] Failed to load skills.json');
     return;
   }
 
-  renderSkills();
-  applySkillTilt();
-  initFilterTabs();
+  container.innerHTML = groups.map(groupHTML).join('');
 
-  if (window.__reObserveReveals) {
-    window.__reObserveReveals();
-  }
+  if (window.__reObserveReveals) window.__reObserveReveals();
 }

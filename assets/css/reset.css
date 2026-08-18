@@ -115,3 +115,10 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
 }
+
+/* The `hidden` attribute is only a `display: none` UA default, so any
+   component rule that sets `display` silently defeats it. Several toolbars
+   and empty states are toggled by that attribute. */
+[hidden] {
+  display: none !important;
+}

@@ -1,10 +1,16 @@
 let grid;
 
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 function cardHTML(post, index) {
-  const latestClass = index === 0 ? ' latest' : '';
+  const latestClass = index === 0 ? ' latest': '';
 
   const tags = (post.tags || [])
-    .map((t) => `<span class="tag-chip">${t}</span>`)
+    .map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`)
     .join('');
 
   const dateStr = new Date(post.publishDate).toLocaleDateString('en-US', {
@@ -16,18 +22,18 @@ function cardHTML(post, index) {
   return `
     <a href="${post.url}" target="_blank" rel="noopener noreferrer"
        class="blog__card reveal${latestClass}"
-       aria-label="Read: ${post.title}">
+       aria-label="Read: ${escapeHTML(post.title)}">
       <div class="blog__card-img-wrapper">
         <img src="${post.thumbnail}"
-             alt="${post.title}"
+             alt=""
              class="blog__card-img"
              loading="lazy" width="600" height="340">
       </div>
       <div class="blog__card-body">
-        <h3 class="blog__card-title">${post.title}</h3>
+        <h3 class="blog__card-title">${escapeHTML(post.title)}</h3>
         <div class="blog__card-meta">
           <time datetime="${post.publishDate}">${dateStr}</time>
-          <span class="blog__card-read-time">${post.readTime}</span>
+          <span class="blog__card-read-time">${escapeHTML(post.readTime)}</span>
         </div>
         <div class="blog__card-tags">${tags}</div>
       </div>

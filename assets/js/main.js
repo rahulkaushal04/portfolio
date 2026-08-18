@@ -1,5 +1,4 @@
 import { initNavbar }     from './navbar.js';
-import { initTypewriter } from './typewriter.js';
 import { initAnimations } from './animations.js';
 
 import { initSkills }     from './skills.js';
@@ -11,7 +10,6 @@ import { initContact }    from './contact.js';
 
 import { initParticles }  from './particles.js';
 import { initCursor }     from './cursor.js';
-import { initEasterEggs } from './easter-eggs.js';
 
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
@@ -49,22 +47,9 @@ function initSmoothScroll() {
   });
 }
 
-async function initResumeUpdated() {
-  try {
-    const res  = await fetch('data/meta.json');
-    const meta = await res.json();
-    const text = `Updated: ${meta.resumeLastUpdated}`;
-    document.querySelectorAll('.resume-updated').forEach((el) => {
-      el.textContent = text;
-    });
-  } catch {
-    // Keep the static fallback text already in the HTML
-  }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
-  initTypewriter();
   initAnimations();
 
   initSkills();
@@ -76,10 +61,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initParticles();
   initCursor();
-  initEasterEggs();
 
   initBackToTop();
   setFooterYear();
   initSmoothScroll();
-  initResumeUpdated();
+
+  // 11KB of confetti, matrix rain and disco mode used to load on every visit
+  // for features nobody discovers by accident. It now waits for the first
+  // keystroke that could plausibly start one.
+  loadEasterEggsOnDemand();
 });
+
+function loadEasterEggsOnDemand() {
+  const triggerKeys = new Set(['ArrowUp', 'm', 'M', 'd', 'D', 'b', 'B']);
+
+  const onKey = (e) => {
+    if (!triggerKeys.has(e.key)) return;
+    window.removeEventListener('keydown', onKey);
+
+    import('./easter-eggs.js')
+      .then(({ initEasterEggs }) => {
+        initEasterEggs();
+        // Replay the keystroke that triggered the load so the sequence
+        // the user already started is not one key short.
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
+      })
+      .catch(() => {});
+  };
+
+  window.addEventListener('keydown', onKey);
+}

@@ -4,18 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
-  <title>Rahul Kaushal - Developer Portfolio</title>
-  <meta name="description" content="Rahul Kaushal - Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
+  <title>Rahul Kaushal - ML Platform and Backend Engineer</title>
+  <meta name="description" content="Rahul Kaushal builds the ML platform other engineers ship on. Software Engineer II at Honeywell working in Python, FastAPI, Databricks and Kubernetes.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Rahul Kaushal - Developer Portfolio">
-  <meta property="og:description" content="Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
+  <meta property="og:title" content="Rahul Kaushal - ML Platform and Backend Engineer">
+  <meta property="og:description" content="I build the ML platform other engineers ship on. Software Engineer II at Honeywell, working in Python, FastAPI, Databricks and Kubernetes.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rahul Kaushal, ML platform and backend engineer">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rahul Kaushal - ML Platform and Backend Engineer">
+  <meta name="twitter:description" content="I build the ML platform other engineers ship on. Software Engineer II at Honeywell.">
+  <meta name="twitter:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/">
 
@@ -23,32 +29,68 @@
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
+  <link rel="preload" as="image" href="assets/images/profile_short.webp" fetchpriority="high">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <link rel="stylesheet" href="assets/css/contributions.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"></noscript>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Rahul Kaushal",
-    "url": "https://rahulkaushal04.github.io/portfolio",
-    "jobTitle": "Software Engineer",
+    "url": "https://rahulkaushal04.github.io/portfolio/",
+    "image": "https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png",
+    "jobTitle": "Software Engineer II",
+    "email": "mailto:kaushalrahul15@gmail.com",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Honeywell"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": [
+      "Python",
+      "FastAPI",
+      "MLOps",
+      "Machine Learning Infrastructure",
+      "Databricks",
+      "PySpark",
+      "Kubernetes",
+      "Retrieval Augmented Generation"
+    ],
     "sameAs": [
       "https://github.com/rahulkaushal04",
-      "https://www.linkedin.com/in/rahul-kaushal04"
+      "https://www.linkedin.com/in/rahul-kaushal04",
+      "https://rahulkaushal.hashnode.dev"
     ]
   }
   </script>
 </head>
 
 <body>
-  <div class="availability-banner" role="status">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="availability-banner">
     <span class="availability-banner__dot" aria-hidden="true"></span>
     Open to new roles; <a href="#contact">let's talk</a>
   </div>
@@ -83,7 +125,6 @@
             </svg>
             Resume
           </a>
-          <span class="resume-updated" id="resumeUpdatedNav">Updated: Mar 2026</span>
         </div>
 
         <button class="navbar__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false">
@@ -94,37 +135,82 @@
       </div>
     </nav>
 
-    <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
-      <ul class="navbar__mobile-links">
-        <li><a href="#about" class="navbar__mobile-link">About</a></li>
-        <li><a href="#skills" class="navbar__mobile-link">Skills</a></li>
-        <li><a href="#experience" class="navbar__mobile-link">Experience</a></li>
-        <li><a href="#projects" class="navbar__mobile-link">Projects</a></li>
-        <li><a href="#contributions" class="navbar__mobile-link">Open Source</a></li>
-        <li><a href="#blog" class="navbar__mobile-link">Blog</a></li>
-        <li><a href="#contact" class="navbar__mobile-link">Contact</a></li>
-      </ul>
-    </div>
   </header>
 
-  <main>
-    <section id="hero" class="hero">
+  <div class="navbar__mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+    <button class="navbar__mobile-close" type="button" data-close-menu aria-label="Close navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <ul class="navbar__mobile-links">
+      <li><a href="#about" class="navbar__mobile-link">About</a></li>
+      <li><a href="#skills" class="navbar__mobile-link">Skills</a></li>
+      <li><a href="#experience" class="navbar__mobile-link">Experience</a></li>
+      <li><a href="#projects" class="navbar__mobile-link">Projects</a></li>
+      <li><a href="#contributions" class="navbar__mobile-link">Open Source</a></li>
+      <li><a href="#blog" class="navbar__mobile-link">Blog</a></li>
+      <li><a href="#contact" class="navbar__mobile-link">Contact</a></li>
+    </ul>
+
+    <div class="navbar__mobile-actions">
+      <a href="resume/Rahul_Resume.pdf" download class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Resume
+      </a>
+
+      <a href="mailto:kaushalrahul15@gmail.com" class="navbar__mobile-email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        kaushalrahul15@gmail.com
+      </a>
+
+      <div class="navbar__mobile-socials">
+        <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="navbar__mobile-social" aria-label="GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer" class="navbar__mobile-social" aria-label="LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer" class="navbar__mobile-social" aria-label="Hashnode blog">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.42 2.576a2.25 2.25 0 0 0-2.84 0L2.576 9.58A2.25 2.25 0 0 0 2 11.32v1.36a2.25 2.25 0 0 0 .576 1.74l8.004 7.004a2.25 2.25 0 0 0 2.84 0l8.004-7.004A2.25 2.25 0 0 0 22 12.68v-1.36a2.25 2.25 0 0 0-.576-1.74L13.42 2.576z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar__backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <main id="main-content">
+    <section id="hero" class="hero" aria-labelledby="heroName">
       <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
       <div class="container hero__layout">
         <div class="hero__main">
           <p class="hero__greeting reveal">Hi, I'm</p>
 
-          <h1 class="hero__name headline-signal reveal">Rahul Kaushal<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
+          <h1 class="hero__name headline-signal reveal" id="heroName">Rahul Kaushal<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
 
           <p class="hero__roles reveal">
-            <span class="hero__roles-prefix" id="rolesPrefix">I'm a </span>
-            <span class="hero__typewriter" id="typewriter"></span>
-            <span class="hero__cursor" aria-hidden="true">|</span>
+            <span class="hero__role">Software Engineer II</span>
+            <span class="hero__role-sep" aria-hidden="true">/</span>
+            <span class="hero__role hero__role--muted">ML Platform</span>
+            <span class="hero__role-sep" aria-hidden="true">/</span>
+            <span class="hero__role hero__role--muted">Honeywell</span>
           </p>
 
           <p class="hero__tagline reveal">
-            Building ML infrastructure at Honeywell using Python and FastAPI. Strong backend engineer. Occasionally ships things for fun.
+            I build the ML platform other engineers ship on: training orchestration,
+            model deployment, security scanning, and the data pipelines feeding all of it.
+            Python and FastAPI, running on Databricks, Azure and Kubernetes.
           </p>
 
           <div class="hero__cta reveal gap-4">
@@ -143,7 +229,6 @@
               </svg>
               Download Resume
             </a>
-            <span class="resume-updated" id="resumeUpdatedHero">Updated: Mar 2026</span>
           </div>
 
           <div class="hero__socials reveal">
@@ -167,59 +252,68 @@
 
         <aside class="hero__aside reveal" data-delay="2">
           <div class="hero__avatar bracket-frame">
-            <img src="assets/images/profile_short.jpeg" alt="Rahul Kaushal" width="220" height="220" class="hero__avatar-img">
+            <img src="assets/images/profile_short.webp" alt="Rahul Kaushal" width="440" height="440" fetchpriority="high" decoding="async" class="hero__avatar-img">
           </div>
           <dl class="hero__specs">
             <div class="hero__spec">
               <dt>Role</dt>
-              <dd>Advanced Software Engineer</dd>
+              <dd>Software Engineer II, Honeywell</dd>
+            </div>
+            <div class="hero__spec">
+              <dt>Focus</dt>
+              <dd>ML platform and backend</dd>
             </div>
             <div class="hero__spec">
               <dt>Base</dt>
               <dd>Bengaluru, IN</dd>
             </div>
             <div class="hero__spec">
-              <dt>Status</dt>
-              <dd><span class="hero__spec-dot" aria-hidden="true"></span>Open to work</dd>
+              <dt>Since</dt>
+              <dd>Engineering at Honeywell since 2022</dd>
             </div>
           </dl>
         </aside>
       </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="about" aria-labelledby="aboutTitle">
       <div class="container">
         <span class="section-label">About Me</span>
-        <h2 class="section-title reveal">Get to Know Me</h2>
-        <p class="section-subtitle reveal">A quick snapshot of who I am, what I do, and what drives me.</p>
+        <h2 class="section-title reveal" id="aboutTitle">Get to Know Me</h2>
+        <p class="section-subtitle reveal">Four years of backend and data work, most of it spent building the platform layer other teams deploy on.</p>
 
         <div class="about__grid">
           <div class="about__avatar-card reveal">
             <div class="bracket-frame">
-              <img src="assets/images/profile_main.jpeg" alt="Rahul Kaushal" width="280" height="280" loading="lazy" class="about__avatar-img">
+              <img src="assets/images/profile_main.webp" alt="Rahul Kaushal" width="471" height="620" loading="lazy" decoding="async" class="about__avatar-img">
             </div>
           </div>
 
           <div class="about__bio reveal">
             <p>
-              I'm a software engineer at Honeywell, focused on ML platform infrastructure.
-              I started by building a Databricks-style platform from the ground up and have since moved to working with Google Vertex AI. I mainly use Python and FastAPI.
+              I started at Honeywell on the data side, building PySpark pipelines on Databricks,
+              then moved to building the ML platform those pipelines feed. That meant designing
+              ForgeML from the ground up: training orchestration, a model registry, security
+              scanning, and deployment out to Databricks, AKS and edge devices.
             </p>
             <p>
-              I genuinely care about open source software. If I come across a repository with a bug or a missing feature, I try to understand the problem and fix it where I can.
-              Right now I am working on DepKeeper, a Python CLI tool for managing Python dependencies, and I am improving the tool to add more features and capabilities.
+              The work I like most sits at the boundary between infrastructure and the people
+              using it. Cutting model deployment from three days to thirty minutes mattered more
+              to the data scientists on the other side than any single service I wrote.
             </p>
-            <p class="about__fun-fact">
-              ⚡ Outside of work, Hollow Knight is one of my favourite games. I am building Hollow Knight Analyzer as a side project to help players better understand their progress.
-              Players can upload their save file and see details about their run.
+            <p>
+              I contribute to open source for the same reason. When I hit a bug in a library I
+              depend on, I would rather read the source and send a fix than work around it.
+              That is how the patches to <em>facebookresearch/exca</em> and
+              <em>aio-libs/async-lru</em> happened, and it is why I maintain DepKeeper.
             </p>
 
             <div class="about__currently card">
-              <h4 class="about__currently-title">Currently</h4>
+              <h3 class="about__currently-title">Currently</h3>
               <ul class="about__currently-list">
                 <li>
                   <span class="about__currently-icon">🛠️</span>
-                  <span><strong>Building:</strong> DepKeeper (Python library) &amp; Hollow Knight Analyzer</span>
+                  <span><strong>Building:</strong> DepKeeper, a Python dependency CLI, and Hallownest Codex, a save-file analyzer for Hollow Knight</span>
                 </li>
                 <li>
                   <span class="about__currently-icon">💼</span>
@@ -231,113 +325,99 @@
                 </li>
                 <li>
                   <span class="about__currently-icon">👀</span>
-                  <span><strong>Open to:</strong> Python Backend, LLM/RAG systems, and MLOps engineering roles</span>
+                  <span><strong>Open to:</strong> Python backend, LLM and RAG systems, and MLOps platform roles</span>
                 </li>
               </ul>
             </div>
 
-            <div class="about__meta">
-              <div class="about__location">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>Bengaluru, India</span>
-              </div>
-              <div class="about__availability">
-                <span class="about__pulse-dot"></span>
-                <span>Open to work</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="skills">
+    <section id="skills" class="skills" aria-labelledby="skillsTitle">
       <div class="container">
         <span class="section-label">Skills</span>
-        <h2 class="section-title reveal">My Tech Toolbox</h2>
-        <p class="section-subtitle reveal">Tools and technologies I work with regularly.</p>
+        <h2 class="section-title reveal" id="skillsTitle">What I Build With</h2>
+        <p class="section-subtitle reveal">Grouped by the job each one does, rather than as one flat wall of logos.</p>
 
-        <div class="skills__filters reveal" id="skillFilters" role="tablist" aria-label="Filter skills by category">
-          <button class="skills__filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
-          <button class="skills__filter-btn" data-category="languages" role="tab" aria-selected="false">Languages</button>
-          <button class="skills__filter-btn" data-category="frameworks" role="tab" aria-selected="false">Frameworks</button>
-          <button class="skills__filter-btn" data-category="tools" role="tab" aria-selected="false">Tools</button>
-          <button class="skills__filter-btn" data-category="cloud" role="tab" aria-selected="false">Cloud</button>
-        </div>
-
-        <div class="skills__grid" id="skillsGrid" role="tabpanel">
+        <div class="skills__groups" id="skillsGroups">
           <noscript>
-            <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;">
-              <li><strong>Languages:</strong> Python, SQL, Bash, Go</li>
-              <li><strong>Frameworks:</strong> FastAPI, PySpark, LLM / RAG, LangChain, Pydantic, SQLAlchemy, PyTorch, Scikit-learn, Celery</li>
-              <li><strong>Tools:</strong> Docker, Kubernetes, PostgreSQL, MLflow, Prometheus, Redis, Kafka, GitHub Actions, Git, Terraform</li>
-              <li><strong>Cloud:</strong> Databricks, Azure Cloud</li>
+            <ul style="list-style:none;padding:0;display:grid;gap:1.5rem;">
+              <li><strong>Core stack:</strong> Python, FastAPI, SQL, PostgreSQL, Pydantic, SQLAlchemy, Bash</li>
+              <li><strong>ML and data platform:</strong> Databricks, PySpark, MLflow, LLM / RAG, LangChain, PyTorch, Scikit-learn</li>
+              <li><strong>Infrastructure and delivery:</strong> Docker, Kubernetes, Azure Cloud, GitHub Actions, Terraform, Prometheus, Git</li>
+              <li><strong>Messaging and async:</strong> Kafka, Celery, Redis, Go</li>
             </ul>
           </noscript>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="experience">
+    <section id="experience" class="experience" aria-labelledby="experienceTitle">
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Experience</span>
-          <h2 class="section-title reveal">Where I've Worked</h2>
-          <p class="section-subtitle reveal">A timeline of my professional journey.</p>
+          <h2 class="section-title reveal" id="experienceTitle">Where I've Worked</h2>
+          <p class="section-subtitle reveal">Two roles at Honeywell, moving from the data pipelines to the ML platform they feed.</p>
         </div>
 
         <div class="experience__timeline" id="experienceTimeline">
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3>Software Engineer II &mdash; Honeywell</h3>
-              <p>Jul 2024 &ndash; Present</p>
+              <h3>Software Engineer II at Honeywell</h3>
+              <p>Jul 2024 to Present</p>
+              <p>Building ForgeML, the internal MLOps platform data scientists train, scan and deploy models on.</p>
               <ul>
-                <li>Built an internal MLOps platform supporting 35+ production models monthly with a 99.5% deployment success rate across Databricks and AKS.</li>
-                <li>Fine-tuned an LLM on Vertex AI to convert Skyspark code into a custom DSL, achieving 80%+ translation accuracy.</li>
-                <li>Automated model packaging and container deployment using Shell, FastAPI and AKS, reducing deploy time from 3 days to 30 minutes for 15+ data scientists.</li>
-                <li>Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BlackDuckHub) into CI/CD pipeline, catching 40+ vulnerabilities pre-deployment.</li>
+                <li>Cut model deployment from 3 days to 30 minutes for 15+ data scientists by building multi-target deployment orchestration across Databricks Serving, AKS and edge devices.</li>
+                <li>Architected ForgeML as 8 microservices and 30+ FastAPI endpoints covering training, model registry, security scanning, deployment and monitoring for multi-tenant workloads.</li>
+                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell Forge DSL, reaching 80%+ accuracy with automated job submission and status polling.</li>
+                <li>Halved write latency on an Azure Event Hub pipeline using concurrent dual writes to PostgreSQL and Unity Catalog, with exactly-once delivery via Blob checkpointing.</li>
+                <li>Caught 40+ vulnerabilities before deployment by integrating 5 security scanners behind a Strategy Pattern, alongside JWT RS256 auth and OPA policy enforcement.</li>
+                <li>Built a BDD acceptance suite in Behave with parallel multi-tenant execution and Locust load tests, covering onboarding through deployment end to end.</li>
               </ul>
-              <p><em>FastAPI &middot; Python &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Docker &middot; MLflow &middot; Helm &middot; Coverity &middot; REST APIs</em></p>
+              <p><em>Python &middot; FastAPI &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Google Vertex AI &middot; MLflow &middot; Azure Event Hub &middot; PostgreSQL</em></p>
             </article>
-            <article>
-              <h3>Data Engineer II &mdash; Honeywell</h3>
-              <p>Jun 2022 &ndash; Dec 2023</p>
+            <article style="margin-bottom:2rem;">
+              <h3>Data Engineer II at Honeywell</h3>
+              <p>Jun 2022 to Dec 2023</p>
+              <p>Built the Databricks pipelines that fed field service analytics and the Maintenance Assist chatbot.</p>
               <ul>
-                <li>Built and deployed large-scale data pipelines using PySpark and Databricks to process 500K+ service tickets and 10K+ PDF documents weekly, powering AI chatbot for 10+ enterprise customers.</li>
-                <li>Created automated PDF parsing system using PySpark and PyMuPDF to extract data from technical manuals and schematics with 95% accuracy, eliminating manual data entry.</li>
-                <li>Improved data pipeline efficiency by 70% with automated quality checks and schema validation, cutting ML team's development time from weeks to days.</li>
+                <li>Built 15+ PySpark ingestion pipelines on Databricks from SQL Server, Salesforce, SharePoint and REST APIs into Delta Lake, using watermark-based incremental loading.</li>
+                <li>Engineered a Spark Structured Streaming pipeline for PDFs landing in Blob Storage, applying SCD Type 2 upserts to track document changes across micro-batches.</li>
+                <li>Powered the Maintenance Assist LLM chatbot by building its document vectorization pipeline into PGVector, plus an eval framework using Azure OpenAI as judge.</li>
+                <li>Kept the serving database in sync with batched Delta to PostgreSQL upserts using ON CONFLICT DO UPDATE, avoiding full table reloads.</li>
+                <li>Wired Change Data Feed on Delta tables to trigger downstream vectorization jobs on incremental inserts, updates and deletes.</li>
+                <li>Wrote SQL transformation pipelines producing weekly, monthly and quarterly field service analytics consumed by the customer-facing DSP dashboard.</li>
               </ul>
-              <p><em>PySpark &middot; Databricks &middot; Apache Spark &middot; PostgreSQL &middot; Python &middot; SQL &middot; Delta Lake &middot; PyMuPDF &middot; unstructured.io</em></p>
+              <p><em>PySpark &middot; Databricks &middot; Delta Lake &middot; PostgreSQL &middot; LangChain &middot; PGVector &middot; Azure OpenAI &middot; MLflow</em></p>
             </article>
           </noscript>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="projects">
+    <section id="projects" class="projects" aria-labelledby="projectsTitle">
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Projects</span>
-          <h2 class="section-title reveal">Things I've Built</h2>
-          <p class="section-subtitle reveal">Side projects, open source work, and the occasional rabbit hole.</p>
+          <h2 class="section-title reveal" id="projectsTitle">Things I've Built</h2>
+          <p class="section-subtitle reveal">Tools I built because I wanted them to exist, then kept maintaining.</p>
         </div>
 
-        <div class="projects__grid" id="projectsGrid" role="tabpanel">
+        <div class="projects__grid" id="projectsGrid">
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3><a href="https://github.com/rahulkaushal04/depkeeper">DepKeeper &mdash; Python Dependency Manager</a></h3>
+              <h3>DepKeeper - Python Dependency Manager</h3>
               <p>A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.</p>
               <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
-              <p><a href="https://rahulkaushal04.github.io/depkeeper/">Live Site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
+              <p><a href="https://rahulkaushal04.github.io/depkeeper/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
             </article>
-            <article>
-              <h3><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">Hollow Knight Analyzer</a></h3>
-              <p>A Streamlit-based web app for Hollow Knight players to analyze save files &mdash; decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.</p>
+            <article style="margin-bottom:2rem;">
+              <h3>Hallownest Codex - Hollow Knight Analyzer</h3>
+              <p>A Streamlit-based web app for Hollow Knight players to analyze save files - decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.</p>
               <p><em>Python &middot; Streamlit &middot; Folium &middot; Plotly &middot; Pillow &middot; PyPI</em></p>
-              <p><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
+              <p><a href="https://hollow-knight-analyzer.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
             </article>
           </noscript>
         </div>
@@ -354,12 +434,12 @@
       </div>
     </section>
 
-    <section id="contributions" class="contributions">
+    <section id="contributions" class="contributions" aria-labelledby="contributionsTitle">
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Open Source</span>
-          <h2 class="section-title reveal">Open Source Contributions</h2>
-          <p class="section-subtitle reveal">Pull requests I've submitted to projects I use and care about.</p>
+          <h2 class="section-title reveal" id="contributionsTitle">Open Source Contributions</h2>
+          <p class="section-subtitle reveal">Patches merged into libraries I depend on, including Meta's research tooling.</p>
         </div>
 
         <div class="contributions__stats" id="contributionsStats"></div>
@@ -367,12 +447,12 @@
         <div class="contributions__grid" id="contributionsGrid">
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca &mdash; fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
+              <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
               <p>Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.</p>
-              <p><em>Python &middot; Bug Fix</em> &middot; Merged: Mar 2026</p>
+              <p><em>Python &middot; Bug Fix</em></p>
             </article>
-            <article>
-              <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru &mdash; feat: add cache_contains() for read-only key lookup</a></h3>
+            <article style="margin-bottom:2rem;">
+              <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru: feat: add cache_contains() for read-only key lookup</a></h3>
               <p>Adds cache_contains(*args, **kwargs) -&gt; bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.</p>
               <p><em>Python &middot; asyncio &middot; LRU Cache &middot; New Feature &middot; Cache Introspection</em></p>
             </article>
@@ -391,21 +471,21 @@
       </div>
     </section>
 
-    <section id="blog" class="blog">
+    <section id="blog" class="blog" aria-labelledby="blogTitle">
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Blog</span>
-          <h2 class="section-title reveal">Latest Articles</h2>
-          <p class="section-subtitle reveal">Writing about things I build, break, and figure out along the way.</p>
+          <h2 class="section-title reveal" id="blogTitle">Latest Articles</h2>
+          <p class="section-subtitle reveal">Long-form pieces on RAG pipelines, async FastAPI, and the failure modes that only show up in production.</p>
         </div>
 
         <div class="blog__grid" id="blogGrid">
           <noscript>
             <ul style="list-style:none;padding:0;">
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch">Build Your First RAG Pipeline from Scratch</a> &mdash; Jan 19, 2026 &middot; 16 min read &middot; <em>python, ai-ml, llm</em></li>
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/how-ai-finds-what-you-actually-mean">How AI Finds What You Actually Mean</a> &mdash; Jan 12, 2026 &middot; 19 min read &middot; <em>python, ai-ml</em></li>
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/the-async-fastapi-playbook-concurrency-patterns-that-actually-hold-up-in-prod">Don&rsquo;t Hold the Chef Hostage: A Production Guide to Async FastAPI</a> &mdash; Nov 10, 2025 &middot; 17 min read &middot; <em>python, fastapi, backend</em></li>
-              <li><a href="https://rahulkaushal.hashnode.dev/why-your-fastapi-db-pool-never-fails-in-dev-and-explodes-in-prod">Why Your FastAPI DB Pool Never Fails in Dev (And Explodes in Prod)</a> &mdash; Nov 3, 2026 &middot; 9 min read &middot; <em>python, fastapi, database</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch">Build Your First RAG Pipeline from Scratch</a>: 2026-01-19 &middot; 16 min read &middot; <em>python, ai-ml, llm</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/how-ai-finds-what-you-actually-mean">How AI Finds What You Actually Mean</a>: 2026-01-12 &middot; 19 min read &middot; <em>python, ai-ml</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/the-async-fastapi-playbook-concurrency-patterns-that-actually-hold-up-in-prod">Don't Hold the Chef Hostage: A Production Guide to Async FastAPI</a>: 2025-11-10 &middot; 17 min read &middot; <em>python, fastapi, backend</em></li>
+              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/why-your-fastapi-db-pool-never-fails-in-dev-and-explodes-in-prod">Why Your FastAPI DB Pool Never Fails in Dev (And Explodes in Prod)</a>: 2025-11-03 &middot; 9 min read &middot; <em>python, fastapi, database</em></li>
             </ul>
           </noscript>
         </div>
@@ -422,11 +502,11 @@
       </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-labelledby="contactTitle">
       <div class="container">
         <span class="section-label">Contact</span>
-        <h2 class="section-title reveal">Let's Connect</h2>
-        <p class="section-subtitle reveal">Have a project, a role, or just want to say hi? My inbox is always open.</p>
+        <h2 class="section-title reveal" id="contactTitle">Let's Connect</h2>
+        <p class="section-subtitle reveal">I read every message and reply to the ones about backend, ML platform and MLOps roles first.</p>
 
         <div class="contact__wrapper">
           <form class="contact__form card reveal" id="contactForm" action="https://formspree.io/f/mykdbjpw" method="POST" novalidate>
@@ -494,11 +574,19 @@
               <span class="contact__avail-dot" aria-hidden="true"></span>
             </div>
 
+            <a class="contact__email" href="mailto:kaushalrahul15@gmail.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>kaushalrahul15@gmail.com</span>
+            </a>
+
             <div class="contact__meta-row">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
-              <span>Usually replies within 24 hours</span>
+              <span>Prefer email? The form and the address reach the same inbox.</span>
             </div>
 
             <div class="contact__meta-row">
@@ -530,23 +618,52 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer__tech-stack reveal">
-        <span class="footer__tech-label">Built with</span>
-        <div class="footer__tech-badges">
-          <span class="tag-chip">HTML5</span>
-          <span class="tag-chip">CSS3</span>
-          <span class="tag-chip">JavaScript</span>
-          <span class="tag-chip">GitHub Pages</span>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <p class="footer__blurb">
+            ML platform and backend engineer in Bengaluru. Currently building
+            ForgeML at Honeywell, and open to new roles.
+          </p>
+          <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__nav-title">Sections</h2>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contributions">Open Source</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Elsewhere">
+          <h2 class="footer__nav-title">Elsewhere</h2>
+          <ul>
+            <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer">Hashnode</a></li>
+            <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <p class="footer__copy">
-        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
-      </p>
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="footerYear">2026</span> Rahul Kaushal
+        </p>
+        <p class="footer__built">
+          Hand-written HTML, CSS and JavaScript. No framework, no build step.
+          <a href="https://github.com/rahulkaushal04/portfolio" target="_blank" rel="noopener noreferrer">Source</a>
+        </p>
+      </div>
     </div>
 
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"></line>
         <polyline points="5 12 12 5 19 12"></polyline>
       </svg>

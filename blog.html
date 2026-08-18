@@ -20,10 +20,29 @@
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <link rel="stylesheet" href="assets/css/contributions.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
@@ -44,7 +63,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="blog-page__hero">
       <div class="container">
         <span class="section-label">Blog</span>
@@ -91,23 +110,52 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer__tech-stack reveal">
-        <span class="footer__tech-label">Built with</span>
-        <div class="footer__tech-badges">
-          <span class="tag-chip">HTML5</span>
-          <span class="tag-chip">CSS3</span>
-          <span class="tag-chip">JavaScript</span>
-          <span class="tag-chip">GitHub Pages</span>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <p class="footer__blurb">
+            ML platform and backend engineer in Bengaluru. Currently building
+            ForgeML at Honeywell, and open to new roles.
+          </p>
+          <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__nav-title">Sections</h2>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contributions.html">Open Source</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Elsewhere">
+          <h2 class="footer__nav-title">Elsewhere</h2>
+          <ul>
+            <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer">Hashnode</a></li>
+            <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <p class="footer__copy">
-        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
-      </p>
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="footerYear">2026</span> Rahul Kaushal
+        </p>
+        <p class="footer__built">
+          Hand-written HTML, CSS and JavaScript. No framework, no build step.
+          <a href="https://github.com/rahulkaushal04/portfolio" target="_blank" rel="noopener noreferrer">Source</a>
+        </p>
+      </div>
     </div>
 
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"></line>
         <polyline points="5 12 12 5 19 12"></polyline>
       </svg>

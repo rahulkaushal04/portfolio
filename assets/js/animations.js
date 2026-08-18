@@ -4,6 +4,8 @@ export function initAnimations() {
   function reveal(el, obs) {
     const delay = parseInt(el.dataset.delay, 10) || 0;
 
+    el.classList.add('is-animating');
+
     if (delay > 0) {
       setTimeout(() => el.classList.add('visible'), delay * 100);
     } else {
@@ -11,11 +13,22 @@ export function initAnimations() {
     }
 
     if (obs) obs.unobserve(el);
+
+    // will-change is set in CSS to hint the compositor before the transition.
+    // Leaving it on afterwards keeps a GPU layer alive for every one of the
+    // 30+ reveal elements for the life of the page, which is exactly the kind
+    // of layer pressure that produces intermittent paint failures.
+    el.addEventListener('transitionend', () => {
+      el.classList.remove('is-animating');
+    }, { once: true });
+
+    // transitionend never fires if the element was already at its end state.
+    setTimeout(() => el.classList.remove('is-animating'), 900);
   }
 
   const observer = reducedMotion
     ? null
-    : new IntersectionObserver(
+   : new IntersectionObserver(
         (entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) reveal(entry.target, obs);

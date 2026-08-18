@@ -1,22 +1,28 @@
 let grid;
 let projects = [];
 
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 const STATUS_LABELS = {
-  stable:     'Stable Release',
-  beta:       'Beta',
-  alpha:      'Alpha',
-  wip:        'In Progress',
+  stable:    'Stable Release',
+  beta:      'Beta',
+  alpha:     'Alpha',
+  wip:       'In Progress',
   'no-release': 'No Release Yet',
 };
 
 function cardHTML(project) {
-  const featuredClass = project.featured ? ' featured' : '';
+  const featuredClass = project.featured ? ' featured': '';
   const categories = project.categories.join(' ');
-  const tags = project.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
+  const tags = project.tags.map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`).join('');
 
   const statusBadge = project.status
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
-    : '';
+   : '';
 
   let actions = '';
   if (project.liveUrl) {
@@ -60,13 +66,13 @@ function cardHTML(project) {
              alt="${project.title} screenshot"
              class="projects__card-img"
              loading="lazy" width="680" height="383">
-        <div class="projects__card-overlay">
-          <span class="projects__card-overlay-text">${project.description}</span>
+        <div class="projects__card-overlay" aria-hidden="true">
+          <span class="projects__card-overlay-text">${project.liveUrl ? 'Open live demo': 'View source'}</span>
         </div>
       </div>
       <div class="projects__card-body">
-        <h3 class="projects__card-title">${project.title}</h3>
-        <p class="projects__card-description">${project.description}</p>
+        <h3 class="projects__card-title">${escapeHTML(project.title)}</h3>
+        <p class="projects__card-description">${escapeHTML(project.description)}</p>
         <div class="projects__card-tags">${tags}</div>
         <div class="projects__card-actions">${actions}</div>
       </div>
@@ -79,30 +85,8 @@ function renderProjects() {
   const featured = projects.filter((p) => p.featured).slice(0, 2);
 
   grid.innerHTML = featured.map(cardHTML).join('');
-  applyTilt();
 }
 
-function applyTilt() {
-  grid.querySelectorAll('.projects__card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x    = e.clientX - rect.left;
-      const y    = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-
-      const rotateX = ((y - midY) / midY) * -4;
-      const rotateY = ((x - midX) / midX) *  4;
-
-      card.style.transform =
-        `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
 
 export async function initProjects() {
   grid = document.getElementById('projectsGrid');

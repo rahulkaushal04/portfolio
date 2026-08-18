@@ -1,6 +1,35 @@
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
+const TOOLBAR_MIN_ITEMS = 6;
+
+/* Tags are lowercase slugs in the JSON ("ai-ml", "llm"). They were printed
+   into the filter chips verbatim. */
+function labelForTag(slug) {
+  const overrides = {
+    'ai-ml': 'AI / ML',
+    llm: 'LLM',
+    api: 'API',
+    sql: 'SQL',
+    fastapi: 'FastAPI',
+    python: 'Python',
+    backend: 'Backend',
+    database: 'Database',
+    devops: 'DevOps',
+  };
+  if (overrides[slug]) return overrides[slug];
+  return slug
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 let allPosts   = [];
 let activeTag  = 'all';
 let searchTerm = '';
@@ -8,10 +37,10 @@ let searchTerm = '';
 let grid, emptyState, countEl, searchInput, tagContainer, clearBtn;
 
 function cardHTML(post, index) {
-  const latestClass = index === 0 ? ' latest' : '';
+  const latestClass = index === 0 ? ' latest': '';
 
   const tags = (post.tags || [])
-    .map((t) => `<span class="tag-chip">${t}</span>`)
+    .map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`)
     .join('');
 
   const dateStr = new Date(post.publishDate).toLocaleDateString('en-US', {
@@ -23,18 +52,18 @@ function cardHTML(post, index) {
   return `
     <a href="${post.url}" target="_blank" rel="noopener noreferrer"
        class="blog__card reveal${latestClass}"
-       aria-label="Read: ${post.title}">
+       aria-label="Read: ${escapeHTML(post.title)}">
       <div class="blog__card-img-wrapper">
         <img src="${post.thumbnail}"
-             alt="${post.title}"
+             alt=""
              class="blog__card-img"
              loading="lazy" width="600" height="340">
       </div>
       <div class="blog__card-body">
-        <h3 class="blog__card-title">${post.title}</h3>
+        <h3 class="blog__card-title">${escapeHTML(post.title)}</h3>
         <div class="blog__card-meta">
           <time datetime="${post.publishDate}">${dateStr}</time>
-          <span class="blog__card-read-time">${post.readTime}</span>
+          <span class="blog__card-read-time">${escapeHTML(post.readTime)}</span>
         </div>
         <div class="blog__card-tags">${tags}</div>
       </div>
@@ -73,8 +102,8 @@ function render() {
   const shown = filtered.length;
   countEl.textContent =
     shown === total
-      ? `${total} article${total !== 1 ? 's' : ''}`
-      : `${shown} of ${total} article${total !== 1 ? 's' : ''}`;
+      ? `${total} article${total !== 1 ? 's': ''}`
+     : `${shown} of ${total} article${total !== 1 ? 's': ''}`;
 
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
@@ -93,11 +122,11 @@ function buildTagFilters() {
   const sorted = [...tagSet].sort();
 
   const btns = sorted
-    .map((t) => `<button class="blog-page__tag-btn" data-tag="${t}">${t}</button>`)
+    .map((t) => `<button class="blog-page__tag-btn" type="button" data-tag="${escapeHTML(t)}" aria-pressed="false">${escapeHTML(labelForTag(t))}</button>`)
     .join('');
 
   tagContainer.innerHTML =
-    `<button class="blog-page__tag-btn active" data-tag="all">All</button>` + btns;
+    `<button class="blog-page__tag-btn active" type="button" data-tag="all" aria-pressed="true">All</button>` + btns;
 }
 
 function onTagClick(e) {
@@ -107,7 +136,9 @@ function onTagClick(e) {
   activeTag = btn.dataset.tag;
 
   tagContainer.querySelectorAll('.blog-page__tag-btn').forEach((b) => {
-    b.classList.toggle('active', b.dataset.tag === activeTag);
+    const on = b.dataset.tag === activeTag;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
   });
 
   render();
@@ -124,7 +155,9 @@ function onClearFilters() {
   searchInput.value = '';
 
   tagContainer.querySelectorAll('.blog-page__tag-btn').forEach((b) => {
-    b.classList.toggle('active', b.dataset.tag === 'all');
+    const on = b.dataset.tag === 'all';
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
   });
 
   render();
@@ -137,7 +170,7 @@ function initScrollProgress() {
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100: 0;
     bar.style.width = `${pct}%`;
   }, { passive: true });
 }
@@ -179,6 +212,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
 
   buildTagFilters();
+
+  const toolbar = document.querySelector('.blog-page__toolbar');
+  const enough  = allPosts.length >= TOOLBAR_MIN_ITEMS;
+  if (toolbar) toolbar.hidden = !enough;
+  if (countEl) countEl.hidden = !enough;
   render();
 
   tagContainer.addEventListener('click', onTagClick);

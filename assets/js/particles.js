@@ -8,7 +8,21 @@ let animId = 0;
 
 const mouse = { x: -9999, y: -9999 };
 
-const PARTICLE_COUNT = 80;
+let accent = '#4F8EF7';
+let running = false;
+
+// The accent colour was read with getComputedStyle on every frame "so it
+// responds to theme changes". There is no theme switcher, so that was a
+// forced style recalculation 60 times a second for a constant.
+function readAccent() {
+  accent = getComputedStyle(document.documentElement)
+    .getPropertyValue('--clr-accent').trim() || '#4F8EF7';
+}
+
+// Connection drawing is O(n^2): 80 particles is 3,160 distance checks per
+// frame, which is a lot of work to hand a phone for a background texture.
+const PARTICLE_COUNT_DESKTOP = 64;
+const PARTICLE_COUNT_MOBILE  = 28;
 const CONNECT_DIST   = 140;
 const MOUSE_RADIUS   = 180;
 const MOUSE_FORCE    = 0.04;
@@ -22,11 +36,11 @@ function randomBetween(min, max) {
 
 function createParticle() {
   return {
-    x:  Math.random() * width,
-    y:  Math.random() * height,
+    x: Math.random() * width,
+    y: Math.random() * height,
     vx: randomBetween(-BASE_SPEED, BASE_SPEED),
     vy: randomBetween(-BASE_SPEED, BASE_SPEED),
-    r:  randomBetween(PARTICLE_R_MIN, PARTICLE_R_MAX),
+    r: randomBetween(PARTICLE_R_MIN, PARTICLE_R_MAX),
   };
 }
 
@@ -47,10 +61,6 @@ function resize() {
 
 function tick() {
   ctx.clearRect(0, 0, width, height);
-
-  // Read accent color each frame so it responds to theme changes
-  const accent = getComputedStyle(document.documentElement)
-    .getPropertyValue('--clr-accent').trim() || '#4F8EF7';
 
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i];
@@ -105,6 +115,18 @@ function tick() {
   animId = requestAnimationFrame(tick);
 }
 
+function start() {
+  if (running) return;
+  running = true;
+  animId = requestAnimationFrame(tick);
+}
+
+function stop() {
+  if (!running) return;
+  running = false;
+  cancelAnimationFrame(animId);
+}
+
 export function initParticles() {
   canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
@@ -114,9 +136,14 @@ export function initParticles() {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  readAccent();
   resize();
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
+  const count = window.matchMedia('(max-width: 768px)').matches
+    ? PARTICLE_COUNT_MOBILE
+   : PARTICLE_COUNT_DESKTOP;
+
+  for (let i = 0; i < count; i++) {
     particles.push(createParticle());
   }
 
@@ -147,5 +174,20 @@ export function initParticles() {
     }, 200);
   });
 
-  tick();
+  // The loop used to run forever, including when the hero was a full page
+  // out of view and when the tab was in the background.
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => (entry.isIntersecting ? start(): stop()));
+  }, { threshold: 0 });
+  io.observe(hero);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stop();
+    } else if (hero.getBoundingClientRect().bottom > 0) {
+      start();
+    }
+  });
+
+  start();
 }

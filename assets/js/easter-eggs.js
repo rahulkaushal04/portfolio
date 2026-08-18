@@ -127,7 +127,7 @@ function startMatrixRain() {
     for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.random() * chars.length | 0];
 
-      const brightness = Math.random() > 0.9 ? '#fff' : '#0f0';
+      const brightness = Math.random() > 0.9 ? '#fff': '#0f0';
       ctx.fillStyle = brightness;
       ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 

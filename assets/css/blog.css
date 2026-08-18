@@ -1,6 +1,6 @@
 .blog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--sp-6);
 }
 
@@ -20,15 +20,22 @@
     transform var(--duration-base) var(--ease-default),
     box-shadow var(--duration-base) var(--ease-default);
 
-  will-change: transform;
 }
 
-.blog__card:hover,
+.blog__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  color: inherit;
+}
+
+/* Focus gets the hover treatment plus a ring. Lifting the card alone is the
+   same state as hover, so a keyboard user could not tell the two apart. */
 .blog__card:focus-visible {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
   color: inherit;
-  outline: none;
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
 }
 
 .blog__card-img-wrapper {
@@ -45,7 +52,6 @@
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 
   transition: transform var(--duration-slow) var(--ease-default);
-  will-change: transform;
 }
 
 .blog__card:hover .blog__card-img,
@@ -223,8 +229,9 @@
   color: var(--clr-text-muted);
 }
 
-.blog-page__search:focus {
-  outline: none;
+.blog-page__search:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
   border-color: var(--clr-accent);
   box-shadow: 0 0 0 3px var(--clr-accent-light);
 }

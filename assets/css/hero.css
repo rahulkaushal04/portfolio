@@ -62,26 +62,31 @@
 }
 
 .hero__roles {
-  font-size: var(--fs-xl);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  font-size: var(--fs-lg);
   font-weight: var(--fw-medium);
   color: var(--clr-text-secondary);
-  min-height: 2em;
 }
 
-.hero__roles-prefix {
+/* The role line used to be a typewriter. It cycled three role names, so
+   the single most important sentence on the page was mid-word most of the
+   time, and it auto-updated forever with no way to pause it (WCAG 2.2.2). */
+.hero__role {
+  font-weight: var(--fw-semibold);
+  color: var(--clr-accent);
+}
+
+.hero__role--muted {
+  font-weight: var(--fw-medium);
   color: var(--clr-text-secondary);
 }
 
-.hero__typewriter {
-  color: var(--clr-accent);
-  font-weight: var(--fw-semibold);
-}
-
-.hero__cursor {
-  display: inline-block;
-  color: var(--clr-accent);
-  font-weight: var(--fw-regular);
-  animation: blink 1s step-end infinite;
+.hero__role-sep {
+  margin-inline: var(--sp-2);
+  color: var(--clr-text-muted);
 }
 
 .hero__tagline {
@@ -155,42 +160,49 @@
   background-color: var(--clr-accent-light);
   border-color: var(--clr-accent);
   transform: translateY(-3px);
-  outline: none;
 }
 
+.hero__social-badge:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+/* stretch, not center: the avatar and spec card are a fixed 220px, so
+   centring them inside the 380px grid column left them floating with an
+   80px gap on the right and nothing aligned to the container edge. */
 .hero__aside {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--sp-8);
+  align-items: stretch;
+  gap: var(--sp-6);
+
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
 }
 
 .hero__avatar {
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .hero__avatar-img {
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  height: 100%;
 
   border-radius: var(--radius-lg);
   object-fit: cover;
 
   transition: transform var(--duration-base) var(--ease-default);
 
-  will-change: transform;
 }
 
-.hero__avatar:hover .hero__avatar-img,
-.hero__avatar-img:focus-visible {
+.hero__avatar:hover .hero__avatar-img {
   transform: scale(1.03);
-  outline: none;
 }
 
 .hero__specs {
   width: 100%;
-  max-width: 220px;
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
@@ -202,7 +214,7 @@
 }
 
 /* Stacked (label above value) rather than side-by-side, so a long value
-   like a job title doesn't collide with the label at this 220px width —
+   like a job title doesn't collide with the label at this 220px width :
    every row stays legible regardless of how long its value is. */
 .hero__spec {
   display: flex;
@@ -255,6 +267,10 @@
     gap: var(--sp-10);
   }
 
+  .hero__aside {
+    margin-inline: auto;
+  }
+
   .hero__main {
     align-items: center;
     text-align: center;
@@ -290,6 +306,8 @@
 
   .hero__aside {
     flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
   }
 
   .hero__cta {
@@ -325,7 +343,6 @@
   .hero__avatar-img,
   .hero__social-badge,
   .hero__cta .btn-primary::after,
-  .hero__cursor,
   .hero__spec-dot::before {
     animation: none !important;
     transition: none !important;

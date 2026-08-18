@@ -11,16 +11,24 @@ let dotY = 0;
 const LERP = 0.15;
 
 let isActive = false;
+let rafId = 0;
 
 function animate() {
-  if (!dot) return;
+  if (!dot || !isActive) {
+    rafId = 0;
+    return;
+  }
 
   dotX += (mouseX - dotX) * LERP;
   dotY += (mouseY - dotY) * LERP;
 
   dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
 
-  requestAnimationFrame(animate);
+  rafId = requestAnimationFrame(animate);
+}
+
+function ensureRunning() {
+  if (!rafId) rafId = requestAnimationFrame(animate);
 }
 
 function initHoverDetection() {
@@ -38,6 +46,10 @@ function initHoverDetection() {
 export function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
 
+  // This module had no reduced-motion check, so a lerped rAF loop ran
+  // permanently even for users who asked for no animation.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   dot = document.getElementById('cursorDot');
   if (!dot) return;
 
@@ -49,6 +61,7 @@ export function initCursor() {
       isActive = true;
       dot.classList.add('visible');
     }
+    ensureRunning();
   });
 
   document.addEventListener('mouseleave', () => {
@@ -59,8 +72,8 @@ export function initCursor() {
   document.addEventListener('mouseenter', () => {
     dot.classList.add('visible');
     isActive = true;
+    ensureRunning();
   });
 
   initHoverDetection();
-  requestAnimationFrame(animate);
 }

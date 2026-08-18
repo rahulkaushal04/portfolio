@@ -34,7 +34,7 @@
   font-size: var(--fs-base);
   color: var(--clr-text-primary);
   background-color: var(--clr-bg-tertiary);
-  border: 1.5px solid var(--clr-border);
+  border: 1.5px solid var(--clr-border-strong);
   border-radius: var(--radius-md);
 
   transition:
@@ -49,7 +49,8 @@
 .contact__input:focus-visible {
   border-color: var(--clr-accent);
   box-shadow: 0 0 0 3px var(--clr-accent-light);
-  outline: none;
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 1px;
 }
 
 .contact__input.error {
@@ -181,7 +182,11 @@
   background-color: var(--clr-accent-light);
   border-color: var(--clr-accent);
   transform: translateY(-3px);
-  outline: none;
+}
+
+.contact__social-link:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
 }
 
 .toast-container {
@@ -264,4 +269,32 @@
     transform: none !important;
   }
 
+}
+
+/* The address was only ever in meta.json, never rendered. Recruiters copy an
+   address into their ATS; a Formspree form is a dead end for them. */
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-4);
+  margin-block: var(--sp-2);
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--clr-text-primary);
+
+  background-color: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border-strong);
+  border-radius: var(--radius-md);
+
+  transition: var(--transition-colors);
+  word-break: break-all;
+}
+
+.contact__email:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
 }

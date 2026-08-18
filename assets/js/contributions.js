@@ -2,6 +2,12 @@ let grid;
 let statsContainer;
 let contributions = [];
 
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
@@ -11,16 +17,27 @@ function uniqueRepos(contribs) {
   return new Set(contribs.map((c) => c.repo));
 }
 
+const STATS_MIN_PRS = 6;
+
+/* The counter renders only once the numbers help. Below that threshold a
+   large accent "2" is worse than showing the pull requests themselves. */
 function renderStats() {
   if (!statsContainer) return;
 
   const totalPRs   = contributions.length;
-  const totalRepos  = uniqueRepos(contributions).size;
+  const totalRepos = uniqueRepos(contributions).size;
 
+  if (totalPRs < STATS_MIN_PRS) {
+    statsContainer.innerHTML = '';
+    statsContainer.hidden = true;
+    return;
+  }
+
+  statsContainer.hidden = false;
   statsContainer.innerHTML = `
     <div class="contributions__stat reveal">
       <span class="contributions__stat-number">${totalPRs}</span>
-      <span class="contributions__stat-label">PRs</span>
+      <span class="contributions__stat-label">Pull requests merged</span>
     </div>
     <div class="contributions__stat reveal">
       <span class="contributions__stat-number">${totalRepos}</span>
@@ -31,12 +48,12 @@ function renderStats() {
 
 function cardHTML(contribution) {
   const tags = contribution.tags
-    .map((t) => `<span class="tag-chip">${t}</span>`)
+    .map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`)
     .join('');
 
   const dateLabel = contribution.mergedDate
     ? formatDate(contribution.mergedDate)
-    : '';
+   : '';
 
   return `
     <article class="contributions__card reveal">
@@ -51,7 +68,7 @@ function cardHTML(contribution) {
             <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
             <path d="M12 12v3"></path>
           </svg>
-          ${contribution.repo}
+          ${escapeHTML(contribution.repo)}
         </span>
         ${contribution.status === 'open' ? `
         <span class="contributions__open-badge">
@@ -65,7 +82,7 @@ function cardHTML(contribution) {
             <circle cx="18" cy="6" r="3"></circle>
           </svg>
           Open
-        </span>` : `
+        </span>`: `
         <span class="contributions__merged-badge">
           <svg class="contributions__merged-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -81,7 +98,7 @@ function cardHTML(contribution) {
       <h3 class="contributions__pr-title">
         <a href="${contribution.prUrl}" target="_blank" rel="noopener noreferrer"
            class="contributions__pr-link">
-          ${contribution.prTitle}
+          ${escapeHTML(contribution.prTitle)}
           <svg class="contributions__external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -92,11 +109,11 @@ function cardHTML(contribution) {
         </a>
       </h3>
 
-      <p class="contributions__description">${contribution.description}</p>
+      <p class="contributions__description">${escapeHTML(contribution.description)}</p>
 
       <div class="contributions__card-footer">
         <div class="contributions__tags">${tags}</div>
-        ${dateLabel ? `<span class="contributions__date">${dateLabel}</span>` : ''}
+        ${dateLabel ? `<span class="contributions__date">${dateLabel}</span>`: ''}
       </div>
     </article>`;
 }
@@ -109,7 +126,7 @@ function renderContributions() {
   );
 
   const isHomepage = !document.querySelector('.contributions-page__hero');
-  const toShow = isHomepage ? sorted.slice(0, 3) : sorted;
+  const toShow = isHomepage ? sorted.slice(0, 3): sorted;
 
   grid.innerHTML = toShow.map(cardHTML).join('');
 }

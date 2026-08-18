@@ -1,49 +1,117 @@
 .footer {
-  padding-block: var(--sp-12);
-  border-top: 1px solid var(--clr-border);
+  position: relative;
+  padding-block: var(--sp-16) var(--sp-8);
   background-color: var(--clr-bg-secondary);
+  border-top: 1px solid var(--clr-border);
 }
 
-.footer .container {
-  display: flex;
-  flex-direction: column;
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-10);
+  padding-bottom: var(--sp-10);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--sp-12);
+  }
+}
+
+.footer__logo {
+  display: block;
+  font-family: var(--ff-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text-primary);
+  margin-bottom: var(--sp-4);
+}
+
+.footer__blurb {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  max-width: 42ch;
+  margin-bottom: var(--sp-4);
+}
+
+.footer__email {
+  display: inline-flex;
   align-items: center;
-  gap: var(--sp-6);
+  min-height: 44px;
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--clr-accent);
+  word-break: break-all;
 }
 
-.footer__tech-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-3);
+.footer__email:hover {
+  color: var(--clr-accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.footer__tech-label {
+.footer__nav-title {
   font-family: var(--ff-mono);
   font-size: var(--fs-xs);
-  color: var(--clr-text-muted);
   font-weight: var(--fw-medium);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--sp-3);
 }
 
-.footer__tech-badges {
+.footer__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+}
+
+.footer__nav a:hover {
+  color: var(--clr-accent);
+}
+
+.footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--sp-2);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding-top: var(--sp-6);
 }
 
-.footer__copy {
-  font-size: var(--fs-sm);
+.footer__copy,
+.footer__built {
+  font-size: var(--fs-xs);
   color: var(--clr-text-muted);
-  text-align: center;
+}
+
+.footer__built a {
+  color: var(--clr-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__built a:hover {
+  color: var(--clr-accent);
 }
 
 .footer__back-to-top {
   position: fixed;
-  bottom: var(--sp-8);
-  right: var(--sp-8);
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  z-index: var(--z-sticky);
 
   display: flex;
   align-items: center;
@@ -52,14 +120,11 @@
   width: 44px;
   height: 44px;
 
-  border-radius: var(--radius-full);
-  background-color: var(--clr-accent);
   color: #fff;
-  border: none;
+  background-color: var(--clr-accent-solid);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
-
-  box-shadow: var(--shadow-md);
-  z-index: var(--z-sticky);
 
   opacity: 0;
   visibility: hidden;
@@ -70,15 +135,6 @@
     visibility var(--duration-base) var(--ease-default),
     transform var(--duration-base) var(--ease-default),
     background-color var(--duration-base) var(--ease-default);
-
-  will-change: transform, opacity;
-}
-
-.footer__back-to-top:hover,
-.footer__back-to-top:focus-visible {
-  background-color: var(--clr-accent-hover);
-  transform: translateY(-2px);
-  outline: none;
 }
 
 .footer__back-to-top.visible {
@@ -87,60 +143,33 @@
   transform: translateY(0);
 }
 
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 8px;
-  height: 8px;
-
-  background-color: var(--clr-accent);
-  border-radius: 50%;
-  pointer-events: none;
-
-  z-index: var(--z-cursor);
-  opacity: 0;
-
-  transition:
-    width var(--duration-fast) var(--ease-default),
-    height var(--duration-fast) var(--ease-default),
-    opacity var(--duration-fast) var(--ease-default);
-
-  mix-blend-mode: difference;
+.footer__back-to-top:hover {
+  background-color: var(--clr-accent-strong);
 }
 
-.cursor-dot.visible {
-  opacity: 1;
-}
-
-.cursor-dot.cursor-hover {
-  width: 32px;
-  height: 32px;
-  background-color: var(--clr-accent-light);
-}
-
-@media (hover: none) {
-  .cursor-dot {
-    display: none !important;
-  }
+.footer__back-to-top:focus-visible {
+  outline: 2px solid var(--clr-text-primary);
+  outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
   .footer__back-to-top {
-    bottom: var(--sp-4);
     right: var(--sp-4);
-    width: 40px;
-    height: 40px;
+    bottom: var(--sp-4);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  .footer__back-to-top,
-  .cursor-dot {
-    transition: none;
+  .footer__back-to-top {
+    transition: opacity var(--duration-base) var(--ease-default),
+                visibility var(--duration-base) var(--ease-default);
     transform: none !important;
   }
 
+  /* The custom cursor is driven by inline transforms from cursor.js. Pinning
+     it here used to strand the dot in the top-left corner, so it is hidden
+     outright when reduced motion is requested. */
+  .cursor-dot {
+    display: none !important;
+  }
 }

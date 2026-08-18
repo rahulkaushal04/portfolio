@@ -7,9 +7,9 @@
 
 .about__avatar-card {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--sp-4) !important;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 !important;
   position: sticky;
   top: calc(80px + var(--sp-6)); /* navbar height + breathing room */
   background: none !important;
@@ -23,8 +23,9 @@
 
 .about__avatar-img {
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   height: auto;
+  aspect-ratio: 471 / 620;
   border-radius: var(--radius-lg);
   object-fit: cover;
 }
@@ -38,16 +39,6 @@
 .about__bio p {
   font-size: var(--fs-md);
   line-height: var(--lh-loose);
-}
-
-.about__fun-fact {
-  font-size: var(--fs-base);
-  color: var(--clr-accent);
-  font-weight: var(--fw-medium);
-  padding: var(--sp-4);
-  background-color: var(--clr-accent-light);
-  border-radius: var(--radius-md);
-  border-left: 3px solid var(--clr-accent);
 }
 
 .about__currently {
@@ -89,55 +80,6 @@
   color: var(--clr-text-primary);
 }
 
-.about__meta {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-8);
-  flex-wrap: wrap;
-}
-
-.about__location {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--fs-sm);
-  color: var(--clr-text-muted);
-}
-
-.about__location svg {
-  color: var(--clr-text-muted);
-  flex-shrink: 0;
-}
-
-.about__availability {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: var(--clr-success);
-}
-
-.about__pulse-dot {
-  position: relative;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--clr-success);
-  flex-shrink: 0;
-}
-
-.about__pulse-dot::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background-color: var(--clr-success);
-  opacity: 0.6;
-  transform: scale(1);
-  animation: pulseGlow 2s ease-out infinite;
-}
-
 @media (max-width: 768px) {
 
   .about__grid {
@@ -147,17 +89,12 @@
 
   .about__avatar-card {
     position: static;
-    max-width: 260px;
+    max-width: 200px;
     margin-inline: auto;
   }
 
-  .about__meta {
-    justify-content: center;
+  .about__avatar-img {
+    max-width: 200px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .about__pulse-dot::before {
-    animation: none;
-  }
-}

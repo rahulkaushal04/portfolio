@@ -1,15 +1,16 @@
 {
   "name": "Rahul Kaushal",
-  "headline": "Software Engineer @ Honeywell · Python & Backend",
-  "tagline": "Building ML infrastructure by day, shipping side projects at night.",
-  "roles": ["Software Engineer", "Python Developer", "Open Source Contributor"],
+  "headline": "ML Platform and Backend Engineer",
+  "positioning": "I build the ML platform other engineers ship on.",
+  "role": "Software Engineer II",
+  "company": "Honeywell",
   "email": "kaushalrahul15@gmail.com",
   "location": "Bengaluru, India",
   "availability": "open",
-  "resumeLastUpdated": "Mar 2026",
   "socials": {
     "github": "https://github.com/rahulkaushal04",
-    "linkedin": "https://www.linkedin.com/in/rahul-kaushal04/"
+    "linkedin": "https://www.linkedin.com/in/rahul-kaushal04",
+    "hashnode": "https://rahulkaushal.hashnode.dev"
   },
   "siteUrl": "https://rahulkaushal04.github.io/portfolio"
 }

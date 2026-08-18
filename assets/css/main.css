@@ -1,16 +1,8 @@
-@import url("variables.css");
-@import url("reset.css");
-@import url("animations.css");
-@import url("navbar.css");
-@import url("hero.css");
-@import url("about.css");
-@import url("skills.css");
-@import url("experience.css");
-@import url("projects.css");
-@import url("contributions.css");
-@import url("blog.css");
-@import url("contact.css");
-@import url("footer.css");
+/* The partials used to be pulled in here with @import, which forced the
+   browser to download and parse this file before it could even discover
+   them, serialising 13 render-blocking requests. They are now <link>ed
+   directly from each page's <head> so they are found and fetched in
+   parallel. Order still matters: variables and reset come first. */
 
 /* Native View Transitions: crossfades navigation between index.html and
    the projects/blog/contributions pages instead of a hard flash. No JS,
@@ -37,6 +29,42 @@ body {
               color var(--duration-base) var(--ease-default);
 }
 
+/* Skip link: keyboard and screen-reader users otherwise traverse the
+   banner, logo, seven nav links and the resume button on every single
+   page load before reaching any content. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+
+  z-index: calc(var(--z-cursor) + 1);
+
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--ff-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+
+  color: #fff;
+  background-color: var(--clr-accent-solid);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  color: #fff;
+  outline: 2px solid var(--clr-text-primary);
+  outline-offset: 2px;
+}
+
+/* Anchor targets sit under the fixed navbar without this. */
+:target,
+section[id] {
+  scroll-margin-top: 96px;
+}
+
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -48,14 +76,18 @@ main {
   counter-reset: section-index;
 }
 
-section {
+/* Scoped to direct children of <main>. These are page-level section rules:
+   applied to every <section>, they also hit nested grouping sections such as
+   .skills__group and .experience__company-group, which then inherited 96px of
+   padding top and bottom and drew a stray divider across their own top edge. */
+main > section {
   padding-block: var(--section-py);
   position: relative;
 }
 
-/* Faint schematic rule between sections — an intentional "spec sheet"
+/* Faint schematic rule between sections: an intentional "spec sheet"
    divider rather than implicit whitespace-only separation. */
-section + section::before {
+main > section + section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -87,7 +119,10 @@ a:hover {
   color: var(--clr-accent);
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--clr-accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
@@ -158,7 +193,7 @@ html {
   margin-bottom: var(--sp-16);
 }
 
-/* Mono "spec sheet" index tag, e.g. "01 — SKILLS". The index number is
+/* Mono "spec sheet" index tag, e.g. "01: SKILLS". The index number is
    generated from document order via a CSS counter, so sections can be
    reordered without renumbering by hand. */
 .section-label {
@@ -258,11 +293,11 @@ html {
 
 .btn-primary {
   color: #fff;
-  background-color: var(--clr-accent);
+  background-color: var(--clr-accent-solid);
 }
 
 .btn-primary:hover {
-  background-color: var(--clr-accent-hover);
+  background-color: var(--clr-accent-strong);
   color: #fff;
   box-shadow: var(--shadow-glow);
 }
@@ -271,6 +306,13 @@ html {
   color: var(--clr-accent);
   border: 1.5px solid var(--clr-accent);
   background-color: transparent;
+}
+
+/* Every button is a touch target before it is anything else. 44px is the
+   floor from WCAG 2.5.5 and the iOS/Android guidelines; padding alone was
+   leaving several controls at 37px. */
+.btn {
+  min-height: 44px;
 }
 
 .btn-outline:hover {
@@ -300,9 +342,8 @@ html {
 }
 
 /* Shared treatment for the hero name and page-listing titles: solid,
-   high-contrast text with a small blinking mono accent glyph that echoes
-   the hero typewriter's cursor (.hero__cursor / @keyframes blink), instead
-   of a gradient-clip fade. */
+   high-contrast text with a small blinking mono accent glyph, instead of a
+   gradient-clip fade. */
 .headline-signal {
   color: var(--clr-text-primary);
 }
@@ -320,7 +361,7 @@ html {
   }
 }
 
-/* Default section headers are centered — suited to utility sections
+/* Default section headers are centered: suited to utility sections
    (Skills, Contact). Narrative sections (Experience, Projects, Open
    Source, Blog) use this modifier to left-align instead, so the page
    isn't seven identical centered silhouettes in a row. */

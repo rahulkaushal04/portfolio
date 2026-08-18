@@ -16,27 +16,41 @@
   font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
 
-  color: #fff;
+  /* Dark text, not white: this gradient runs to #00D4AA, where white text
+     lands at 1.9:1. Near-black holds 6:1 or better across the whole ramp. */
+  color: #0B0D12;
   background: linear-gradient(90deg, var(--clr-accent), var(--clr-success));
 }
 
 .availability-banner a {
-  color: #fff;
+  color: #0B0D12;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+
+  /* The link was a 52x19px target sitting first in the tab order. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding-inline: var(--sp-1);
 }
 
-.availability-banner a:hover,
+.availability-banner a:hover {
+  color: #0B0D12;
+  opacity: 0.75;
+}
+
 .availability-banner a:focus-visible {
-  opacity: 0.85;
-  outline: none;
+  outline: 2px solid #0B0D12;
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .availability-banner__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #0B0D12;
   animation: pulseGlow 2s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -81,6 +95,9 @@
 }
 
 .navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   display: flex;
   align-items: center;
 }
@@ -101,19 +118,32 @@
 
 .navbar__link {
   position: relative;
+
+  /* The text is 25px tall on its own. The extra block padding grows the
+     click area toward the 44px guideline without moving the label. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
   color: var(--clr-text-secondary);
-  padding-block: var(--sp-1);
 
   transition: color var(--duration-base) var(--ease-default);
 }
 
 .navbar__link:hover,
-.navbar__link:focus-visible,
 .navbar__link.active {
   color: var(--clr-text-primary);
-  outline: none;
+}
+
+/* The expanding underline alone is a 2px indicator. Keep it, but restore a
+   real focus ring alongside it. */
+.navbar__link:focus-visible {
+  color: var(--clr-text-primary);
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .navbar__link::after {
@@ -146,10 +176,16 @@
   font-size: var(--fs-sm);
 }
 
-.navbar__resume-btn:hover,
-.navbar__resume-btn:focus-visible {
+.navbar__resume-btn:hover {
   animation: bounceSubtle 0.4s var(--ease-bounce);
-  outline: none;
+}
+
+/* The outline used to be removed here and replaced with a 400ms bounce,
+   which left the site's primary CTA with no focus indicator at all once
+   the animation finished. */
+.navbar__resume-btn:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
 }
 
 @keyframes bounceSubtle {
@@ -159,33 +195,24 @@
 
 .navbar__resume-wrap {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-}
-
-.resume-updated {
-  font-size: 0.6rem;
-  font-weight: var(--fw-medium);
-  color: var(--clr-text-tertiary, var(--clr-text-secondary));
-  letter-spacing: 0.03em;
-  opacity: 0.7;
-  white-space: nowrap;
 }
 
 .navbar__hamburger {
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
 
-  width: 32px;
-  height: 32px;
+  /* 32px was under the 44px minimum touch target. */
+  width: 44px;
+  height: 44px;
   cursor: pointer;
 }
 
 .navbar__hamburger-line {
-  width: 100%;
+  width: 26px;
   height: 2px;
   background-color: var(--clr-text-primary);
   border-radius: var(--radius-full);
@@ -220,28 +247,127 @@
 
   z-index: var(--z-overlay);
 
+  /* visibility, not just the off-screen transform: a translated panel is
+     still focusable, so on desktop Tab walked through the close button and
+     all seven links of a menu that can never be opened there. Delaying the
+     visibility switch until the slide finishes keeps the animation intact. */
+  visibility: hidden;
   transform: translateX(100%);
-  transition: transform var(--duration-slow) var(--ease-default);
+  transition:
+    transform var(--duration-slow) var(--ease-default),
+    visibility 0s linear var(--duration-slow);
 
-  padding: var(--sp-24) var(--sp-8) var(--sp-8);
+  padding: var(--sp-20) var(--sp-6) var(--sp-8);
 
   display: flex;
   flex-direction: column;
+  gap: var(--sp-8);
 
-  will-change: transform;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* The panel sits above the navbar, so the hamburger's animated X was
+   covered and the menu had no visible way out. This is the close control. */
+.navbar__mobile-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  color: var(--clr-text-secondary);
+  background: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  transition: var(--transition-colors);
+}
+
+.navbar__mobile-close:hover {
+  color: var(--clr-text-primary);
+  border-color: var(--clr-border-strong);
+}
+
+/* The menu carried only section links. On mobile the navbar resume button
+   is hidden, so without these the primary actions were unreachable. */
+.navbar__mobile-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--clr-border);
+}
+
+.navbar__mobile-email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+
+  min-height: 44px;
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  word-break: break-all;
+}
+
+.navbar__mobile-email:hover {
+  color: var(--clr-accent);
+}
+
+.navbar__mobile-socials {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.navbar__mobile-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  color: var(--clr-text-secondary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+
+  transition: var(--transition-colors);
+}
+
+.navbar__mobile-social:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
 }
 
 .navbar__mobile-menu.open {
+  visibility: visible;
   transform: translateX(0);
+  transition:
+    transform var(--duration-slow) var(--ease-default),
+    visibility 0s;
 }
 
 .navbar__mobile-links {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: var(--sp-3);
 }
 
 .navbar__mobile-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+
   font-family: var(--ff-heading);
   font-size: var(--fs-xl);
   font-weight: var(--fw-semibold);
@@ -253,27 +379,33 @@
 }
 
 .navbar__mobile-link:hover,
-.navbar__mobile-link:focus-visible,
 .navbar__mobile-link.active {
   color: var(--clr-accent);
   transform: translateX(8px);
-  outline: none;
 }
 
-.navbar__mobile-menu::before {
-  content: "";
+.navbar__mobile-link:focus-visible {
+  color: var(--clr-accent);
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* This was a ::before on the panel, so it could never receive a click and
+   tapping outside the menu did nothing. It is a real element now. */
+.navbar__backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 
-  z-index: -1;
+  z-index: calc(var(--z-overlay) - 1);
   opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-default);
-
   pointer-events: none;
+
+  transition: opacity var(--duration-base) var(--ease-default);
 }
 
-.navbar__mobile-menu.open::before {
+.navbar__backdrop.open {
   opacity: 1;
   pointer-events: auto;
 }
@@ -284,7 +416,11 @@
     display: none;
   }
 
-  .navbar__resume-btn {
+  /* .btn sets display:inline-flex in main.css, which is loaded after this
+     file and has equal specificity, so a bare `.navbar__resume-btn` rule
+     lost the cascade and the button stayed visible on phones. Scoping it
+     to the wrapper wins on specificity without !important. */
+  .navbar__actions .navbar__resume-wrap {
     display: none;
   }
 

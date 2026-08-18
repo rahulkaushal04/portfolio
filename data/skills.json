@@ -1,135 +1,55 @@
 [
   {
-    "name": "Python",
-    "category": "languages",
-    "icon": "devicon-python-plain"
+    "id": "core",
+    "label": "Core stack",
+    "note": "What I reach for first, and what most of my production code is written in.",
+    "items": [
+      { "name": "Python",     "icon": "python.svg" },
+      { "name": "FastAPI",    "icon": "fastapi.svg" },
+      { "name": "SQL",        "icon": "sql.svg" },
+      { "name": "PostgreSQL", "icon": "postgresql.svg" },
+      { "name": "Pydantic",   "icon": "pydantic.webp" },
+      { "name": "SQLAlchemy", "icon": "sqlalchemy.webp", "iconSize": 70 },
+      { "name": "Bash",       "icon": "bash.webp" }
+    ]
   },
   {
-    "name": "SQL",
-    "category": "languages",
-    "icon": "devicon-azuresqldatabase-plain"
+    "id": "ml",
+    "label": "ML and data platform",
+    "note": "The layer I build and operate: training orchestration, model registry, serving, and the pipelines feeding them.",
+    "items": [
+      { "name": "Databricks",   "icon": "databricks.webp", "iconSize": 60 },
+      { "name": "PySpark",      "icon": "pyspark.svg" },
+      { "name": "MLflow",       "icon": "mlflow.webp", "iconSize": 60 },
+      { "name": "LLM / RAG",    "icon": "llm-rag.webp", "iconSize": 80 },
+      { "name": "LangChain",    "icon": "langchain.webp" },
+      { "name": "PyTorch",      "icon": "pytorch.svg" },
+      { "name": "Scikit-learn", "icon": "scikit-learn.svg" }
+    ]
   },
   {
-    "name": "Bash",
-    "category": "languages",
-    "iconImage": "bash.webp"
+    "id": "infra",
+    "label": "Infrastructure and delivery",
+    "note": "How the services get built, shipped, scanned, and watched once they are running.",
+    "items": [
+      { "name": "Docker",         "icon": "docker.svg" },
+      { "name": "Kubernetes",     "icon": "kubernetes.svg" },
+      { "name": "Azure Cloud",    "icon": "azure-cloud.svg" },
+      { "name": "GitHub Actions", "icon": "github-actions.webp" },
+      { "name": "Terraform",      "icon": "terraform.svg" },
+      { "name": "Prometheus",     "icon": "prometheus.svg" },
+      { "name": "Git",            "icon": "git.svg" }
+    ]
   },
   {
-    "name": "Go",
-    "category": "languages",
-    "icon": "devicon-go-original-wordmark"
-  },
-
-  {
-    "name": "FastAPI",
-    "category": "frameworks",
-    "icon": "devicon-fastapi-plain"
-  },
-  {
-    "name": "PySpark",
-    "category": "frameworks",
-    "icon": "devicon-apachespark-original"
-  },
-  {
-    "name": "LLM / RAG",
-    "category": "frameworks",
-    "iconImage": "llm-rag.webp",
-    "iconSize": 80
-  },
-  {
-    "name": "LangChain",
-    "category": "frameworks",
-    "iconImage": "langchain.webp"
-  },
-  {
-    "name": "Pydantic",
-    "category": "frameworks",
-    "iconImage": "pydantic.webp"
-  },
-  {
-    "name": "SQLAlchemy",
-    "category": "frameworks",
-    "iconImage": "sqlalchemy.webp",
-    "iconSize": 70
-  },
-  {
-    "name": "PyTorch",
-    "category": "frameworks",
-    "icon": "devicon-pytorch-original"
-  },
-  {
-    "name": "Scikit-learn",
-    "category": "frameworks",
-    "icon": "devicon-scikitlearn-plain"
-  },
-  {
-    "name": "Celery",
-    "category": "frameworks",
-    "iconImage": "celery.webp"
-  },
-
-  {
-    "name": "Docker",
-    "category": "tools",
-    "icon": "devicon-docker-plain"
-  },
-  {
-    "name": "Kubernetes",
-    "category": "tools",
-    "icon": "devicon-kubernetes-plain"
-  },
-  {
-    "name": "PostgreSQL",
-    "category": "tools",
-    "icon": "devicon-postgresql-plain"
-  },
-  {
-    "name": "MLflow",
-    "category": "tools",
-    "iconImage": "mlflow.webp",
-    "iconSize": 60
-  },
-  {
-    "name": "Prometheus",
-    "category": "tools",
-    "icon": "devicon-prometheus-original"
-  },
-  {
-    "name": "Redis",
-    "category": "tools",
-    "icon": "devicon-redis-plain"
-  },
-  {
-    "name": "Kafka",
-    "category": "tools",
-    "iconImage": "kafka.webp",
-    "iconSize": 55
-  },
-  {
-    "name": "GitHub Actions",
-    "category": "tools",
-    "iconImage": "github-actions.webp"
-  },
-  {
-    "name": "Git",
-    "category": "tools",
-    "icon": "devicon-git-plain"
-  },
-  {
-    "name": "Terraform",
-    "category": "tools",
-    "icon": "devicon-terraform-plain"
-  },
-
-  {
-    "name": "Databricks",
-    "category": "cloud",
-    "iconImage": "databricks.webp",
-    "iconSize": 60
-  },
-  {
-    "name": "Azure Cloud",
-    "category": "cloud",
-    "icon": "devicon-azure-plain"
+    "id": "async",
+    "label": "Messaging and async",
+    "note": "Event-driven and background work: queues, streams, and caches between services.",
+    "items": [
+      { "name": "Kafka",  "icon": "kafka.webp", "iconSize": 55 },
+      { "name": "Celery", "icon": "celery.webp" },
+      { "name": "Redis",  "icon": "redis.svg" },
+      { "name": "Go",     "icon": "go.svg" }
+    ]
   }
 ]
