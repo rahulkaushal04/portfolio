@@ -53,7 +53,7 @@
 .projects__card-status {
   position: absolute;
   top: var(--sp-3);
-  left: var(--sp-3);
+  right: var(--sp-3);
   z-index: 2;
 
   padding: var(--sp-1) var(--sp-3);

@@ -1,11 +1,11 @@
 [
   {
-    "title": "DepKeeper - Python Dependency Manager",
-    "description": "A CLI for keeping requirements.txt honest. It finds outdated packages, holds to the semver bounds already declared in the file, reports conflicts before a build hits them, and queries PyPI concurrently so a large file resolves in seconds rather than minutes.",
+    "title": "DepKeeper - Python Dependency Updater",
+    "description": "A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Deliberately not a resolver and not a lock file. On PyPI under Apache 2.0, for Python 3.8 to 3.12.",
     "categories": ["cli", "open-source"],
     "tags": ["Python", "Click", "Rich", "httpx", "PyPI API", "Async"],
     "thumbnail": "assets/images/projects/depkeeper.webp",
-    "liveUrl": "https://rahulkaushal04.github.io/depkeeper/",
+    "liveUrl": "https://rahulkaushal04.github.io/depkeeper/latest/",
     "githubUrl": "https://github.com/rahulkaushal04/depkeeper",
     "featured": true,
     "status": "beta"
