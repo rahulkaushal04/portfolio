@@ -16,7 +16,7 @@
   {
     "id": "ml",
     "label": "ML and data platform",
-    "note": "The layer I build and run: training orchestration, model registry, serving, and the pipelines feeding them.",
+    "note": "What the platform runs on, from the data pipelines through to model tracking and serving.",
     "items": [
       { "name": "Databricks",   "icon": "databricks.webp", "iconSize": 60 },
       { "name": "PySpark",      "icon": "pyspark.svg" },

@@ -24,7 +24,7 @@
     "logoSize": 110,
     "showCompanyName": false,
     "role": "Software Engineer II",
-    "summary": "Building ForgeML, the internal MLOps platform Honeywell data scientists train, scan and deploy models on.",
+    "summary": "Owned the training, model registry, scanning and deployment services inside ForgeML.",
     "startDate": "Jul 2024",
     "endDate": "Jul 2026",
     "description": [
