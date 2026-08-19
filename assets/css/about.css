@@ -41,45 +41,6 @@
   line-height: var(--lh-loose);
 }
 
-.about__currently {
-  padding: var(--sp-6);
-}
-
-.about__currently-title {
-  font-family: var(--ff-mono);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  color: var(--clr-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: var(--sp-4);
-}
-
-.about__currently-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-
-.about__currently-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-  font-size: var(--fs-base);
-  color: var(--clr-text-secondary);
-  line-height: var(--lh-base);
-}
-
-.about__currently-icon {
-  flex-shrink: 0;
-  font-size: var(--fs-lg);
-  line-height: 1.5;
-}
-
-.about__currently-list strong {
-  color: var(--clr-text-primary);
-}
-
 @media (max-width: 768px) {
 
   .about__grid {
