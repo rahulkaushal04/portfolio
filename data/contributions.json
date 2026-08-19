@@ -3,7 +3,7 @@
     "repo": "facebookresearch/exca",
     "prTitle": "fix: minor bugs in __eq__, cache eviction, and cleanup",
     "prUrl": "https://github.com/facebookresearch/exca/pull/206",
-    "description": "Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.",
+    "description": "Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.",
     "tags": ["Python", "Bug Fix"],
     "mergedDate": "2026-03-01"
   },
@@ -11,7 +11,7 @@
     "repo": "aio-libs/async-lru",
     "prTitle": "feat: add cache_contains() for read-only key lookup",
     "prUrl": "https://github.com/aio-libs/async-lru/pull/746",
-    "description": "Adds cache_contains(*args, **kwargs) -> bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.",
+    "description": "Added cache_contains(*args, **kwargs) -> bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before.",
     "tags": [
       "Python",
       "asyncio",

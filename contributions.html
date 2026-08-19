@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Source Contributions - Rahul Kaushal</title>
-  <meta name="description" content="Merged pull requests and open source contributions by Rahul Kaushal to projects like FastAPI, NumPy, and more.">
+  <meta name="description" content="Merged pull requests by Rahul Kaushal to open source Python libraries, including Meta's exca experiment-caching library and aio-libs/async-lru.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Open Source Contributions - Rahul Kaushal">
-  <meta property="og:description" content="Merged pull requests and open source contributions to popular repositories.">
+  <meta property="og:description" content="Patches to Python libraries I depend on, reviewed and merged by their maintainers.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/contributions.html">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
@@ -34,10 +34,48 @@
   <link rel="stylesheet" href="assets/css/experience.css">
   <link rel="stylesheet" href="assets/css/projects.css">
   <link rel="stylesheet" href="assets/css/contributions.css">
-  <link rel="stylesheet" href="assets/css/blog.css">
   <link rel="stylesheet" href="assets/css/contact.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Open Source Contributions - Rahul Kaushal",
+    "url": "https://rahulkaushal04.github.io/portfolio/contributions.html",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Rahul Kaushal", "@id": "https://rahulkaushal04.github.io/portfolio/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup",
+            "description": "Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.",
+            "url": "https://github.com/facebookresearch/exca/pull/206",
+            "dateCreated": "2026-03-01",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "aio-libs/async-lru: feat: add cache_contains() for read-only key lookup",
+            "description": "Added cache_contains(*args, **kwargs) -> bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before.",
+            "url": "https://github.com/aio-libs/async-lru/pull/746",
+            "dateCreated": "2026-03-16",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -69,7 +107,7 @@
         <span class="section-label">Open Source</span>
         <h1 class="contributions-page__title headline-signal reveal">All Contributions<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
         <p class="contributions-page__subtitle reveal">
-          Pull requests I've submitted to projects I use and admire, merged and shipped.
+          Patches to Python libraries I depend on, reviewed and merged by their maintainers.
         </p>
 
         <div class="contributions__stats" id="contributionsStats"></div>
@@ -95,7 +133,22 @@
 
     <section class="contributions-page__listing">
       <div class="container">
-        <div class="contributions__grid" id="contributionsGrid"></div>
+        <div class="contributions__grid" id="contributionsGrid">
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h2><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup</a></h2>
+              <p>Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.</p>
+              <p>Merged <time datetime="2026-03-01">2026-03-01</time></p>
+              <p><em>Python &middot; Bug Fix</em></p>
+            </article>
+            <article style="margin-bottom:2rem;">
+              <h2><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru: feat: add cache_contains() for read-only key lookup</a></h2>
+              <p>Added cache_contains(*args, **kwargs) -&gt; bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before.</p>
+              <p>Merged <time datetime="2026-03-16">2026-03-16</time></p>
+              <p><em>Python &middot; asyncio &middot; LRU Cache &middot; New Feature &middot; Cache Introspection</em></p>
+            </article>
+          </noscript>
+        </div>
 
         <div class="contributions-page__empty" id="contributionsEmpty" hidden>
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -139,7 +192,6 @@
           <ul>
             <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer">Hashnode</a></li>
             <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
           </ul>
         </nav>

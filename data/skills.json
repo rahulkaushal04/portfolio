@@ -2,7 +2,7 @@
   {
     "id": "core",
     "label": "Core stack",
-    "note": "What I reach for first, and what most of my production code is written in.",
+    "note": "What most of my production code is written in, and what I reach for first on anything new.",
     "items": [
       { "name": "Python",     "icon": "python.svg" },
       { "name": "FastAPI",    "icon": "fastapi.svg" },
@@ -16,7 +16,7 @@
   {
     "id": "ml",
     "label": "ML and data platform",
-    "note": "The layer I build and operate: training orchestration, model registry, serving, and the pipelines feeding them.",
+    "note": "The layer I build and run: training orchestration, model registry, serving, and the pipelines feeding them.",
     "items": [
       { "name": "Databricks",   "icon": "databricks.webp", "iconSize": 60 },
       { "name": "PySpark",      "icon": "pyspark.svg" },
@@ -30,7 +30,7 @@
   {
     "id": "infra",
     "label": "Infrastructure and delivery",
-    "note": "How the services get built, shipped, scanned, and watched once they are running.",
+    "note": "How services get built, shipped, scanned and watched once they are running in front of real users.",
     "items": [
       { "name": "Docker",         "icon": "docker.svg" },
       { "name": "Kubernetes",     "icon": "kubernetes.svg" },
@@ -44,7 +44,7 @@
   {
     "id": "async",
     "label": "Messaging and async",
-    "note": "Event-driven and background work: queues, streams, and caches between services.",
+    "note": "Queues, streams and caches for the work that happens between services rather than inside one.",
     "items": [
       { "name": "Kafka",  "icon": "kafka.webp", "iconSize": 55 },
       { "name": "Celery", "icon": "celery.webp" },

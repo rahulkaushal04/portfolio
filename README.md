@@ -23,15 +23,14 @@ no `node_modules`.
 ```
 ├── index.html              # Homepage
 ├── 404.html                # Fully self-contained, no external assets
-├── blog.html               # Article listing
 ├── projects.html           # Project listing
 ├── contributions.html      # Open source listing
 ├── robots.txt / sitemap.xml
 ├── assets/
 │   ├── css/                # One partial per section, linked from each <head>
 │   ├── js/                 # ES modules, one per section
-│   └── images/             # blogs/, companies/, projects/, skills/
-├── data/                   # meta, skills, experience, projects, blogs, contributions
+│   └── images/             # companies/, projects/, skills/
+├── data/                   # meta, skills, experience, projects, contributions
 └── resume/
 ```
 
@@ -46,7 +45,6 @@ Every section renders from JSON. To update the site, edit the data file, not the
 | `experience.json`    | Roles. Consecutive entries at one company are auto-grouped |
 | `projects.json`      | Project cards                                              |
 | `contributions.json` | Merged pull requests                                       |
-| `blogs.json`         | Articles                                                   |
 
 The `<noscript>` fallbacks in `index.html` are generated from these same files, so
 they need regenerating whenever the data changes substantially.

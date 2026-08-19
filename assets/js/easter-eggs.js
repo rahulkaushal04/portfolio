@@ -261,11 +261,11 @@ function printConsoleMessage() {
   ].join(';');
 
   console.log(
-    '%cHey, fellow developer!%c\n' +
-    "%cCurious how this site works? It's all vanilla HTML, CSS & JS - no frameworks.\n" +
-    'Check out the source: https://github.com/rahulkaushal04/portfolio\n' +
-    'Try the Konami code for a surprise! up up down down left right left right B A\n' +
-    'Type "matrix" for another one',
+    '%cYou opened the console. Good instinct.%c\n' +
+    '%cThis site is hand-written HTML, CSS and JavaScript. No framework, no build step.\n' +
+    'Source: https://github.com/rahulkaushal04/portfolio\n' +
+    'There is a Konami code in here: up up down down left right left right B A\n' +
+    'Typing "matrix" does something else.',
     styles,
     '',
     subtitleStyles

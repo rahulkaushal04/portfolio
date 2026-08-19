@@ -5,7 +5,6 @@ import { initSkills }     from './skills.js';
 import { initExperience } from './experience.js';
 import { initProjects }       from './projects.js';
 import { initContributions } from './contributions.js';
-import { initBlog }           from './blog.js';
 import { initContact }    from './contact.js';
 
 import { initParticles }  from './particles.js';
@@ -55,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initExperience();
   initProjects();
   initContributions();
-  initBlog();
   initContact();
 
   initParticles();

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Rahul Kaushal</title>
-  <meta name="description" content="Side projects, open source tools, and experiments by Rahul Kaushal: Python, FastAPI, ML infrastructure, and more.">
+  <meta name="description" content="Python tools Rahul Kaushal built and maintains, including DepKeeper, a dependency CLI for requirements.txt, and Hallownest Codex, a Hollow Knight save-file analyzer.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects - Rahul Kaushal">
-  <meta property="og:description" content="Side projects, open source tools, and experiments.">
+  <meta property="og:description" content="Python tools I built for myself first, then cleaned up and released. DepKeeper and Hallownest Codex.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/projects.html">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
@@ -34,10 +34,50 @@
   <link rel="stylesheet" href="assets/css/experience.css">
   <link rel="stylesheet" href="assets/css/projects.css">
   <link rel="stylesheet" href="assets/css/contributions.css">
-  <link rel="stylesheet" href="assets/css/blog.css">
   <link rel="stylesheet" href="assets/css/contact.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects - Rahul Kaushal",
+    "url": "https://rahulkaushal04.github.io/portfolio/projects.html",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Rahul Kaushal", "@id": "https://rahulkaushal04.github.io/portfolio/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "DepKeeper - Python Dependency Manager",
+            "description": "A CLI for keeping requirements.txt honest. It finds outdated packages, holds to the semver bounds already declared in the file, reports conflicts before a build hits them, and queries PyPI concurrently so a large file resolves in seconds rather than minutes.",
+            "codeRepository": "https://github.com/rahulkaushal04/depkeeper",
+            "url": "https://rahulkaushal04.github.io/depkeeper/",
+            "programmingLanguage": "Python",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Hallownest Codex - Hollow Knight Analyzer",
+            "description": "A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.",
+            "codeRepository": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
+            "url": "https://hollow-knight-analyzer.streamlit.app",
+            "programmingLanguage": "Python",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -69,7 +109,7 @@
         <span class="section-label">Projects</span>
         <h1 class="projects-page__title headline-signal reveal">All Projects<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
         <p class="projects-page__subtitle reveal">
-          Side projects, open source work, and the occasional rabbit hole.
+          Tools I built for myself first, then cleaned up, documented and released.
         </p>
 
         <div class="projects-page__toolbar reveal">
@@ -93,7 +133,22 @@
 
     <section class="projects-page__listing">
       <div class="container">
-        <div class="projects__grid projects__grid--full" id="projectsGrid"></div>
+        <div class="projects__grid projects__grid--full" id="projectsGrid">
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h2>DepKeeper - Python Dependency Manager</h2>
+              <p>A CLI for keeping requirements.txt honest. It finds outdated packages, holds to the semver bounds already declared in the file, reports conflicts before a build hits them, and queries PyPI concurrently so a large file resolves in seconds rather than minutes.</p>
+              <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
+              <p><a href="https://rahulkaushal04.github.io/depkeeper/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
+            </article>
+            <article style="margin-bottom:2rem;">
+              <h2>Hallownest Codex - Hollow Knight Analyzer</h2>
+              <p>A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.</p>
+              <p><em>Python &middot; Streamlit &middot; Folium &middot; Plotly &middot; Pillow &middot; PyPI</em></p>
+              <p><a href="https://hollow-knight-analyzer.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
+            </article>
+          </noscript>
+        </div>
 
         <div class="projects-page__empty" id="projectsEmpty" hidden>
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -137,7 +192,6 @@
           <ul>
             <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer">Hashnode</a></li>
             <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
           </ul>
         </nav>

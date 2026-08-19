@@ -1,7 +1,7 @@
 [
   {
     "title": "DepKeeper - Python Dependency Manager",
-    "description": "A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.",
+    "description": "A CLI for keeping requirements.txt honest. It finds outdated packages, holds to the semver bounds already declared in the file, reports conflicts before a build hits them, and queries PyPI concurrently so a large file resolves in seconds rather than minutes.",
     "categories": ["cli", "open-source"],
     "tags": ["Python", "Click", "Rich", "httpx", "PyPI API", "Async"],
     "thumbnail": "assets/images/projects/depkeeper.webp",
@@ -12,7 +12,7 @@
   },
   {
     "title": "Hallownest Codex - Hollow Knight Analyzer",
-    "description": "A Streamlit-based web app for Hollow Knight players to analyze save files - decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.",
+    "description": "A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.",
     "categories": ["web", "side-projects"],
     "tags": ["Python", "Streamlit", "Folium", "Plotly", "Pillow", "PyPI"],
     "thumbnail": "assets/images/projects/hollow-knight-analyzer.webp",

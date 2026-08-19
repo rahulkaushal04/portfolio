@@ -6,7 +6,7 @@ let submitBtn;
 const VALIDATORS = {
   name: {
     test: (v) => v.trim().length >= 2,
-    message: 'Name must be at least 2 characters.',
+    message: 'Please enter a name of at least 2 characters.',
   },
   email: {
     test: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
@@ -83,7 +83,7 @@ async function handleSubmit(e) {
 
     if (res.ok) {
       setButtonState('success');
-      showToast("Message sent! I'll get back to you soon.", 'success');
+      showToast("Thanks, that came through. I'll get back to you soon.", 'success');
       form.reset();
       form.querySelectorAll('.contact__input').forEach((input) => input.classList.remove('error'));
       form.querySelectorAll('.contact__error').forEach((span) => (span.textContent = ''));
@@ -92,7 +92,7 @@ async function handleSubmit(e) {
     }
   } catch (err) {
     setButtonState('idle');
-    showToast('Something went wrong. Please try again.', 'error');
+    showToast('That did not send. Try again, or email me directly.', 'error');
     console.warn('[contact] Submit error:', err.message);
   }
 }

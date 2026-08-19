@@ -4,17 +4,36 @@
     "logo": "assets/images/companies/honeywell.webp",
     "logoSize": 110,
     "showCompanyName": false,
-    "role": "Software Engineer II",
-    "summary": "Building ForgeML, the internal MLOps platform data scientists train, scan and deploy models on.",
-    "startDate": "Jul 2024",
+    "role": "Advanced Software Engineer",
+    "summary": "PLACEHOLDER: one line on what this role covers.",
+    "startDate": "Aug 2026",
     "endDate": "Present",
     "description": [
+      "PLACEHOLDER: lead with the outcome and the number that makes it land, then how you got there.",
+      "PLACEHOLDER: second point, scoped to something you owned rather than something the team shipped.",
+      "PLACEHOLDER: third point, ideally the one a senior engineer would ask a follow-up question about."
+    ],
+    "tags": [
+      "Python",
+      "FastAPI"
+    ]
+  },
+  {
+    "company": "Honeywell",
+    "logo": "assets/images/companies/honeywell.webp",
+    "logoSize": 110,
+    "showCompanyName": false,
+    "role": "Software Engineer II",
+    "summary": "Building ForgeML, the internal MLOps platform Honeywell data scientists train, scan and deploy models on.",
+    "startDate": "Jul 2024",
+    "endDate": "Jul 2026",
+    "description": [
       "Cut model deployment from 3 days to 30 minutes for 15+ data scientists by building multi-target deployment orchestration across Databricks Serving, AKS and edge devices.",
-      "Architected ForgeML as 8 microservices and 30+ FastAPI endpoints covering training, model registry, security scanning, deployment and monitoring for multi-tenant workloads.",
-      "Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell Forge DSL, reaching 80%+ accuracy with automated job submission and status polling.",
-      "Halved write latency on an Azure Event Hub pipeline using concurrent dual writes to PostgreSQL and Unity Catalog, with exactly-once delivery via Blob checkpointing.",
-      "Caught 40+ vulnerabilities before deployment by integrating 5 security scanners behind a Strategy Pattern, alongside JWT RS256 auth and OPA policy enforcement.",
-      "Built a BDD acceptance suite in Behave with parallel multi-tenant execution and Locust load tests, covering onboarding through deployment end to end."
+      "Designed ForgeML as 8 microservices exposing 30+ FastAPI endpoints, covering training, model registry, security scanning, deployment and monitoring for multi-tenant workloads.",
+      "Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell Forge DSL, reaching 80%+ accuracy, with job submission and status polling handled automatically.",
+      "Halved write latency on an Azure Event Hub pipeline by writing to PostgreSQL and Unity Catalog concurrently, with exactly-once delivery backed by Blob Storage checkpoints.",
+      "Caught 40+ vulnerabilities before deployment by putting 5 security scanners behind a Strategy Pattern, alongside JWT RS256 auth and OPA policy enforcement.",
+      "Built a BDD acceptance suite in Behave covering onboarding through deployment, running in parallel across tenants, with Locust load tests alongside it."
     ],
     "tags": [
       "Python",
@@ -33,16 +52,16 @@
     "logoSize": 110,
     "showCompanyName": false,
     "role": "Data Engineer II",
-    "summary": "Built the Databricks pipelines that fed field service analytics and the Maintenance Assist chatbot.",
+    "summary": "Built the Databricks pipelines behind field service analytics and the Maintenance Assist chatbot.",
     "startDate": "Jun 2022",
     "endDate": "Dec 2023",
     "description": [
-      "Built 15+ PySpark ingestion pipelines on Databricks from SQL Server, Salesforce, SharePoint and REST APIs into Delta Lake, using watermark-based incremental loading.",
-      "Engineered a Spark Structured Streaming pipeline for PDFs landing in Blob Storage, applying SCD Type 2 upserts to track document changes across micro-batches.",
-      "Powered the Maintenance Assist LLM chatbot by building its document vectorization pipeline into PGVector, plus an eval framework using Azure OpenAI as judge.",
-      "Kept the serving database in sync with batched Delta to PostgreSQL upserts using ON CONFLICT DO UPDATE, avoiding full table reloads.",
-      "Wired Change Data Feed on Delta tables to trigger downstream vectorization jobs on incremental inserts, updates and deletes.",
-      "Wrote SQL transformation pipelines producing weekly, monthly and quarterly field service analytics consumed by the customer-facing DSP dashboard."
+      "Built 15+ PySpark ingestion pipelines on Databricks pulling from SQL Server, Salesforce, SharePoint and REST APIs into Delta Lake, with watermark-based incremental loading.",
+      "Engineered a Spark Structured Streaming pipeline for PDFs landing in Blob Storage, applying SCD Type 2 upserts so document changes stayed traceable across micro-batches.",
+      "Built the document vectorization pipeline into PGVector behind the Maintenance Assist chatbot, plus an evaluation harness that scored answers with Azure OpenAI as judge.",
+      "Kept the serving database in sync using batched Delta to PostgreSQL upserts with ON CONFLICT DO UPDATE, which removed the need for full table reloads.",
+      "Wired Change Data Feed on Delta tables so downstream vectorization jobs fired on incremental inserts, updates and deletes rather than on a schedule.",
+      "Wrote the SQL transformation pipelines producing weekly, monthly and quarterly field service analytics for the customer-facing DSP dashboard."
     ],
     "tags": [
       "PySpark",
