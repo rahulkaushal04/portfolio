@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
   <title>Rahul Kaushal - ML Platform and Backend Engineer</title>
-  <meta name="description" content="Advanced Software Engineer at Honeywell, building the internal MLOps platform its data scientists train, scan and deploy models on. Python, FastAPI, Databricks, AKS.">
+  <meta name="description" content="Advanced Software Engineer at Honeywell, building the control-plane services and deployment engine behind an edge Kubernetes appliance. Go, Ansible and Kubernetes, after two years building Honeywell's ML platform.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - ML Platform and Backend Engineer">
-  <meta property="og:description" content="I build ForgeML, the internal platform Honeywell data scientists use to train, scan and deploy models. Python and FastAPI on Databricks, Azure and Kubernetes.">
+  <meta property="og:description" content="I build the control-plane services behind an edge Kubernetes appliance at Honeywell: Go, Ansible, and the HA failover logic that keeps it running on air-gapped hardware.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rahul Kaushal - ML Platform and Backend Engineer">
-  <meta name="twitter:description" content="I build the ML platform other engineers ship on. Advanced Software Engineer at Honeywell, working in Python, FastAPI and Databricks.">
+  <meta name="twitter:description" content="Advanced Software Engineer at Honeywell. Go and Kubernetes on an edge deployment platform now, Python and FastAPI on an ML platform before that.">
   <meta name="twitter:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/">
@@ -69,7 +69,7 @@
         "image": "https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png",
         "jobTitle": "Advanced Software Engineer",
         "email": "mailto:kaushalrahul15@gmail.com",
-        "description": "I build ForgeML, the internal platform 15+ data scientists at Honeywell use to train, scan and deploy models. Python and FastAPI on top of Databricks, Azure and Kubernetes. Before the platform, I built the PySpark pipelines that feed it.",
+        "description": "I build the control-plane services and deployment engine behind Honeywell's edge Kubernetes appliance: Go, Ansible-driven orchestration, and the HA failover logic that keeps it running on air-gapped hardware. Before that, I built services across ForgeML, Honeywell's ML platform, and the Databricks pipelines that came before it.",
         "worksFor": {
           "@type": "Organization",
           "name": "Honeywell",
@@ -237,9 +237,10 @@
           </p>
 
           <p class="hero__tagline reveal">
-            I build ForgeML, the internal platform 15+ data scientists at Honeywell use to
-            train, scan and deploy models. Python and FastAPI on top of Databricks, Azure and
-            Kubernetes. Before the platform, I built the PySpark pipelines that feed it.
+            I build the control-plane services and deployment engine behind Honeywell's edge
+            Kubernetes appliance: Go, Ansible-driven orchestration, and the HA failover logic
+            that keeps it running on air-gapped hardware. Before that, I built services across
+            ForgeML, Honeywell's ML platform.
           </p>
 
           <div class="hero__cta reveal gap-4">
@@ -317,10 +318,10 @@
               became ForgeML.
             </p>
             <p>
-              The part I care about sits where the infrastructure meets the people using it. A
-              deployment that used to take days now takes minutes, and that mattered more to the
-              data scientists on the other side of the API than any single service I wrote to
-              get there.
+              The part I care about sits where the infrastructure meets the people relying on
+              it: a data scientist who should not have to care if a model is serving from
+              Databricks, AKS or an edge device, or an operator whose only signal that something
+              is wrong is an appliance that stopped responding.
             </p>
             <p>
               Open source works the same way for me. When I hit a bug in a library I depend on,
@@ -363,7 +364,7 @@
         <div class="section-header--left">
           <span class="section-label">Experience</span>
           <h2 class="section-title reveal" id="experienceTitle">Three roles, one company</h2>
-          <p class="section-subtitle reveal">All three at Honeywell: eighteen months on the Databricks pipelines, then the ML platform they feed.</p>
+          <p class="section-subtitle reveal">All three at Honeywell: from Databricks pipelines, to an ML platform, to the control plane running on edge hardware in the field.</p>
         </div>
 
         <div class="experience__timeline" id="experienceTimeline">
@@ -371,39 +372,42 @@
             <article style="margin-bottom:2rem;">
               <h3>Advanced Software Engineer at Honeywell</h3>
               <p>Aug 2026 to Present</p>
-              <p>PLACEHOLDER: one line on what this role covers.</p>
+              <p>Building the control-plane services and deployment engine behind Honeywell's edge Kubernetes appliance.</p>
               <ul>
-                <li>PLACEHOLDER: lead with the outcome and the number that makes it land, then how you got there.</li>
-                <li>PLACEHOLDER: second point, scoped to something you owned rather than something the team shipped.</li>
-                <li>PLACEHOLDER: third point, ideally the one a senior engineer would ask a follow-up question about.</li>
+                <li>Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: the platform's own watchdog was restarting MicroK8s in a way that re-corrupted its network state, then restarting it again once the corruption came back. Closed the loop with image pre-caching, a non-rolling registry deploy, and a circuit breaker that halts auto-remediation after 5 escalations in 24 hours without disabling detection.</li>
+                <li>Measured a 32.5% cut in incremental-update install time (90m11s to 60m51s on a representative 44-package run) after finding that a fixed per-sequence datastore-drain pause, not any single package's install script, was the largest cost, then right-sized the pause and parallelized decompression and package installs.</li>
+                <li>Built the storage bootstrap logic that lets a node join with or without Ceph already healthy. If Ceph is up, ceph-csi becomes the default storage class immediately; otherwise PVCs land on hostpath storage and migrate later through a scale-down, copy, switch, scale-up sequence, since recreating a PVC directly on Ceph would lose data.</li>
+                <li>Implemented 2-node and N-node Pacemaker/Corosync failover for the cluster's floating VIP, including a 5-phase failover test that runs pre-flight, soft, hard, restore and verify checks in sequence, simulating a network partition and diffing data on the new primary before calling the test passed.</li>
+                <li>Built EdgeOrchestrator, the Go service exposing the appliance's REST/WebSocket control-plane API, which shells out to Ansible for cluster deploy and upgrade through argument-array exec calls rather than a shell, and tracks its own binary replacement across a self-update restart with a marker file so a crashed update can't be reported as a false success.</li>
+                <li>Built ForgeLinkLite, a cross-platform Go agent handling Azure IoT Hub provisioning and AMQP-over-WebSocket connectivity with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover.</li>
               </ul>
-              <p><em>Python &middot; FastAPI</em></p>
+              <p><em>Go &middot; Kubernetes (MicroK8s) &middot; Ansible &middot; Pacemaker/Corosync &middot; Ceph &middot; Azure IoT Hub &middot; TypeScript &middot; Prometheus/Grafana</em></p>
             </article>
             <article style="margin-bottom:2rem;">
               <h3>Software Engineer II at Honeywell</h3>
               <p>Jul 2024 to Jul 2026</p>
-              <p>Owned the training, model registry, scanning and deployment services inside ForgeML.</p>
+              <p>Built services across ForgeML's 8-microservice MLOps platform, and the pipeline that migrates and AI-translates SkySpark automation rules into Forge.</p>
               <ul>
-                <li>Cut model deployment from 3 days to 30 minutes for 15+ data scientists by building multi-target deployment orchestration across Databricks Serving, AKS and edge devices.</li>
-                <li>Designed ForgeML as 8 microservices exposing 30+ FastAPI endpoints, covering training, model registry, security scanning, deployment and monitoring for multi-tenant workloads.</li>
-                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell Forge DSL, reaching 80%+ accuracy, with job submission and status polling handled automatically.</li>
-                <li>Halved write latency on an Azure Event Hub pipeline by writing to PostgreSQL and Unity Catalog concurrently, with exactly-once delivery backed by Blob Storage checkpoints.</li>
-                <li>Caught 40+ vulnerabilities before deployment by putting 5 security scanners behind a Strategy Pattern, alongside JWT RS256 auth and OPA policy enforcement.</li>
-                <li>Built a BDD acceptance suite in Behave covering onboarding through deployment, running in parallel across tenants, with Locust load tests alongside it.</li>
+                <li>Built the model deployment engine that routes to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. A dual async loop then polls serving endpoints every 30 seconds and liveness every 5 minutes, with one loop's failure isolated from the other.</li>
+                <li>Routed model registrations through five security scanners covering SAST, dependency and license risk, container images, and AI-model artifacts, all behind one Strategy Pattern interface, so adding a new scanner meant writing a new class instead of another conditional.</li>
+                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed, tracking the resulting endpoint for later translation requests.</li>
+                <li>Built the asyncio event processor that consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes the result to PostgreSQL and Unity Catalog concurrently with Blob Storage checkpointing for exactly-once delivery across restarts.</li>
+                <li>Built the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel instead of sequentially, cutting write time roughly in half.</li>
+                <li>Wrote the BDD acceptance suite in Behave, covering 50+ scenarios across six workflow domains and running in parallel per tenant, plus Locust load tests spanning onboarding through deployment.</li>
               </ul>
               <p><em>Python &middot; FastAPI &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Google Vertex AI &middot; MLflow &middot; Azure Event Hub &middot; PostgreSQL</em></p>
             </article>
             <article style="margin-bottom:2rem;">
               <h3>Data Engineer II at Honeywell</h3>
               <p>Jun 2022 to Dec 2023</p>
-              <p>Built the Databricks pipelines behind field service analytics and the Maintenance Assist chatbot.</p>
+              <p>Built the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.</p>
               <ul>
-                <li>Built 15+ PySpark ingestion pipelines on Databricks pulling from SQL Server, Salesforce, SharePoint and REST APIs into Delta Lake, with watermark-based incremental loading.</li>
-                <li>Engineered a Spark Structured Streaming pipeline for PDFs landing in Blob Storage, applying SCD Type 2 upserts so document changes stayed traceable across micro-batches.</li>
-                <li>Built the document vectorization pipeline into PGVector behind the Maintenance Assist chatbot, plus an evaluation harness that scored answers with Azure OpenAI as judge.</li>
-                <li>Kept the serving database in sync using batched Delta to PostgreSQL upserts with ON CONFLICT DO UPDATE, which removed the need for full table reloads.</li>
-                <li>Wired Change Data Feed on Delta tables so downstream vectorization jobs fired on incremental inserts, updates and deletes rather than on a schedule.</li>
-                <li>Wrote the SQL transformation pipelines producing weekly, monthly and quarterly field service analytics for the customer-facing DSP dashboard.</li>
+                <li>Built 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.</li>
+                <li>Engineered a Spark Structured Streaming pipeline over PDFs landing in Blob Storage with SCD Type 2 upserts so document changes stayed traceable across micro-batches, then wired Change Data Feed on the resulting Delta tables so vectorization jobs fired on each insert, update or delete instead of on a schedule.</li>
+                <li>Built the agent executor behind the Maintenance Assist chatbot, handling tool selection, chat history, topic generation and summarization through a YAML-driven config so each tenant's agent could run its own LLM, tools and prompts without a code change.</li>
+                <li>Added a guardrail layer that runs input and output safety checks in parallel with the LLM call, able to cancel an in-flight streamed response mid-generation if a violation surfaced, on top of an SSE streaming layer built to hold 100+ concurrent sessions.</li>
+                <li>Replaced plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by similarity instead of recency, so the model's context window carried what was actually relevant to the current question.</li>
+                <li>Built the document vectorization pipeline feeding PGVector from tens of thousands of knowledge-base articles and service cases, plus an evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set.</li>
               </ul>
               <p><em>PySpark &middot; Databricks &middot; Delta Lake &middot; PostgreSQL &middot; LangChain &middot; PGVector &middot; Azure OpenAI &middot; MLflow</em></p>
             </article>

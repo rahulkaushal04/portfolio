@@ -6,17 +6,26 @@
     "logoHeight": 32,
     "showCompanyName": false,
     "role": "Advanced Software Engineer",
-    "summary": "PLACEHOLDER: one line on what this role covers.",
+    "summary": "Building the control-plane services and deployment engine behind Honeywell's edge Kubernetes appliance.",
     "startDate": "Aug 2026",
     "endDate": "Present",
     "description": [
-      "PLACEHOLDER: lead with the outcome and the number that makes it land, then how you got there.",
-      "PLACEHOLDER: second point, scoped to something you owned rather than something the team shipped.",
-      "PLACEHOLDER: third point, ideally the one a senior engineer would ask a follow-up question about."
+      "Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: the platform's own watchdog was restarting MicroK8s in a way that re-corrupted its network state, then restarting it again once the corruption came back. Closed the loop with image pre-caching, a non-rolling registry deploy, and a circuit breaker that halts auto-remediation after 5 escalations in 24 hours without disabling detection.",
+      "Measured a 32.5% cut in incremental-update install time (90m11s to 60m51s on a representative 44-package run) after finding that a fixed per-sequence datastore-drain pause, not any single package's install script, was the largest cost, then right-sized the pause and parallelized decompression and package installs.",
+      "Built the storage bootstrap logic that lets a node join with or without Ceph already healthy. If Ceph is up, ceph-csi becomes the default storage class immediately; otherwise PVCs land on hostpath storage and migrate later through a scale-down, copy, switch, scale-up sequence, since recreating a PVC directly on Ceph would lose data.",
+      "Implemented 2-node and N-node Pacemaker/Corosync failover for the cluster's floating VIP, including a 5-phase failover test that runs pre-flight, soft, hard, restore and verify checks in sequence, simulating a network partition and diffing data on the new primary before calling the test passed.",
+      "Built EdgeOrchestrator, the Go service exposing the appliance's REST/WebSocket control-plane API, which shells out to Ansible for cluster deploy and upgrade through argument-array exec calls rather than a shell, and tracks its own binary replacement across a self-update restart with a marker file so a crashed update can't be reported as a false success.",
+      "Built ForgeLinkLite, a cross-platform Go agent handling Azure IoT Hub provisioning and AMQP-over-WebSocket connectivity with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover."
     ],
     "tags": [
-      "Python",
-      "FastAPI"
+      "Go",
+      "Kubernetes (MicroK8s)",
+      "Ansible",
+      "Pacemaker/Corosync",
+      "Ceph",
+      "Azure IoT Hub",
+      "TypeScript",
+      "Prometheus/Grafana"
     ]
   },
   {
@@ -26,16 +35,16 @@
     "logoHeight": 32,
     "showCompanyName": false,
     "role": "Software Engineer II",
-    "summary": "Owned the training, model registry, scanning and deployment services inside ForgeML.",
+    "summary": "Built services across ForgeML's 8-microservice MLOps platform, and the pipeline that migrates and AI-translates SkySpark automation rules into Forge.",
     "startDate": "Jul 2024",
     "endDate": "Jul 2026",
     "description": [
-      "Cut model deployment from 3 days to 30 minutes for 15+ data scientists by building multi-target deployment orchestration across Databricks Serving, AKS and edge devices.",
-      "Designed ForgeML as 8 microservices exposing 30+ FastAPI endpoints, covering training, model registry, security scanning, deployment and monitoring for multi-tenant workloads.",
-      "Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell Forge DSL, reaching 80%+ accuracy, with job submission and status polling handled automatically.",
-      "Halved write latency on an Azure Event Hub pipeline by writing to PostgreSQL and Unity Catalog concurrently, with exactly-once delivery backed by Blob Storage checkpoints.",
-      "Caught 40+ vulnerabilities before deployment by putting 5 security scanners behind a Strategy Pattern, alongside JWT RS256 auth and OPA policy enforcement.",
-      "Built a BDD acceptance suite in Behave covering onboarding through deployment, running in parallel across tenants, with Locust load tests alongside it."
+      "Built the model deployment engine that routes to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. A dual async loop then polls serving endpoints every 30 seconds and liveness every 5 minutes, with one loop's failure isolated from the other.",
+      "Routed model registrations through five security scanners covering SAST, dependency and license risk, container images, and AI-model artifacts, all behind one Strategy Pattern interface, so adding a new scanner meant writing a new class instead of another conditional.",
+      "Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed, tracking the resulting endpoint for later translation requests.",
+      "Built the asyncio event processor that consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes the result to PostgreSQL and Unity Catalog concurrently with Blob Storage checkpointing for exactly-once delivery across restarts.",
+      "Built the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel instead of sequentially, cutting write time roughly in half.",
+      "Wrote the BDD acceptance suite in Behave, covering 50+ scenarios across six workflow domains and running in parallel per tenant, plus Locust load tests spanning onboarding through deployment."
     ],
     "tags": [
       "Python",
@@ -55,16 +64,16 @@
     "logoHeight": 32,
     "showCompanyName": false,
     "role": "Data Engineer II",
-    "summary": "Built the Databricks pipelines behind field service analytics and the Maintenance Assist chatbot.",
+    "summary": "Built the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.",
     "startDate": "Jun 2022",
     "endDate": "Dec 2023",
     "description": [
-      "Built 15+ PySpark ingestion pipelines on Databricks pulling from SQL Server, Salesforce, SharePoint and REST APIs into Delta Lake, with watermark-based incremental loading.",
-      "Engineered a Spark Structured Streaming pipeline for PDFs landing in Blob Storage, applying SCD Type 2 upserts so document changes stayed traceable across micro-batches.",
-      "Built the document vectorization pipeline into PGVector behind the Maintenance Assist chatbot, plus an evaluation harness that scored answers with Azure OpenAI as judge.",
-      "Kept the serving database in sync using batched Delta to PostgreSQL upserts with ON CONFLICT DO UPDATE, which removed the need for full table reloads.",
-      "Wired Change Data Feed on Delta tables so downstream vectorization jobs fired on incremental inserts, updates and deletes rather than on a schedule.",
-      "Wrote the SQL transformation pipelines producing weekly, monthly and quarterly field service analytics for the customer-facing DSP dashboard."
+      "Built 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.",
+      "Engineered a Spark Structured Streaming pipeline over PDFs landing in Blob Storage with SCD Type 2 upserts so document changes stayed traceable across micro-batches, then wired Change Data Feed on the resulting Delta tables so vectorization jobs fired on each insert, update or delete instead of on a schedule.",
+      "Built the agent executor behind the Maintenance Assist chatbot, handling tool selection, chat history, topic generation and summarization through a YAML-driven config so each tenant's agent could run its own LLM, tools and prompts without a code change.",
+      "Added a guardrail layer that runs input and output safety checks in parallel with the LLM call, able to cancel an in-flight streamed response mid-generation if a violation surfaced, on top of an SSE streaming layer built to hold 100+ concurrent sessions.",
+      "Replaced plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by similarity instead of recency, so the model's context window carried what was actually relevant to the current question.",
+      "Built the document vectorization pipeline feeding PGVector from tens of thousands of knowledge-base articles and service cases, plus an evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set."
     ],
     "tags": [
       "PySpark",
