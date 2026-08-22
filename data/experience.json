@@ -6,8 +6,8 @@
     "logoHeight": 32,
     "showCompanyName": false,
     "role": "Advanced Software Engineer",
-    "summary": "Building the control-plane services and deployment engine behind Honeywell's edge Kubernetes appliance.",
-    "startDate": "Aug 2026",
+    "summary": "Building the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running.",
+    "startDate": "May 2026",
     "endDate": "Present",
     "description": [
       "Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: the platform's own watchdog was restarting MicroK8s in a way that re-corrupted its network state, then restarting it again once the corruption came back. Closed the loop with image pre-caching, a non-rolling registry deploy, and a circuit breaker that halts auto-remediation after 5 escalations in 24 hours without disabling detection.",
@@ -37,7 +37,7 @@
     "role": "Software Engineer II",
     "summary": "Built services across ForgeML's 8-microservice MLOps platform, and the pipeline that migrates and AI-translates SkySpark automation rules into Forge.",
     "startDate": "Jul 2024",
-    "endDate": "Jul 2026",
+    "endDate": "Apr 2026",
     "description": [
       "Built the model deployment engine that routes to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. A dual async loop then polls serving endpoints every 30 seconds and liveness every 5 minutes, with one loop's failure isolated from the other.",
       "Routed model registrations through five security scanners covering SAST, dependency and license risk, container images, and AI-model artifacts, all behind one Strategy Pattern interface, so adding a new scanner meant writing a new class instead of another conditional.",
