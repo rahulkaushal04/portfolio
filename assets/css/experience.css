@@ -116,14 +116,22 @@
   margin-bottom: var(--sp-1);
 }
 
+.experience__logo-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  background-color: var(--clr-bg-tertiary);
+}
+
 .experience__logo {
+  display: block;
   width: auto;
   height: auto;
-  border-radius: var(--radius-md);
   object-fit: contain;
-  background-color: var(--clr-bg-tertiary);
-  padding: 2px;
-  flex-shrink: 0;
 }
 
 .experience__company {
@@ -310,11 +318,6 @@
   padding-bottom: var(--sp-4);
   margin-bottom: var(--sp-8);
   border-bottom: 1px solid var(--clr-border);
-}
-
-.experience__logo {
-  height: auto;
-  object-fit: contain;
 }
 
 .experience__promotion {

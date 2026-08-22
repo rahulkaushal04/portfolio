@@ -69,7 +69,7 @@ function groupByCompany(list) {
     if (last && last.company === entry.company) {
       last.entries.push({ entry, index });
     } else {
-      groups.push({ company: entry.company, logo: entry.logo, logoSize: entry.logoSize, entries: [{ entry, index }] });
+      groups.push({ company: entry.company, logo: entry.logo, logoSize: entry.logoSize, logoHeight: entry.logoHeight, entries: [{ entry, index }] });
     }
   });
 
@@ -78,6 +78,9 @@ function groupByCompany(list) {
 
 function groupHTML(group) {
   const size = group.logoSize ?? 40;
+  // Wordmarks are far wider than tall; a square height attribute reserves the
+  // wrong box and the layout jumps when the image lands.
+  const logoH = group.logoHeight ?? size;
   const roleCount = group.entries.length;
 
   const promotion = roleCount > 1
@@ -87,13 +90,15 @@ function groupHTML(group) {
   return `
     <section class="experience__company-group" aria-label="${escapeHTML(group.company)}">
       <div class="experience__company-head reveal">
-        <img src="${group.logo}"
-             alt="${escapeHTML(group.company)} logo"
-             class="experience__logo"
-             width="${size}" height="${size}"
-             style="width:${size}px"
-             loading="lazy"
-             onerror="this.style.display='none'">
+        <span class="experience__logo-frame">
+          <img src="${group.logo}"
+               alt="${escapeHTML(group.company)} logo"
+               class="experience__logo"
+               width="${size}" height="${logoH}"
+               style="width:${size}px"
+               loading="lazy"
+               onerror="this.closest('.experience__logo-frame').style.display='none'">
+        </span>
         ${promotion}
       </div>
       <div class="experience__roles">

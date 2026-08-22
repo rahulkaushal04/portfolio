@@ -2,7 +2,8 @@
   {
     "company": "Honeywell",
     "logo": "assets/images/companies/honeywell.webp",
-    "logoSize": 110,
+    "logoSize": 180,
+    "logoHeight": 32,
     "showCompanyName": false,
     "role": "Advanced Software Engineer",
     "summary": "PLACEHOLDER: one line on what this role covers.",
@@ -21,7 +22,8 @@
   {
     "company": "Honeywell",
     "logo": "assets/images/companies/honeywell.webp",
-    "logoSize": 110,
+    "logoSize": 180,
+    "logoHeight": 32,
     "showCompanyName": false,
     "role": "Software Engineer II",
     "summary": "Owned the training, model registry, scanning and deployment services inside ForgeML.",
@@ -49,7 +51,8 @@
   {
     "company": "Honeywell",
     "logo": "assets/images/companies/honeywell.webp",
-    "logoSize": 110,
+    "logoSize": 180,
+    "logoHeight": 32,
     "showCompanyName": false,
     "role": "Data Engineer II",
     "summary": "Built the Databricks pipelines behind field service analytics and the Maintenance Assist chatbot.",
