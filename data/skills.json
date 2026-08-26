@@ -4,13 +4,39 @@
     "label": "Core stack",
     "note": "What most of my production code is written in, and what I reach for first on anything new.",
     "items": [
-      { "name": "Python",     "icon": "python.svg" },
-      { "name": "FastAPI",    "icon": "fastapi.svg" },
-      { "name": "SQL",        "icon": "sql.svg" },
-      { "name": "PostgreSQL", "icon": "postgresql.svg" },
-      { "name": "Pydantic",   "icon": "pydantic.webp" },
-      { "name": "SQLAlchemy", "icon": "sqlalchemy.webp", "iconSize": 70 },
-      { "name": "Bash",       "icon": "bash.webp" }
+      {
+        "name": "Python",
+        "icon": "python.svg"
+      },
+      {
+        "name": "Go",
+        "icon": "go.svg"
+      },
+      {
+        "name": "FastAPI",
+        "icon": "fastapi.svg"
+      },
+      {
+        "name": "SQL",
+        "icon": "sql.svg"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "postgresql.svg"
+      },
+      {
+        "name": "Pydantic",
+        "icon": "pydantic.webp"
+      },
+      {
+        "name": "SQLAlchemy",
+        "icon": "sqlalchemy.webp",
+        "iconSize": 70
+      },
+      {
+        "name": "Bash",
+        "icon": "bash.webp"
+      }
     ]
   },
   {
@@ -18,13 +44,29 @@
     "label": "ML and data platform",
     "note": "What the platform runs on, from the data pipelines through to model tracking and serving.",
     "items": [
-      { "name": "Databricks",   "icon": "databricks.webp", "iconSize": 60 },
-      { "name": "PySpark",      "icon": "pyspark.svg" },
-      { "name": "MLflow",       "icon": "mlflow.webp", "iconSize": 60 },
-      { "name": "LLM / RAG",    "icon": "llm-rag.webp", "iconSize": 80 },
-      { "name": "LangChain",    "icon": "langchain.webp" },
-      { "name": "PyTorch",      "icon": "pytorch.svg" },
-      { "name": "Scikit-learn", "icon": "scikit-learn.svg" }
+      {
+        "name": "Databricks",
+        "icon": "databricks.webp",
+        "iconSize": 60
+      },
+      {
+        "name": "PySpark",
+        "icon": "pyspark.svg"
+      },
+      {
+        "name": "MLflow",
+        "icon": "mlflow.webp",
+        "iconSize": 60
+      },
+      {
+        "name": "LLM / RAG",
+        "icon": "llm-rag.webp",
+        "iconSize": 80
+      },
+      {
+        "name": "LangChain",
+        "icon": "langchain.webp"
+      }
     ]
   },
   {
@@ -32,24 +74,30 @@
     "label": "Infrastructure and delivery",
     "note": "How services get built, shipped, scanned and watched once they are running in front of real users.",
     "items": [
-      { "name": "Docker",         "icon": "docker.svg" },
-      { "name": "Kubernetes",     "icon": "kubernetes.svg" },
-      { "name": "Azure Cloud",    "icon": "azure-cloud.svg" },
-      { "name": "GitHub Actions", "icon": "github-actions.webp" },
-      { "name": "Terraform",      "icon": "terraform.svg" },
-      { "name": "Prometheus",     "icon": "prometheus.svg" },
-      { "name": "Git",            "icon": "git.svg" }
-    ]
-  },
-  {
-    "id": "async",
-    "label": "Messaging and async",
-    "note": "Queues, streams and caches for the work that happens between services rather than inside one.",
-    "items": [
-      { "name": "Kafka",  "icon": "kafka.webp", "iconSize": 55 },
-      { "name": "Celery", "icon": "celery.webp" },
-      { "name": "Redis",  "icon": "redis.svg" },
-      { "name": "Go",     "icon": "go.svg" }
+      {
+        "name": "Docker",
+        "icon": "docker.svg"
+      },
+      {
+        "name": "Kubernetes",
+        "icon": "kubernetes.svg"
+      },
+      {
+        "name": "Azure Cloud",
+        "icon": "azure-cloud.svg"
+      },
+      {
+        "name": "GitHub Actions",
+        "icon": "github-actions.webp"
+      },
+      {
+        "name": "Prometheus",
+        "icon": "prometheus.svg"
+      },
+      {
+        "name": "Git",
+        "icon": "git.svg"
+      }
     ]
   }
 ]

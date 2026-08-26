@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
   <title>Rahul Kaushal - ML Platform and Backend Engineer</title>
-  <meta name="description" content="Advanced Software Engineer at Honeywell, building the deployment software behind an edge Kubernetes platform. Go and Ansible, after two years on Honeywell's ML platform.">
+  <meta name="description" content="Advanced Software Engineer at Honeywell, working on the deployment software behind an edge Kubernetes platform. Go and Ansible, after two years on Honeywell's ML platform.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - ML Platform and Backend Engineer">
-  <meta property="og:description" content="I build the deployment software behind Honeywell's edge Kubernetes platform: Go and Ansible, keeping it running on hardware with no internet connection.">
+  <meta property="og:description" content="I work on the deployment software behind Honeywell's edge Kubernetes platform: Go and Ansible, keeping it running on appliances that ship fully offline or cloud-connected.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -69,7 +69,7 @@
         "image": "https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png",
         "jobTitle": "Advanced Software Engineer",
         "email": "mailto:kaushalrahul15@gmail.com",
-        "description": "I build the deployment software behind Honeywell's edge Kubernetes platform: Go, Ansible, and the failover logic that keeps it running on hardware with no internet connection. Before that, I built services across ForgeML, Honeywell's ML platform, and the Databricks pipelines that came before it.",
+        "description": "I work on the deployment software behind Honeywell's edge Kubernetes platform: Go, Ansible, and the failover logic that keeps it running on appliances that ship fully offline or cloud-connected. Before that, I built services across ForgeML, Honeywell's ML platform, and the Databricks pipelines that came before it.",
         "worksFor": {
           "@type": "Organization",
           "name": "Honeywell",
@@ -90,25 +90,19 @@
             "@type": "City",
             "name": "Bengaluru"
           },
-          "skills": "Python, FastAPI, MLOps, Databricks, PySpark, Kubernetes, PostgreSQL, Azure, MLflow, Retrieval Augmented Generation"
+          "skills": "Python, Go, FastAPI, MLOps, Databricks, PySpark, Kubernetes, Ansible, PostgreSQL, Azure, MLflow, Retrieval Augmented Generation"
         },
         "knowsAbout": [
           "Python",
+          "Go",
           "FastAPI",
-          "MLOps",
-          "Machine Learning Infrastructure",
           "Platform Engineering",
-          "Backend Engineering",
-          "Data Engineering",
-          "Databricks",
-          "PySpark",
-          "Delta Lake",
+          "MLOps",
           "Kubernetes",
+          "Ansible",
+          "Databricks",
           "PostgreSQL",
-          "Microsoft Azure",
-          "MLflow",
-          "Retrieval Augmented Generation",
-          "Large Language Models"
+          "Retrieval Augmented Generation"
         ],
         "knowsLanguage": "en",
         "sameAs": [
@@ -237,10 +231,11 @@
           </p>
 
           <p class="hero__tagline reveal">
-            I build the software that installs, updates and keeps Honeywell's edge Kubernetes
-            platform running on hardware with no internet connection. Written in Go, deployed
-            with Ansible, with failover logic that keeps it up if a node fails. Before that, I
-            built services across ForgeML, Honeywell's ML platform.
+            I work on the software that installs, updates and keeps Honeywell's edge Kubernetes
+            platform running, on appliances that ship fully offline or cloud-connected. Written
+            in Go, deployed with Ansible, with VIP failover that moves the cluster address to
+            the surviving node in under two minutes. Before that, I built services across
+            ForgeML, Honeywell's ML platform.
           </p>
 
           <div class="hero__cta reveal gap-4">
@@ -290,7 +285,7 @@
             </div>
             <div class="hero__spec">
               <dt>Since</dt>
-              <dd>2022</dd>
+              <dd>2023</dd>
             </div>
           </dl>
         </aside>
@@ -342,10 +337,9 @@
         <div class="skills__groups" id="skillsGroups">
           <noscript>
             <ul style="list-style:none;padding:0;display:grid;gap:1.5rem;">
-              <li><strong>Core stack:</strong> Python, FastAPI, SQL, PostgreSQL, Pydantic, SQLAlchemy, Bash</li>
-              <li><strong>ML and data platform:</strong> Databricks, PySpark, MLflow, LLM / RAG, LangChain, PyTorch, Scikit-learn</li>
-              <li><strong>Infrastructure and delivery:</strong> Docker, Kubernetes, Azure Cloud, GitHub Actions, Terraform, Prometheus, Git</li>
-              <li><strong>Messaging and async:</strong> Kafka, Celery, Redis, Go</li>
+              <li><strong>Core stack:</strong> Python, Go, FastAPI, SQL, PostgreSQL, Pydantic, SQLAlchemy, Bash</li>
+              <li><strong>ML and data platform:</strong> Databricks, PySpark, MLflow, LLM / RAG, LangChain</li>
+              <li><strong>Infrastructure and delivery:</strong> Docker, Kubernetes, Azure Cloud, GitHub Actions, Prometheus, Git</li>
             </ul>
           </noscript>
         </div>
@@ -357,7 +351,7 @@
         <div class="section-header--left">
           <span class="section-label">Experience</span>
           <h2 class="section-title reveal" id="experienceTitle">Three roles, one company</h2>
-          <p class="section-subtitle reveal">One employer since 2022, two promotions since.</p>
+          <p class="section-subtitle reveal">One employer since 2023.</p>
         </div>
 
         <div class="experience__timeline" id="experienceTimeline">
@@ -365,12 +359,13 @@
             <article style="margin-bottom:2rem;">
               <h3>Advanced Software Engineer at Honeywell</h3>
               <p>May 2026 to Present</p>
-              <p>Building the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running.</p>
+              <p>Building the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.</p>
               <ul>
-                <li>Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: the platform's own watchdog was restarting MicroK8s in a way that re-corrupted its network state, then restarting it again once the corruption came back. Closed the loop with image pre-caching, a non-rolling registry deploy, and a circuit breaker that halts auto-remediation after 5 escalations in 24 hours without disabling detection.</li>
-                <li>Measured a 32.5% cut in incremental-update install time (90m11s to 60m51s on a representative 44-package run) after finding that a fixed per-sequence datastore-drain pause, not any single package's install script, was the largest cost, then right-sized the pause and parallelized decompression and package installs.</li>
+                <li>Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: killing MicroK8s hard tore down containerd without a clean CNI teardown, which corrupted Calico's IP state until the address pool ran out — and the platform's own watchdog, seeing a NotReady node, escalated to another stop/start and re-triggered the same loop.</li>
+                <li>Closed that loop by pre-caching the registry's own image so it no longer depended on the mirror it was meant to serve, switching the registry to a Recreate rollout since its volume is single-writer and a rolling update deadlocks attaching it twice, and adding a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.</li>
+                <li>Measured a 32.5% cut in incremental-update install time (90m11s to 60m51s on a representative 44-package run) after finding that a fixed per-sequence datastore-drain pause, not any single package's install script, was the largest cost. The pause protects a real datastore write-backlog limit, so it could only be right-sized: 13 sequences consolidated into 9, the pause halved from 120s to 60s, and tarball extraction moved to pigz.</li>
                 <li>Built the storage bootstrap logic that lets a node join with or without Ceph already healthy. If Ceph is up, ceph-csi becomes the default storage class immediately; otherwise PVCs land on hostpath storage and migrate later through a scale-down, copy, switch, scale-up sequence, since recreating a PVC directly on Ceph would lose data.</li>
-                <li>Implemented 2-node and N-node Pacemaker/Corosync failover for the cluster's floating VIP, including a 5-phase failover test that runs pre-flight, soft, hard, restore and verify checks in sequence, simulating a network partition and diffing data on the new primary before calling the test passed.</li>
+                <li>Implemented 2-node and N-node Pacemaker/Corosync failover for the cluster's floating VIP: the secondary takes the VIP within 90 seconds on a graceful standby, and recovers within 120 seconds from a network partition simulated by dropping Corosync traffic. The 5-phase test runs pre-flight, soft, hard, restore and verify checks in sequence, diffing data on the new primary before calling it passed.</li>
                 <li>Built EdgeOrchestrator, the Go service exposing the appliance's REST/WebSocket control-plane API, which shells out to Ansible for cluster deploy and upgrade through argument-array exec calls rather than a shell, and tracks its own binary replacement across a self-update restart with a marker file so a crashed update can't be reported as a false success.</li>
                 <li>Built ForgeLinkLite, a cross-platform Go agent handling Azure IoT Hub provisioning and AMQP-over-WebSocket connectivity with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover.</li>
               </ul>
@@ -379,27 +374,28 @@
             <article style="margin-bottom:2rem;">
               <h3>Software Engineer II at Honeywell</h3>
               <p>Jul 2024 to Apr 2026</p>
-              <p>Built services across ForgeML's 8-microservice MLOps platform, and the pipeline that migrates and AI-translates SkySpark automation rules into Forge.</p>
+              <p>Built services across ForgeML's 8-microservice MLOps platform, running across 10+ tenant workspaces, and the pipeline that migrates SkySpark automation rules into Forge and translates them with a tuned model.</p>
               <ul>
-                <li>Built the model deployment engine that routes to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. A dual async loop then polls serving endpoints every 30 seconds and liveness every 5 minutes, with one loop's failure isolated from the other.</li>
-                <li>Routed model registrations through five security scanners covering SAST, dependency and license risk, container images, and AI-model artifacts, all behind one Strategy Pattern interface, so adding a new scanner meant writing a new class instead of another conditional.</li>
-                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed, tracking the resulting endpoint for later translation requests.</li>
-                <li>Built the asyncio event processor that consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes the result to PostgreSQL and Unity Catalog concurrently with Blob Storage checkpointing for exactly-once delivery across restarts.</li>
+                <li>Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes, so one loop failing doesn't take the other down with it.</li>
+                <li>Routed model registrations through five security scanners — Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser — all behind one Strategy Pattern interface, so adding a scanner meant writing a new class instead of another conditional.</li>
+                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed. A translation counted as correct only if running it produced the same results as the original Axon rule on the same data, and the domain experts who supplied the training pairs reviewed the output as well.</li>
+                <li>Built the asyncio event processor that consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write, so delivery is at-least-once and the writes are upserts — a replay after a crash overwrites rather than duplicates.</li>
                 <li>Built the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel instead of sequentially, cutting write time roughly in half.</li>
-                <li>Wrote the BDD acceptance suite in Behave, covering 50+ scenarios across six workflow domains and running in parallel per tenant, plus Locust load tests spanning onboarding through deployment.</li>
+                <li>Wrote the BDD acceptance suite in Behave: 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests spanning onboarding through deployment.</li>
               </ul>
               <p><em>Python &middot; FastAPI &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Google Vertex AI &middot; MLflow &middot; Azure Event Hub &middot; PostgreSQL</em></p>
             </article>
             <article style="margin-bottom:2rem;">
               <h3>Data Engineer II at Honeywell</h3>
-              <p>Jun 2022 to Dec 2023</p>
+              <p>Jun 2023 to Jun 2024</p>
               <p>Built the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.</p>
               <ul>
                 <li>Built 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.</li>
-                <li>Engineered a Spark Structured Streaming pipeline over PDFs landing in Blob Storage with SCD Type 2 upserts so document changes stayed traceable across micro-batches, then wired Change Data Feed on the resulting Delta tables so vectorization jobs fired on each insert, update or delete instead of on a schedule.</li>
+                <li>Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, applying SCD Type 2 upserts so document revisions stayed traceable across micro-batches, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables so the vectorization job downstream read only the rows that had changed since its last run.</li>
+                <li>Wrote the SQL transformation pipelines behind the field service analytics: incident resolution trends on weekly, monthly and quarterly windows, contract and maintenance metrics, and NPS, feeding the customer-facing DSP dashboard.</li>
                 <li>Built the agent executor behind the Maintenance Assist chatbot, handling tool selection, chat history, topic generation and summarization through a YAML-driven config so each tenant's agent could run its own LLM, tools and prompts without a code change.</li>
-                <li>Added a guardrail layer that runs input and output safety checks in parallel with the LLM call, able to cancel an in-flight streamed response mid-generation if a violation surfaced, on top of an SSE streaming layer built to hold 100+ concurrent sessions.</li>
-                <li>Replaced plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by similarity instead of recency, so the model's context window carried what was actually relevant to the current question.</li>
+                <li>Added a guardrail layer that runs input validation and output safety checks as async tasks alongside the LLM call rather than before it, so a violation surfacing mid-stream cancels the in-flight response, usually within a few streamed tokens. Tenants configure it as input-only or input and output, on top of an SSE streaming layer built to hold 100+ concurrent sessions.</li>
+                <li>Replaced plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by max inner product similarity rather than recency.</li>
                 <li>Built the document vectorization pipeline feeding PGVector from tens of thousands of knowledge-base articles and service cases, plus an evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set.</li>
               </ul>
               <p><em>PySpark &middot; Databricks &middot; Delta Lake &middot; PostgreSQL &middot; LangChain &middot; PGVector &middot; Azure OpenAI &middot; MLflow</em></p>
@@ -465,8 +461,8 @@
             </article>
             <article style="margin-bottom:2rem;">
               <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru: feat: add cache_contains() for read-only key lookup</a></h3>
-              <p>Added cache_contains(*args, **kwargs) -&gt; bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before.</p>
-              <p><em>Python &middot; asyncio &middot; LRU Cache &middot; New Feature &middot; Cache Introspection</em></p>
+              <p>Added cache_contains(*args, **kwargs) -&gt; bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.</p>
+              <p><em>Python &middot; asyncio &middot; New Feature</em></p>
             </article>
           </noscript>
         </div>
@@ -603,8 +599,8 @@
         <div class="footer__brand">
           <span class="footer__logo">RK<span class="text-gradient">.</span></span>
           <p class="footer__blurb">
-            ML platform and backend engineer in Bengaluru, currently building
-            Honeywell's edge Kubernetes deployment platform.
+            ML platform and backend engineer in Bengaluru, currently working on
+            the deployment platform for Honeywell's edge Kubernetes appliances.
           </p>
           <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>

@@ -40,7 +40,7 @@ Every section renders from JSON. To update the site, edit the data file, not the
 
 | File                 | Drives                                                     |
 |----------------------|------------------------------------------------------------|
-| `meta.json`          | Name, positioning line, email, socials                     |
+| `meta.json`          | Reference only. Nothing reads it yet; the head and hero are in the markup |
 | `skills.json`        | Skill groups. Each group has a `label`, a `note`, `items`  |
 | `experience.json`    | Roles. Consecutive entries at one company are auto-grouped |
 | `projects.json`      | Project cards                                              |
