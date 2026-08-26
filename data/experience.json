@@ -6,17 +6,14 @@
     "logoHeight": 32,
     "showCompanyName": false,
     "role": "Advanced Software Engineer",
-    "summary": "Building the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.",
+    "summary": "Working with the team on the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.",
     "startDate": "May 2026",
     "endDate": "Present",
     "description": [
-      "Root-caused a production incident where an idle appliance was running the exact same code as a healthy twin: killing MicroK8s hard tore down containerd without a clean CNI teardown, which corrupted Calico's IP state until the address pool ran out — and the platform's own watchdog, seeing a NotReady node, escalated to another stop/start and re-triggered the same loop.",
-      "Closed that loop by pre-caching the registry's own image so it no longer depended on the mirror it was meant to serve, switching the registry to a Recreate rollout since its volume is single-writer and a rolling update deadlocks attaching it twice, and adding a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.",
-      "Measured a 32.5% cut in incremental-update install time (90m11s to 60m51s on a representative 44-package run) after finding that a fixed per-sequence datastore-drain pause, not any single package's install script, was the largest cost. The pause protects a real datastore write-backlog limit, so it could only be right-sized: 13 sequences consolidated into 9, the pause halved from 120s to 60s, and tarball extraction moved to pigz.",
-      "Built the storage bootstrap logic that lets a node join with or without Ceph already healthy. If Ceph is up, ceph-csi becomes the default storage class immediately; otherwise PVCs land on hostpath storage and migrate later through a scale-down, copy, switch, scale-up sequence, since recreating a PVC directly on Ceph would lose data.",
-      "Implemented 2-node and N-node Pacemaker/Corosync failover for the cluster's floating VIP: the secondary takes the VIP within 90 seconds on a graceful standby, and recovers within 120 seconds from a network partition simulated by dropping Corosync traffic. The 5-phase test runs pre-flight, soft, hard, restore and verify checks in sequence, diffing data on the new primary before calling it passed.",
-      "Built EdgeOrchestrator, the Go service exposing the appliance's REST/WebSocket control-plane API, which shells out to Ansible for cluster deploy and upgrade through argument-array exec calls rather than a shell, and tracks its own binary replacement across a self-update restart with a marker file so a crashed update can't be reported as a false success.",
-      "Built ForgeLinkLite, a cross-platform Go agent handling Azure Device Provisioning Service enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover."
+      "Contributed to the performance investigation that cut incremental-update install time by 32.5% (90m11s to 60m51s on a representative 44-package run). The biggest cost was a fixed per-sequence datastore-drain pause, not any single package's install script. The pause protects a real write-backlog limit, so it could only be right-sized. We consolidated 13 sequences into 9, halved the pause from 120s to 60s, and moved tarball extraction to pigz.",
+      "Worked on EdgeOrchestrator, the team's Go control-plane service on the appliance: its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack underneath it, Playbooks run as a subprocess with an argument array so nothing reaches a shell, and a marker file stops a crashed self-update being reported as success.",
+      "Helped root-cause a watchdog feedback loop that was wedging idle appliances while a healthy twin ran the exact same code. Killing MicroK8s hard tore down containerd without a clean CNI teardown, leaving Calico's IPAM allocations unreleased until the address pool ran out, and the platform's own watchdog escalated to another stop/start that re-triggered the loop. The fixes we landed: pre-caching the registry's own image so it no longer depended on the mirror it was meant to serve, a Recreate rollout for the single-writer registry volume, and a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.",
+      "Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure Device Provisioning Service enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover."
     ],
     "tags": [
       "Go",
@@ -24,9 +21,7 @@
       "Ansible",
       "Pacemaker/Corosync",
       "Ceph",
-      "Azure IoT Hub",
-      "TypeScript",
-      "Prometheus/Grafana"
+      "Azure IoT Hub"
     ]
   },
   {
@@ -41,10 +36,10 @@
     "endDate": "Apr 2026",
     "description": [
       "Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types so each target's config gets validated at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes, so one loop failing doesn't take the other down with it.",
-      "Routed model registrations through five security scanners — Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser — all behind one Strategy Pattern interface, so adding a scanner meant writing a new class instead of another conditional.",
+      "Routed model registrations through five security scanners — Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser — all behind one Strategy Pattern interface, so adding a scanner meant a new class rather than another conditional.",
       "Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed. A translation counted as correct only if running it produced the same results as the original Axon rule on the same data, and the domain experts who supplied the training pairs reviewed the output as well.",
-      "Built the asyncio event processor that consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write, so delivery is at-least-once and the writes are upserts — a replay after a crash overwrites rather than duplicates.",
-      "Built the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel instead of sequentially, cutting write time roughly in half.",
+      "The asyncio event processor consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write. Delivery is at-least-once with upsert writes, so a crash replay overwrites rows without duplicating them.",
+      "Shipped the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel, which cut write time roughly in half.",
       "Wrote the BDD acceptance suite in Behave: 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests spanning onboarding through deployment."
     ],
     "tags": [
@@ -72,10 +67,10 @@
       "Built 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.",
       "Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, applying SCD Type 2 upserts so document revisions stayed traceable across micro-batches, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables so the vectorization job downstream read only the rows that had changed since its last run.",
       "Wrote the SQL transformation pipelines behind the field service analytics: incident resolution trends on weekly, monthly and quarterly windows, contract and maintenance metrics, and NPS, feeding the customer-facing DSP dashboard.",
-      "Built the agent executor behind the Maintenance Assist chatbot, handling tool selection, chat history, topic generation and summarization through a YAML-driven config so each tenant's agent could run its own LLM, tools and prompts without a code change.",
+      "On the Maintenance Assist chatbot, implemented the agent executor, handling tool selection, chat history, topic generation and summarization through a YAML-driven config so each tenant's agent could run its own LLM, tools and prompts without a code change.",
       "Added a guardrail layer that runs input validation and output safety checks as async tasks alongside the LLM call rather than before it, so a violation surfacing mid-stream cancels the in-flight response, usually within a few streamed tokens. Tenants configure it as input-only or input and output, on top of an SSE streaming layer built to hold 100+ concurrent sessions.",
       "Replaced plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by max inner product similarity rather than recency.",
-      "Built the document vectorization pipeline feeding PGVector from tens of thousands of knowledge-base articles and service cases, plus an evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set."
+      "Vectorized tens of thousands of knowledge-base articles and service cases into PGVector, and built the evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set."
     ],
     "tags": [
       "PySpark",
