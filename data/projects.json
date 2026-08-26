@@ -11,14 +11,14 @@
     "status": "beta"
   },
   {
-    "title": "Hallownest Codex - Hollow Knight Analyzer",
-    "description": "A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.",
+    "title": "Now Boarding Scheduler - Board Game Session Planner",
+    "description": "A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program solved to a proven optimum with SciPy's HiGHS backend rather than a heuristic, run as six lexicographic passes so a lower priority can never undo a higher one. Every scheduled session carries a plain-English reason it was picked.",
     "categories": ["web", "side-projects"],
-    "tags": ["Python", "Streamlit", "Folium", "Plotly", "Pillow", "PyPI"],
-    "thumbnail": "assets/images/projects/hollow-knight-analyzer.webp",
-    "liveUrl": "https://hollow-knight-analyzer.streamlit.app",
-    "githubUrl": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
+    "tags": ["Python", "Streamlit", "SciPy/HiGHS", "MILP", "pandas", "pytest"],
+    "thumbnail": "assets/images/projects/now-boarding-scheduler.webp",
+    "liveUrl": "https://now-boarding-scheduler.streamlit.app",
+    "githubUrl": "https://github.com/rahulkaushal04/now-boarding-scheduler",
     "featured": true,
-    "status": "alpha"
+    "status": "stable"
   }
 ]

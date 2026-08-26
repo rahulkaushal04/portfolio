@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Rahul Kaushal</title>
-  <meta name="description" content="Python tools Rahul Kaushal built and maintains, including DepKeeper, a dependency CLI for requirements.txt, and Hallownest Codex, a Hollow Knight save-file analyzer.">
+  <meta name="description" content="Python tools Rahul Kaushal built and maintains, including DepKeeper, a dependency CLI for requirements.txt, and Now Boarding Scheduler, a MILP-based board game session planner.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects - Rahul Kaushal">
-  <meta property="og:description" content="Python tools I built for myself first, then cleaned up and released. DepKeeper and Hallownest Codex.">
+  <meta property="og:description" content="Python tools I built for myself first, then cleaned up and released. DepKeeper and Now Boarding Scheduler.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/projects.html">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
@@ -66,10 +66,10 @@
           "position": 2,
           "item": {
             "@type": "SoftwareSourceCode",
-            "name": "Hallownest Codex - Hollow Knight Analyzer",
-            "description": "A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.",
-            "codeRepository": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
-            "url": "https://hollow-knight-analyzer.streamlit.app",
+            "name": "Now Boarding Scheduler - Board Game Session Planner",
+            "description": "A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program solved to a proven optimum with SciPy's HiGHS backend rather than a heuristic, run as six lexicographic passes so a lower priority can never undo a higher one.",
+            "codeRepository": "https://github.com/rahulkaushal04/now-boarding-scheduler",
+            "url": "https://now-boarding-scheduler.streamlit.app",
             "programmingLanguage": "Python",
             "author": { "@type": "Person", "name": "Rahul Kaushal" }
           }
@@ -109,7 +109,7 @@
         <span class="section-label">Projects</span>
         <h1 class="projects-page__title headline-signal reveal">All Projects<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
         <p class="projects-page__subtitle reveal">
-          The complete list, including the work still in alpha.
+          Everything I have released, with what state each one is actually in.
         </p>
 
         <div class="projects-page__toolbar reveal">
@@ -142,10 +142,10 @@
               <p><a href="https://rahulkaushal04.github.io/depkeeper/latest/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
             </article>
             <article style="margin-bottom:2rem;">
-              <h2>Hallownest Codex - Hollow Knight Analyzer</h2>
-              <p>A Streamlit app that reads Hollow Knight save files. It decrypts the .dat format, scores progress against the 112% completion target, plots what is still missing on an interactive map, suggests charm loadouts, and exports the result as a shareable report.</p>
-              <p><em>Python &middot; Streamlit &middot; Folium &middot; Plotly &middot; Pillow &middot; PyPI</em></p>
-              <p><a href="https://hollow-knight-analyzer.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
+              <h2>Now Boarding Scheduler - Board Game Session Planner</h2>
+              <p>A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program solved to a proven optimum with SciPy's HiGHS backend rather than a heuristic, run as six lexicographic passes so a lower priority can never undo a higher one. Every scheduled session carries a plain-English reason it was picked.</p>
+              <p><em>Python &middot; Streamlit &middot; SciPy/HiGHS &middot; MILP &middot; pandas &middot; pytest</em></p>
+              <p><a href="https://now-boarding-scheduler.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/now-boarding-scheduler">GitHub</a></p>
             </article>
           </noscript>
         </div>
