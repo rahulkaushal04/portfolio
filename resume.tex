@@ -131,6 +131,7 @@
     \resumeItem{Built the storage bootstrap letting a node join with or without Ceph healthy: \texttt{ceph-csi} as default storage class when Ceph is up, otherwise hostpath with a scale-down/copy/switch/scale-up migration, since recreating a PVC on Ceph loses data.}
     \resumeItem{Implemented 2-node and N-node Pacemaker/Corosync VIP failover --- 90s on graceful standby, 120s from a simulated partition --- with a 5-phase test that diffs data on the new primary before passing.}
     \resumeItem{Built EdgeOrchestrator, the Go service exposing the appliance's REST/WebSocket control-plane API, driving Ansible through argument-array exec rather than a shell, and tracking its own replacement across self-update so a crashed update is not reported as success.}
+    \resumeItem{Built ForgeLinkLite, a cross-platform Go agent handling Azure DPS enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, a KeePass credential vault, and active/passive handshake failover.}
   \resumeItemListEnd
   \toolsLine{Go, Kubernetes (MicroK8s), Ansible, Ceph, Pacemaker/Corosync, Azure IoT Hub, TypeScript, Prometheus/Grafana}
 
