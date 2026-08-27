@@ -95,6 +95,18 @@
         "icon": "prometheus.svg"
       },
       {
+        "name": "Grafana",
+        "icon": "grafana.svg"
+      },
+      {
+        "name": "Ceph",
+        "icon": "ceph.svg"
+      },
+      {
+        "name": "Pacemaker/Corosync",
+        "icon": "_placeholder.svg"
+      },
+      {
         "name": "Git",
         "icon": "git.svg"
       }
