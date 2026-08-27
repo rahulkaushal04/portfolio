@@ -1,51 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- ── Core Meta ──────────────────────────────────── -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Source Contributions - Rahul Kaushal</title>
-  <meta name="description" content="Merged pull requests and open source contributions by Rahul Kaushal to projects like FastAPI, NumPy, and more.">
+  <meta name="description" content="Merged pull requests by Rahul Kaushal to open source Python libraries, including Meta's exca experiment-caching library and aio-libs/async-lru.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0F1117">
+  <meta name="theme-color" content="#0B0D12">
 
-  <!-- ── Open Graph ─────────────────────────────────── -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Open Source Contributions - Rahul Kaushal">
-  <meta property="og:description" content="Merged pull requests and open source contributions to popular repositories.">
+  <meta property="og:description" content="Patches to Python libraries I depend on, reviewed and merged by their maintainers.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/contributions.html">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
-  <!-- ── Canonical ──────────────────────────────────── -->
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/contributions.html">
 
-  <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-  <!-- ── Stylesheets ────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <link rel="stylesheet" href="assets/css/contributions.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Open Source Contributions - Rahul Kaushal",
+    "url": "https://rahulkaushal04.github.io/portfolio/contributions.html",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Rahul Kaushal", "@id": "https://rahulkaushal04.github.io/portfolio/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup",
+            "description": "Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.",
+            "url": "https://github.com/facebookresearch/exca/pull/206",
+            "dateCreated": "2026-03-01",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "aio-libs/async-lru: feat: add cache_contains() for read-only key lookup",
+            "description": "Added cache_contains(*args, **kwargs) -> bool to alru_cache, letting callers check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.",
+            "url": "https://github.com/aio-libs/async-lru/pull/746",
+            "dateCreated": "2026-03-16",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
-  <!-- ── Scroll Progress Bar ────────────────────────── -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ── Custom Cursor (desktop only) ───────────────── -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- ================================================================
-       NAVBAR (Simplified for subpage)
-       ================================================================ -->
   <header class="navbar navbar--subpage" id="navbar">
     <nav class="container flex-between">
-      <!-- Logo: links back to portfolio home -->
       <a href="index.html" class="navbar__logo" aria-label="Back to portfolio">
         <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
       </a>
 
-      <!-- Back link -->
       <a href="index.html#contributions" class="btn btn-outline contributions-page__back-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -56,24 +101,17 @@
     </nav>
   </header>
 
-  <main>
-    <!-- ==============================================================
-         CONTRIBUTIONS PAGE HERO
-         ============================================================== -->
+  <main id="main-content">
     <section class="contributions-page__hero">
       <div class="container">
         <span class="section-label">Open Source</span>
-        <h1 class="contributions-page__title reveal">All Contributions</h1>
+        <h1 class="contributions-page__title headline-signal reveal">All Contributions<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
         <p class="contributions-page__subtitle reveal">
-          Pull requests I've submitted to projects I use and admire, merged and shipped.
+          Every pull request I have had merged into someone else's project.
         </p>
 
-        <!-- Stats Row -->
-        <div class="contributions__stats" id="contributionsStats">
-          <!-- JS will inject stat counters here -->
-        </div>
+        <div class="contributions__stats" id="contributionsStats"></div>
 
-        <!-- Search & Filter Bar -->
         <div class="contributions-page__toolbar reveal">
           <div class="contributions-page__search-wrapper">
             <svg class="contributions-page__search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -84,27 +122,34 @@
                    placeholder="Search contributions..." aria-label="Search contributions">
           </div>
 
-          <!-- Repo filter chips (populated by JS) -->
           <div class="contributions-page__repo-filters" id="contributionRepoFilters" role="group" aria-label="Filter by repository">
             <button class="contributions-page__repo-btn active" data-repo="all">All</button>
           </div>
         </div>
 
-        <!-- Contribution count -->
         <p class="contributions-page__count reveal" id="contributionCount"></p>
       </div>
     </section>
 
-    <!-- ==============================================================
-         CONTRIBUTIONS GRID (all contributions)
-         ============================================================== -->
     <section class="contributions-page__listing">
       <div class="container">
         <div class="contributions__grid" id="contributionsGrid">
-          <!-- JS will inject all contribution cards here -->
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h2><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup</a></h2>
+              <p>Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.</p>
+              <p>Merged <time datetime="2026-03-01">2026-03-01</time></p>
+              <p><em>Python &middot; Bug Fix</em></p>
+            </article>
+            <article style="margin-bottom:2rem;">
+              <h2><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru: feat: add cache_contains() for read-only key lookup</a></h2>
+              <p>Added cache_contains(*args, **kwargs) -&gt; bool to alru_cache, letting callers check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.</p>
+              <p>Merged <time datetime="2026-03-16">2026-03-16</time></p>
+              <p><em>Python &middot; asyncio &middot; New Feature</em></p>
+            </article>
+          </noscript>
         </div>
 
-        <!-- Empty state (shown when filters match nothing) -->
         <div class="contributions-page__empty" id="contributionsEmpty" hidden>
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -118,36 +163,59 @@
     </section>
   </main>
 
-  <!-- ================================================================
-       FOOTER
-       ================================================================ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__tech-stack reveal">
-        <span class="footer__tech-label">Built with</span>
-        <div class="footer__tech-badges">
-          <span class="tag-chip">HTML5</span>
-          <span class="tag-chip">CSS3</span>
-          <span class="tag-chip">JavaScript</span>
-          <span class="tag-chip">GitHub Pages</span>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <p class="footer__blurb">
+            ML platform and backend engineer in Bengaluru, currently working on
+            the deployment platform for Honeywell's edge Kubernetes appliances.
+          </p>
+          <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__nav-title">Sections</h2>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contributions.html">Open Source</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Elsewhere">
+          <h2 class="footer__nav-title">Elsewhere</h2>
+          <ul>
+            <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <p class="footer__copy">
-        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
-      </p>
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="footerYear">2026</span> Rahul Kaushal
+        </p>
+        <p class="footer__built">
+          Hand-written HTML, CSS and JavaScript. No framework, no build step.
+          <a href="https://github.com/rahulkaushal04/portfolio" target="_blank" rel="noopener noreferrer">Source</a>
+        </p>
+      </div>
     </div>
 
-    <!-- Back to Top -->
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"></line>
         <polyline points="5 12 12 5 19 12"></polyline>
       </svg>
     </button>
   </footer>
 
-  <!-- ── Noscript Fallback ──────────────────────────── -->
   <noscript>
     <style>
       .cursor-dot, .scroll-progress { display: none !important; }
@@ -155,7 +223,6 @@
     </style>
   </noscript>
 
-  <!-- ── Scripts ────────────────────────────────────── -->
   <script type="module" src="assets/js/contributions-page.js"></script>
 </body>
 </html>

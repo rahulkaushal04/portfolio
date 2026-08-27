@@ -1,69 +1,9 @@
-/* ============================================================
-   PROJECTS SECTION
-   Includes:
-   - Filter tabs
-   - Bento-style responsive grid
-   - Featured card spanning 2 columns
-   - Hover overlay
-   - GitHub pinned repositories grid
-   ============================================================ */
-
-
-/* ============================================================
-   FILTER TABS
-   ============================================================ */
-.projects__filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-10);
-}
-
-.projects__filter-btn {
-  padding: var(--sp-2) var(--sp-5);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-
-  color: var(--clr-text-secondary);
-  background-color: transparent;
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-full);
-
-  cursor: pointer;
-
-  transition:
-    var(--transition-colors),
-    border-color var(--duration-base) var(--ease-default);
-}
-
-.projects__filter-btn:hover,
-.projects__filter-btn:focus-visible {
-  color: var(--clr-accent);
-  border-color: var(--clr-accent);
-  outline: none;
-}
-
-.projects__filter-btn.active {
-  color: #fff;
-  background-color: var(--clr-accent);
-  border-color: var(--clr-accent);
-}
-
-
-/* ============================================================
-   BENTO GRID
-   ============================================================ */
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: var(--sp-6);
 }
 
-
-/* ============================================================
-   PROJECT CARD
-   ============================================================ */
 .projects__card {
   position: relative;
   display: flex;
@@ -78,7 +18,6 @@
     transform var(--duration-base) var(--ease-default),
     box-shadow var(--duration-base) var(--ease-default);
 
-  will-change: transform;
 }
 
 .projects__card:hover,
@@ -87,15 +26,10 @@
   box-shadow: var(--shadow-xl);
 }
 
-/* Featured card spans two columns (desktop only) */
 .projects__card.featured {
   grid-column: span 2;
 }
 
-
-/* ============================================================
-   CARD IMAGE
-   ============================================================ */
 .projects__card-img-wrapper {
   position: relative;
   overflow: hidden;
@@ -109,7 +43,6 @@
   object-fit: cover;
 
   transition: transform var(--duration-slow) var(--ease-default);
-  will-change: transform;
 }
 
 .projects__card:hover .projects__card-img,
@@ -117,16 +50,10 @@
   transform: scale(1.06);
 }
 
-
-/* ============================================================
-   STATUS BADGE
-   Overlaid on the card image (top-left), similar to the
-   blog "Latest Post" badge. Colour varies via data-status.
-   ============================================================ */
 .projects__card-status {
   position: absolute;
   top: var(--sp-3);
-  left: var(--sp-3);
+  right: var(--sp-3);
   z-index: 2;
 
   padding: var(--sp-1) var(--sp-3);
@@ -140,34 +67,25 @@
   color: #fff;
   border-radius: var(--radius-full);
 
-  /* default (stable) */
   background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 
-/* Beta: blue */
 .projects__card-status[data-status="beta"] {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
-/* Alpha: orange */
 .projects__card-status[data-status="alpha"] {
   background: linear-gradient(135deg, #f97316, #ea580c);
 }
 
-/* Work in progress: amber */
 .projects__card-status[data-status="wip"] {
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-/* No release yet: muted slate */
 .projects__card-status[data-status="no-release"] {
   background: linear-gradient(135deg, #64748b, #475569);
 }
 
-
-/* ============================================================
-   HOVER OVERLAY
-   ============================================================ */
 .projects__card-overlay {
   position: absolute;
   inset: 0;
@@ -201,10 +119,6 @@
   line-height: var(--lh-base);
 }
 
-
-/* ============================================================
-   CARD BODY
-   ============================================================ */
 .projects__card-body {
   display: flex;
   flex-direction: column;
@@ -226,20 +140,12 @@
   flex: 1;
 }
 
-
-/* ============================================================
-   TECH TAGS
-   ============================================================ */
 .projects__card-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-
-/* ============================================================
-   ACTION BUTTONS
-   ============================================================ */
 .projects__card-actions {
   display: flex;
   gap: var(--sp-3);
@@ -247,6 +153,7 @@
 }
 
 .projects__card-link {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
@@ -264,11 +171,16 @@
     background-color var(--duration-base) var(--ease-default);
 }
 
-.projects__card-link:hover,
+.projects__card-link:hover {
+  color: #fff;
+  background-color: var(--clr-accent-solid);
+}
+
 .projects__card-link:focus-visible {
   color: #fff;
-  background-color: var(--clr-accent);
-  outline: none;
+  background-color: var(--clr-accent-solid);
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
 }
 
 .projects__card-link svg {
@@ -276,37 +188,6 @@
   height: 14px;
 }
 
-
-/* ============================================================
-   FILTER ANIMATION STATES
-   JS should toggle classes in sequence
-   ============================================================ */
-.projects__card {
-  transition:
-    transform var(--duration-base) var(--ease-default),
-    box-shadow var(--duration-base) var(--ease-default),
-    opacity var(--duration-base) var(--ease-default);
-}
-
-.projects__card.filter-hidden {
-  display: none;
-}
-
-.projects__card.filter-fade-out {
-  opacity: 0;
-  transform: scale(0.92);
-}
-
-.projects__card.filter-fade-in {
-  opacity: 1;
-  transform: scale(1);
-}
-
-
-/* ============================================================
-   VIEW ALL PROJECTS CTA
-   Centered button below the projects grid on the homepage
-   ============================================================ */
 .projects__cta {
   display: flex;
   justify-content: center;
@@ -327,24 +208,14 @@
   transform: translateX(4px);
 }
 
-/* Homepage projects grid: always 2 equal columns so both
-   featured cards sit side-by-side in a single row           */
 #projects .projects__grid {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* On the homepage, featured cards should NOT span 2 cols    */
 #projects .projects__card.featured {
   grid-column: span 1;
 }
 
-
-/* ============================================================
-   PROJECTS LISTING PAGE  (projects.html)
-   Full-page project archive with search & category filtering
-   ============================================================ */
-
-/* ── Projects Page Hero ──────────────────────────────── */
 .projects-page__hero {
   padding-top: var(--sp-20);
   padding-bottom: var(--sp-10);
@@ -355,10 +226,6 @@
   font-weight: var(--fw-extrabold);
   text-align: center;
   margin-bottom: var(--sp-4);
-  background: linear-gradient(135deg, var(--clr-text-primary), var(--clr-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .projects-page__subtitle {
@@ -370,7 +237,6 @@
   margin-bottom: var(--sp-10);
 }
 
-/* ── Search + Category Toolbar ───────────────────────── */
 .projects-page__toolbar {
   display: flex;
   flex-direction: column;
@@ -410,13 +276,13 @@
   color: var(--clr-text-muted);
 }
 
-.projects-page__search:focus {
-  outline: none;
+.projects-page__search:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
   border-color: var(--clr-accent);
   box-shadow: 0 0 0 3px var(--clr-accent-light);
 }
 
-/* ── Category Filter Chips ───────────────────────────── */
 .projects-page__cat-filters {
   display: flex;
   flex-wrap: wrap;
@@ -452,7 +318,6 @@
   border-color: transparent;
 }
 
-/* ── Project Count ───────────────────────────────────── */
 .projects-page__count {
   text-align: center;
   font-size: var(--fs-sm);
@@ -460,22 +325,18 @@
   margin-top: var(--sp-5);
 }
 
-/* ── Listing Section ─────────────────────────────────── */
 .projects-page__listing {
   padding-bottom: var(--sp-24);
 }
 
-/* Full-page grid variant */
 .projects__grid--full {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }
 
-/* On full page, featured cards should NOT span 2 cols */
 .projects__grid--full .projects__card.featured {
   grid-column: span 1;
 }
 
-/* ── Empty State ─────────────────────────────────────── */
 .projects-page__empty {
   display: flex;
   flex-direction: column;
@@ -494,79 +355,6 @@
   font-size: var(--fs-lg);
 }
 
-
-/* ============================================================
-   GITHUB PINNED REPOS
-   ============================================================ */
-.projects__github-repos {
-  margin-top: var(--sp-10);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--sp-4);
-}
-
-.projects__github-repos:empty {
-  display: none;
-}
-
-.projects__repo-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-
-  padding: var(--sp-5);
-
-  background-color: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-md);
-
-  transition:
-    transform var(--duration-base) var(--ease-default),
-    box-shadow var(--duration-base) var(--ease-default);
-
-  will-change: transform;
-}
-
-.projects__repo-card:hover,
-.projects__repo-card:focus-within {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.projects__repo-name {
-  font-size: var(--fs-base);
-  font-weight: var(--fw-semibold);
-  color: var(--clr-accent);
-}
-
-.projects__repo-desc {
-  font-size: var(--fs-sm);
-  color: var(--clr-text-secondary);
-  line-height: var(--lh-base);
-}
-
-.projects__repo-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-4);
-
-  font-size: var(--fs-xs);
-  color: var(--clr-text-muted);
-
-  margin-top: auto;
-}
-
-.projects__repo-lang-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
 
   .projects__grid,
@@ -595,20 +383,11 @@
   .projects-page__toolbar {
     gap: var(--sp-4);
   }
-
-  .projects__github-repos {
-    grid-template-columns: 1fr;
-  }
 }
 
-
-/* ============================================================
-   ACCESSIBILITY: Reduced Motion
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
 
   .projects__card,
-  .projects__repo-card,
   .projects__card-img {
     transition: none !important;
     transform: none !important;

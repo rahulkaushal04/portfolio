@@ -1,6 +1,3 @@
-// particles.js - Floating particle mesh drawn on the hero canvas.
-// Particles drift slowly and repel from the mouse. Nearby particles are connected by faint lines.
-
 let canvas;
 let ctx;
 let particles = [];
@@ -11,11 +8,21 @@ let animId = 0;
 
 const mouse = { x: -9999, y: -9999 };
 
-const PARTICLE_COUNT = 80;
-const CONNECT_DIST   = 140;  // max distance (px) to draw a connecting line
-const MOUSE_RADIUS   = 180;  // repulsion radius in px
-const MOUSE_FORCE    = 0.04; // how strongly the mouse pushes particles
-const BASE_SPEED     = 0.3;  // max random drift speed per frame
+let accent = '#4F8EF7';
+let running = false;
+
+function readAccent() {
+  accent = getComputedStyle(document.documentElement)
+    .getPropertyValue('--clr-accent').trim() || '#4F8EF7';
+}
+
+// Connection drawing is O(n^2), so the count stays modest.
+const PARTICLE_COUNT_DESKTOP = 64;
+const PARTICLE_COUNT_MOBILE  = 28;
+const CONNECT_DIST   = 140;
+const MOUSE_RADIUS   = 180;
+const MOUSE_FORCE    = 0.04;
+const BASE_SPEED     = 0.3;
 const PARTICLE_R_MIN = 1.2;
 const PARTICLE_R_MAX = 2.4;
 
@@ -25,11 +32,11 @@ function randomBetween(min, max) {
 
 function createParticle() {
   return {
-    x:  Math.random() * width,
-    y:  Math.random() * height,
+    x: Math.random() * width,
+    y: Math.random() * height,
     vx: randomBetween(-BASE_SPEED, BASE_SPEED),
     vy: randomBetween(-BASE_SPEED, BASE_SPEED),
-    r:  randomBetween(PARTICLE_R_MIN, PARTICLE_R_MAX),
+    r: randomBetween(PARTICLE_R_MIN, PARTICLE_R_MAX),
   };
 }
 
@@ -51,10 +58,6 @@ function resize() {
 function tick() {
   ctx.clearRect(0, 0, width, height);
 
-  // Read accent color each frame so it responds to theme changes
-  const accent = getComputedStyle(document.documentElement)
-    .getPropertyValue('--clr-accent').trim() || '#4F8EF7';
-
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i];
 
@@ -71,11 +74,9 @@ function tick() {
     p.x += p.vx;
     p.y += p.vy;
 
-    // Light damping keeps velocity from growing unbounded
     p.vx *= 0.99;
     p.vy *= 0.99;
 
-    // Wrap around canvas edges
     if (p.x < -10)         p.x = width  + 10;
     if (p.x > width  + 10) p.x = -10;
     if (p.y < -10)         p.y = height + 10;
@@ -109,6 +110,18 @@ function tick() {
   animId = requestAnimationFrame(tick);
 }
 
+function start() {
+  if (running) return;
+  running = true;
+  animId = requestAnimationFrame(tick);
+}
+
+function stop() {
+  if (!running) return;
+  running = false;
+  cancelAnimationFrame(animId);
+}
+
 export function initParticles() {
   canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
@@ -118,13 +131,17 @@ export function initParticles() {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  readAccent();
   resize();
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
+  const count = window.matchMedia('(max-width: 768px)').matches
+    ? PARTICLE_COUNT_MOBILE
+    : PARTICLE_COUNT_DESKTOP;
+
+  for (let i = 0; i < count; i++) {
     particles.push(createParticle());
   }
 
-  // Track mouse position relative to the hero section, not the whole page
   const hero = canvas.closest('.hero') || canvas.parentElement;
 
   hero.addEventListener('mousemove', (e) => {
@@ -143,7 +160,6 @@ export function initParticles() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       resize();
-      // Re-clamp any particles that landed outside the new canvas bounds
       particles.forEach((p) => {
         if (p.x > width)  p.x = Math.random() * width;
         if (p.y > height) p.y = Math.random() * height;
@@ -151,5 +167,18 @@ export function initParticles() {
     }, 200);
   });
 
-  tick();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => (entry.isIntersecting ? start(): stop()));
+  }, { threshold: 0 });
+  io.observe(hero);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stop();
+    } else if (hero.getBoundingClientRect().bottom > 0) {
+      start();
+    }
+  });
+
+  start();
 }

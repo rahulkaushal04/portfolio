@@ -1,32 +1,29 @@
-// projects.js - Fetches projects.json and renders filterable, tilt-on-hover project cards.
-
 let grid;
-let filtersContainer;
 let projects = [];
 
-/**
- * Builds the HTML string for a single project card.
- * @param {Object} project
- * @returns {string}
- */
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 const STATUS_LABELS = {
-  stable:     'Stable Release',
-  beta:       'Beta',
-  alpha:      'Alpha',
-  wip:        'In Progress',
+  stable:    'Stable Release',
+  beta:      'Beta',
+  alpha:     'Alpha',
+  wip:       'In Progress',
   'no-release': 'No Release Yet',
 };
 
 function cardHTML(project) {
-  const featuredClass = project.featured ? ' featured' : '';
+  const featuredClass = project.featured ? ' featured': '';
   const categories = project.categories.join(' ');
-  const tags = project.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
+  const tags = project.tags.map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`).join('');
 
   const statusBadge = project.status
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
     : '';
 
-  // Only render action buttons for non-empty URLs
   let actions = '';
   if (project.liveUrl) {
     actions += `
@@ -69,13 +66,13 @@ function cardHTML(project) {
              alt="${project.title} screenshot"
              class="projects__card-img"
              loading="lazy" width="680" height="383">
-        <div class="projects__card-overlay">
-          <span class="projects__card-overlay-text">${project.description}</span>
+        <div class="projects__card-overlay" aria-hidden="true">
+          <span class="projects__card-overlay-text">${project.liveUrl ? 'Open live demo': 'View source'}</span>
         </div>
       </div>
       <div class="projects__card-body">
-        <h3 class="projects__card-title">${project.title}</h3>
-        <p class="projects__card-description">${project.description}</p>
+        <h3 class="projects__card-title">${escapeHTML(project.title)}</h3>
+        <p class="projects__card-description">${escapeHTML(project.description)}</p>
         <div class="projects__card-tags">${tags}</div>
         <div class="projects__card-actions">${actions}</div>
       </div>
@@ -85,84 +82,14 @@ function cardHTML(project) {
 function renderProjects() {
   if (!grid) return;
 
-  // Show only featured projects (max 2) on the homepage
   const featured = projects.filter((p) => p.featured).slice(0, 2);
 
   grid.innerHTML = featured.map(cardHTML).join('');
-  applyTilt();
 }
 
-function applyTilt() {
-  grid.querySelectorAll('.projects__card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x    = e.clientX - rect.left;
-      const y    = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-
-      const rotateX = ((y - midY) / midY) * -4; // max +-4 deg
-      const rotateY = ((x - midX) / midX) *  4;
-
-      card.style.transform =
-        `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-function filterProjects(category) {
-  if (!grid) return;
-
-  const cards = grid.querySelectorAll('.projects__card');
-
-  cards.forEach((card) => {
-    const cats  = card.dataset.categories.split(' ');
-    const match = category === 'all' || cats.includes(category);
-
-    if (!match) {
-      card.classList.add('filter-fade-out');
-      card.classList.remove('filter-fade-in');
-    } else {
-      card.classList.remove('filter-fade-out', 'filter-hidden');
-      card.classList.add('filter-fade-in');
-    }
-  });
-
-  // Physically hide non-matching cards after the CSS transition completes
-  setTimeout(() => {
-    cards.forEach((card) => {
-      if (card.classList.contains('filter-fade-out')) card.classList.add('filter-hidden');
-    });
-  }, 300);
-}
-
-function initFilterTabs() {
-  if (!filtersContainer) return;
-
-  const buttons = filtersContainer.querySelectorAll('.projects__filter-btn');
-
-  filtersContainer.addEventListener('click', (e) => {
-    const btn = e.target.closest('.projects__filter-btn');
-    if (!btn) return;
-
-    buttons.forEach((b) => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-
-    filterProjects(btn.dataset.category);
-  });
-}
 
 export async function initProjects() {
-  grid             = document.getElementById('projectsGrid');
-  filtersContainer = document.getElementById('projectFilters');
+  grid = document.getElementById('projectsGrid');
 
   if (!grid) return;
 
@@ -175,9 +102,7 @@ export async function initProjects() {
   }
 
   renderProjects();
-  // Filter tabs are on the full projects page; skip on homepage
 
-  // Tell the scroll-reveal observer about the newly injected cards
   if (window.__reObserveReveals) {
     window.__reObserveReveals();
   }

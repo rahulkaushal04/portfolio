@@ -37,3 +37,13 @@ build/
 
 # Local files
 local/
+
+# Local dev preview tooling
+.claude/
+
+# LaTeX build artifacts
+resume.pdf
+*.aux
+*.out
+*.fls
+*.fdb_latexmk

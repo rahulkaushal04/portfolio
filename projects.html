@@ -1,51 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- ── Core Meta ──────────────────────────────────── -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Rahul Kaushal</title>
-  <meta name="description" content="Side projects, open source tools, and experiments by Rahul Kaushal: Python, FastAPI, ML infrastructure, and more.">
+  <meta name="description" content="Python tools Rahul Kaushal built and maintains, including DepKeeper, a dependency CLI for requirements.txt, and Now Boarding Scheduler, a MILP-based board game session planner.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0F1117">
+  <meta name="theme-color" content="#0B0D12">
 
-  <!-- ── Open Graph ─────────────────────────────────── -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects - Rahul Kaushal">
-  <meta property="og:description" content="Side projects, open source tools, and experiments.">
+  <meta property="og:description" content="Python tools I built for myself first, then cleaned up and released. DepKeeper and Now Boarding Scheduler.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/projects.html">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
 
-  <!-- ── Canonical ──────────────────────────────────── -->
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/projects.html">
 
-  <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-  <!-- ── Stylesheets ────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <link rel="stylesheet" href="assets/css/contributions.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects - Rahul Kaushal",
+    "url": "https://rahulkaushal04.github.io/portfolio/projects.html",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Rahul Kaushal", "@id": "https://rahulkaushal04.github.io/portfolio/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "DepKeeper - Python Dependency Updater",
+            "description": "A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0, for Python 3.8 to 3.12.",
+            "codeRepository": "https://github.com/rahulkaushal04/depkeeper",
+            "url": "https://rahulkaushal04.github.io/depkeeper/latest/",
+            "programmingLanguage": "Python",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Now Boarding Scheduler - Board Game Session Planner",
+            "description": "A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend (no heuristic shortcuts), run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it.",
+            "codeRepository": "https://github.com/rahulkaushal04/now-boarding-scheduler",
+            "url": "https://now-boarding-scheduler.streamlit.app",
+            "programmingLanguage": "Python",
+            "author": { "@type": "Person", "name": "Rahul Kaushal" }
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
-  <!-- ── Scroll Progress Bar ────────────────────────── -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ── Custom Cursor (desktop only) ───────────────── -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- ================================================================
-       NAVBAR (Simplified for subpage)
-       ================================================================ -->
   <header class="navbar navbar--subpage" id="navbar">
     <nav class="container flex-between">
-      <!-- Logo: links back to portfolio home -->
       <a href="index.html" class="navbar__logo" aria-label="Back to portfolio">
         <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
       </a>
 
-      <!-- Back link -->
       <a href="index.html#projects" class="btn btn-outline projects-page__back-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -56,19 +103,15 @@
     </nav>
   </header>
 
-  <main>
-    <!-- ==============================================================
-         PROJECTS PAGE HERO
-         ============================================================== -->
+  <main id="main-content">
     <section class="projects-page__hero">
       <div class="container">
         <span class="section-label">Projects</span>
-        <h1 class="projects-page__title reveal">All Projects</h1>
+        <h1 class="projects-page__title headline-signal reveal">All Projects<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
         <p class="projects-page__subtitle reveal">
-          Side projects, open source work, and the occasional rabbit hole.
+          Everything I have released, with what state each one is actually in.
         </p>
 
-        <!-- Search & Filter Bar -->
         <div class="projects-page__toolbar reveal">
           <div class="projects-page__search-wrapper">
             <svg class="projects-page__search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -79,27 +122,34 @@
                    placeholder="Search projects..." aria-label="Search projects">
           </div>
 
-          <!-- Category filter chips (populated by JS) -->
           <div class="projects-page__cat-filters" id="projectCatFilters" role="group" aria-label="Filter by category">
             <button class="projects-page__cat-btn active" data-cat="all">All</button>
           </div>
         </div>
 
-        <!-- Project count -->
         <p class="projects-page__count reveal" id="projectCount"></p>
       </div>
     </section>
 
-    <!-- ==============================================================
-         PROJECTS GRID (all projects)
-         ============================================================== -->
     <section class="projects-page__listing">
       <div class="container">
         <div class="projects__grid projects__grid--full" id="projectsGrid">
-          <!-- JS will inject all project cards here -->
+          <noscript>
+            <article style="margin-bottom:2rem;">
+              <h2>DepKeeper - Python Dependency Updater</h2>
+              <p>A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0, for Python 3.8 to 3.12.</p>
+              <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
+              <p><a href="https://rahulkaushal04.github.io/depkeeper/latest/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
+            </article>
+            <article style="margin-bottom:2rem;">
+              <h2>Now Boarding Scheduler - Board Game Session Planner</h2>
+              <p>A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend (no heuristic shortcuts), run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it. Every scheduled session carries a plain-English reason it was picked.</p>
+              <p><em>Python &middot; Streamlit &middot; SciPy/HiGHS &middot; MILP &middot; pandas &middot; pytest</em></p>
+              <p><a href="https://now-boarding-scheduler.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/now-boarding-scheduler">GitHub</a></p>
+            </article>
+          </noscript>
         </div>
 
-        <!-- Empty state (shown when filters match nothing) -->
         <div class="projects-page__empty" id="projectsEmpty" hidden>
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -113,36 +163,59 @@
     </section>
   </main>
 
-  <!-- ================================================================
-       FOOTER
-       ================================================================ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__tech-stack reveal">
-        <span class="footer__tech-label">Built with</span>
-        <div class="footer__tech-badges">
-          <span class="tag-chip">HTML5</span>
-          <span class="tag-chip">CSS3</span>
-          <span class="tag-chip">JavaScript</span>
-          <span class="tag-chip">GitHub Pages</span>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <p class="footer__blurb">
+            ML platform and backend engineer in Bengaluru, currently working on
+            the deployment platform for Honeywell's edge Kubernetes appliances.
+          </p>
+          <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__nav-title">Sections</h2>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contributions.html">Open Source</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Elsewhere">
+          <h2 class="footer__nav-title">Elsewhere</h2>
+          <ul>
+            <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <p class="footer__copy">
-        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
-      </p>
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="footerYear">2026</span> Rahul Kaushal
+        </p>
+        <p class="footer__built">
+          Hand-written HTML, CSS and JavaScript. No framework, no build step.
+          <a href="https://github.com/rahulkaushal04/portfolio" target="_blank" rel="noopener noreferrer">Source</a>
+        </p>
+      </div>
     </div>
 
-    <!-- Back to Top -->
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"></line>
         <polyline points="5 12 12 5 19 12"></polyline>
       </svg>
     </button>
   </footer>
 
-  <!-- ── Noscript Fallback ──────────────────────────── -->
   <noscript>
     <style>
       .cursor-dot, .scroll-progress { display: none !important; }
@@ -150,7 +223,6 @@
     </style>
   </noscript>
 
-  <!-- ── Scripts ────────────────────────────────────── -->
   <script type="module" src="assets/js/projects-page.js"></script>
 </body>
 </html>

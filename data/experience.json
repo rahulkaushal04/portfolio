@@ -1,20 +1,46 @@
 [
   {
     "company": "Honeywell",
-    "logo": "assets/images/companies/honeywell.png",
-    "logoSize": 120,
+    "logo": "assets/images/companies/honeywell.webp",
+    "logoSize": 180,
+    "logoHeight": 32,
     "showCompanyName": false,
-    "role": "Software Engineer II",
-    "startDate": "Jul 2024",
+    "role": "Advanced Software Engineer",
+    "summary": "Working with the team on the deployment software that installs, updates and keeps Honeywell's edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.",
+    "startDate": "May 2026",
     "endDate": "Present",
     "description": [
-      "Architected ForgeML, Honeywell's enterprise MLOps platform, as 8 production microservices with 30+ FastAPI REST endpoints covering the full ML lifecycle across training orchestration, model registration, security scanning, multi-target deployment, and real-time monitoring for multi-tenant workloads on Azure and Databricks.",
-      "Engineered a multi-target deployment orchestration service for Databricks Serving Endpoints, AKS, and Edge/IoT devices with Git-based artifact packaging, rollback support, and dual async status-polling loops, reducing model deployment time from 3 days to 30 minutes for 15+ data scientists.",
-      "Designed an AI-powered rule translation pipeline on Google Vertex AI (Gemini) with automated fine-tuning job submission, GCS training data upload, and async status polling, achieving 80%+ accuracy converting SkySpark Axon DSL rules into Honeywell Forge DSL.",
-      "Built an asynchronous Azure Event Hub batch processing pipeline with Factory Pattern event dispatching, fault-isolated per-event parsing, and concurrent dual writes to PostgreSQL and Databricks Unity Catalog via asyncio.gather, cutting write latency by 50% with exactly-once semantics via Azure Blob checkpointing.",
-      "Developed an AFO rule migration service with SCRAM authentication against SkySpark, full Trio/Zinc format parsing, and a 6-step API orchestration pipeline for algorithm publishing, storing rules in parallel to PostgreSQL and Databricks Unity Catalog via asyncio and ThreadPoolExecutor, reducing total write time by 50%.",
-      "Integrated 5 security scanners (Coverity, BlackDuckHub, TwistLock, ModelScan, AST Parser) using the Strategy Pattern alongside JWT RS256 authentication, OPA policy enforcement with 20+ fine-grained permissions, and a 7-layer SQL injection defense, catching 40+ vulnerabilities pre-deployment.",
-      "Built a BDD automated acceptance testing framework (Behave/Gherkin) with parallel multi-tenant test execution via Python threading and Locust performance testing, covering onboarding, training, deployment, and scanning scenarios end-to-end."
+      "Contributed to the performance investigation that cut incremental-update install time by 32.5% (averaged 90m11s to 60m51s on a representative 44-package run). The biggest cost was a fixed per-sequence datastore-drain pause; no single package's install script came close. The pause protects a real write-backlog limit; right-sizing it was the only option on the table. We consolidated 13 sequences into 9, halved the pause from 120s to 60s, and moved tarball extraction to pigz.",
+      "Worked on EdgeOrchestrator, the team's Go control-plane service on the appliance: its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack underneath it. Playbooks run as a subprocess with an argument array (nothing reaches a shell), and a marker file stops a crashed self-update from being reported as success.",
+      "Helped root-cause a watchdog feedback loop that was wedging idle appliances while a healthy twin ran the exact same code. Killing MicroK8s hard tore down containerd without a clean CNI teardown, leaving Calico's IPAM allocations unreleased until the address pool ran out, and the platform's own watchdog escalated to another stop/start that re-triggered the loop. The fixes we landed: pre-caching the registry's own image, removing its dependency on the mirror it was meant to serve; a Recreate rollout for the single-writer registry volume; and a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.",
+      "Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure Device Provisioning Service enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover."
+    ],
+    "tags": [
+      "Go",
+      "Kubernetes (MicroK8s)",
+      "Ansible",
+      "Pacemaker/Corosync",
+      "Ceph",
+      "Azure IoT Hub"
+    ]
+  },
+  {
+    "company": "Honeywell",
+    "logo": "assets/images/companies/honeywell.webp",
+    "logoSize": 180,
+    "logoHeight": 32,
+    "showCompanyName": false,
+    "role": "Software Engineer II",
+    "summary": "Built services across ForgeML's 8-microservice MLOps platform, running across 10+ tenant workspaces, and the pipeline that migrates SkySpark automation rules into Forge and translates them with a tuned model.",
+    "startDate": "Jul 2024",
+    "endDate": "Apr 2026",
+    "description": [
+      "Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types to validate each target's config at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes; one loop failing doesn't take the other down with it.",
+      "Routed model registrations through five security scanners (Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser), all behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.",
+      "Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed. A translation counted as correct only if running it produced the same results as the original Axon rule on the same data, and the domain experts who supplied the training pairs reviewed the output as well.",
+      "The asyncio event processor consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write. Delivery is at-least-once with upsert writes. A crash replay overwrites rows without duplicating them.",
+      "Shipped the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel, which cut write time roughly in half.",
+      "Wrote the BDD acceptance suite in Behave: 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests spanning onboarding through deployment."
     ],
     "tags": [
       "Python",
@@ -24,42 +50,36 @@
       "Google Vertex AI",
       "MLflow",
       "Azure Event Hub",
-      "PostgreSQL",
-      "PySpark",
-      "Docker",
-      "Prometheus"
+      "PostgreSQL"
     ]
   },
   {
     "company": "Honeywell",
-    "logo": "assets/images/companies/honeywell.png",
-    "logoSize": 120,
+    "logo": "assets/images/companies/honeywell.webp",
+    "logoSize": 180,
+    "logoHeight": 32,
     "showCompanyName": false,
     "role": "Data Engineer II",
-    "startDate": "Jun 2022",
-    "endDate": "Dec 2023",
+    "summary": "Worked on the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.",
+    "startDate": "Jun 2023",
+    "endDate": "Jun 2024",
     "description": [
-      "Built 15+ PySpark ingestion pipelines on Databricks pulling from SQL Server, Salesforce, SharePoint, and REST APIs into Delta Lake, using incremental watermark-based loading to avoid full re-scans on every run.",
-      "Engineered a Spark Structured Streaming pipeline that picked up PDF files from Azure Blob Storage in real time, applied SCD Type 2 upsert logic to track document changes across micro-batches, and detected deleted files by cross-referencing Blob Storage with processed records.",
-      "Built a sync layer that pushed curated Delta Lake data into PostgreSQL using batch upserts (1000 rows per batch) with ON CONFLICT DO UPDATE semantics, keeping the serving database in sync without full table reloads.",
-      "Wrote SQL transformation pipelines for field service analytics, producing weekly/monthly/quarterly aggregations for incident resolution trends, contract health, maintenance metrics, and NPS scores consumed by the customer-facing DSP dashboard.",
-      "Wired the data pipeline output into the RAG indexing layer by enabling Change Data Feed on Delta tables and triggering downstream Databricks vectorization jobs on incremental inserts, updates, and deletes.",
-      "Contributed to the Maintenance Assist LLM chatbot by building the document vectorization pipeline into PGVector and an automated eval framework that used Azure OpenAI as an LLM judge alongside BLEU/ROUGE scoring to measure chatbot response quality."
+      "Contributed to 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.",
+      "Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, using foreachBatch to run a per-micro-batch Delta MERGE INTO for SCD Type 2 upserts that kept document revisions traceable, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables, which let the vectorization job downstream read only the rows that had changed since its last run.",
+      "Wrote the SQL transformation pipelines behind the field service analytics: incident resolution trends on weekly, monthly and quarterly windows, contract and maintenance metrics, and NPS, feeding the customer-facing DSP dashboard.",
+      "On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, topic generation and summarization) through a YAML-driven config that let each tenant's agent run its own LLM, tools and prompts without a code change.",
+      "Helped build a guardrail layer that runs input validation and output safety checks as async tasks in parallel with the LLM call, catching a violation mid-stream and cancelling the in-flight response, usually within a few streamed tokens. Tenants configure it as input-only or input and output, on top of an SSE streaming layer built to hold 100+ concurrent sessions.",
+      "Collaborated on replacing plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by max inner product similarity, independent of when they were said.",
+      "Worked on vectorizing tens of thousands of knowledge-base articles and service cases into PGVector, and contributed to the evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set."
     ],
     "tags": [
       "PySpark",
       "Databricks",
       "Delta Lake",
-      "Apache Spark",
       "PostgreSQL",
-      "Python",
-      "SQL",
       "LangChain",
       "PGVector",
       "Azure OpenAI",
-      "Azure ML",
-      "Salesforce API",
-      "LangSmith",
       "MLflow"
     ]
   }

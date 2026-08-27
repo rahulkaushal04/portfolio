@@ -1,19 +1,3 @@
-/* ============================================================
-   NAVBAR
-   Sticky top navigation with:
-   - Availability banner
-   - Scroll progress bar
-   - Frosted glass state
-   - Desktop links
-   - Theme toggle
-   - Resume button
-   - Mobile slide-in menu
-   ============================================================ */
-
-
-/* ============================================================
-   AVAILABILITY BANNER
-   ============================================================ */
 .availability-banner {
   position: fixed;
   top: 0;
@@ -32,36 +16,43 @@
   font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
 
-  color: #fff;
+  /* Dark, not white: this gradient runs to #00D4AA where white is 1.9:1. */
+  color: #0B0D12;
   background: linear-gradient(90deg, var(--clr-accent), var(--clr-success));
 }
 
 .availability-banner a {
-  color: #fff;
+  color: #0B0D12;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding-inline: var(--sp-1);
 }
 
-.availability-banner a:hover,
+.availability-banner a:hover {
+  color: #0B0D12;
+  opacity: 0.75;
+}
+
 .availability-banner a:focus-visible {
-  opacity: 0.85;
-  outline: none;
+  outline: 2px solid #0B0D12;
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .availability-banner__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #0B0D12;
   animation: pulseGlow 2s ease-in-out infinite;
   flex-shrink: 0;
 }
 
-
-/* ============================================================
-   SCROLL PROGRESS BAR
-   JS updates width directly
-   ============================================================ */
 .scroll-progress {
   position: fixed;
   top: var(--banner-h, 28px);
@@ -75,10 +66,6 @@
   transition: none;
 }
 
-
-/* ============================================================
-   NAVBAR CONTAINER
-   ============================================================ */
 .navbar {
   position: fixed;
   top: var(--banner-h, 28px);
@@ -94,7 +81,6 @@
     padding var(--duration-base) var(--ease-default);
 }
 
-/* Frosted glass state (triggered after scroll threshold) */
 .navbar.scrolled {
   background: var(--clr-glass-bg);
   backdrop-filter: blur(16px);
@@ -106,11 +92,10 @@
   padding-block: var(--sp-3);
 }
 
-
-/* ============================================================
-   LOGO
-   ============================================================ */
 .navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   display: flex;
   align-items: center;
 }
@@ -123,10 +108,6 @@
   letter-spacing: -0.02em;
 }
 
-
-/* ============================================================
-   DESKTOP LINKS
-   ============================================================ */
 .navbar__links {
   display: flex;
   align-items: center;
@@ -135,22 +116,30 @@
 
 .navbar__link {
   position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
   color: var(--clr-text-secondary);
-  padding-block: var(--sp-1);
 
   transition: color var(--duration-base) var(--ease-default);
 }
 
 .navbar__link:hover,
-.navbar__link:focus-visible,
 .navbar__link.active {
   color: var(--clr-text-primary);
-  outline: none;
 }
 
-/* Underline indicator */
+.navbar__link:focus-visible {
+  color: var(--clr-text-primary);
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 .navbar__link::after {
   content: "";
   position: absolute;
@@ -172,59 +161,22 @@
   width: 100%;
 }
 
-
-/* ============================================================
-   RIGHT ACTIONS
-   ============================================================ */
 .navbar__actions {
   gap: var(--sp-4);
 }
 
-
-/* ============================================================
-   THEME TOGGLE
-   ============================================================ */
-.navbar__theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-
-  border-radius: var(--radius-md);
-  color: var(--clr-text-secondary);
-
-  transition:
-    color var(--duration-base) var(--ease-default),
-    background-color var(--duration-base) var(--ease-default),
-    transform var(--duration-base) var(--ease-bounce);
-}
-
-.navbar__theme-toggle:hover,
-.navbar__theme-toggle:focus-visible {
-  color: var(--clr-accent);
-  background-color: var(--clr-accent-light);
-  outline: none;
-}
-
-.navbar__theme-toggle.animate {
-  transform: rotate(360deg);
-}
-
-
-/* ============================================================
-   RESUME BUTTON
-   ============================================================ */
 .navbar__resume-btn {
   padding: var(--sp-2) var(--sp-5);
   font-size: var(--fs-sm);
 }
 
-.navbar__resume-btn:hover,
-.navbar__resume-btn:focus-visible {
+.navbar__resume-btn:hover {
   animation: bounceSubtle 0.4s var(--ease-bounce);
-  outline: none;
+}
+
+.navbar__resume-btn:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
 }
 
 @keyframes bounceSubtle {
@@ -234,37 +186,23 @@
 
 .navbar__resume-wrap {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
 }
 
-.resume-updated {
-  font-size: 0.6rem;
-  font-weight: var(--fw-medium);
-  color: var(--clr-text-tertiary, var(--clr-text-secondary));
-  letter-spacing: 0.03em;
-  opacity: 0.7;
-  white-space: nowrap;
-}
-
-
-/* ============================================================
-   HAMBURGER BUTTON
-   ============================================================ */
 .navbar__hamburger {
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
 
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
 }
 
 .navbar__hamburger-line {
-  width: 100%;
+  width: 26px;
   height: 2px;
   background-color: var(--clr-text-primary);
   border-radius: var(--radius-full);
@@ -286,10 +224,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-
-/* ============================================================
-   MOBILE MENU PANEL
-   ============================================================ */
 .navbar__mobile-menu {
   position: fixed;
   top: 0;
@@ -303,28 +237,121 @@
 
   z-index: var(--z-overlay);
 
+  /* visibility, not just the transform: an off-screen panel stays focusable.
+     The delay lets the slide finish before it is hidden. */
+  visibility: hidden;
   transform: translateX(100%);
-  transition: transform var(--duration-slow) var(--ease-default);
+  transition:
+    transform var(--duration-slow) var(--ease-default),
+    visibility 0s linear var(--duration-slow);
 
-  padding: var(--sp-24) var(--sp-8) var(--sp-8);
+  padding: var(--sp-20) var(--sp-6) var(--sp-8);
 
   display: flex;
   flex-direction: column;
+  gap: var(--sp-8);
 
-  will-change: transform;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.navbar__mobile-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  color: var(--clr-text-secondary);
+  background: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  transition: var(--transition-colors);
+}
+
+.navbar__mobile-close:hover {
+  color: var(--clr-text-primary);
+  border-color: var(--clr-border-strong);
+}
+
+.navbar__mobile-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--clr-border);
+}
+
+.navbar__mobile-email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+
+  min-height: 44px;
+
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  word-break: break-all;
+}
+
+.navbar__mobile-email:hover {
+  color: var(--clr-accent);
+}
+
+.navbar__mobile-socials {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.navbar__mobile-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  color: var(--clr-text-secondary);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+
+  transition: var(--transition-colors);
+}
+
+.navbar__mobile-social:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
 }
 
 .navbar__mobile-menu.open {
+  visibility: visible;
   transform: translateX(0);
+  transition:
+    transform var(--duration-slow) var(--ease-default),
+    visibility 0s;
 }
 
 .navbar__mobile-links {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: var(--sp-3);
 }
 
 .navbar__mobile-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+
   font-family: var(--ff-heading);
   font-size: var(--fs-xl);
   font-weight: var(--fw-semibold);
@@ -336,46 +363,44 @@
 }
 
 .navbar__mobile-link:hover,
-.navbar__mobile-link:focus-visible,
 .navbar__mobile-link.active {
   color: var(--clr-accent);
   transform: translateX(8px);
-  outline: none;
 }
 
+.navbar__mobile-link:focus-visible {
+  color: var(--clr-accent);
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
 
-/* ============================================================
-   MOBILE BACKDROP
-   ============================================================ */
-.navbar__mobile-menu::before {
-  content: "";
+.navbar__backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 
-  z-index: -1;
+  z-index: calc(var(--z-overlay) - 1);
   opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-default);
-
   pointer-events: none;
+
+  transition: opacity var(--duration-base) var(--ease-default);
 }
 
-.navbar__mobile-menu.open::before {
+.navbar__backdrop.open {
   opacity: 1;
   pointer-events: auto;
 }
 
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
 
   .navbar__links {
     display: none;
   }
 
-  .navbar__resume-btn {
+  /* Scoped to the wrapper: a bare .navbar__resume-btn loses to .btn in
+     main.css, which loads later at equal specificity. */
+  .navbar__actions .navbar__resume-wrap {
     display: none;
   }
 
@@ -384,16 +409,11 @@
   }
 }
 
-
-/* ============================================================
-   ACCESSIBILITY: Reduced Motion
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
 
   .navbar,
   .navbar__mobile-menu,
   .navbar__hamburger-line,
-  .navbar__theme-toggle,
   .navbar__resume-btn {
     transition: none !important;
     animation: none !important;

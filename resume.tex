@@ -1,0 +1,190 @@
+% Rahul Kaushal -- Resume
+% Compile: pdflatex resume.tex && mv resume.pdf resume/Rahul_Resume.pdf
+
+\documentclass[letterpaper,9pt]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage[
+  letterpaper,
+  top=0.34in,
+  bottom=0.34in,
+  left=0.45in,
+  right=0.45in
+]{geometry}
+
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[english]{babel}
+\usepackage{fontawesome5}
+
+\usepackage[
+  hidelinks,
+  bookmarks=false,
+  pdftitle={Rahul Kaushal -- Resume},
+  pdfauthor={Rahul Kaushal},
+  pdfsubject={Software Engineer Resume}
+]{hyperref}
+
+% Colors
+\definecolor{linkblue}{RGB}{30, 64, 175}
+\definecolor{iconcolor}{RGB}{71, 85, 105}
+\definecolor{seprule}{RGB}{147, 163, 200}
+\definecolor{dotgray}{RGB}{180, 180, 180}
+
+% Macros
+\newcommand{\headerlink}[3]{%
+  \href{#3}{\textcolor{iconcolor}{#1}\hspace{2pt}\textcolor{linkblue}{#2}}%
+}
+
+\newcommand{\resumeItem}[1]{%
+  \item\small{#1}%
+}
+
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{4pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small #2} \\[1pt]
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}%
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \vspace{2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textit{\small #2} \\
+    \end{tabular*}%
+}
+
+\newcommand{\osEntry}[3]{%
+  \vspace{2pt}\item
+  \small\baselineskip=10pt\relax
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & \textit{#2} \\
+    \end{tabular*}
+    \vspace{1pt}
+    #3%
+}
+
+\newcommand{\toolsLine}[1]{%
+  \item[]\small\textit{\textcolor{iconcolor}{#1}}%
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, topsep=1pt, parsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.25in, itemsep=0pt, topsep=1pt, parsep=0pt]\small\baselineskip=10pt\relax}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% Page setup
+\pagestyle{empty}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{%
+  \scshape\raggedright\large\color{MidnightBlue}%
+}{}{0em}{}[\color{seprule}\titlerule]
+\titlespacing*{\section}{0pt}{5pt}{5pt}
+
+\begin{document}
+
+\begin{center}
+  {\Huge \scshape Rahul Kaushal} \\[7pt]
+  \headerlink{\faPhone}{+91-79881-42117}{tel:+917988142117}
+  \enspace\textcolor{dotgray}{$\cdot$}\enspace
+  \headerlink{\faEnvelope}{kaushalrahul15@gmail.com}{mailto:kaushalrahul15@gmail.com}
+  \enspace\textcolor{dotgray}{$\cdot$}\enspace
+  \headerlink{\faLinkedin}{rahul-kaushal04}{https://www.linkedin.com/in/rahul-kaushal04/}
+  \enspace\textcolor{dotgray}{$\cdot$}\enspace
+  \headerlink{\faGithub}{rahulkaushal04}{https://github.com/rahulkaushal04}
+  \enspace\textcolor{dotgray}{$\cdot$}\enspace
+  \headerlink{\faGlobe}{Portfolio}{https://rahulkaushal04.github.io/portfolio}
+  \\[3pt]
+  {\color{seprule}\rule{0.55\textwidth}{0.4pt}}
+\end{center}
+
+% Technical skills
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, topsep=2pt, parsep=0pt]
+  \small\baselineskip=10pt\relax
+  \item {\textbf{Languages \& Backend:} Python, Go, SQL, Bash, FastAPI, asyncio, Pydantic, SQLAlchemy, REST/WebSocket APIs, pytest, Behave (BDD), Locust}
+  \item \small{\textbf{Data \& ML:} PySpark, Databricks, Delta Lake, Spark Structured Streaming, PostgreSQL, PGVector, MLflow, LangChain, LLM/RAG, Azure OpenAI, Vertex AI}
+  \item \small{\textbf{Infrastructure:} Kubernetes (MicroK8s, AKS), Docker, Ansible, Ceph, Pacemaker/Corosync, Azure (Event Hub, IoT Hub, Blob Storage), GitHub Actions, Prometheus/Grafana}
+\end{itemize}
+
+% Professional experience
+\section{Professional Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Advanced Software Engineer}{May 2026 -- Present}
+    {Honeywell}{}
+  \resumeItemListStart
+    \resumeItem{Contributed to the performance work that cut incremental-update install time 32.5\% (averaged 90m11s to 60m51s on a 44-package run). The biggest cost was a fixed datastore-drain pause; no package's install script came close. We consolidated 13 sequences into 9, halved the pause, and moved extraction to \texttt{pigz}.}
+    \resumeItem{Worked on EdgeOrchestrator, the team's Go control-plane service, working on its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack. Playbooks run as a subprocess with an argument array (nothing reaches a shell), and a marker file stops a crashed self-update from reporting success.}
+    \resumeItem{Helped root-cause a watchdog feedback loop wedging idle appliances. A hard MicroK8s kill left Calico IPAM allocations unreleased until the address pool ran out, and the watchdog's restart re-triggered it. Fixed with registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after 5 escalations in 24h.}
+    \resumeItem{Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure DPS enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, a KeePass credential vault, and active/passive handshake failover.}
+  \resumeItemListEnd
+  \toolsLine{Go, Kubernetes (MicroK8s), Ansible, Ceph, Pacemaker/Corosync, Azure IoT Hub}
+
+  \resumeSubheading
+    {Software Engineer II}{Jul 2024 -- Apr 2026}
+    {Honeywell}{}
+  \resumeItemListStart
+    \resumeItem{Built the deployment path routing models to Databricks Serving, AKS or edge devices from one API, with discriminated-union request types validating each target's config at the boundary and status tracked by two independent asyncio tasks.}
+    \resumeItem{Wrote the asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and Blob checkpoints committed only after a successful write. Delivery is at-least-once with upsert writes. A crash replay overwrites rows without duplicating them.}
+    \resumeItem{Routed model registrations through five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.}
+    \resumeItem{Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell's Forge DSL, with a versioned prompt store and tuning-job state machine. A translation counted as correct only if it produced the same results as the original rule, checked by the domain experts who supplied the training pairs.}
+    \resumeItem{Shipped the SkySpark migration service (SCRAM auth, Zinc/Trio parsing, parallel writes that roughly halved write time) and the team's Behave suite of 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests.}
+  \resumeItemListEnd
+  \toolsLine{Python, FastAPI, Databricks, Azure Kubernetes (AKS), Google Vertex AI, MLflow, Azure Event Hub, PostgreSQL}
+
+  \resumeSubheading
+    {Data Engineer II}{Jun 2023 -- Jun 2024}
+    {Honeywell}{}
+  \resumeItemListStart
+    \resumeItem{Contributed to 15+ PySpark ingestion pipelines on Databricks across 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, using timestamp watermarking for incremental loads.}
+    \resumeItem{Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage using foreachBatch to run a per-micro-batch Delta MERGE INTO for SCD Type 2 upserts, reconciliation against processed records to catch source deletions, and Change Data Feed to let the vectorization job read only changed rows.}
+    \resumeItem{On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, summarization) with a YAML config that let each tenant run its own LLM and prompts without a code change. Also helped build async guardrails and a PGVector memory store that retrieves turns by max inner product similarity.}
+    \resumeItem{Wrote the SQL transformations for field service analytics (incident resolution trends, contract and maintenance metrics, NPS) that feed the customer-facing DSP dashboard.}
+  \resumeItemListEnd
+  \toolsLine{PySpark, Databricks, Delta Lake, PostgreSQL, LangChain, PGVector, Azure OpenAI, MLflow}
+
+\resumeSubHeadingListEnd
+
+% Patent
+\section{Patent}
+\resumeSubHeadingListStart
+
+  \osEntry
+    {\textbf{Data management in a multi-tenant environment} $|$ \href{https://thepatentplace.com/iplibrary/patent-pdf/12717808/}{US 12,717,808}}{Issued Aug 2026}
+    {Tenant isolation at the data level on a shared multi-tenant backend: records carry tenant metadata and are split and routed by customer, product or a custom rule, instead of a separate schema or database per tenant.}
+
+\resumeSubHeadingListEnd
+
+% Open source
+\section{Open Source}
+\resumeSubHeadingListStart
+
+  \osEntry
+    {\textbf{\href{https://github.com/rahulkaushal04/depkeeper}{DepKeeper}} $|$ \emph{Python, Click, httpx, asyncio}}{2025 -- Present}
+    {A CLI that upgrades \texttt{requirements.txt} without crossing a major version boundary, preserving your upper bounds and exclusions. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0.}
+
+\resumeSubHeadingListEnd
+
+% Education
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {B.Tech Biotechnology + M.Tech Data Science}{2018 -- 2023}
+    {Indian Institute of Technology Madras}{CGPA: 8.77}
+\resumeSubHeadingListEnd
+
+\end{document}

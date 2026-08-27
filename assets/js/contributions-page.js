@@ -1,33 +1,36 @@
-// contributions-page.js - Full contributions listing page with search and repo filtering.
-// Standalone entry point for contributions.html.
-
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
-/* ── State ─────────────────────────────────────────── */
 let allContributions = [];
 let activeRepo       = 'all';
 let searchTerm       = '';
 
-/* ── DOM refs (set in init) ────────────────────────── */
-let grid, statsContainer, emptyState, countEl, searchInput, repoContainer, clearBtn;
+let grid, statsContainer, emptyState, countEl, searchInput, repoContainer, clearBtn, toolbar;
 
-/**
- * Formats a date string (YYYY-MM-DD) into "Nov 2025".
- */
+const TOOLBAR_MIN_ITEMS = 6;
+
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function syncToolbarVisibility() {
+  const enough = allContributions.length >= TOOLBAR_MIN_ITEMS;
+  if (toolbar) toolbar.hidden = !enough;
+  if (countEl) countEl.hidden = !enough;
+  if (statsContainer) statsContainer.hidden = !enough;
+}
+
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 
-/**
- * Returns unique repo count.
- */
 function uniqueRepos(contribs) {
   return new Set(contribs.map((c) => c.repo));
 }
 
-/* ── Stats Row ─────────────────────────────────────── */
 function renderStats() {
   if (!statsContainer) return;
 
@@ -46,10 +49,9 @@ function renderStats() {
   `;
 }
 
-/* ── Card HTML (mirrors contributions.js) ──────────── */
 function cardHTML(contribution) {
   const tags = contribution.tags
-    .map((t) => `<span class="tag-chip">${t}</span>`)
+    .map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`)
     .join('');
 
   const dateLabel = contribution.mergedDate
@@ -57,7 +59,7 @@ function cardHTML(contribution) {
     : '';
 
   return `
-    <article class="contributions__card reveal" data-repo="${contribution.repo}">
+    <article class="contributions__card reveal" data-repo="${escapeHTML(contribution.repo)}">
       <div class="contributions__card-header">
         <span class="contributions__repo">
           <svg class="contributions__repo-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -69,7 +71,7 @@ function cardHTML(contribution) {
             <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
             <path d="M12 12v3"></path>
           </svg>
-          ${contribution.repo}
+          ${escapeHTML(contribution.repo)}
         </span>
         ${contribution.status === 'open' ? `
         <span class="contributions__open-badge">
@@ -83,7 +85,7 @@ function cardHTML(contribution) {
             <circle cx="18" cy="6" r="3"></circle>
           </svg>
           Open
-        </span>` : `
+        </span>`: `
         <span class="contributions__merged-badge">
           <svg class="contributions__merged-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -99,7 +101,7 @@ function cardHTML(contribution) {
       <h3 class="contributions__pr-title">
         <a href="${contribution.prUrl}" target="_blank" rel="noopener noreferrer"
            class="contributions__pr-link">
-          ${contribution.prTitle}
+          ${escapeHTML(contribution.prTitle)}
           <svg class="contributions__external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -110,16 +112,15 @@ function cardHTML(contribution) {
         </a>
       </h3>
 
-      <p class="contributions__description">${contribution.description}</p>
+      <p class="contributions__description">${escapeHTML(contribution.description)}</p>
 
       <div class="contributions__card-footer">
         <div class="contributions__tags">${tags}</div>
-        ${dateLabel ? `<span class="contributions__date">${dateLabel}</span>` : ''}
+        ${dateLabel ? `<span class="contributions__date">${dateLabel}</span>`: ''}
       </div>
     </article>`;
 }
 
-/* ── Fetch ─────────────────────────────────────────── */
 async function fetchContributions() {
   try {
     const res = await fetch('data/contributions.json');
@@ -130,7 +131,6 @@ async function fetchContributions() {
   }
 }
 
-/* ── Filtering logic ───────────────────────────────── */
 function getFiltered() {
   return allContributions.filter((c) => {
     const matchesRepo =
@@ -147,11 +147,9 @@ function getFiltered() {
   });
 }
 
-/* ── Render ────────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
 
-  // Update count
   const total = allContributions.length;
   const shown = filtered.length;
   countEl.textContent =
@@ -159,13 +157,11 @@ function render() {
       ? `${total} contribution${total !== 1 ? 's' : ''}`
       : `${shown} of ${total} contribution${total !== 1 ? 's' : ''}`;
 
-  // Toggle empty state
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
   grid.hidden = isEmpty;
 
   if (!isEmpty) {
-    // Sort by date descending
     const sorted = [...filtered].sort(
       (a, b) => new Date(b.mergedDate) - new Date(a.mergedDate)
     );
@@ -174,7 +170,6 @@ function render() {
   }
 }
 
-/* ── Build repo filter buttons ─────────────────────── */
 function buildRepoFilters() {
   const repos = [...uniqueRepos(allContributions)].sort();
   const btns = repos
@@ -185,7 +180,6 @@ function buildRepoFilters() {
     `<button class="contributions-page__repo-btn active" data-repo="all">All</button>` + btns;
 }
 
-/* ── Event Handlers ────────────────────────────────── */
 function onRepoClick(e) {
   const btn = e.target.closest('.contributions-page__repo-btn');
   if (!btn) return;
@@ -212,19 +206,17 @@ function onClearFilters() {
   render();
 }
 
-/* ── Scroll-progress bar ───────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100: 0;
     bar.style.width = `${pct}%`;
   }, { passive: true });
 }
 
-/* ── Back to top ───────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -236,13 +228,11 @@ function initBackToTop() {
   });
 }
 
-/* ── Footer year ───────────────────────────────────── */
 function setFooterYear() {
   const el = document.getElementById('footerYear');
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ── Init ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   grid           = document.getElementById('contributionsGrid');
   statsContainer = document.getElementById('contributionsStats');
@@ -251,21 +241,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   searchInput    = document.getElementById('contributionSearch');
   repoContainer  = document.getElementById('contributionRepoFilters');
   clearBtn       = document.getElementById('contributionsClearFilters');
+  toolbar        = document.querySelector('.contributions-page__toolbar');
 
-  // Init shared modules
   initAnimations();
   initCursor();
   initScrollProgress();
   initBackToTop();
   setFooterYear();
 
-  // Load contributions
   allContributions = await fetchContributions();
+  syncToolbarVisibility();
   renderStats();
   buildRepoFilters();
   render();
 
-  // Bind events
   repoContainer.addEventListener('click', onRepoClick);
   searchInput.addEventListener('input', onSearchInput);
   if (clearBtn) clearBtn.addEventListener('click', onClearFilters);

@@ -1,91 +1,161 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- ── Core Meta ──────────────────────────────────── -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7mN913alnb2LG8XkYc7xBLTz8DrT8EJ9xe99mwu-5LU">
-  <title>Rahul Kaushal - Developer Portfolio</title>
-  <meta name="description" content="Rahul Kaushal - Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
+  <title>Rahul Kaushal - Platform and Backend Engineer</title>
+  <meta name="description" content="Advanced Software Engineer at Honeywell, working on the deployment software behind an edge Kubernetes platform. Go and Ansible, after two years on Honeywell's ML platform.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0F1117">
+  <meta name="theme-color" content="#0B0D12">
 
-  <!-- ── Open Graph ─────────────────────────────────── -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Rahul Kaushal - Developer Portfolio">
-  <meta property="og:description" content="Software Engineer at Honeywell. Backend, Python, ML infrastructure, and open source.">
+  <meta property="og:title" content="Rahul Kaushal - Platform and Backend Engineer">
+  <meta property="og:description" content="I work on the deployment software behind Honeywell's edge Kubernetes platform: Go and Ansible, keeping it running on appliances that ship fully offline or cloud-connected.">
   <meta property="og:url" content="https://rahulkaushal04.github.io/portfolio/">
   <meta property="og:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rahul Kaushal, platform and backend engineer">
 
-  <!-- ── Canonical ──────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rahul Kaushal - Platform and Backend Engineer">
+  <meta name="twitter:description" content="Advanced Software Engineer at Honeywell. Building deployment software for an edge platform now, ML platform work before that.">
+  <meta name="twitter:image" content="https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png">
+
   <link rel="canonical" href="https://rahulkaushal04.github.io/portfolio/">
 
-  <!-- ── Favicons ───────────────────────────────────── -->
   <link rel="icon" href="assets/images/favicon.ico" sizes="any">
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-  <!-- ── Devicon CDN (skill icons) ──────────────────── -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="preload" as="image" href="assets/images/profile_short.webp" fetchpriority="high">
 
-  <!-- ── Stylesheets ────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/skills.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/patent.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <link rel="stylesheet" href="assets/css/contributions.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/main.css">
 
-  <!-- ── JSON-LD Structured Data ────────────────────── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Rahul Kaushal",
-    "url": "https://rahulkaushal04.github.io/portfolio",
-    "jobTitle": "Software Engineer",
-    "sameAs": [
-      "https://github.com/rahulkaushal04",
-      "https://www.linkedin.com/in/rahul-kaushal04"
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://rahulkaushal04.github.io/portfolio/#profilepage",
+        "url": "https://rahulkaushal04.github.io/portfolio/",
+        "name": "Rahul Kaushal - Platform and Backend Engineer",
+        "inLanguage": "en",
+        "mainEntity": { "@id": "https://rahulkaushal04.github.io/portfolio/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://rahulkaushal04.github.io/portfolio/#person",
+        "name": "Rahul Kaushal",
+        "url": "https://rahulkaushal04.github.io/portfolio/",
+        "image": "https://rahulkaushal04.github.io/portfolio/assets/images/og-image.png",
+        "jobTitle": "Advanced Software Engineer",
+        "email": "mailto:kaushalrahul15@gmail.com",
+        "description": "I work on the deployment software behind Honeywell's edge Kubernetes platform: Go and Ansible, on appliances that ship fully offline or cloud-connected. Before that, I built services across ForgeML, Honeywell's ML platform, and the Databricks pipelines that came before it.",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Honeywell",
+          "department": {
+            "@type": "Organization",
+            "name": "Forge Platform"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bengaluru",
+          "addressCountry": "IN"
+        },
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Platform and Backend Engineer",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Bengaluru"
+          },
+          "skills": "Python, Go, FastAPI, MLOps, Databricks, PySpark, Kubernetes, Ansible, PostgreSQL, Azure, MLflow, Retrieval Augmented Generation"
+        },
+        "knowsAbout": [
+          "Python",
+          "Go",
+          "FastAPI",
+          "Platform Engineering",
+          "MLOps",
+          "Kubernetes",
+          "Ansible",
+          "Databricks",
+          "PostgreSQL",
+          "Retrieval Augmented Generation"
+        ],
+        "knowsLanguage": "en",
+        "sameAs": [
+          "https://github.com/rahulkaushal04",
+          "https://www.linkedin.com/in/rahul-kaushal04"
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://rahulkaushal04.github.io/portfolio/#patent-us12717808",
+        "additionalType": "https://en.wikipedia.org/wiki/Patent",
+        "name": "Data management in a multi-tenant environment",
+        "description": "Tenant data isolation at the data level on a shared multi-tenant backend: records carry enough metadata to be split and routed to the right tenant by customer, product or a custom rule, with no separate schema or database required per tenant.",
+        "identifier": "US 12717808",
+        "url": "https://thepatentplace.com/iplibrary/patent-pdf/12717808/",
+        "datePublished": "2026-08-25",
+        "author": { "@id": "https://rahulkaushal04.github.io/portfolio/#person" }
+      }
     ]
   }
   </script>
 </head>
 
 <body>
-  <!-- ── Availability Banner ──────────────────────────── -->
-  <div class="availability-banner" role="status">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="availability-banner">
     <span class="availability-banner__dot" aria-hidden="true"></span>
-    Open to new roles; <a href="#contact">let's talk</a>
+    Open to backend and platform roles. <a href="#contact">Get in touch</a>
   </div>
 
-  <!-- ── Scroll Progress Bar ────────────────────────── -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ── Custom Cursor (desktop only) ───────────────── -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- ================================================================
-       NAVBAR
-       ================================================================ -->
   <header class="navbar" id="navbar">
     <nav class="container flex-between">
-      <!-- Logo -->
       <a href="#hero" class="navbar__logo" aria-label="Go to top">
         <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
       </a>
 
-      <!-- Desktop Nav Links -->
       <ul class="navbar__links" id="navLinks">
         <li><a href="#about" class="navbar__link">About</a></li>
         <li><a href="#skills" class="navbar__link">Skills</a></li>
         <li><a href="#experience" class="navbar__link">Experience</a></li>
+        <li><a href="#patent" class="navbar__link">Patent</a></li>
         <li><a href="#projects" class="navbar__link">Projects</a></li>
         <li><a href="#contributions" class="navbar__link">Open Source</a></li>
-        <li><a href="#blog" class="navbar__link">Blog</a></li>
         <li><a href="#contact" class="navbar__link">Contact</a></li>
       </ul>
 
-      <!-- Right Actions -->
       <div class="navbar__actions flex-center gap-4">
-        <!-- Resume Download -->
         <div class="navbar__resume-wrap">
           <a href="resume/Rahul_Resume.pdf" download class="btn btn-primary navbar__resume-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -95,10 +165,8 @@
             </svg>
             Resume
           </a>
-          <span class="resume-updated" id="resumeUpdatedNav">Updated: Mar 2026</span>
         </div>
 
-        <!-- Mobile Hamburger -->
         <button class="navbar__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false">
           <span class="navbar__hamburger-line"></span>
           <span class="navbar__hamburger-line"></span>
@@ -107,268 +175,329 @@
       </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
-      <ul class="navbar__mobile-links">
-        <li><a href="#about" class="navbar__mobile-link">About</a></li>
-        <li><a href="#skills" class="navbar__mobile-link">Skills</a></li>
-        <li><a href="#experience" class="navbar__mobile-link">Experience</a></li>
-        <li><a href="#projects" class="navbar__mobile-link">Projects</a></li>
-        <li><a href="#contributions" class="navbar__mobile-link">Open Source</a></li>
-        <li><a href="#blog" class="navbar__mobile-link">Blog</a></li>
-        <li><a href="#contact" class="navbar__mobile-link">Contact</a></li>
-      </ul>
-    </div>
   </header>
 
-  <main>
-    <!-- ==============================================================
-         HERO SECTION
-         ============================================================== -->
-    <section id="hero" class="hero">
-      <!-- Particle / Mesh Canvas Background -->
+  <div class="navbar__mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+    <button class="navbar__mobile-close" type="button" data-close-menu aria-label="Close navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <ul class="navbar__mobile-links">
+      <li><a href="#about" class="navbar__mobile-link">About</a></li>
+      <li><a href="#skills" class="navbar__mobile-link">Skills</a></li>
+      <li><a href="#experience" class="navbar__mobile-link">Experience</a></li>
+      <li><a href="#patent" class="navbar__mobile-link">Patent</a></li>
+      <li><a href="#projects" class="navbar__mobile-link">Projects</a></li>
+      <li><a href="#contributions" class="navbar__mobile-link">Open Source</a></li>
+      <li><a href="#contact" class="navbar__mobile-link">Contact</a></li>
+    </ul>
+
+    <div class="navbar__mobile-actions">
+      <a href="resume/Rahul_Resume.pdf" download class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Resume
+      </a>
+
+      <a href="mailto:kaushalrahul15@gmail.com" class="navbar__mobile-email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        kaushalrahul15@gmail.com
+      </a>
+
+      <div class="navbar__mobile-socials">
+        <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="navbar__mobile-social" aria-label="GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer" class="navbar__mobile-social" aria-label="LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar__backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <main id="main-content">
+    <section id="hero" class="hero" aria-labelledby="heroName">
       <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
-      <div class="container hero__content">
-        <!-- Greeting -->
-        <p class="hero__greeting reveal">Hi, I'm</p>
+      <div class="container hero__layout">
+        <div class="hero__main">
+          <p class="hero__greeting reveal">Hi, I'm</p>
 
-        <!-- Name -->
-        <h1 class="hero__name reveal">Rahul Kaushal</h1>
+          <h1 class="hero__name headline-signal reveal" id="heroName">Rahul Kaushal<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
 
-        <!-- Animated Typing Roles -->
-        <p class="hero__roles reveal">
-          <span class="hero__roles-prefix">I'm a </span>
-          <span class="hero__typewriter" id="typewriter"></span>
-          <span class="hero__cursor" aria-hidden="true">|</span>
-        </p>
+          <p class="hero__roles reveal">
+            <span class="hero__role">Advanced Software Engineer</span>
+            <span class="hero__role-sep" aria-hidden="true">/</span>
+            <span class="hero__role hero__role--muted">Platform</span>
+            <span class="hero__role-sep" aria-hidden="true">/</span>
+            <span class="hero__role hero__role--muted">Honeywell</span>
+          </p>
 
-        <!-- Short Tagline -->
-        <p class="hero__tagline reveal">
-          Building ML infrastructure at Honeywell using Python and FastAPI. Strong backend engineer. Occasionally ships things for fun.
-        </p>
+          <p class="hero__tagline reveal">
+            I work on the software that installs, updates and keeps Honeywell's edge Kubernetes
+            platform running, on appliances that ship fully offline or cloud-connected. Written
+            in Go, deployed with Ansible.
+          </p>
 
-        <!-- CTA Buttons -->
-        <div class="hero__cta reveal gap-4">
-          <a href="#projects" class="btn btn-primary">
-            View My Work
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <polyline points="19 12 12 19 5 12"></polyline>
-            </svg>
-          </a>
-          <a href="resume/Rahul_Resume.pdf" download class="btn btn-outline">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download Resume
-          </a>
-          <span class="resume-updated" id="resumeUpdatedHero">Updated: Mar 2026</span>
+          <div class="hero__cta reveal gap-4">
+            <a href="#projects" class="btn btn-primary">
+              See what I've built
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </a>
+            <a href="resume/Rahul_Resume.pdf" download class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Resume
+            </a>
+          </div>
+
+          <div class="hero__socials reveal">
+            <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <!-- Avatar -->
-        <div class="hero__avatar reveal">
-          <img src="assets/images/profile_short.jpeg" alt="Rahul Kaushal" width="180" height="180" class="hero__avatar-img">
-        </div>
-
-        <!-- Social Badges -->
-        <div class="hero__socials reveal">
-          <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="https://rahulkaushal.hashnode.dev" target="_blank" rel="noopener noreferrer" class="hero__social-badge" aria-label="Hashnode">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M13.42 2.576a2.25 2.25 0 0 0-2.84 0L2.576 9.58A2.25 2.25 0 0 0 2 11.32v1.36a2.25 2.25 0 0 0 .576 1.74l8.004 7.004a2.25 2.25 0 0 0 2.84 0l8.004-7.004A2.25 2.25 0 0 0 22 12.68v-1.36a2.25 2.25 0 0 0-.576-1.74L13.42 2.576z"/>
-            </svg>
-          </a>
-        </div>
+        <aside class="hero__aside reveal" data-delay="2">
+          <div class="hero__avatar bracket-frame">
+            <img src="assets/images/profile_short.webp" alt="Rahul Kaushal" width="440" height="440" fetchpriority="high" decoding="async" class="hero__avatar-img">
+          </div>
+          <dl class="hero__specs">
+            <div class="hero__spec">
+              <dt>Team</dt>
+              <dd>Forge Platform</dd>
+            </div>
+            <div class="hero__spec">
+              <dt>Base</dt>
+              <dd>Bengaluru, IN</dd>
+            </div>
+            <div class="hero__spec">
+              <dt>Since</dt>
+              <dd>2023</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
     </section>
 
-    <!-- ==============================================================
-         ABOUT SECTION
-         ============================================================== -->
-    <section id="about" class="about">
+    <section id="about" class="about" aria-labelledby="aboutTitle">
       <div class="container">
         <span class="section-label">About Me</span>
-        <h2 class="section-title reveal">Get to Know Me</h2>
-        <p class="section-subtitle reveal">A quick snapshot of who I am, what I do, and what drives me.</p>
+        <h2 class="section-title reveal" id="aboutTitle">How I Work</h2>
 
         <div class="about__grid">
-          <!-- Left Column: Avatar Card -->
-          <div class="about__avatar-card card reveal">
-            <img src="assets/images/profile_main.jpeg" alt="Rahul Kaushal" width="280" height="280" loading="lazy" class="about__avatar-img">
+          <div class="about__avatar-card reveal">
+            <div class="bracket-frame">
+              <img src="assets/images/profile_main.webp" alt="Rahul Kaushal" width="471" height="620" loading="lazy" decoding="async" class="about__avatar-img">
+            </div>
           </div>
 
-          <!-- Right Column: Bio + Widgets -->
           <div class="about__bio reveal">
             <p>
-              I'm a software engineer at Honeywell, focused on ML platform infrastructure. 
-              I started by building a Databricks-style platform from the ground up and have since moved to working with Google Vertex AI. I mainly use Python and FastAPI.
+              I care about what I'm building, and about my team and company, but especially
+              that users don't run into problems because of something I shipped. I test things
+              properly before I ship them, and I'd rather spend the extra time getting the
+              architecture right early than pay for it after the fact: changing direction
+              costs the team, the existing code, and my own time.
             </p>
             <p>
-              I genuinely care about open source software. If I come across a repository with a bug or a missing feature, I try to understand the problem and fix it where I can.
-              Right now I am working on DepKeeper, a Python CLI tool for managing Python dependencies, and I am improving the tool to add more features and capabilities.
+              When I like an open source project, I read through its codebase. Sometimes that
+              turns up a bug, and I send a PR over it, some get merged, some don't. That's where
+              the patches to <em>facebookresearch/exca</em> and <em>aio-libs/async-lru</em> came
+              from, and why I still maintain DepKeeper and want to put out more open source work
+              of my own.
             </p>
-            <p class="about__fun-fact">
-              ⚡ Outside of work, Hollow Knight is one of my favourite games. I am building Hollow Knight Analyzer as a side project to help players better understand their progress.
-              Players can upload their save file and see details about their run.
+            <p>
+              Outside of work, I'm usually playing Elden Ring or Hollow Knight.
             </p>
 
-            <!-- Currently Widget -->
-            <div class="about__currently card">
-              <h4 class="about__currently-title">Currently</h4>
-              <ul class="about__currently-list">
-                <li>
-                  <span class="about__currently-icon">🛠️</span>
-                  <span><strong>Building:</strong> DepKeeper (Python library) &amp; Hollow Knight Analyzer</span>
-                </li>
-                <li>
-                  <span class="about__currently-icon">💼</span>
-                  <span><strong>Working on:</strong> ML platform with Google Vertex AI at Honeywell</span>
-                </li>
-                <li>
-                  <span class="about__currently-icon">📖</span>
-                  <span><strong>Reading:</strong> Generative AI System Design Interview by Ali Aminian &amp; Haz Sheng</span>
-                </li>
-                <li>
-                  <span class="about__currently-icon">👀</span>
-                  <span><strong>Open to:</strong> Python Backend, LLM/RAG systems, and MLOps engineering roles</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Location & Availability -->
-            <div class="about__meta">
-              <div class="about__location">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>Bengaluru, India</span>
-              </div>
-              <div class="about__availability">
-                <span class="about__pulse-dot"></span>
-                <span>Open to work</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==============================================================
-         SKILLS SECTION
-         ============================================================== -->
-    <section id="skills" class="skills">
+    <section id="skills" class="skills" aria-labelledby="skillsTitle">
       <div class="container">
         <span class="section-label">Skills</span>
-        <h2 class="section-title reveal">My Tech Toolbox</h2>
-        <p class="section-subtitle reveal">Tools and technologies I work with regularly.</p>
+        <h2 class="section-title reveal" id="skillsTitle">What I Build With</h2>
+        <p class="section-subtitle reveal">Grouped by the job each one does.</p>
 
-        <!-- Filter Tabs -->
-        <div class="skills__filters reveal" id="skillFilters" role="tablist" aria-label="Filter skills by category">
-          <button class="skills__filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
-          <button class="skills__filter-btn" data-category="languages" role="tab" aria-selected="false">Languages</button>
-          <button class="skills__filter-btn" data-category="frameworks" role="tab" aria-selected="false">Frameworks</button>
-          <button class="skills__filter-btn" data-category="tools" role="tab" aria-selected="false">Tools</button>
-          <button class="skills__filter-btn" data-category="cloud" role="tab" aria-selected="false">Cloud</button>
-          <button class="skills__filter-btn" data-category="learning" role="tab" aria-selected="false">Learning</button>
-        </div>
-
-        <!-- Skills Grid (rendered by JS from skills.json) -->
-        <div class="skills__grid" id="skillsGrid" role="tabpanel">
-          <!-- JS will inject skill cards here -->
+        <div class="skills__groups" id="skillsGroups">
           <noscript>
-            <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;">
-              <li><strong>Languages:</strong> Python, SQL, Bash</li>
-              <li><strong>Frameworks:</strong> LLM / RAG, LangChain, FastAPI, PyTorch, Pydantic, Scikit-learn, PySpark, SQLAlchemy, Celery</li>
-              <li><strong>Tools:</strong> Docker, Kubernetes, MLflow, PostgreSQL, Redis, Kafka, GitHub Actions, Git</li>
-              <li><strong>Cloud:</strong> Azure Cloud, Databricks</li>
-              <li><strong>Learning:</strong> Terraform, Prometheus, Go</li>
+            <ul style="list-style:none;padding:0;display:grid;gap:1.5rem;">
+              <li><strong>Core stack:</strong> Python, Go, FastAPI, SQL, PostgreSQL, Pydantic, SQLAlchemy, Bash</li>
+              <li><strong>ML and data platform:</strong> Databricks, PySpark, MLflow, LLM / RAG, LangChain</li>
+              <li><strong>Infrastructure and delivery:</strong> Docker, Kubernetes, Azure Cloud, GitHub Actions, Prometheus, Grafana, Ceph, Pacemaker/Corosync, Git</li>
             </ul>
           </noscript>
         </div>
       </div>
     </section>
 
-    <!-- ==============================================================
-         EXPERIENCE SECTION
-         ============================================================== -->
-    <section id="experience" class="experience">
+    <section id="experience" class="experience" aria-labelledby="experienceTitle">
       <div class="container">
-        <span class="section-label">Experience</span>
-        <h2 class="section-title reveal">Where I've Worked</h2>
-        <p class="section-subtitle reveal">A timeline of my professional journey.</p>
+        <div class="section-header--left">
+          <span class="section-label">Experience</span>
+          <h2 class="section-title reveal" id="experienceTitle">Where I've Worked</h2>
+          <p class="section-subtitle reveal">At Honeywell since 2023.</p>
+        </div>
 
-        <!-- Timeline (rendered by JS from experience.json) -->
         <div class="experience__timeline" id="experienceTimeline">
-          <!-- JS will inject timeline cards here -->
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3>Software Engineer II &mdash; Honeywell</h3>
-              <p>Jul 2024 &ndash; Present</p>
+              <h3>Advanced Software Engineer at Honeywell</h3>
+              <p>May 2026 to Present</p>
+              <p>Working with the team on the deployment software that installs, updates and keeps Honeywell&#x27;s edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.</p>
               <ul>
-                <li>Built an internal MLOps platform supporting 35+ production models monthly with a 99.5% deployment success rate across Databricks and AKS.</li>
-                <li>Fine-tuned an LLM on Vertex AI to convert Skyspark code into a custom DSL, achieving 80%+ translation accuracy.</li>
-                <li>Automated model packaging and container deployment using Shell, FastAPI and AKS, reducing deploy time from 3 days to 30 minutes for 15+ data scientists.</li>
-                <li>Integrated 5 security scanners (Coverity, ModelScan, TwistLock, Malware, BlackDuckHub) into CI/CD pipeline, catching 40+ vulnerabilities pre-deployment.</li>
+                <li>Contributed to the performance investigation that cut incremental-update install time by 32.5% (averaged 90m11s to 60m51s on a representative 44-package run). The biggest cost was a fixed per-sequence datastore-drain pause; no single package&#x27;s install script came close. The pause protects a real write-backlog limit; right-sizing it was the only option on the table. We consolidated 13 sequences into 9, halved the pause from 120s to 60s, and moved tarball extraction to pigz.</li>
+                <li>Worked on EdgeOrchestrator, the team&#x27;s Go control-plane service on the appliance: its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack underneath it. Playbooks run as a subprocess with an argument array (nothing reaches a shell), and a marker file stops a crashed self-update from being reported as success.</li>
+                <li>Helped root-cause a watchdog feedback loop that was wedging idle appliances while a healthy twin ran the exact same code. Killing MicroK8s hard tore down containerd without a clean CNI teardown, leaving Calico&#x27;s IPAM allocations unreleased until the address pool ran out, and the platform&#x27;s own watchdog escalated to another stop/start that re-triggered the loop. The fixes we landed: pre-caching the registry&#x27;s own image, removing its dependency on the mirror it was meant to serve; a Recreate rollout for the single-writer registry volume; and a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.</li>
+                <li>Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure Device Provisioning Service enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover.</li>
               </ul>
-              <p><em>FastAPI &middot; Python &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Docker &middot; MLflow &middot; Helm &middot; Coverity &middot; REST APIs</em></p>
+              <p><em>Go &middot; Kubernetes (MicroK8s) &middot; Ansible &middot; Pacemaker/Corosync &middot; Ceph &middot; Azure IoT Hub</em></p>
             </article>
-            <article>
-              <h3>Data Engineer II &mdash; Honeywell</h3>
-              <p>Jun 2022 &ndash; Dec 2023</p>
+            <article style="margin-bottom:2rem;">
+              <h3>Software Engineer II at Honeywell</h3>
+              <p>Jul 2024 to Apr 2026</p>
+              <p>Built services across ForgeML's 8-microservice MLOps platform, running across 10+ tenant workspaces, and the pipeline that migrates SkySpark automation rules into Forge and translates them with a tuned model.</p>
               <ul>
-                <li>Built and deployed large-scale data pipelines using PySpark and Databricks to process 500K+ service tickets and 10K+ PDF documents weekly, powering AI chatbot for 10+ enterprise customers.</li>
-                <li>Created automated PDF parsing system using PySpark and PyMuPDF to extract data from technical manuals and schematics with 95% accuracy, eliminating manual data entry.</li>
-                <li>Improved data pipeline efficiency by 70% with automated quality checks and schema validation, cutting ML team's development time from weeks to days.</li>
+                <li>Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types to validate each target's config at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes; one loop failing doesn't take the other down with it.</li>
+                <li>Routed model registrations through five security scanners (Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser), all behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.</li>
+                <li>Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed. A translation counted as correct only if running it produced the same results as the original Axon rule on the same data, and the domain experts who supplied the training pairs reviewed the output as well.</li>
+                <li>The asyncio event processor consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write. Delivery is at-least-once with upsert writes. A crash replay overwrites rows without duplicating them.</li>
+                <li>Shipped the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel, which cut write time roughly in half.</li>
+                <li>Wrote the BDD acceptance suite in Behave: 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests spanning onboarding through deployment.</li>
               </ul>
-              <p><em>PySpark &middot; Databricks &middot; Apache Spark &middot; PostgreSQL &middot; Python &middot; SQL &middot; Delta Lake &middot; PyMuPDF &middot; unstructured.io</em></p>
+              <p><em>Python &middot; FastAPI &middot; Databricks &middot; Azure Kubernetes (AKS) &middot; Google Vertex AI &middot; MLflow &middot; Azure Event Hub &middot; PostgreSQL</em></p>
+            </article>
+            <article style="margin-bottom:2rem;">
+              <h3>Data Engineer II at Honeywell</h3>
+              <p>Jun 2023 to Jun 2024</p>
+              <p>Worked on the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.</p>
+              <ul>
+                <li>Contributed to 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.</li>
+                <li>Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, using foreachBatch to run a per-micro-batch Delta MERGE INTO for SCD Type 2 upserts that kept document revisions traceable, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables, which let the vectorization job downstream read only the rows that had changed since its last run.</li>
+                <li>Wrote the SQL transformation pipelines behind the field service analytics: incident resolution trends on weekly, monthly and quarterly windows, contract and maintenance metrics, and NPS, feeding the customer-facing DSP dashboard.</li>
+                <li>On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, topic generation and summarization) through a YAML-driven config that let each tenant's agent run its own LLM, tools and prompts without a code change.</li>
+                <li>Helped build a guardrail layer that runs input validation and output safety checks as async tasks in parallel with the LLM call, catching a violation mid-stream and cancelling the in-flight response, usually within a few streamed tokens. Tenants configure it as input-only or input and output, on top of an SSE streaming layer built to hold 100+ concurrent sessions.</li>
+                <li>Collaborated on replacing plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by max inner product similarity, independent of when they were said.</li>
+                <li>Worked on vectorizing tens of thousands of knowledge-base articles and service cases into PGVector, and contributed to the evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set.</li>
+              </ul>
+              <p><em>PySpark &middot; Databricks &middot; Delta Lake &middot; PostgreSQL &middot; LangChain &middot; PGVector &middot; Azure OpenAI &middot; MLflow</em></p>
             </article>
           </noscript>
         </div>
       </div>
     </section>
 
-    <!-- ==============================================================
-         PROJECTS SECTION
-         ============================================================== -->
-    <section id="projects" class="projects">
+    <section id="patent" class="patent" aria-labelledby="patentTitle">
       <div class="container">
-        <span class="section-label">Projects</span>
-        <h2 class="section-title reveal">Things I've Built</h2>
-        <p class="section-subtitle reveal">Side projects, open source work, and the occasional rabbit hole.</p>
+        <div class="section-header--left">
+          <span class="section-label">Patent</span>
+          <h2 class="section-title reveal" id="patentTitle">Granted</h2>
+          <p class="section-subtitle reveal">Filed from the multi-tenant platform work at Honeywell.</p>
+        </div>
 
-        <!-- Project Cards Grid (rendered by JS from projects.json) -->
-        <div class="projects__grid" id="projectsGrid" role="tabpanel">
-          <!-- JS will inject featured project cards here -->
+        <article class="patent__card reveal">
+          <div class="patent__header">
+            <span class="patent__number">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="patent__icon" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="8" y1="13" x2="16" y2="13"></line>
+                <line x1="8" y1="17" x2="13" y2="17"></line>
+              </svg>
+              US 12,717,808
+            </span>
+            <span class="patent__badge">Issued Aug 25, 2026</span>
+          </div>
+
+          <h3 class="patent__title">
+            <a href="https://thepatentplace.com/iplibrary/patent-pdf/12717808/" target="_blank" rel="noopener noreferrer" class="patent__title-link">
+              Data management in a multi-tenant environment
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="patent__external-icon" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </h3>
+
+          <div class="patent__body">
+            <p>
+              Filed while working on Honeywell's multi-tenant cloud platform. The problem was
+              keeping each customer's data fully separate when everyone shares the same backend,
+              without spinning up a separate database per customer.
+            </p>
+            <p>
+              The patent covers doing that at the data level. Records get tagged and filtered,
+              then split and routed to the right tenant by customer, product or a custom
+              rule. No separate schema or database needed per tenant.
+            </p>
+          </div>
+
+          <ul class="patent__tags">
+            <li>Multi-tenancy</li>
+            <li>Data isolation</li>
+            <li>Cloud platform</li>
+          </ul>
+
+          <div class="patent__links">
+            <a href="https://thepatentplace.com/iplibrary/patent-pdf/12717808/" target="_blank" rel="noopener noreferrer" class="patent__link">Read the patent (PDF)</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="projects" aria-labelledby="projectsTitle">
+      <div class="container">
+        <div class="section-header--left">
+          <span class="section-label">Projects</span>
+          <h2 class="section-title reveal" id="projectsTitle">Things I've Built</h2>
+          <p class="section-subtitle reveal">Small tools I wanted to exist, then cleaned up and released.</p>
+        </div>
+
+        <div class="projects__grid" id="projectsGrid">
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3><a href="https://github.com/rahulkaushal04/depkeeper">DepKeeper &mdash; Python Dependency Manager</a></h3>
-              <p>A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.</p>
+              <h3>DepKeeper - Python Dependency Updater</h3>
+              <p>A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0, for Python 3.8 to 3.12.</p>
               <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
-              <p><a href="https://rahulkaushal04.github.io/depkeeper/">Live Site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
+              <p><a href="https://rahulkaushal04.github.io/depkeeper/latest/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
             </article>
-            <article>
-              <h3><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">Hollow Knight Analyzer</a></h3>
-              <p>A Streamlit-based web app for Hollow Knight players to analyze save files &mdash; decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.</p>
-              <p><em>Python &middot; Streamlit &middot; Folium &middot; Plotly &middot; Pillow &middot; PyPI</em></p>
-              <p><a href="https://github.com/rahulkaushal04/hollow-knight-analyzer">GitHub</a></p>
+            <article style="margin-bottom:2rem;">
+              <h3>Now Boarding Scheduler - Board Game Session Planner</h3>
+              <p>A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend (no heuristic shortcuts), run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it. Every scheduled session carries a plain-English reason it was picked.</p>
+              <p><em>Python &middot; Streamlit &middot; SciPy/HiGHS &middot; MILP &middot; pandas &middot; pytest</em></p>
+              <p><a href="https://now-boarding-scheduler.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/now-boarding-scheduler">GitHub</a></p>
             </article>
           </noscript>
         </div>
 
-        <!-- View All Projects CTA -->
         <div class="projects__cta reveal">
           <a href="projects.html" class="btn btn-outline projects__view-all-btn">
             <span>View All Projects</span>
@@ -381,38 +510,31 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         OPEN SOURCE CONTRIBUTIONS SECTION
-         ============================================================== -->
-    <section id="contributions" class="contributions">
+    <section id="contributions" class="contributions" aria-labelledby="contributionsTitle">
       <div class="container">
-        <span class="section-label">Open Source</span>
-        <h2 class="section-title reveal">Open Source Contributions</h2>
-        <p class="section-subtitle reveal">Pull requests I've submitted to projects I use and care about.</p>
-
-        <!-- Stats Row (rendered by JS) -->
-        <div class="contributions__stats" id="contributionsStats">
-          <!-- JS will inject stat counters here -->
+        <div class="section-header--left">
+          <span class="section-label">Open Source</span>
+          <h2 class="section-title reveal" id="contributionsTitle">Merged upstream</h2>
+          <p class="section-subtitle reveal">Reviewed and merged by maintainers.</p>
         </div>
 
-        <!-- Contribution Cards Grid (rendered by JS from contributions.json) -->
+        <div class="contributions__stats" id="contributionsStats"></div>
+
         <div class="contributions__grid" id="contributionsGrid">
-          <!-- JS will inject contribution cards here -->
           <noscript>
             <article style="margin-bottom:2rem;">
-              <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca &mdash; fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
-              <p>Fixed bugs in BaseInfra.__eq__, cache eviction logic, directory cleanup, missing f-string prefixes in error messages, and a potential UnboundLocalError across 6 files.</p>
-              <p><em>Python &middot; Bug Fix</em> &middot; Merged: Mar 2026</p>
+              <h3><a href="https://github.com/facebookresearch/exca/pull/206">facebookresearch/exca: fix: minor bugs in __eq__, cache eviction, and cleanup</a></h3>
+              <p>Five fixes across six files in Meta's experiment-caching library: a BaseInfra.__eq__ that compared the wrong fields, cache eviction that kept the wrong entries, directory cleanup that left files behind, error messages missing their f-string prefix, and a branch that could raise UnboundLocalError.</p>
+              <p><em>Python &middot; Bug Fix</em></p>
             </article>
-            <article>
-              <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru &mdash; feat: add cache_contains() for read-only key lookup</a></h3>
-              <p>Adds cache_contains(*args, **kwargs) -&gt; bool to alru_cache for side-effect-free cache key lookups without affecting hit/miss counters or LRU ordering.</p>
-              <p><em>Python &middot; asyncio &middot; LRU Cache &middot; New Feature &middot; Cache Introspection</em></p>
+            <article style="margin-bottom:2rem;">
+              <h3><a href="https://github.com/aio-libs/async-lru/pull/746">aio-libs/async-lru: feat: add cache_contains() for read-only key lookup</a></h3>
+              <p>Added cache_contains(*args, **kwargs) -&gt; bool to alru_cache, letting callers check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.</p>
+              <p><em>Python &middot; asyncio &middot; New Feature</em></p>
             </article>
           </noscript>
         </div>
 
-        <!-- View All Contributions CTA -->
         <div class="contributions__cta reveal">
           <a href="contributions.html" class="btn btn-outline contributions__view-all-btn">
             <span>View All Contributions</span>
@@ -425,54 +547,14 @@
       </div>
     </section>
 
-    <!-- ==============================================================
-         BLOG SECTION
-         ============================================================== -->
-    <section id="blog" class="blog">
-      <div class="container">
-        <span class="section-label">Blog</span>
-        <h2 class="section-title reveal">Latest Articles</h2>
-        <p class="section-subtitle reveal">Writing about things I build, break, and figure out along the way.</p>
-
-        <!-- Blog Cards Grid (rendered by JS from RSS or blogs.json) -->
-        <div class="blog__grid" id="blogGrid">
-          <!-- JS will inject blog cards here -->
-          <noscript>
-            <ul style="list-style:none;padding:0;">
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/build-your-first-rag-pipeline-from-scratch">Build Your First RAG Pipeline from Scratch</a> &mdash; Jan 19, 2026 &middot; 16 min read &middot; <em>python, ai-ml, llm</em></li>
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/how-ai-finds-what-you-actually-mean">How AI Finds What You Actually Mean</a> &mdash; Jan 12, 2026 &middot; 19 min read &middot; <em>python, ai-ml</em></li>
-              <li style="margin-bottom:1rem;"><a href="https://rahulkaushal.hashnode.dev/the-async-fastapi-playbook-concurrency-patterns-that-actually-hold-up-in-prod">Don&rsquo;t Hold the Chef Hostage: A Production Guide to Async FastAPI</a> &mdash; Nov 10, 2025 &middot; 17 min read &middot; <em>python, fastapi, backend</em></li>
-              <li><a href="https://rahulkaushal.hashnode.dev/why-your-fastapi-db-pool-never-fails-in-dev-and-explodes-in-prod">Why Your FastAPI DB Pool Never Fails in Dev (And Explodes in Prod)</a> &mdash; Nov 3, 2026 &middot; 9 min read &middot; <em>python, fastapi, database</em></li>
-            </ul>
-          </noscript>
-        </div>
-
-        <!-- View All Articles CTA -->
-        <div class="blog__cta reveal">
-          <a href="blog.html" class="btn btn-outline blog__view-all-btn">
-            <span>View All Articles</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==============================================================
-         CONTACT SECTION
-         ============================================================== -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-labelledby="contactTitle">
       <div class="container">
         <span class="section-label">Contact</span>
-        <h2 class="section-title reveal">Let's Connect</h2>
-        <p class="section-subtitle reveal">Have a project, a role, or just want to say hi? My inbox is always open.</p>
+        <h2 class="section-title reveal" id="contactTitle">Get in touch</h2>
+        <p class="section-subtitle reveal">I read every message. The ones about backend, platform and MLOps roles get answered first.</p>
 
         <div class="contact__wrapper">
-          <!-- Contact Form -->
           <form class="contact__form card reveal" id="contactForm" action="https://formspree.io/f/mykdbjpw" method="POST" novalidate>
-            <!-- Name -->
             <div class="contact__field">
               <label for="contactName" class="contact__label">Name</label>
               <input
@@ -487,7 +569,6 @@
               <span class="contact__error" id="nameError" aria-live="polite"></span>
             </div>
 
-            <!-- Email -->
             <div class="contact__field">
               <label for="contactEmail" class="contact__label">Email</label>
               <input
@@ -502,21 +583,19 @@
               <span class="contact__error" id="emailError" aria-live="polite"></span>
             </div>
 
-            <!-- Message -->
             <div class="contact__field">
               <label for="contactMessage" class="contact__label">Message</label>
               <textarea
                 id="contactMessage"
                 name="message"
                 class="contact__input contact__textarea"
-                placeholder="What's on your mind?"
+                placeholder="A few lines about the role or the problem"
                 rows="5"
                 required
               ></textarea>
               <span class="contact__error" id="messageError" aria-live="polite"></span>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary contact__submit" id="contactSubmit">
               <span class="contact__submit-text">Send Message</span>
               <span class="contact__submit-loader" aria-hidden="true"></span>
@@ -528,9 +607,7 @@
             </button>
           </form>
 
-          <!-- Contact Info Sidebar -->
           <div class="contact__info reveal">
-            <!-- Availability Chip -->
             <div class="contact__availability-chip">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -538,19 +615,25 @@
                 <line x1="12" y1="12" x2="12" y2="16"></line>
                 <line x1="10" y1="14" x2="14" y2="14"></line>
               </svg>
-              <span>Open to new opportunities</span>
+              <span>Open to new roles</span>
               <span class="contact__avail-dot" aria-hidden="true"></span>
             </div>
 
-            <!-- Response Time -->
+            <a class="contact__email" href="mailto:kaushalrahul15@gmail.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>kaushalrahul15@gmail.com</span>
+            </a>
+
             <div class="contact__meta-row">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
-              <span>Usually replies within 24 hours</span>
+              <span>Prefer email? The form and the address reach the same inbox.</span>
             </div>
 
-            <!-- Location -->
             <div class="contact__meta-row">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -560,7 +643,6 @@
               <span>Bengaluru, India</span>
             </div>
 
-            <!-- Social Links Row -->
             <div class="contact__socials">
               <a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -579,52 +661,71 @@
     </section>
   </main>
 
-  <!-- ================================================================
-       FOOTER
-       ================================================================ -->
   <footer class="footer">
     <div class="container">
-      <!-- Tech Stack Badges -->
-      <div class="footer__tech-stack reveal">
-        <span class="footer__tech-label">Built with</span>
-        <div class="footer__tech-badges">
-          <span class="tag-chip">HTML5</span>
-          <span class="tag-chip">CSS3</span>
-          <span class="tag-chip">JavaScript</span>
-          <span class="tag-chip">GitHub Pages</span>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <p class="footer__blurb">
+            Platform and backend engineer in Bengaluru, currently working on
+            the deployment platform for Honeywell's edge Kubernetes appliances.
+          </p>
+          <a href="mailto:kaushalrahul15@gmail.com" class="footer__email">kaushalrahul15@gmail.com</a>
         </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__nav-title">Sections</h2>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contributions">Open Source</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Elsewhere">
+          <h2 class="footer__nav-title">Elsewhere</h2>
+          <ul>
+            <li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="resume/Rahul_Resume.pdf" download>Resume (PDF)</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <!-- Copyright -->
-      <p class="footer__copy">
-        &copy; <span id="footerYear">2026</span> Rahul Kaushal. All rights reserved.
-      </p>
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="footerYear">2026</span> Rahul Kaushal
+        </p>
+        <p class="footer__built">
+          Hand-written HTML, CSS and JavaScript. No framework, no build step.
+          <a href="https://github.com/rahulkaushal04/portfolio" target="_blank" rel="noopener noreferrer">Source</a>
+        </p>
+      </div>
     </div>
 
-    <!-- Back to Top -->
     <button class="footer__back-to-top" id="backToTop" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"></line>
         <polyline points="5 12 12 5 19 12"></polyline>
       </svg>
     </button>
   </footer>
 
-  <!-- ── Toast Notification Container ───────────────── -->
   <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- ── Noscript Fallback ──────────────────────────── -->
   <noscript>
     <style>
       .hero__typewriter, .cursor-dot, .scroll-progress, .hero__canvas { display: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
     </style>
-    <div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#F59E0B;color:#0F1117;text-align:center;z-index:10000;font-weight:600;">
+    <div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#F59E0B;color:#0B0D12;text-align:center;z-index:10000;font-weight:600;">
       This site works best with JavaScript enabled. Some features may not be available.
     </div>
   </noscript>
 
-  <!-- ── Scripts (ES Modules) ───────────────────────── -->
   <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>

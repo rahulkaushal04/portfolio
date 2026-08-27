@@ -1,24 +1,24 @@
 [
   {
-    "title": "DepKeeper - Python Dependency Manager",
-    "description": "A smart CLI tool for managing Python dependencies in requirements.txt files: detects outdated packages, respects semantic versioning boundaries, resolves conflicts, and runs async PyPI queries for fast results.",
+    "title": "DepKeeper - Python Dependency Updater",
+    "description": "A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0, for Python 3.8 to 3.12.",
     "categories": ["cli", "open-source"],
     "tags": ["Python", "Click", "Rich", "httpx", "PyPI API", "Async"],
-    "thumbnail": "assets/images/projects/depkeeper.png",
-    "liveUrl": "https://rahulkaushal04.github.io/depkeeper/",
+    "thumbnail": "assets/images/projects/depkeeper.webp",
+    "liveUrl": "https://rahulkaushal04.github.io/depkeeper/latest/",
     "githubUrl": "https://github.com/rahulkaushal04/depkeeper",
     "featured": true,
-    "status": "stable"
+    "status": "beta"
   },
   {
-    "title": "Hallownest Codex - Hollow Knight Analyzer",
-    "description": "A Streamlit-based web app for Hollow Knight players to analyze save files - decrypts .dat saves, tracks 112% completion, visualizes progress with interactive maps, charm optimizer, and exportable reports.",
+    "title": "Now Boarding Scheduler - Board Game Session Planner",
+    "description": "A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend (no heuristic shortcuts), run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it. Every scheduled session carries a plain-English reason it was picked.",
     "categories": ["web", "side-projects"],
-    "tags": ["Python", "Streamlit", "Folium", "Plotly", "Pillow", "PyPI"],
-    "thumbnail": "assets/images/projects/hollow-knight-analyzer.png",
-    "liveUrl": "https://hollow-knight-analyzer.streamlit.app",
-    "githubUrl": "https://github.com/rahulkaushal04/hollow-knight-analyzer",
+    "tags": ["Python", "Streamlit", "SciPy/HiGHS", "MILP", "pandas", "pytest"],
+    "thumbnail": "assets/images/projects/now-boarding-scheduler.webp",
+    "liveUrl": "https://now-boarding-scheduler.streamlit.app",
+    "githubUrl": "https://github.com/rahulkaushal04/now-boarding-scheduler",
     "featured": true,
-    "status": "alpha"
+    "status": "stable"
   }
 ]

@@ -1,12 +1,8 @@
-// cursor.js - Custom dot cursor that smoothly trails the mouse on desktop.
-// Scales up over interactive elements. Skipped entirely on touch devices.
-
 let dot;
 
 let mouseX = 0;
 let mouseY = 0;
 
-// dotX/dotY lag behind the mouse; the gap closes each frame via lerp.
 let dotX = 0;
 let dotY = 0;
 
@@ -14,19 +10,26 @@ let dotY = 0;
 const LERP = 0.15;
 
 let isActive = false;
+let rafId = 0;
 
 function animate() {
-  if (!dot) return;
+  if (!dot || !isActive) {
+    rafId = 0;
+    return;
+  }
 
   dotX += (mouseX - dotX) * LERP;
   dotY += (mouseY - dotY) * LERP;
 
   dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
 
-  requestAnimationFrame(animate);
+  rafId = requestAnimationFrame(animate);
 }
 
-// Adds/removes the enlarged state when the pointer moves over interactive elements.
+function ensureRunning() {
+  if (!rafId) rafId = requestAnimationFrame(animate);
+}
+
 function initHoverDetection() {
   const selector = 'a, button, [role="button"], input, textarea, select, label';
 
@@ -42,6 +45,8 @@ function initHoverDetection() {
 export function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
 
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   dot = document.getElementById('cursorDot');
   if (!dot) return;
 
@@ -53,9 +58,9 @@ export function initCursor() {
       isActive = true;
       dot.classList.add('visible');
     }
+    ensureRunning();
   });
 
-  // Hide the dot when the pointer leaves the browser window
   document.addEventListener('mouseleave', () => {
     dot.classList.remove('visible');
     isActive = false;
@@ -64,8 +69,8 @@ export function initCursor() {
   document.addEventListener('mouseenter', () => {
     dot.classList.add('visible');
     isActive = true;
+    ensureRunning();
   });
 
   initHoverDetection();
-  requestAnimationFrame(animate);
 }

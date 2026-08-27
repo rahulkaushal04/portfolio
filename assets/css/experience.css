@@ -1,83 +1,71 @@
-/* ============================================================
-   EXPERIENCE SECTION
-   Vertical timeline with alternating left/right cards.
-   Includes:
-   - Center guideline
-   - Timeline dots
-   - Company header (logo + name)
-   - Role + dates
-   - Bullet description
-   - Tech tags
-   ============================================================ */
-
-
-/* ──────────────────────────────────────────────────────────
-   TIMELINE CONTAINER
-   Holds center vertical line
-   ────────────────────────────────────────────────────────── */
 .experience__timeline {
   position: relative;
-  max-width: 1000px;
-  margin-inline: auto;
-  padding-block: var(--sp-8);
+  max-width: 860px;
+  margin-inline: 0;
+  padding-block: var(--sp-4);
 }
 
-/* Center vertical guideline */
 .experience__timeline::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: 7px;
   width: 2px;
-  transform: translateX(-50%);
 
   background: linear-gradient(
     to bottom,
     transparent,
-    var(--clr-border) 10%,
-    var(--clr-border) 90%,
+    var(--clr-border) 6%,
+    var(--clr-border) 94%,
     transparent
   );
 }
 
+.experience__timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
 
-/* ──────────────────────────────────────────────────────────
-   TIMELINE ITEM
-   Each occupies half width and alternates sides
-   ────────────────────────────────────────────────────────── */
+  background: linear-gradient(to bottom, var(--clr-accent), var(--clr-success));
+}
+
+@supports (animation-timeline: view()) {
+  .experience__timeline::after {
+    animation: experience-fill linear;
+    animation-timeline: view(block);
+    animation-range: entry 0% cover 70%;
+  }
+}
+
+@keyframes experience-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
 .experience__item {
   position: relative;
-  width: 50%;
-  padding: var(--sp-4);
+  padding-left: calc(var(--sp-10) + 4px);
+  padding-bottom: var(--sp-10);
 }
 
-/* Right side (odd) */
-.experience__item:nth-child(odd) {
-  left: 50%;
-  padding-left: var(--sp-10);
-  text-align: left;
+.experience__item:last-child {
+  padding-bottom: 0;
 }
 
-/* Left side (even) */
-.experience__item:nth-child(even) {
-  left: 0;
-  padding-right: var(--sp-10);
-  text-align: right;
-}
-
-
-/* ──────────────────────────────────────────────────────────
-   TIMELINE DOT
-   Centered on guideline
-   ────────────────────────────────────────────────────────── */
 .experience__item::before {
   content: "";
   position: absolute;
-  top: var(--sp-8);
+  top: var(--sp-1);
+  left: 0;
 
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 
   background-color: var(--clr-accent);
   border: 3px solid var(--clr-bg-primary);
@@ -86,65 +74,64 @@
   z-index: 1;
 }
 
-/* Offset dot to center line (half dot width = 7px) */
-.experience__item:nth-child(odd)::before {
-  left: -7px;
+.experience__item--current::before {
+  background-color: var(--clr-success);
 }
 
-.experience__item:nth-child(even)::before {
-  right: -7px;
+.experience__item--current::after {
+  content: "";
+  position: absolute;
+  top: var(--sp-1);
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  opacity: 0.6;
+  animation: pulseGlow 2s ease-out infinite;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   CARD
-   ────────────────────────────────────────────────────────── */
 .experience__card {
   background-color: var(--clr-bg-card);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
-  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
   box-shadow: var(--shadow-sm);
 
   transition:
     transform var(--duration-base) var(--ease-default),
     box-shadow var(--duration-base) var(--ease-default);
 
-  will-change: transform;
 }
 
-.experience__card:hover,
-.experience__card:focus-visible {
+.experience__card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  outline: none;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   COMPANY HEADER
-   ────────────────────────────────────────────────────────── */
 .experience__header {
   display: flex;
   align-items: center;
-  gap: var(--sp-1);
-  margin-bottom: 0;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-1);
 }
 
-/* Reverse header layout for left-aligned cards */
-.experience__item:nth-child(even) .experience__header {
-  flex-direction: row-reverse;
+.experience__logo-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  background-color: var(--clr-bg-tertiary);
 }
 
 .experience__logo {
-  /* Size is driven by the logoSize field in experience.json via inline style */
+  display: block;
   width: auto;
   height: auto;
-  border-radius: var(--radius-md);
   object-fit: contain;
-  background-color: var(--clr-bg-tertiary);
-  padding: 2px;
-  flex-shrink: 0;
 }
 
 .experience__company {
@@ -153,10 +140,44 @@
   color: var(--clr-text-primary);
 }
 
+.experience__current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: auto;
+  padding: var(--sp-1) var(--sp-3);
 
-/* ──────────────────────────────────────────────────────────
-   ROLE + DATE
-   ────────────────────────────────────────────────────────── */
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--clr-success);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  border: 1px solid var(--clr-success);
+  border-radius: var(--radius-full);
+  background: rgba(0, 212, 170, 0.08);
+}
+
+.experience__current-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  flex-shrink: 0;
+}
+
+.experience__current-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--clr-success);
+  opacity: 0.6;
+  animation: pulseGlow 2s ease-out infinite;
+}
+
 .experience__role {
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
@@ -165,33 +186,29 @@
 }
 
 .experience__date {
-  font-size: var(--fs-sm);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
   color: var(--clr-text-muted);
+  letter-spacing: 0.04em;
   margin-bottom: var(--sp-4);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   DESCRIPTION BULLETS
-   ────────────────────────────────────────────────────────── */
 .experience__description {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
-  margin-bottom: var(--sp-2);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
 }
 
 .experience__description li {
   font-size: var(--fs-sm);
   color: var(--clr-text-secondary);
-  line-height: var(--lh-base);
-  text-wrap: justify;
+  line-height: var(--lh-loose);
 
   position: relative;
   padding-left: var(--sp-5);
 }
 
-/* Left-pointing bullet */
 .experience__description li::before {
   content: "▸";
   position: absolute;
@@ -200,23 +217,10 @@
   font-weight: var(--fw-bold);
 }
 
-/* Reverse bullets for left-aligned cards */
-.experience__item:nth-child(even) .experience__description li {
-  padding-left: 0;
-  padding-right: var(--sp-5);
-}
-
-.experience__item:nth-child(even) .experience__description li::before {
-  left: auto;
-  right: 0;
-  content: "◂";
-}
-
-
-/* ──────────────────────────────────────────────────────────
-   DESCRIPTION COLLAPSE TOGGLE
-   ────────────────────────────────────────────────────────── */
 .experience__toggle {
+  min-height: 44px;
+  padding-block: var(--sp-2);
+  padding-inline: 0;
   display: inline-flex;
   align-items: center;
   gap: var(--sp-1);
@@ -245,22 +249,12 @@
   transform: rotate(180deg);
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   TECH TAG CHIPS
-   ────────────────────────────────────────────────────────── */
 .experience__tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-/* Align tags to card edge */
-.experience__item:nth-child(even) .experience__tags {
-  justify-content: flex-end;
-}
-
-/* "+N more" overflow chip — styled like tag-chip but with a dashed border */
 .experience__tags-more {
   cursor: pointer;
   background: none;
@@ -274,64 +268,98 @@
   opacity: 1;
 }
 
+@media (max-width: 480px) {
 
-/* ============================================================
-   RESPONSIVE: SINGLE COLUMN
-   Converts timeline to left-aligned vertical layout
-   ============================================================ */
-@media (max-width: 768px) {
-
-  /* Move guideline to left side */
-  .experience__timeline::before {
-    left: 20px;
-    transform: none;
+  .experience__item {
+    padding-left: calc(var(--sp-8) + 4px);
+    padding-bottom: var(--sp-8);
   }
 
-  /* Full width items */
-  .experience__item,
-  .experience__item:nth-child(odd),
-  .experience__item:nth-child(even) {
-    width: 100%;
-    left: 0;
-    padding-left: calc(40px + var(--sp-4));
-    padding-right: 0;
-    text-align: left;
+  .experience__card {
+    padding: var(--sp-4);
   }
 
-  /* Dot aligned with left guideline */
-  .experience__item::before {
-    left: 13px;
-    right: auto;
+  .experience__header {
+    flex-wrap: wrap;
+    row-gap: var(--sp-2);
   }
 
-  /* Normalize layout */
-  .experience__item:nth-child(even) .experience__header {
-    flex-direction: row;
-  }
-
-  .experience__item:nth-child(even) .experience__description li {
-    padding-left: var(--sp-5);
-    padding-right: 0;
-  }
-
-  .experience__item:nth-child(even) .experience__description li::before {
-    left: 0;
-    right: auto;
-    content: "▸";
-  }
-
-  .experience__item:nth-child(even) .experience__tags {
-    justify-content: flex-start;
+  .experience__current-badge {
+    margin-left: 0;
   }
 }
 
-
-/* ──────────────────────────────────────────────────────────
-   ACCESSIBILITY: Reduced Motion
-   ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .experience__card {
     transition: none;
     transform: none !important;
+  }
+
+  .experience__timeline::after {
+    animation: none !important;
+    transform: scaleY(1);
+  }
+
+  .experience__current-dot::before {
+    animation: none !important;
+  }
+}
+
+.experience__company-group + .experience__company-group {
+  margin-top: var(--sp-16);
+}
+
+.experience__company-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+
+  margin-left: calc(var(--sp-10) + 4px);
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-8);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.experience__promotion {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+}
+
+.experience__roles {
+  display: grid;
+  gap: var(--sp-8);
+}
+
+.experience__role-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-1);
+}
+
+.experience__summary {
+  font-size: var(--fs-md);
+  color: var(--clr-text-primary);
+  margin-block: var(--sp-3) var(--sp-4);
+  max-width: 62ch;
+}
+
+.experience__description {
+  max-width: 74ch;
+}
+
+@media (max-width: 768px) {
+  .experience__company-head {
+    margin-left: calc(var(--sp-8) + 4px);
+    margin-bottom: var(--sp-6);
+  }
+
+  .experience__summary {
+    font-size: var(--fs-base);
   }
 }

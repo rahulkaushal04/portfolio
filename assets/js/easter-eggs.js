@@ -1,12 +1,3 @@
-// easter-eggs.js - Hidden fun stuff for curious visitors.
-// 1. Konami code → confetti burst
-// 2. Type "matrix" → Matrix rain effect
-// 3. Click logo 5× rapidly → "YOU FOUND ME" banner
-// 4. Hold D + L → disco hue-rotate for 2 s
-
-// ─────────────────────────────────────────────────────────
-//  KONAMI CODE
-// ─────────────────────────────────────────────────────────
 const KONAMI = [
   'ArrowUp', 'ArrowUp',
   'ArrowDown', 'ArrowDown',
@@ -78,9 +69,6 @@ function initKonami() {
   });
 }
 
-// ─────────────────────────────────────────────────────────
-//  MATRIX RAIN — type "matrix" anywhere on the page
-// ─────────────────────────────────────────────────────────
 const MATRIX_WORD = 'matrix';
 let matrixBuffer = '';
 let matrixActive = false;
@@ -104,45 +92,42 @@ function startMatrixRain() {
 
   let frame;
   const startTime = performance.now();
-  const DURATION = 4000;       // total visible time
-  const FADE_OUT = 1500;       // last 1.5 s fades out
+  const DURATION = 4000;
+  const FADE_OUT = 1500;
   let fadingOut = false;
 
   function draw(now) {
     const elapsed = now - startTime;
 
-    // Start CSS opacity fade-out once we enter the fade window
     if (!fadingOut && elapsed >= DURATION - FADE_OUT) {
       fadingOut = true;
       canvas.style.opacity = '0';
     }
 
-    // Remove canvas after CSS transition completes
     if (elapsed >= DURATION) {
       cancelAnimationFrame(frame);
-      // Wait for the CSS opacity transition to finish before removing
+      // Wait for the CSS opacity transition to finish before removing,
+      // with a timeout fallback in case transitionend never fires.
       canvas.addEventListener('transitionend', () => {
         canvas.remove();
         matrixActive = false;
       }, { once: true });
-      // Fallback if transitionend doesn't fire
       setTimeout(() => { canvas.remove(); matrixActive = false; }, FADE_OUT + 200);
       return;
     }
 
-    // Semi-transparent black to create trail effect
+    // Semi-transparent black creates the trailing effect
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = `${fontSize}px monospace`;
 
-    // Stop spawning new drops during the fade-out window
     const spawning = elapsed < DURATION - FADE_OUT;
 
     for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.random() * chars.length | 0];
 
-      const brightness = Math.random() > 0.9 ? '#fff' : '#0f0';
+      const brightness = Math.random() > 0.9 ? '#fff': '#0f0';
       ctx.fillStyle = brightness;
       ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
@@ -160,12 +145,10 @@ function startMatrixRain() {
 
 function initMatrixRain() {
   document.addEventListener('keydown', (e) => {
-    // Ignore if user is typing in an input/textarea
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     matrixBuffer += e.key.toLowerCase();
 
-    // Keep buffer trimmed to the length of the trigger word
     if (matrixBuffer.length > MATRIX_WORD.length) {
       matrixBuffer = matrixBuffer.slice(-MATRIX_WORD.length);
     }
@@ -177,9 +160,6 @@ function initMatrixRain() {
   });
 }
 
-// ─────────────────────────────────────────────────────────
-//  HIRE ME MODE — click the logo 5× rapidly
-// ─────────────────────────────────────────────────────────
 function initHireMe() {
   const logo = document.querySelector('.navbar__logo');
   if (!logo) return;
@@ -187,12 +167,11 @@ function initHireMe() {
   let clickCount = 0;
   let clickTimer = null;
   const CLICKS_NEEDED = 5;
-  const CLICK_WINDOW = 2000; // must click 5× within 2 s
+  const CLICK_WINDOW = 2000;
 
   logo.addEventListener('click', (e) => {
     clickCount++;
 
-    // Reset timer on each click
     clearTimeout(clickTimer);
     clickTimer = setTimeout(() => { clickCount = 0; }, CLICK_WINDOW);
 
@@ -206,7 +185,6 @@ function initHireMe() {
 }
 
 function launchHireMeBanner() {
-  // Don't stack banners
   if (document.querySelector('.hire-me-banner')) return;
 
   const banner = document.createElement('div');
@@ -214,14 +192,10 @@ function launchHireMeBanner() {
   banner.innerHTML = '<span class="hire-me-banner__text">YOU FOUND ME</span>';
   document.body.appendChild(banner);
 
-  // Remove after animation ends (~4 s)
   banner.addEventListener('animationend', () => banner.remove());
-  setTimeout(() => banner.remove(), 5000); // fallback cleanup
+  setTimeout(() => banner.remove(), 5000);
 }
 
-// ─────────────────────────────────────────────────────────
-//  DISCO MODE — hold D + L simultaneously
-// ─────────────────────────────────────────────────────────
 function initDisco() {
   const keysDown = new Set();
   let discoActive = false;
@@ -232,11 +206,10 @@ function initDisco() {
 
     const root = document.documentElement;
     let hue = 0;
-    const STEP = 30;          // degrees per tick
-    const INTERVAL = 80;      // ms between ticks
-    const DURATION = 2000;    // total disco time
+    const STEP = 30;
+    const INTERVAL = 80;
+    const DURATION = 2000;
 
-    // Apply transition so the hue changes feel smooth
     root.style.transition = 'filter 80ms linear';
     root.style.filter = `hue-rotate(${hue}deg)`;
 
@@ -245,14 +218,11 @@ function initDisco() {
       root.style.filter = `hue-rotate(${hue}deg)`;
     }, INTERVAL);
 
-    // Settle back after DURATION
     setTimeout(() => {
       clearInterval(tick);
-      // Smooth return to normal
       root.style.transition = 'filter 400ms ease-out';
       root.style.filter = '';
 
-      // Clean up inline styles after transition
       setTimeout(() => {
         root.style.transition = '';
         root.style.filter = '';
@@ -275,9 +245,6 @@ function initDisco() {
   });
 }
 
-// ─────────────────────────────────────────────────────────
-//  CONSOLE MESSAGE
-// ─────────────────────────────────────────────────────────
 function printConsoleMessage() {
   const styles = [
     'color: #4F8EF7',
@@ -294,20 +261,17 @@ function printConsoleMessage() {
   ].join(';');
 
   console.log(
-    '%cHey, fellow developer!%c\n' +
-    "%cCurious how this site works? It's all vanilla HTML, CSS & JS - no frameworks.\n" +
-    'Check out the source: https://github.com/rahulkaushal04/portfolio\n' +
-    'Try the Konami code for a surprise! up up down down left right left right B A\n' +
-    'Type "matrix" for another one',
+    '%cYou opened the console. Good instinct.%c\n' +
+    '%cThis site is hand-written HTML, CSS and JavaScript. No framework, no build step.\n' +
+    'Source: https://github.com/rahulkaushal04/portfolio\n' +
+    'There is a Konami code in here: up up down down left right left right B A\n' +
+    'Typing "matrix" does something else.',
     styles,
     '',
     subtitleStyles
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  INIT
-// ─────────────────────────────────────────────────────────
 export function initEasterEggs() {
   initKonami();
   initMatrixRain();

@@ -1,30 +1,42 @@
-// projects-page.js - Full projects listing page with search and category filtering.
-// Standalone entry point for projects.html.
-
 import { initAnimations } from './animations.js';
 import { initCursor }     from './cursor.js';
 
-/* ── State ─────────────────────────────────────────── */
 let allProjects = [];
 let activeCat   = 'all';
 let searchTerm  = '';
 
-/* ── DOM refs (set in init) ────────────────────────── */
-let grid, emptyState, countEl, searchInput, catContainer, clearBtn;
+let grid, emptyState, countEl, searchInput, catContainer, clearBtn, toolbar;
+
+// Below this many items, the filter toolbar is hidden.
+const TOOLBAR_MIN_ITEMS = 6;
+
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function labelForCategory(slug) {
+  const overrides = { cli: 'CLI', api: 'API', ml: 'ML', 'open-source': 'Open Source' };
+  if (overrides[slug]) return overrides[slug];
+  return slug
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
 
 const STATUS_LABELS = {
-  stable:     'Stable Release',
-  beta:       'Beta',
-  alpha:      'Alpha',
-  wip:        'In Progress',
+  stable:    'Stable Release',
+  beta:      'Beta',
+  alpha:     'Alpha',
+  wip:       'In Progress',
   'no-release': 'No Release Yet',
 };
 
-/* ── Card HTML (mirrors projects.js) ───────────────── */
 function cardHTML(project) {
-  const featuredClass = project.featured ? ' featured' : '';
+  const featuredClass = project.featured ? ' featured': '';
   const categories = project.categories.join(' ');
-  const tags = project.tags.map((t) => `<span class="tag-chip">${t}</span>`).join('');
+  const tags = project.tags.map((t) => `<span class="tag-chip">${escapeHTML(t)}</span>`).join('');
 
   const statusBadge = project.status
     ? `<span class="projects__card-status" data-status="${project.status}">${STATUS_LABELS[project.status] ?? project.status}</span>`
@@ -34,7 +46,7 @@ function cardHTML(project) {
   if (project.liveUrl) {
     actions += `
       <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer"
-         class="projects__card-link" aria-label="Live demo of ${project.title}">
+         class="projects__card-link" aria-label="Live demo of ${escapeHTML(project.title)}">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
              fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round">
@@ -48,7 +60,7 @@ function cardHTML(project) {
   if (project.githubUrl) {
     actions += `
       <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer"
-         class="projects__card-link" aria-label="GitHub repo for ${project.title}">
+         class="projects__card-link" aria-label="GitHub repo for ${escapeHTML(project.title)}">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
              fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
@@ -69,43 +81,22 @@ function cardHTML(project) {
       <div class="projects__card-img-wrapper">
         ${statusBadge}
         <img src="${project.thumbnail}"
-             alt="${project.title} screenshot"
+             alt="${escapeHTML(project.title)} screenshot"
              class="projects__card-img"
              loading="lazy" width="680" height="383">
-        <div class="projects__card-overlay">
-          <span class="projects__card-overlay-text">${project.description}</span>
+        <div class="projects__card-overlay" aria-hidden="true">
+          <span class="projects__card-overlay-text">${project.liveUrl ? 'Open live demo': 'View source'}</span>
         </div>
       </div>
       <div class="projects__card-body">
-        <h3 class="projects__card-title">${project.title}</h3>
-        <p class="projects__card-description">${project.description}</p>
+        <h3 class="projects__card-title">${escapeHTML(project.title)}</h3>
+        <p class="projects__card-description">${escapeHTML(project.description)}</p>
         <div class="projects__card-tags">${tags}</div>
         <div class="projects__card-actions">${actions}</div>
       </div>
     </article>`;
 }
 
-/* ── Tilt effect ───────────────────────────────────── */
-function applyTilt() {
-  grid.querySelectorAll('.projects__card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x    = e.clientX - rect.left;
-      const y    = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-      const rotateX = ((y - midY) / midY) * -4;
-      const rotateY = ((x - midX) / midX) *  4;
-      card.style.transform =
-        `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-/* ── Fetch ─────────────────────────────────────────── */
 async function fetchProjects() {
   try {
     const res = await fetch('data/projects.json');
@@ -116,7 +107,6 @@ async function fetchProjects() {
   }
 }
 
-/* ── Filtering logic ───────────────────────────────── */
 function getFiltered() {
   return allProjects.filter((p) => {
     const matchesCat =
@@ -133,11 +123,9 @@ function getFiltered() {
   });
 }
 
-/* ── Render ────────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
 
-  // Update count
   const total = allProjects.length;
   const shown = filtered.length;
   countEl.textContent =
@@ -145,42 +133,46 @@ function render() {
       ? `${total} project${total !== 1 ? 's' : ''}`
       : `${shown} of ${total} project${total !== 1 ? 's' : ''}`;
 
-  // Toggle empty state
   const isEmpty = filtered.length === 0;
   emptyState.hidden = !isEmpty;
   grid.hidden = isEmpty;
 
   if (!isEmpty) {
-    // Featured first
     const sorted = [...filtered].sort((a, b) => Number(b.featured) - Number(a.featured));
     grid.innerHTML = sorted.map(cardHTML).join('');
-    applyTilt();
     if (window.__reObserveReveals) window.__reObserveReveals();
   }
 }
 
-/* ── Collect unique categories & build filter buttons ── */
 function buildCatFilters() {
   const catSet = new Set();
   allProjects.forEach((p) => (p.categories || []).forEach((c) => catSet.add(c)));
 
   const sorted = [...catSet].sort();
   const btns = sorted
-    .map((c) => `<button class="projects-page__cat-btn" data-cat="${c}">${c}</button>`)
+    .map((c) => `<button class="projects-page__cat-btn" type="button" data-cat="${escapeHTML(c)}" aria-pressed="false">${escapeHTML(labelForCategory(c))}</button>`)
     .join('');
 
   catContainer.innerHTML =
-    `<button class="projects-page__cat-btn active" data-cat="all">All</button>` + btns;
+    `<button class="projects-page__cat-btn active" type="button" data-cat="all" aria-pressed="true">All</button>` + btns;
 }
 
-/* ── Event Handlers ────────────────────────────────── */
+function syncToolbarVisibility() {
+  if (!toolbar) return;
+  const enoughToFilter = allProjects.length >= TOOLBAR_MIN_ITEMS;
+  toolbar.hidden = !enoughToFilter;
+  if (countEl) countEl.hidden = !enoughToFilter;
+}
+
 function onCatClick(e) {
   const btn = e.target.closest('.projects-page__cat-btn');
   if (!btn) return;
 
   activeCat = btn.dataset.cat;
   catContainer.querySelectorAll('.projects-page__cat-btn').forEach((b) => {
-    b.classList.toggle('active', b.dataset.cat === activeCat);
+    const on = b.dataset.cat === activeCat;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
   });
   render();
 }
@@ -195,24 +187,24 @@ function onClearFilters() {
   searchTerm = '';
   searchInput.value = '';
   catContainer.querySelectorAll('.projects-page__cat-btn').forEach((b) => {
-    b.classList.toggle('active', b.dataset.cat === 'all');
+    const on = b.dataset.cat === 'all';
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
   });
   render();
 }
 
-/* ── Scroll-progress bar ───────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scrollProgress');
   if (!bar) return;
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100: 0;
     bar.style.width = `${pct}%`;
   }, { passive: true });
 }
 
-/* ── Back to top ───────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -224,13 +216,11 @@ function initBackToTop() {
   });
 }
 
-/* ── Footer year ───────────────────────────────────── */
 function setFooterYear() {
   const el = document.getElementById('footerYear');
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ── Init ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   grid         = document.getElementById('projectsGrid');
   emptyState   = document.getElementById('projectsEmpty');
@@ -238,20 +228,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   searchInput  = document.getElementById('projectSearch');
   catContainer = document.getElementById('projectCatFilters');
   clearBtn     = document.getElementById('projectsClearFilters');
+  toolbar      = document.querySelector('.projects-page__toolbar');
 
-  // Init shared modules
   initAnimations();
   initCursor();
   initScrollProgress();
   initBackToTop();
   setFooterYear();
 
-  // Load projects
   allProjects = await fetchProjects();
   buildCatFilters();
+  syncToolbarVisibility();
   render();
 
-  // Bind events
   catContainer.addEventListener('click', onCatClick);
   searchInput.addEventListener('input', onSearchInput);
   if (clearBtn) clearBtn.addEventListener('click', onClearFilters);
