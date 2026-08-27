@@ -124,7 +124,7 @@
 
   \resumeSubheading
     {Advanced Software Engineer}{May 2026 -- Present}
-    {Honeywell}{Forge Platform}
+    {Honeywell}{}
   \resumeItemListStart
     \resumeItem{Contributed to the performance work that cut incremental-update install time 32.5\% (90m11s to 60m51s on a 44-package run). The biggest cost was a fixed datastore-drain pause, not any package's install script. We consolidated 13 sequences into 9, halved the pause, and moved extraction to \texttt{pigz}.}
     \resumeItem{Worked on EdgeOrchestrator, the team's Go control-plane service, working on its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack. Playbooks run as a subprocess with an argument array so nothing reaches a shell, and a marker file stops a crashed self-update reporting success.}
@@ -135,7 +135,7 @@
 
   \resumeSubheading
     {Software Engineer II}{Jul 2024 -- Apr 2026}
-    {Honeywell}{ForgeML}
+    {Honeywell}{}
   \resumeItemListStart
     \resumeItem{Built the deployment path routing models to Databricks Serving, AKS or edge devices from one API, with discriminated-union request types validating each target's config at the boundary and status tracked by two independent asyncio tasks.}
     \resumeItem{Wrote the asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and Blob checkpoints committed only after a successful write. Delivery is at-least-once with upsert writes, so a crash replay overwrites rows without duplicating them.}
@@ -147,7 +147,7 @@
 
   \resumeSubheading
     {Data Engineer II}{Jun 2023 -- Jun 2024}
-    {Honeywell}{Forge Digital Services}
+    {Honeywell}{}
   \resumeItemListStart
     \resumeItem{Delivered 15+ PySpark ingestion pipelines on Databricks across 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, using timestamp watermarking for incremental loads.}
     \resumeItem{Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage with SCD Type 2 upserts, reconciliation against processed records to catch source deletions, and Change Data Feed so the vectorization job read only changed rows.}
