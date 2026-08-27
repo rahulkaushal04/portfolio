@@ -116,7 +116,7 @@
         "@id": "https://rahulkaushal04.github.io/portfolio/#patent-us12717808",
         "additionalType": "https://en.wikipedia.org/wiki/Patent",
         "name": "Data management in a multi-tenant environment",
-        "description": "Tenant data isolation at the data level on a shared multi-tenant backend: records carry enough metadata to be split and routed to the right tenant by customer, product or a custom rule — no separate schema or database required per tenant.",
+        "description": "Tenant data isolation at the data level on a shared multi-tenant backend: records carry enough metadata to be split and routed to the right tenant by customer, product or a custom rule, with no separate schema or database required per tenant.",
         "identifier": "US 12717808",
         "url": "https://thepatentplace.com/iplibrary/patent-pdf/12717808/",
         "datePublished": "2026-08-25",
@@ -375,8 +375,8 @@
               <p>May 2026 to Present</p>
               <p>Working with the team on the deployment software that installs, updates and keeps Honeywell&#x27;s edge Kubernetes platform running, on appliances that ship fully offline or cloud-connected depending on what the customer picks.</p>
               <ul>
-                <li>Contributed to the performance investigation that cut incremental-update install time by 32.5% (averaged 90m11s to 60m51s on a representative 44-package run). The biggest cost was a fixed per-sequence datastore-drain pause — no single package&#x27;s install script came close. The pause protects a real write-backlog limit; right-sizing it was the only option on the table. We consolidated 13 sequences into 9, halved the pause from 120s to 60s, and moved tarball extraction to pigz.</li>
-                <li>Worked on EdgeOrchestrator, the team&#x27;s Go control-plane service on the appliance: its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack underneath it. Playbooks run as a subprocess with an argument array — nothing reaches a shell — and a marker file stops a crashed self-update from being reported as success.</li>
+                <li>Contributed to the performance investigation that cut incremental-update install time by 32.5% (averaged 90m11s to 60m51s on a representative 44-package run). The biggest cost was a fixed per-sequence datastore-drain pause; no single package&#x27;s install script came close. The pause protects a real write-backlog limit; right-sizing it was the only option on the table. We consolidated 13 sequences into 9, halved the pause from 120s to 60s, and moved tarball extraction to pigz.</li>
+                <li>Worked on EdgeOrchestrator, the team&#x27;s Go control-plane service on the appliance: its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack underneath it. Playbooks run as a subprocess with an argument array (nothing reaches a shell), and a marker file stops a crashed self-update from being reported as success.</li>
                 <li>Helped root-cause a watchdog feedback loop that was wedging idle appliances while a healthy twin ran the exact same code. Killing MicroK8s hard tore down containerd without a clean CNI teardown, leaving Calico&#x27;s IPAM allocations unreleased until the address pool ran out, and the platform&#x27;s own watchdog escalated to another stop/start that re-triggered the loop. The fixes we landed: pre-caching the registry&#x27;s own image, removing its dependency on the mirror it was meant to serve; a Recreate rollout for the single-writer registry volume; and a circuit breaker that refuses further auto-restarts after 5 escalations in a rolling 24 hours while leaving detection running.</li>
                 <li>Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure Device Provisioning Service enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, backed by a KeePass credential vault and an active/passive handshake for HA failover.</li>
               </ul>
@@ -387,10 +387,10 @@
               <p>Jul 2024 to Apr 2026</p>
               <p>Built services across ForgeML's 8-microservice MLOps platform, running across 10+ tenant workspaces, and the pipeline that migrates SkySpark automation rules into Forge and translates them with a tuned model.</p>
               <ul>
-                <li>Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types to validate each target's config at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes — one loop failing doesn't take the other down with it.</li>
-                <li>Routed model registrations through five security scanners — Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser — all behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.</li>
+                <li>Built the deployment path that routes a model to Databricks Serving, AKS or edge devices from one API, using discriminated-union request types to validate each target's config at the boundary. Status tracking runs as two independent asyncio tasks, polling serving endpoints every 30 seconds and liveness every 5 minutes; one loop failing doesn't take the other down with it.</li>
+                <li>Routed model registrations through five security scanners (Coverity for SAST, Black Duck for dependency and license risk, Twistlock for container images, ModelScan for model artifacts, and an AST parser), all behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.</li>
                 <li>Fine-tuned Gemini on Vertex AI to translate SkySpark's Axon rule language into Honeywell's Forge DSL, building the versioned prompt store and a tuning-job state machine that moves each job from queued to processing to succeeded or failed. A translation counted as correct only if running it produced the same results as the original Axon rule on the same data, and the domain experts who supplied the training pairs reviewed the output as well.</li>
-                <li>The asyncio event processor consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write. Delivery is at-least-once with upsert writes — a crash replay overwrites rows without duplicating them.</li>
+                <li>The asyncio event processor consumes Azure Event Hub in real time, dispatches each event to one of three parsers behind a Factory Pattern, and writes to PostgreSQL and Unity Catalog concurrently. Blob Storage checkpoints are committed only after a successful write. Delivery is at-least-once with upsert writes. A crash replay overwrites rows without duplicating them.</li>
                 <li>Shipped the service that migrates SkySpark building-automation rules into Forge: authenticating over SCRAM, parsing the Zinc and Trio formats SkySpark returns, and writing to PostgreSQL and Unity Catalog in parallel, which cut write time roughly in half.</li>
                 <li>Wrote the BDD acceptance suite in Behave: 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests spanning onboarding through deployment.</li>
               </ul>
@@ -402,9 +402,9 @@
               <p>Worked on the Databricks pipelines behind field service analytics, and the agent, memory and guardrail layers behind the Maintenance Assist chatbot.</p>
               <ul>
                 <li>Contributed to 15+ PySpark ingestion pipelines on Databricks, pulling from 12+ source systems including SQL Server, Salesforce, SharePoint and several field-service databases into Delta Lake, using timestamp-based watermarking for incremental loads.</li>
-                <li>Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, applying SCD Type 2 upserts to keep document revisions traceable across micro-batches, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables, which let the vectorization job downstream read only the rows that had changed since its last run.</li>
+                <li>Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage, using foreachBatch to run a per-micro-batch Delta MERGE INTO for SCD Type 2 upserts that kept document revisions traceable, and cross-referencing Blob Storage against processed records to catch files that had been deleted at the source. Enabled Change Data Feed on the resulting Delta tables, which let the vectorization job downstream read only the rows that had changed since its last run.</li>
                 <li>Wrote the SQL transformation pipelines behind the field service analytics: incident resolution trends on weekly, monthly and quarterly windows, contract and maintenance metrics, and NPS, feeding the customer-facing DSP dashboard.</li>
-                <li>On the Maintenance Assist chatbot, worked on the agent executor — tool selection, chat history, topic generation and summarization — through a YAML-driven config that let each tenant's agent run its own LLM, tools and prompts without a code change.</li>
+                <li>On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, topic generation and summarization) through a YAML-driven config that let each tenant's agent run its own LLM, tools and prompts without a code change.</li>
                 <li>Helped build a guardrail layer that runs input validation and output safety checks as async tasks in parallel with the LLM call, catching a violation mid-stream and cancelling the in-flight response, usually within a few streamed tokens. Tenants configure it as input-only or input and output, on top of an SSE streaming layer built to hold 100+ concurrent sessions.</li>
                 <li>Collaborated on replacing plain sequential chat history with a PGVector-backed memory store that retrieves prior turns by max inner product similarity, independent of when they were said.</li>
                 <li>Worked on vectorizing tens of thousands of knowledge-base articles and service cases into PGVector, and contributed to the evaluation harness that scored chatbot answers with Azure OpenAI as an LLM judge across a 1,000+ question set.</li>
@@ -458,7 +458,7 @@
             <p>
               The patent covers doing that at the data level. Records get tagged and filtered,
               then split and routed to the right tenant by customer, product or a custom
-              rule — no separate schema or database needed per tenant.
+              rule. No separate schema or database needed per tenant.
             </p>
           </div>
 
@@ -487,13 +487,13 @@
           <noscript>
             <article style="margin-bottom:2rem;">
               <h3>DepKeeper - Python Dependency Updater</h3>
-              <p>A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Scope stops there deliberately: dependency resolution and lock files are somebody else's job. On PyPI under Apache 2.0, for Python 3.8 to 3.12.</p>
+              <p>A CLI that upgrades requirements.txt without crossing a major version boundary. It computes a safe target for each requirement, cross-checks them against each other, then rewrites the file in place, keeping the upper bounds and exclusions you wrote. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0, for Python 3.8 to 3.12.</p>
               <p><em>Python &middot; Click &middot; Rich &middot; httpx &middot; PyPI API &middot; Async</em></p>
               <p><a href="https://rahulkaushal04.github.io/depkeeper/latest/">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/depkeeper">GitHub</a></p>
             </article>
             <article style="margin-bottom:2rem;">
               <h3>Now Boarding Scheduler - Board Game Session Planner</h3>
-              <p>A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend — no heuristic shortcuts — run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it. Every scheduled session carries a plain-English reason it was picked.</p>
+              <p>A weekly session scheduler for a board game cafe in Bengaluru. It takes four poll CSVs covering game preferences, availability and which venue people can reach, and returns a timetable where nobody is double-booked and no physical copy of a game runs twice in the same slot. Session selection is a mixed-integer program, solved to a proven optimum with SciPy's HiGHS backend (no heuristic shortcuts), run as six lexicographic passes: once a higher priority is settled, no lower pass can undo it. Every scheduled session carries a plain-English reason it was picked.</p>
               <p><em>Python &middot; Streamlit &middot; SciPy/HiGHS &middot; MILP &middot; pandas &middot; pytest</em></p>
               <p><a href="https://now-boarding-scheduler.streamlit.app">Live site</a> &nbsp;|&nbsp; <a href="https://github.com/rahulkaushal04/now-boarding-scheduler">GitHub</a></p>
             </article>
