@@ -1,5 +1,5 @@
 % Rahul Kaushal -- Resume
-% Compile: pdflatex resume.tex   (needs the 'extsizes' package for extarticle)
+% Compile: pdflatex resume.tex && mv resume.pdf resume/Rahul_Resume.pdf
 
 \documentclass[letterpaper,9pt]{extarticle}
 
@@ -158,17 +158,19 @@
 
 \resumeSubHeadingListEnd
 
-% Open source
-\section{Open Source}
+% Patent
+\section{Patent}
 \resumeSubHeadingListStart
 
   \osEntry
-    {\textbf{\href{https://github.com/aio-libs/async-lru/pull/746}{aio-libs/async-lru}} $|$ \emph{merged}}{Mar 2026}
-    {Added \texttt{cache\_contains()} to \texttt{alru\_cache}: a side-effect-free key lookup that does not move hit/miss counters or reorder the LRU, which the public API had no way to do. Shipped with its own test module and README entry.}
+    {\textbf{Data management in a multi-tenant environment} $|$ \href{https://thepatentplace.com/iplibrary/patent-pdf/12717808/}{US 12,717,808}}{Issued Aug 2026}
+    {Tenant isolation at the data level on a shared multi-tenant backend: records carry tenant metadata and are split and routed by customer, product or a custom rule, instead of a separate schema or database per tenant.}
 
-  \osEntry
-    {\textbf{\href{https://github.com/facebookresearch/exca/pull/206}{facebookresearch/exca}} $|$ \emph{merged}}{Mar 2026}
-    {Five fixes across six files in Meta's experiment-caching library: \texttt{\_\_eq\_\_} comparing the wrong fields, eviction keeping the wrong entries, cleanup leaving files behind, missing f-string prefixes, and a branch raising \texttt{UnboundLocalError}.}
+\resumeSubHeadingListEnd
+
+% Open source
+\section{Open Source}
+\resumeSubHeadingListStart
 
   \osEntry
     {\textbf{\href{https://github.com/rahulkaushal04/depkeeper}{DepKeeper}} $|$ \emph{Python, Click, httpx, asyncio}}{2025 -- Present}

@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/skills.css">
   <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/patent.css">
   <link rel="stylesheet" href="assets/css/projects.css">
   <link rel="stylesheet" href="assets/css/contributions.css">
   <link rel="stylesheet" href="assets/css/contact.css">
@@ -109,6 +110,17 @@
           "https://github.com/rahulkaushal04",
           "https://www.linkedin.com/in/rahul-kaushal04"
         ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://rahulkaushal04.github.io/portfolio/#patent-us12717808",
+        "additionalType": "https://en.wikipedia.org/wiki/Patent",
+        "name": "Data management in a multi-tenant environment",
+        "description": "Tenant data isolation at the data level on a shared multi-tenant backend: records are tagged and filtered so they can be split and routed to the right tenant by customer, product or a custom rule, instead of relying on separate schemas or databases.",
+        "identifier": "US 12717808",
+        "url": "https://thepatentplace.com/iplibrary/patent-pdf/12717808/",
+        "datePublished": "2026-08-25",
+        "author": { "@id": "https://rahulkaushal04.github.io/portfolio/#person" }
       }
     ]
   }
@@ -137,6 +149,7 @@
         <li><a href="#about" class="navbar__link">About</a></li>
         <li><a href="#skills" class="navbar__link">Skills</a></li>
         <li><a href="#experience" class="navbar__link">Experience</a></li>
+        <li><a href="#patent" class="navbar__link">Patent</a></li>
         <li><a href="#projects" class="navbar__link">Projects</a></li>
         <li><a href="#contributions" class="navbar__link">Open Source</a></li>
         <li><a href="#contact" class="navbar__link">Contact</a></li>
@@ -176,6 +189,7 @@
       <li><a href="#about" class="navbar__mobile-link">About</a></li>
       <li><a href="#skills" class="navbar__mobile-link">Skills</a></li>
       <li><a href="#experience" class="navbar__mobile-link">Experience</a></li>
+      <li><a href="#patent" class="navbar__mobile-link">Patent</a></li>
       <li><a href="#projects" class="navbar__mobile-link">Projects</a></li>
       <li><a href="#contributions" class="navbar__mobile-link">Open Source</a></li>
       <li><a href="#contact" class="navbar__mobile-link">Contact</a></li>
@@ -399,6 +413,65 @@
             </article>
           </noscript>
         </div>
+      </div>
+    </section>
+
+    <section id="patent" class="patent" aria-labelledby="patentTitle">
+      <div class="container">
+        <div class="section-header--left">
+          <span class="section-label">Patent</span>
+          <h2 class="section-title reveal" id="patentTitle">Granted</h2>
+          <p class="section-subtitle reveal">Filed from the multi-tenant platform work at Honeywell.</p>
+        </div>
+
+        <article class="patent__card reveal">
+          <div class="patent__header">
+            <span class="patent__number">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="patent__icon" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="8" y1="13" x2="16" y2="13"></line>
+                <line x1="8" y1="17" x2="13" y2="17"></line>
+              </svg>
+              US 12,717,808
+            </span>
+            <span class="patent__badge">Issued Aug 25, 2026</span>
+          </div>
+
+          <h3 class="patent__title">
+            <a href="https://thepatentplace.com/iplibrary/patent-pdf/12717808/" target="_blank" rel="noopener noreferrer" class="patent__title-link">
+              Data management in a multi-tenant environment
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="patent__external-icon" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </h3>
+
+          <div class="patent__body">
+            <p>
+              Filed while working on Honeywell's multi-tenant cloud platform. The problem was
+              keeping each customer's data fully separate when everyone shares the same backend,
+              without spinning up a separate database per customer.
+            </p>
+            <p>
+              The patent covers doing that at the data level: tagging and filtering records so
+              they can be split and routed to the right tenant by customer, product or a custom
+              rule, instead of relying on separate schemas or databases for isolation.
+            </p>
+          </div>
+
+          <ul class="patent__tags">
+            <li>Multi-tenancy</li>
+            <li>Data isolation</li>
+            <li>Cloud platform</li>
+          </ul>
+
+          <div class="patent__links">
+            <a href="https://thepatentplace.com/iplibrary/patent-pdf/12717808/" target="_blank" rel="noopener noreferrer" class="patent__link">Read the patent (PDF)</a>
+          </div>
+        </article>
       </div>
     </section>
 
