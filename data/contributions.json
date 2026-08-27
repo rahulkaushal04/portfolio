@@ -14,7 +14,7 @@
     "repo": "aio-libs/async-lru",
     "prTitle": "feat: add cache_contains() for read-only key lookup",
     "prUrl": "https://github.com/aio-libs/async-lru/pull/746",
-    "description": "Added cache_contains(*args, **kwargs) -> bool to alru_cache so callers can check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.",
+    "description": "Added cache_contains(*args, **kwargs) -> bool to alru_cache, letting callers check whether a key is already cached without moving hit and miss counters or reordering the LRU. Lookup with no side effects, which the public API had no way to do before. Shipped with its own test module and a README entry, which is what aio-libs expects for a new public API.",
     "tags": [
       "Python",
       "asyncio",

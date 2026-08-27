@@ -126,8 +126,8 @@
     {Advanced Software Engineer}{May 2026 -- Present}
     {Honeywell}{}
   \resumeItemListStart
-    \resumeItem{Contributed to the performance work that cut incremental-update install time 32.5\% (90m11s to 60m51s on a 44-package run). The biggest cost was a fixed datastore-drain pause, not any package's install script. We consolidated 13 sequences into 9, halved the pause, and moved extraction to \texttt{pigz}.}
-    \resumeItem{Worked on EdgeOrchestrator, the team's Go control-plane service, working on its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack. Playbooks run as a subprocess with an argument array so nothing reaches a shell, and a marker file stops a crashed self-update reporting success.}
+    \resumeItem{Contributed to the performance work that cut incremental-update install time 32.5\% (averaged 90m11s to 60m51s on a 44-package run). The biggest cost was a fixed datastore-drain pause — no package's install script came close. We consolidated 13 sequences into 9, halved the pause, and moved extraction to \texttt{pigz}.}
+    \resumeItem{Worked on EdgeOrchestrator, the team's Go control-plane service, working on its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack. Playbooks run as a subprocess with an argument array — nothing reaches a shell — and a marker file stops a crashed self-update from reporting success.}
     \resumeItem{Helped root-cause a watchdog feedback loop wedging idle appliances. A hard MicroK8s kill left Calico IPAM allocations unreleased until the address pool ran out, and the watchdog's restart re-triggered it. Fixed with registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after 5 escalations in 24h.}
     \resumeItem{Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure DPS enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, a KeePass credential vault, and active/passive handshake failover.}
   \resumeItemListEnd
@@ -138,8 +138,8 @@
     {Honeywell}{}
   \resumeItemListStart
     \resumeItem{Built the deployment path routing models to Databricks Serving, AKS or edge devices from one API, with discriminated-union request types validating each target's config at the boundary and status tracked by two independent asyncio tasks.}
-    \resumeItem{Wrote the asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and Blob checkpoints committed only after a successful write. Delivery is at-least-once with upsert writes, so a crash replay overwrites rows without duplicating them.}
-    \resumeItem{Routed model registrations through five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) behind one Strategy Pattern interface, so adding a scanner meant a new class rather than another conditional.}
+    \resumeItem{Wrote the asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and Blob checkpoints committed only after a successful write. Delivery is at-least-once with upsert writes — a crash replay overwrites rows without duplicating them.}
+    \resumeItem{Routed model registrations through five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.}
     \resumeItem{Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell's Forge DSL, with a versioned prompt store and tuning-job state machine. A translation counted as correct only if it produced the same results as the original rule, checked by the domain experts who supplied the training pairs.}
     \resumeItem{Shipped the SkySpark migration service (SCRAM auth, Zinc/Trio parsing, parallel writes that roughly halved write time) and the team's Behave suite of 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests.}
   \resumeItemListEnd
@@ -149,9 +149,9 @@
     {Data Engineer II}{Jun 2023 -- Jun 2024}
     {Honeywell}{}
   \resumeItemListStart
-    \resumeItem{Delivered 15+ PySpark ingestion pipelines on Databricks across 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, using timestamp watermarking for incremental loads.}
-    \resumeItem{Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage with SCD Type 2 upserts, reconciliation against processed records to catch source deletions, and Change Data Feed so the vectorization job read only changed rows.}
-    \resumeItem{On the Maintenance Assist chatbot, implemented the agent executor (tool selection, chat history, summarization), YAML-configured so each tenant ran its own LLM and prompts without a code change. Also added async guardrails and a PGVector memory store that retrieves turns by max inner product similarity.}
+    \resumeItem{Contributed to 15+ PySpark ingestion pipelines on Databricks across 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, using timestamp watermarking for incremental loads.}
+    \resumeItem{Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage with SCD Type 2 upserts, reconciliation against processed records to catch source deletions, and Change Data Feed to let the vectorization job read only changed rows.}
+    \resumeItem{On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, summarization) with a YAML config that let each tenant run its own LLM and prompts without a code change. Also helped build async guardrails and a PGVector memory store that retrieves turns by max inner product similarity.}
     \resumeItem{Wrote the SQL transformations for field service analytics (incident resolution trends, contract and maintenance metrics, NPS) that feed the customer-facing DSP dashboard.}
   \resumeItemListEnd
   \toolsLine{PySpark, Databricks, Delta Lake, PostgreSQL, LangChain, PGVector, Azure OpenAI, MLflow}
@@ -174,7 +174,7 @@
 
   \osEntry
     {\textbf{\href{https://github.com/rahulkaushal04/depkeeper}{DepKeeper}} $|$ \emph{Python, Click, httpx, asyncio}}{2025 -- Present}
-    {A CLI that upgrades \texttt{requirements.txt} without crossing a major version boundary, preserving your upper bounds and exclusions. Deliberately not a resolver and not a lock file. On PyPI under Apache 2.0.}
+    {A CLI that upgrades \texttt{requirements.txt} without crossing a major version boundary, preserving your upper bounds and exclusions. Scope stops there deliberately: dependency resolution and lock files are somebody else's job. On PyPI under Apache 2.0.}
 
 \resumeSubHeadingListEnd
 
