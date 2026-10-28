@@ -357,3 +357,7 @@ html[data-theme="professional"] .experience__tags .tag-chip:not(:last-child)::af
 html[data-theme="professional"] :is(.experience__current-badge, .projects__card-status, .contributions__merged-badge, .contributions__open-badge, .patent__badge) { font-size: var(--fs-small); }
 html[data-theme="professional"] .contact__email { font-size: var(--fs-lead); }
 html[data-theme="professional"] .navbar__logo { font-size: 1.75rem; }
+
+/* Professional: sections that end where a band begins need their own bottom space; the section after a band needs less top space. */
+html[data-theme="professional"] :is(#about, #experience, #projects) { padding-bottom: var(--section-gap); }
+html[data-theme="professional"] :is(#experience, #projects, #contact) { padding-top: calc(var(--section-gap) * 0.6); }
