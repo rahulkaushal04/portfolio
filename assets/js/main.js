@@ -74,7 +74,6 @@ function loadEasterEggsOnDemand() {
     import('./easter-eggs.js')
       .then(({ initEasterEggs }) => {
         initEasterEggs();
-        // Replay the keystroke that triggered the load.
         window.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
         document.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
       })

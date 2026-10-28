@@ -7,7 +7,6 @@ let searchTerm  = '';
 
 let grid, emptyState, countEl, searchInput, catContainer, clearBtn, toolbar;
 
-// Below this many items, the filter toolbar is hidden.
 const TOOLBAR_MIN_ITEMS = 6;
 
 function escapeHTML(str) {

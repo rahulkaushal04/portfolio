@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="professional">
+<html lang="en" data-theme="retro">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +7,10 @@
   <title>Rahul Kaushal - Platform and Backend Engineer</title>
   <meta name="description" content="Advanced Software Engineer at Honeywell, working on the deployment software behind an edge Kubernetes platform. Go and Ansible, after two years on Honeywell's ML platform.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0B0D12">
+  <meta name="theme-color" content="#0e7c86">
 
-  <script>
-    /* Theme before first paint: saved choice, else system light/dark on Professional. Also loads only that theme's fonts. */
-    (function () {
-      var d = document.documentElement, t, m;
-      var G = 'https://fonts.googleapis.com/css2?display=swap&';
-      var F = {
-        retro: G + 'family=Pixelify+Sans:wght@500;700',
-        professional: G + 'family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600',
-        hallownest: G + 'family=Cinzel:wght@500;700&family=Spectral:ital,wght@0,400;0,500;1,400',
-        souls: G + 'family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400',
-        grandline: G + 'family=Bangers&family=Nunito:wght@400;600;700'
-      };
-      var C = { retro: '#0e7c86', professional: '#f3f5f4', 'professional-dark': '#0f1311', hallownest: '#070a12', souls: '#0c0a08', grandline: '#f2e3bf' };
-      try { t = localStorage.getItem('rk-theme'); m = localStorage.getItem('rk-mode'); } catch (e) {}
-      if (!F[t]) t = 'professional';
-      if (t === 'professional') {
-        if (m !== 'light' && m !== 'dark') m = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        d.setAttribute('data-mode', m);
-      }
-      d.setAttribute("data-theme", t); d.classList.add("js");
-      var k = t === 'professional' && m === 'dark' ? 'professional-dark' : t;
-      var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', C[k]);
-      var l = document.createElement('link');
-      l.rel = 'stylesheet'; l.href = F[t]; l.id = 'themeFonts';
-      document.head.appendChild(l);
-      if (t === 'retro') ['theme', 'retro'].forEach(function (n) { var m = document.createElement('link'); m.rel = 'modulepreload'; m.href = 'assets/js/' + n + '.js'; document.head.appendChild(m); });
-      window.__rk = { fonts: F, colors: C };
-    })();
-  </script>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Pixelify+Sans:wght@500;700">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - Platform and Backend Engineer">
@@ -150,11 +122,6 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="ambient" id="ambient" aria-hidden="true"><canvas></canvas></div>
-
   <header class="navbar" id="navbar">
     <nav class="container flex-between">
       <a href="#hero" class="navbar__logo" aria-label="Home, go to top">
@@ -172,23 +139,6 @@
       </ul>
 
       <div class="navbar__actions flex-center gap-4">
-        <div class="theme" id="themeSwitch">
-          <button class="theme__btn" id="themeBtn" type="button" aria-expanded="false" aria-controls="themePanel">
-            <span class="theme__swatch" aria-hidden="true"></span>
-            <span class="theme__label">Theme</span>
-          </button>
-          <div class="theme__panel" id="themePanel" hidden>
-            <div class="theme__group" role="radiogroup" aria-label="Theme">
-              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="professional"><span class="theme__dots" aria-hidden="true"></span>Professional</button>
-              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="retro"><span class="theme__dots" aria-hidden="true"></span>Retro</button>
-              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="hallownest"><span class="theme__dots" aria-hidden="true"></span>Hallownest</button>
-              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="souls"><span class="theme__dots" aria-hidden="true"></span>Lands Between</button>
-              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="grandline"><span class="theme__dots" aria-hidden="true"></span>Grand Line</button>
-            </div>
-            <button type="button" role="switch" aria-checked="false" class="theme__mode" id="themeMode">Dark mode</button>
-            <button type="button" role="switch" aria-checked="false" class="theme__mode theme__motion" id="themeMotion">Reduce motion</button>
-          </div>
-        </div>
         <div class="navbar__resume-wrap">
           <a href="resume/Rahul_Resume.pdf" download class="btn btn-outline navbar__resume-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -332,49 +282,12 @@
             <img src="assets/images/profile_main.webp" alt="Rahul Kaushal" width="471" height="620" fetchpriority="high" decoding="async">
           </figure>
           <div class="hero__sticker" aria-hidden="true">
-          <svg class="hero__object hero__object--professional" viewBox="0 0 320 330" width="320" height="330" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" focusable="false"><path d="M260 190v70c0 14 14 20 30 20h20" class="rk-cable"/><g class="rk-slab" style="--k:0">
-<polygon points="160,196 260,246 160,296 60,246"/>
-<polygon points="60,246 160,296 160,318 60,268"/>
-<polygon points="160,296 260,246 260,268 160,318"/>
-<g class="rk-led"><line x1="72" y1="256.0" x2="76" y2="258.0"/><line x1="81" y1="260.5" x2="85" y2="262.5"/><line x1="90" y1="265.0" x2="94" y2="267.0"/></g></g><g class="rk-slab" style="--k:5">
-<polygon points="160,152 260,202 160,252 60,202"/>
-<polygon points="60,202 160,252 160,274 60,224"/>
-<polygon points="160,252 260,202 260,224 160,274"/>
-<g class="rk-led"><line x1="72" y1="212.0" x2="76" y2="214.0"/><line x1="81" y1="216.5" x2="85" y2="218.5"/><line x1="90" y1="221.0" x2="94" y2="223.0"/></g></g><g class="rk-slab" style="--k:10">
-<polygon points="160,108 260,158 160,208 60,158"/>
-<polygon points="60,158 160,208 160,230 60,180"/>
-<polygon points="160,208 260,158 260,180 160,230"/>
-<g class="rk-led"><line x1="72" y1="168.0" x2="76" y2="170.0"/><line x1="81" y1="172.5" x2="85" y2="174.5"/><line x1="90" y1="177.0" x2="94" y2="179.0"/></g></g><g class="rk-slab" style="--k:15">
-<polygon points="160,64 260,114 160,164 60,114"/>
-<polygon points="60,114 160,164 160,186 60,136"/>
-<polygon points="160,164 260,114 260,136 160,186"/>
-<g class="rk-led"><line x1="72" y1="124.0" x2="76" y2="126.0"/><line x1="81" y1="128.5" x2="85" y2="130.5"/><line x1="90" y1="133.0" x2="94" y2="135.0"/></g></g></svg>
           <svg class="hero__object hero__object--retro" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
             <rect class="o-body" x="14" y="14" width="212" height="164"/>
             <rect class="o-screen" x="32" y="32" width="176" height="128"/>
             <g class="o-px"><rect x="46" y="48" width="92" height="8"/><rect x="46" y="68" width="132" height="8"/><rect x="46" y="88" width="64" height="8"/><rect x="46" y="108" width="112" height="8"/><rect class="o-blink" x="46" y="130" width="14" height="16"/></g>
             <rect class="o-body" x="84" y="178" width="72" height="18"/><rect class="o-body" x="52" y="196" width="136" height="16"/>
             <rect class="o-led" x="190" y="186" width="12" height="8"/>
-          </svg>
-          <svg class="hero__object hero__object--hallownest" viewBox="0 0 240 300" aria-hidden="true" focusable="false">
-            <defs><radialGradient id="rkGlow"><stop offset="0" style="stop-color:var(--accent)" stop-opacity="0.55"/><stop offset="1" style="stop-color:var(--accent)" stop-opacity="0"/></radialGradient></defs>
-            <circle cx="120" cy="150" r="120" fill="url(#rkGlow)"/>
-            <g class="o-sway"><path class="o-line" d="M120 0v40"/><circle class="o-line" cx="120" cy="46" r="7"/>
-              <path class="o-line o-fill" d="M92 62h56l12 18H80z"/><path class="o-line" d="M88 80h64v102c0 14-14 24-32 24s-32-10-32-24z"/><path class="o-line" d="M100 80v126M140 80v126"/>
-              <ellipse class="o-core" cx="120" cy="140" rx="14" ry="26"/><path class="o-line o-fill" d="M96 206h48l10 16H86z"/></g>
-          </svg>
-          <svg class="hero__object hero__object--souls" viewBox="0 0 240 280" aria-hidden="true" focusable="false">
-            <path class="o-line o-sword" d="M120 20v190M92 70h56"/><path class="o-line o-sword" d="M120 20l-6 12h12z"/>
-            <path class="o-flame" d="M120 110c-34 24-46 52-30 84 8 12 20 18 30 18s22-6 30-18c16-32 4-60-30-84z"/>
-            <path class="o-flame2" d="M120 150c-16 14-22 30-14 46 4 6 10 10 14 10s10-4 14-10c8-16 2-32-14-46z"/>
-            <path class="o-log" d="M60 236l120-28M180 236L60 208"/><path class="o-line" d="M40 250h160"/>
-          </svg>
-          <svg class="hero__object hero__object--grandline" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
-            <circle class="o-ring" cx="120" cy="120" r="104"/><circle class="o-ring2" cx="120" cy="120" r="84"/>
-            <path class="o-tick" d="M120 16v20M120 204v20M16 120h20M204 120h20"/>
-            <text class="o-letter" x="120" y="64" text-anchor="middle">N</text>
-            <g class="o-needle"><path class="o-n1" d="M120 40l16 80h-32z"/><path class="o-n2" d="M120 200l16-80h-32z"/></g>
-            <circle class="o-hub" cx="120" cy="120" r="9"/>
           </svg>
         </div>
         </div>
@@ -780,7 +693,7 @@
 
   <noscript>
     <style>
-      .hero__typewriter, .cursor-dot, .scroll-progress, .hero__canvas { display: none !important; }
+      .hero__typewriter, .hero__canvas { display: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
     </style>
     <div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#F59E0B;color:#0B0D12;text-align:center;z-index:10000;font-weight:600;">

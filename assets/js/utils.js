@@ -13,7 +13,6 @@ export function showToast(message, type = 'success', duration = 3000) {
   setTimeout(() => {
     toast.classList.remove('visible');
     toast.addEventListener('transitionend', () => toast.remove(), { once: true });
-    // Safety net if transitionend never fires
     setTimeout(() => toast.remove(), 500);
   }, duration);
 }

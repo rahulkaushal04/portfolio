@@ -48,7 +48,6 @@ async function fireConfetti() {
       });
     }, 250);
   } catch {
-    // Confetti failed to load
   }
 }
 
@@ -106,8 +105,6 @@ function startMatrixRain() {
 
     if (elapsed >= DURATION) {
       cancelAnimationFrame(frame);
-      // Wait for the CSS opacity transition to finish before removing,
-      // with a timeout fallback in case transitionend never fires.
       canvas.addEventListener('transitionend', () => {
         canvas.remove();
         matrixActive = false;
@@ -116,7 +113,6 @@ function startMatrixRain() {
       return;
     }
 
-    // Semi-transparent black creates the trailing effect
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 

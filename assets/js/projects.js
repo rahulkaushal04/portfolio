@@ -87,7 +87,6 @@ function renderProjects() {
   grid.innerHTML = featured.map(cardHTML).join('');
 }
 
-
 export async function initProjects() {
   grid = document.getElementById('projectsGrid');
 

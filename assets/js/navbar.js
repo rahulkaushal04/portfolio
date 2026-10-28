@@ -44,7 +44,6 @@ function isMenuOpen() {
   return mobileMenu.classList.contains('open');
 }
 
-// Keeps Tab from reaching the page behind the open panel.
 function setOutsideInert(on) {
   [...document.body.children].forEach((el) => {
     if (el === mobileMenu || el === backdrop) return;

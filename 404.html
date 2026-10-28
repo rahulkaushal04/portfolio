@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-  Served for any unmatched route at any depth, so relative and absolute asset
-  paths are both unreliable here. Keep this page self-contained.
--->
-<html lang="en" data-theme="professional">
+<html lang="en" data-theme="retro">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +8,8 @@
 
   <title>404 - Page Not Found | Rahul Kaushal</title>
   <meta name="description" content="This page does not exist. Head back to the portfolio.">
-  <meta name="theme-color" content="#0B0D12">
+  <meta name="theme-color" content="#0e7c86">
 
-  <script>
-    /* Same saved choice as the main site; no external fonts so this page stays self-contained. */
-    (function () {
-      var d = document.documentElement, t, m;
-      try { t = localStorage.getItem('rk-theme'); m = localStorage.getItem('rk-mode'); } catch (e) {}
-      if (['retro', 'professional', 'hallownest', 'souls', 'grandline'].indexOf(t) < 0) t = 'professional';
-      if (t === 'professional') {
-        if (m !== 'light' && m !== 'dark') m = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        d.setAttribute('data-mode', m);
-      }
-      d.setAttribute('data-theme', t);
-    })();
-  </script>
   <style>
     :root {
       --clr-accent:      #4F8EF7;
@@ -40,12 +23,7 @@
     }
 
 
-    html[data-theme="professional"] { --clr-bg: #f3f5f4; --clr-text: #121614; --clr-text-soft: #4a524d; --clr-text-muted: #4a524d; --clr-border: #d5dad6; --clr-accent: #0b6b5b; --clr-accent-solid: #0b6b5b; --clr-accent-strong: #095446; --clr-on-accent: #fff; }
-    html[data-theme="professional"][data-mode="dark"] { --clr-bg: #0f1311; --clr-text: #e6ebe7; --clr-text-soft: #a3ada7; --clr-text-muted: #a3ada7; --clr-border: #2a312d; --clr-accent: #5fd3b0; --clr-accent-solid: #5fd3b0; --clr-accent-strong: #8be3c8; --clr-on-accent: #07120e; }
     html[data-theme="retro"] { --clr-bg: #0e7c86; --clr-text: #fff; --clr-text-soft: #fff; --clr-text-muted: #fff; --clr-border: #fff; --clr-accent: #fff; --clr-accent-solid: #000080; --clr-accent-strong: #0000a8; --clr-on-accent: #fff; }
-    html[data-theme="hallownest"] { --clr-bg: #070a12; --clr-text: #e9eef2; --clr-text-soft: #a9b4c2; --clr-text-muted: #a9b4c2; --clr-border: #1d2638; --clr-accent: #8fd3ff; --clr-accent-solid: #8fd3ff; --clr-accent-strong: #b5e3ff; --clr-on-accent: #04121c; }
-    html[data-theme="souls"] { --clr-bg: #0c0a08; --clr-text: #d8cdb4; --clr-text-soft: #a89c82; --clr-text-muted: #a89c82; --clr-border: #2e261c; --clr-accent: #c9a24b; --clr-accent-solid: #c9a24b; --clr-accent-strong: #dcb85f; --clr-on-accent: #1a1205; }
-    html[data-theme="grandline"] { --clr-bg: #f2e3bf; --clr-text: #14110f; --clr-text-soft: #4a3f33; --clr-text-muted: #4a3f33; --clr-border: #14110f; --clr-accent: #0b3c6b; --clr-accent-solid: #0b3c6b; --clr-accent-strong: #082c50; --clr-on-accent: #fff6dc; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -171,7 +149,6 @@
     </p>
 
     <div class="error-page__actions">
-      <!-- Absolute: the 404 can be served from any path. -->
       <a href="https://rahulkaushal04.github.io/portfolio/" class="btn btn--primary">Back to portfolio</a>
       <a href="https://rahulkaushal04.github.io/portfolio/projects.html" class="btn btn--outline">See projects</a>
     </div>

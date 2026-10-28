@@ -1,5 +1,3 @@
-// Retro world: the page becomes a 90s desktop. Everything here is built from the same
-// data files as the normal sections and is hidden by CSS in every other theme.
 
 const SECTIONS = [
   ['about', 'About', 'doc'],
@@ -22,14 +20,10 @@ const ICONS = {
 const icon = (name) => `<svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const isRetro = () => document.documentElement.dataset.theme === 'retro';
 const getJSON = (f) => fetch(`data/${f}`).then((r) => r.json()).catch(() => []);
 
 let built = false;
 
-/* ───────── desktop: icons, taskbar, Start menu, windows ───────── */
-
-// id, label, window title, icon, preferred size
 const WINDOWS = [
   ['hero', 'Welcome', 'welcome.exe', 'doc', [800, 640]],
   ['about', 'About', 'about.txt', 'doc', [720, 560]],
@@ -41,12 +35,9 @@ const WINDOWS = [
   ['contact', 'Contact', 'new_message', 'mail', [740, 640]],
 ];
 
-let desk = null;        // { root, area, bar, wins, cleanup }
+let desk = null;
 const MOBILE = () => innerWidth < 700;
 
-/* ───────── wallpaper, gadgets and screensaver ───────── */
-
-// Pixel-art scenery: stepped hills and clouds. No text, nothing about me.
 function wallpaper() {
   const cols = 160, rows = 90, step = 4;
   const hills = (base, amp, seed, fill) => {
@@ -81,7 +72,6 @@ function buildGadgets(root) {
   root.prepend(el);
 }
 
-// After a minute of nothing, a bouncing pixel monitor takes over. Any input ends it.
 function buildSaver() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {};
   const saver = document.createElement('div');
@@ -91,7 +81,7 @@ function buildSaver() {
   saver.innerHTML = `<div class="rk-saver__x"><div class="rk-saver__y">${icon('folder').replace('width="32" height="32"', '')}</div></div>`;
   document.body.appendChild(saver);
   let timer;
-  const wake = () => { saver.hidden = true; clearTimeout(timer); timer = setTimeout(() => { if (isRetro()) saver.hidden = false; }, 60000); };
+  const wake = () => { saver.hidden = true; clearTimeout(timer); timer = setTimeout(() => { saver.hidden = false; }, 60000); };
   const evs = ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'];
   evs.forEach((e) => document.addEventListener(e, wake, { passive: true }));
   wake();
@@ -118,7 +108,6 @@ function mountDesktop() {
     `<li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>GitHub</span></a></li>`,
     `<li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>LinkedIn</span></a></li>`,
     '<li class="rk-sep" role="separator"></li>',
-    `<li><button type="button" data-act="theme">${icon('chip')}<span>Change theme</span></button></li>`,
     `<li><button type="button" data-act="closeall">${icon('folder')}<span>Close all windows</span></button></li>`,
   ].join('');
   bar.innerHTML = `<button type="button" class="rk-start" id="rkStart" aria-expanded="false" aria-controls="rkStartMenu"><span class="rk-start__logo" aria-hidden="true"></span>Start</button>
@@ -132,12 +121,6 @@ function mountDesktop() {
   const tasks = bar.querySelector('.rk-tasks');
   const tray = bar.querySelector('.rk-tray');
 
-  // The theme switch lives in the tray while the desktop is up.
-  const sw = document.getElementById('themeSwitch');
-  const swHome = sw ? { parent: sw.parentNode, next: sw.nextSibling } : null;
-  if (sw) tray.prepend(sw);
-
-  // Move each section's real content into a window, so its handlers keep working.
   const wins = new Map();
   let z = 10;
   let cascade = 0;
@@ -215,7 +198,6 @@ function mountDesktop() {
     w.el.focus({ preventScroll: true });
   };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  // The window shrinks toward its taskbar button (and grows back from it).
   const fly = (w, cls) => {
     if (reduce.matches || !w.task) return;
     const a = w.el.getBoundingClientRect(), t = w.task.getBoundingClientRect();
@@ -241,7 +223,6 @@ function mountDesktop() {
     if (next) activate(next); else if (refocus) root.querySelector(`[data-open="${w.id}"]`)?.focus();
   };
 
-  // Desktop icons, Start menu and taskbar buttons
   const startBtn = bar.querySelector('.rk-start');
   const menu = bar.querySelector('.rk-startmenu');
   const closeMenu = (refocus) => { menu.hidden = true; startBtn.setAttribute('aria-expanded', 'false'); if (refocus) startBtn.focus(); };
@@ -249,7 +230,6 @@ function mountDesktop() {
     const opener = e.target.closest('[data-open]');
     if (opener && (root.contains(opener) || bar.contains(opener))) { closeMenu(false); open(opener.dataset.open); return; }
     const act = e.target.closest('[data-act]')?.dataset.act;
-    if (act === 'theme') { closeMenu(false); document.getElementById('themeBtn')?.click(); return; }
     if (act === 'closeall') { closeMenu(false); wins.forEach((w) => w.open && close(w, false)); return; }
     if (e.target.closest('.rk-startmenu a')) { closeMenu(false); return; }
     const task = e.target.closest('.rk-task');
@@ -265,7 +245,6 @@ function mountDesktop() {
       if (k === 'min') minimize(w); else if (k === 'close') close(w); else { setMax(w, !w.max); activate(w); }
       return;
     }
-    // in-page links such as "See what I've built" open the matching window
     const a = e.target.closest('a[href^="#"]');
     if (a && wins.has(a.getAttribute('href').slice(1))) { e.preventDefault(); e.stopPropagation(); open(a.getAttribute('href').slice(1)); }
   };
@@ -287,7 +266,6 @@ function mountDesktop() {
   };
   document.addEventListener('pointerdown', onDown);
 
-  // Dragging by the title bar, double-click to maximize
   let drag = null;
   area.addEventListener('pointerdown', (e) => {
     const bar2 = e.target.closest('.rk-win__bar');
@@ -312,7 +290,6 @@ function mountDesktop() {
     const w = [...wins.values()].find((x) => x.el === bar2.parentElement);
     if (w && !MOBILE()) setMax(w, !w.max);
   });
-  // Native resize handle: remember the new size so dragging keeps working
   const ro = new ResizeObserver((entries) => {
     entries.forEach((en) => { const w = [...wins.values()].find((x) => x.el === en.target); if (w && !w.max && w.open) { w.rect.w = en.target.offsetWidth; w.rect.h = en.target.offsetHeight; } });
   });
@@ -320,7 +297,6 @@ function mountDesktop() {
   const onResize = () => { wins.forEach((w) => { if (w.open && !w.max) { clampRect(w); applyRect(w); } if (MOBILE() && w.open) setMax(w, true); }); };
   addEventListener('resize', onResize);
 
-  // Clock
   const clock = bar.querySelector('.rk-clock');
   const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); };
   tick();
@@ -329,7 +305,6 @@ function mountDesktop() {
   buildGadgets(root);
   const stopSaver = buildSaver();
 
-  // Opening state: the desktop with the Welcome window open. A link like #experience opens that window instead.
   const hash = location.hash.slice(1);
   open(wins.has(hash) ? hash : 'hero');
   const onHash = () => { const h = location.hash.slice(1); if (wins.has(h)) open(h); };
@@ -346,16 +321,11 @@ function mountDesktop() {
       removeEventListener('hashchange', onHash);
       ro.disconnect();
       wins.forEach((w) => w.sec.appendChild(w.cont));
-      if (sw && swHome) swHome.parent.insertBefore(sw, swHome.next);
       root.remove(); bar.remove();
       html.classList.remove('rk-retro-ready');
     },
   };
 }
-
-function unmountDesktop() { desk?.cleanup(); desk = null; }
-
-/* ───────── experience: file explorer ───────── */
 
 async function buildExplorer() {
   const host = document.getElementById('experienceTimeline');
@@ -388,8 +358,6 @@ async function buildExplorer() {
   wrap.addEventListener('click', (ev) => { const b = ev.target.closest('.rk-row'); if (b) show(Number(b.dataset.i)); });
   show(0);
 }
-
-/* ───────── projects: installer wizard ───────── */
 
 async function buildWizard() {
   const host = document.getElementById('projectsGrid');
@@ -427,8 +395,6 @@ async function buildWizard() {
   });
   render();
 }
-
-/* ───────── open source: inbox ───────── */
 
 async function buildInbox() {
   const host = document.getElementById('contributionsGrid');
@@ -482,6 +448,3 @@ export function enableRetro() {
   mountDesktop();
 }
 
-export function disableRetro() {
-  unmountDesktop();
-}

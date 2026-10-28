@@ -28,7 +28,7 @@ no `node_modules`.
 ├── robots.txt / sitemap.xml
 ├── assets/
 │   ├── css/                # tokens.css (themes), base.css (components), themes.css (per-world extras)
-│   ├── js/                 # ES modules; theme.js owns the switcher, ambient layer and cursor
+│   ├── js/                 # ES modules; retro.js builds the desktop
 │   └── images/             # companies/, projects/, skills/
 ├── data/                   # meta, skills, experience, projects, contributions
 └── resume/
@@ -66,34 +66,20 @@ which shows the first two featured entries. The search and filter toolbar on
 `projects.html` stays hidden until there are at least six projects, since filtering
 two items is noise.
 
-## Themes
+## Retro desktop
 
-Five worlds share one document: **Professional** (default, light and dark), **Retro**,
-**Hallownest**, **Lands Between** and **Grand Line**. The three game and anime worlds take
-mood, palette and ornament only; all art is original CSS and SVG.
+The home page is a 90s desktop. Icons, the Start menu and the taskbar open each section in a draggable window with working minimize, maximize and close. The Welcome window opens first, and a link such as `#experience` opens that window instead.
 
-- Every world is a block of CSS custom properties in `assets/css/tokens.css`, selected by
-  `html[data-theme]` (Professional also uses `data-mode`). Components in `base.css` read
-  tokens and never hardcode colour. `themes.css` holds what tokens cannot express
-  (window chrome, frames, bands, boot overlays).
-- An inline script in each `<head>` applies the saved theme (`localStorage`, in try/catch)
-  or the system light/dark preference on the first visit, before first paint, and loads
-  only that theme's fonts.
-- `assets/js/theme.js` runs the navbar switcher, the View Transitions swap, the canvas
-  ambient layer (motes in Hallownest, embers in Lands Between), the cursor effects and the
-  one-time boot overlay. All of it is skipped under `prefers-reduced-motion`, `saveData`,
-  or very low CPU or memory.
-- `node scripts/contrast.mjs` checks every text/UI token pair against WCAG AA in every
-  world. Run it after touching `tokens.css`.
-- To add a world: add a token block, an option in the switcher markup (three pages), its
-  font URL and theme-color in the inline script, and any structure in `themes.css`.
+- `assets/js/retro.js` builds the desktop. It moves each section's real content into a window, so the contact form and other behaviour keep working, and builds the explorer (Experience), installer wizard (Projects) and inbox (Open source) from `data/*.json`.
+- `assets/js/theme.js` loads the desktop and plays the one-time BIOS intro (any key skips it). It is skipped under `prefers-reduced-motion`.
+- `assets/css/tokens.css` holds the Retro colour, type and spacing tokens. `base.css` has the components and `themes.css` the desktop, windows and taskbar.
+- `projects.html`, `contributions.html` and `404.html` use the same Retro styling without the desktop.
+- `node scripts/contrast.mjs` checks the Retro token pairs against WCAG AA. Run it after editing `tokens.css`.
 
 ## Conventions worth keeping
 
 - **Tokens, not colours.** If a colour is not in `tokens.css`, it does not belong in a component.
-- **`--accent` is text-safe on `--bg` and `--surface`; `--accent-ink` is the text colour on a
-  filled accent. `--line` is decorative; `--line-strong` is for controls (3:1).**
-- **Interactive elements are at least 44px tall.**
+- **- **Interactive elements are at least 44px tall.**
 - **The first screen enters by CSS animation only**, so LCP never waits for JavaScript.
 - **No animation runs unconditionally.** Ambient loops pause when the tab is hidden, and
   everything honours `prefers-reduced-motion`.
@@ -104,8 +90,7 @@ mood, palette and ornament only; all art is original CSS and SVG.
 
 - Responsive, mobile first
 - Scroll reveal via IntersectionObserver, with a fallback sweep for fast scrolls
-- Five switchable design worlds with a saved choice and no flash on load
-- Per-world ambient layer and cursor, disabled under reduced motion
+- A working 90s desktop: windows, taskbar, Start menu and a BIOS intro
 - Full keyboard support: skip link, focus trap in the mobile menu, visible focus rings
 - Open Graph and Twitter cards, JSON-LD `Person` schema, sitemap
 - Easter eggs, code-split and loaded only on the first plausible keystroke
