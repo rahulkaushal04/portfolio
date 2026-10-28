@@ -126,10 +126,10 @@ function startCursor() {
 /* ───────────── boot moment ───────────── */
 
 const BOOT = {
-  retro: '<pre class="boot__post">RK BIOS v2.3\nMemory test .......... OK\nDetecting appliance ... OK\nLoading rahul.exe ...</pre>',
-  hallownest: '<span class="boot__light"></span><span class="boot__name">Rahul Kaushal</span>',
-  souls: '<span class="boot__fire"><i></i><i></i><i></i></span><span class="boot__name">Rahul Kaushal</span>',
-  grandline: '<span class="boot__wave"></span><span class="boot__name">Rahul Kaushal</span>',
+  retro: '<pre class="boot__post">BIOS v2.3\nCPU: Go-486 DX2, 66 MHz\nMemory test: 640K OK\nDetecting appliance ...... OK\nMounting data/*.json ...... OK\nLoading desktop ...\n\nPress any key to skip</pre>',
+  hallownest: '<span class="boot__light"></span>',
+  souls: '<span class="boot__fire"><i></i><i></i><i></i></span>',
+  grandline: '<span class="boot__wave"></span>',
 };
 
 function playBoot(theme) {
@@ -143,7 +143,7 @@ function playBoot(theme) {
   document.body.appendChild(el);
   const done = () => { el.classList.add('boot--out'); setTimeout(() => el.remove(), 450); cleanup(); };
   const cleanup = () => { removeEventListener('keydown', done); el.removeEventListener('pointerdown', done); clearTimeout(timer); };
-  const timer = setTimeout(done, 1500);
+  const timer = setTimeout(done, theme === 'retro' ? 3200 : 1500);
   addEventListener('keydown', done, { once: true });
   el.addEventListener('pointerdown', done, { once: true });
 }
@@ -163,6 +163,8 @@ function paint(theme, mode) {
   syncUI();
   startAmbient();
   startCursor();
+  if (theme === 'retro') import('./retro.js').then((m) => m.enableRetro()).catch(() => root.classList.add('rk-retro-failed'));
+  else import('./retro.js').then((m) => m.disableRetro()).catch(() => {});
 }
 
 function syncUI() {
@@ -283,6 +285,7 @@ export function initTheme() {
   startCursor();
 
   const { theme } = current();
+  if (theme === 'retro') import('./retro.js').then((m) => m.enableRetro()).catch(() => root.classList.add('rk-retro-failed'));
   if (document.getElementById('hero')) {
     try { if (!sessionStorage.getItem('rk-booted')) { sessionStorage.setItem('rk-booted', '1'); playBoot(theme); } } catch { /* storage blocked: skip the intro */ }
   }

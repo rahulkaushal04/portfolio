@@ -35,6 +35,7 @@
       var l = document.createElement('link');
       l.rel = 'stylesheet'; l.href = F[t]; l.id = 'themeFonts';
       document.head.appendChild(l);
+      if (t === 'retro') ['theme', 'retro'].forEach(function (n) { var m = document.createElement('link'); m.rel = 'modulepreload'; m.href = 'assets/js/' + n + '.js'; document.head.appendChild(m); });
       window.__rk = { fonts: F, colors: C };
     })();
   </script>
@@ -156,8 +157,8 @@
 
   <header class="navbar" id="navbar">
     <nav class="container flex-between">
-      <a href="#hero" class="navbar__logo" aria-label="RK, go to top">
-        <span class="navbar__logo-text">RK.</span>
+      <a href="#hero" class="navbar__logo" aria-label="Home, go to top">
+        <span class="navbar__logo-text">Home</span>
       </a>
 
       <ul class="navbar__links" id="navLinks">
@@ -625,6 +626,7 @@
 
         <div class="contact__wrapper">
           <form class="contact__form card reveal" id="contactForm" action="https://formspree.io/f/mykdbjpw" method="POST" novalidate>
+            <p class="contact__to rk-retro-only"><span>To:</span> <a href="mailto:kaushalrahul15@gmail.com">kaushalrahul15@gmail.com</a></p>
             <div class="contact__field">
               <label for="contactName" class="contact__label">Name</label>
               <input
@@ -725,7 +727,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <span class="footer__logo">RK.</span>
+          <span class="footer__logo">Thanks for visiting.</span>
           <p class="footer__blurb">
             Platform and backend engineer in Bengaluru, currently working on
             the deployment platform for Honeywell's edge Kubernetes appliances.

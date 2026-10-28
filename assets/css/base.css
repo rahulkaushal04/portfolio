@@ -329,7 +329,7 @@ section[id], .projects-page__hero, .projects-page__listing, .contributions-page_
 /* ───── footer ───── */
 .footer { margin-top: var(--section-gap); padding-block: var(--s-8) var(--s-6); background: var(--surface); color: var(--ink); border-top: var(--bw) solid var(--line-strong); }
 .footer__grid { display: grid; gap: var(--s-7); }
-.footer__logo { display: block; font-family: var(--ff-display); font-weight: var(--fw-display); text-transform: var(--case-display); letter-spacing: var(--track-display); font-size: clamp(3.2rem, 17vw, 12rem); line-height: 0.95; margin-bottom: var(--s-5); }
+.footer__logo { display: block; font-family: var(--ff-display); font-weight: var(--fw-display); text-transform: var(--case-display); letter-spacing: var(--track-display); font-size: clamp(2.25rem, 7vw, 5rem); line-height: 1.05; margin-bottom: var(--s-5); max-width: 16ch; }
 .footer__blurb { color: var(--ink-2); }
 .footer__email { display: inline-block; margin-top: var(--s-3); color: var(--ink); font-weight: 700; overflow-wrap: anywhere; }
 .footer__nav-title { font-family: var(--ff-body); text-transform: none; letter-spacing: 0; font-size: var(--fs-small); font-weight: 700; color: var(--ink-2); margin-bottom: var(--s-3); }

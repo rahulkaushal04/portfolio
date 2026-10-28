@@ -70,7 +70,7 @@ html[data-theme="retro"] main > section > .container { max-width: 72rem; backgro
 html[data-theme="retro"] main > section > .container > * { margin-inline: var(--win-pad); }
 html[data-theme="retro"] main > section > .container::before { grid-column: 1 / -1; content: "window" / ""; display: block; margin: 3px 3px var(--win-pad); padding: 0.3rem 0.6rem; background: var(--accent); color: var(--accent-ink); font-family: var(--ff-display); font-size: 1rem; letter-spacing: 0.04em; }
 html[data-theme="retro"] main > section > .container::after { content: "_ □ ×" / ""; pointer-events: none; position: absolute; right: 0.9rem; top: 0.45rem; color: var(--accent-ink); font-family: var(--ff-display); letter-spacing: 0.3em; font-size: 1rem; }
-html[data-theme="retro"] #hero > .container::before { content: "rahul_kaushal.exe" / ""; }
+html[data-theme="retro"] #hero > .container::before { content: "welcome.exe" / ""; }
 html[data-theme="retro"] #about > .container::before { content: "about.txt" / ""; }
 html[data-theme="retro"] #skills > .container::before { content: "skills.ini" / ""; }
 html[data-theme="retro"] #experience > .container::before { content: "experience.log" / ""; }
@@ -98,7 +98,7 @@ html[data-theme="retro"] .projects-page__cat-btn, html[data-theme="retro"] .cont
 @keyframes rk-blink { 50% { opacity: 0; } }
 
 html[data-theme="retro"] .boot { background: #000; color: #fff; justify-content: start; padding: var(--s-7) var(--gutter); }
-.boot__post { font-family: var(--ff-display); font-size: clamp(1rem, 2.6vw, 1.6rem); line-height: 1.5; color: #fff; animation: rk-post 1.3s steps(5, end) both; }
+.boot__post { font-family: var(--ff-display); font-size: clamp(0.95rem, 2.4vw, 1.5rem); line-height: 1.5; color: #fff; animation: rk-post 2.6s steps(9, end) both; }
 @keyframes rk-post { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
 
 /* ═════════════ 3 · Hallownest ═════════════ */
@@ -303,7 +303,6 @@ html[data-theme="professional"] {
 /* one size for every title tier, one for UI text */
 html[data-theme="professional"] :is(.projects__card-title, .patent__title, .contributions__pr-title, .experience__role, .skills__group-title) { font-size: var(--fs-h3); line-height: 1.15; }
 html[data-theme="professional"] :is(.btn, .navbar__link, .skills__item-name) { font-size: 1rem; }
-html[data-theme="professional"] .footer__logo { font-size: clamp(3rem, 12vw, 8rem); }
 html[data-theme="professional"] .section-title { max-width: none; }
 
 /* hero: portrait on the right, one Resume button */
@@ -361,3 +360,276 @@ html[data-theme="professional"] .navbar__logo { font-size: 1.75rem; }
 /* Professional: sections that end where a band begins need their own bottom space; the section after a band needs less top space. */
 html[data-theme="professional"] :is(#about, #experience, #projects) { padding-bottom: var(--section-gap); }
 html[data-theme="professional"] :is(#experience, #projects, #contact) { padding-top: calc(var(--section-gap) * 0.6); }
+
+/* ═════ Retro: a working 90s desktop ═════ */
+.rk-retro-only { display: none; }
+html[data-theme="retro"] .rk-retro-only { display: var(--rk-d, block); }
+.rk-wizard { --rk-d: grid; } .rk-taskbar, .contact__to { --rk-d: flex; }
+html[data-theme="retro"] body { padding-bottom: 3.5rem; }
+html[data-theme="retro"] .navbar__links, html[data-theme="retro"] .navbar__hamburger, html[data-theme="retro"] .navbar__resume-wrap { display: none !important; }
+html[data-theme="retro"] .footer__back-to-top { bottom: 3.75rem; }
+html[data-theme="retro"] .toast-container { bottom: 3.75rem; }
+html.rk-retro-ready[data-theme="retro"] main > section:not([data-active]) > .container::before { background: #6e6e6e; color: #fff; }
+
+/* ── the desktop ── */
+html.rk-retro-ready[data-theme="retro"], html.rk-retro-ready[data-theme="retro"] body { overflow: hidden; height: 100dvh; padding-bottom: 0; }
+html.rk-retro-ready[data-theme="retro"] :is(main, .footer, .navbar, .footer__back-to-top) { display: none; }
+html[data-theme="retro"]:not(.rk-retro-ready):not(.rk-retro-failed) main { visibility: hidden; }
+.rk-desktop { position: fixed; inset: 0 0 2.75rem 0; z-index: 50; }
+.rk-icons { position: absolute; inset: 0.75rem auto 0 0.75rem; display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 6.25rem); grid-auto-columns: 5.75rem; gap: 0.25rem 0.5rem; align-content: start; pointer-events: none; }
+.rk-icon { pointer-events: auto; display: grid; justify-items: center; align-content: start; gap: 0.25rem; width: 5.5rem; padding: 0.25rem; color: #fff; text-decoration: none; font-size: 0.8rem; text-align: center; font-family: var(--ff-body); }
+.rk-icon svg { width: 2.5rem; height: 2.5rem; }
+.rk-icon span { padding: 0 0.25rem; text-shadow: 1px 1px 0 #000; }
+.rk-icon:hover span, .rk-icon:focus-visible span { background: var(--accent); text-shadow: none; outline: 1px dotted #fff; }
+.rk-area { position: absolute; inset: 0; pointer-events: none; }
+
+/* windows */
+.rk-win { pointer-events: auto; position: absolute; display: flex; flex-direction: column; min-width: 15rem; min-height: 9rem; background: var(--surface); box-shadow: var(--bevel-out), 4px 4px 0 #000; padding: 3px; resize: both; overflow: hidden; outline: 0; }
+.rk-win[hidden] { display: none; }
+.rk-win--max { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; resize: none; box-shadow: var(--bevel-out); }
+.rk-win__bar { display: flex; align-items: center; gap: 0.4rem; padding: 3px 4px; background: #6e6e6e; color: #fff; font-family: var(--ff-display); font-size: 1rem; user-select: none; touch-action: none; cursor: default; flex: none; }
+.rk-win--active > .rk-win__bar { background: var(--accent); }
+.rk-win__bar svg { width: 1.25rem; height: 1.25rem; flex: none; }
+.rk-win__title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rk-win__btn { display: grid; place-content: center; width: 1.75rem; height: 1.6rem; background: var(--surface); color: #000; box-shadow: var(--bevel-out); flex: none; }
+.rk-win__btn:active { box-shadow: var(--bevel-in); }
+.rk-win__btn i { display: block; width: 0.7rem; height: 0.7rem; position: relative; }
+.rk-g-min::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: #000; }
+.rk-g-max { border: 2px solid #000; border-top-width: 3px; }
+.rk-win__btn.is-restore .rk-g-max { width: 0.5rem; height: 0.5rem; margin: 0.15rem 0 0 0.15rem; box-shadow: 3px -3px 0 -1px var(--surface), 3px -3px 0 0 #000; }
+.rk-g-close::before, .rk-g-close::after { content: ""; position: absolute; left: 50%; top: -1px; width: 2px; height: 100%; background: #000; transform: rotate(45deg); }
+.rk-g-close::after { transform: rotate(-45deg); }
+.rk-win__body { flex: 1; min-height: 0; overflow: auto; margin-top: 3px; padding: 1rem 1.25rem 1.5rem; container-type: inline-size; background: var(--surface); }
+.rk-win__body > .container { max-width: none; padding: 0; margin: 0; width: auto; display: block; background: none; box-shadow: none; }
+
+/* content fitting inside a window: one column, smaller type, always visible */
+html[data-theme="retro"] .rk-win .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+.rk-win .section-title { font-size: 1.9rem; max-width: none; }
+.rk-win .section-subtitle { font-size: 1.05rem; margin-top: 0.5rem; }
+.rk-win .section-header--left { margin-bottom: 1rem; position: static; }
+.rk-win .about > .container, .rk-win .about__grid, .rk-win .contact__wrapper, .rk-win .skills__group, .rk-win .patent__card { grid-template-columns: 1fr !important; display: grid; }
+.rk-win .skills__group { gap: 0.75rem; }
+.rk-win .patent__card > * { grid-column: 1 !important; grid-row: auto !important; }
+.rk-win .patent__card { padding: 1rem; }
+.rk-win .about__bio { font-size: 1.05rem; margin-top: 0.75rem; }
+.rk-win .hero__layout { display: grid; grid-template-columns: 1fr; gap: 1.25rem; padding: 0; }
+.rk-win .hero__name { font-size: clamp(2.4rem, 11cqi, 4.6rem); max-width: none; }
+.rk-win .hero__aside { width: min(100%, 15rem); margin: 0; justify-self: start; }
+.rk-win .hero__tagline { font-size: 1.05rem; }
+.rk-win .contact__form { padding: 0 !important; }
+.rk-win .rk-explorer__body { grid-template-columns: 1fr; }
+.rk-win .rk-wizard { grid-template-columns: 1fr; }
+.rk-win .rk-wizard__side { display: none; }
+@container (min-width: 600px) {
+  .hero__layout { grid-template-columns: minmax(0, 1fr) 13rem !important; align-items: center; }
+  .rk-explorer__body { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important; }
+  .rk-wizard { grid-template-columns: 9rem minmax(0, 1fr) !important; }
+  .rk-wizard__side { display: grid !important; }
+}
+@container (min-width: 560px) { .skills__group { grid-template-columns: 11rem minmax(0, 1fr) !important; } }
+
+/* taskbar */
+html[data-theme="retro"] .rk-taskbar { display: flex; align-items: center; gap: 4px; position: fixed; left: 0; right: 0; bottom: 0; z-index: calc(var(--z-nav) + 5); height: 2.75rem; padding: 4px; background: var(--surface); box-shadow: inset 0 2px 0 #fff, inset 0 -2px 0 #404040; }
+.rk-start, .rk-task, .rk-clock { font-family: var(--ff-body); font-size: 0.85rem; color: var(--ink); }
+.rk-start { display: inline-flex; align-items: center; gap: 0.4rem; height: 100%; padding: 0 0.75rem; font-weight: 700; background: var(--surface); box-shadow: var(--bevel-out); flex: none; }
+.rk-start[aria-expanded="true"] { box-shadow: var(--bevel-in); }
+.rk-start__logo { width: 1rem; height: 1rem; background: linear-gradient(90deg, #c00000 50%, #008000 50%) top / 100% 50% no-repeat, linear-gradient(90deg, #0000c0 50%, #c0c000 50%) bottom / 100% 50% no-repeat; box-shadow: 0 0 0 1px #000; }
+.rk-tasks { display: flex; flex: 1; gap: 4px; height: 100%; min-width: 0; overflow: hidden; }
+.rk-task { display: inline-flex; align-items: center; gap: 0.4rem; min-width: 0; max-width: 11rem; padding: 0 0.6rem; background: var(--surface); box-shadow: var(--bevel-out); white-space: nowrap; flex: 0 1 11rem; }
+.rk-task svg { width: 1.1rem; height: 1.1rem; flex: none; }
+.rk-task span { overflow: hidden; text-overflow: ellipsis; }
+.rk-task[aria-pressed="true"] { font-weight: 700; box-shadow: var(--bevel-in); background: repeating-conic-gradient(#fff 0 25%, var(--surface) 0 50%) 0 0 / 4px 4px; }
+.rk-tray { display: flex; align-items: center; gap: 4px; height: 100%; margin-left: auto; box-shadow: var(--bevel-in); padding: 0 4px; flex: none; position: relative; }
+.rk-clock { display: inline-flex; align-items: center; padding: 0 0.5rem; }
+.rk-tray .theme { height: 100%; }
+.rk-tray .theme__btn { height: 100%; min-height: 0; padding: 0 0.5rem; font-size: 0.8rem; }
+.rk-tray .theme__panel { top: auto; bottom: calc(100% + 8px); right: 0; }
+.rk-startmenu { position: absolute; left: 4px; bottom: calc(100% + 2px); width: 17rem; display: flex; background: var(--surface); box-shadow: var(--bevel-out), 3px 3px 0 #000; }
+.rk-startmenu[hidden] { display: none; }
+.rk-startmenu__side { width: 2.2rem; background: linear-gradient(#000080, #1084d0); color: #fff; display: grid; place-items: end center; padding-bottom: 0.5rem; }
+.rk-startmenu__side span { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--ff-display); font-size: 1.3rem; letter-spacing: 0.08em; }
+.rk-startmenu ul { flex: 1; padding: 3px; }
+.rk-startmenu :is(a, button) { display: flex; align-items: center; gap: 0.6rem; width: 100%; min-height: 2.5rem; padding: 0.2rem 0.6rem; color: var(--ink); text-decoration: none; font-size: 0.95rem; text-align: left; }
+.rk-startmenu :is(a, button):hover, .rk-startmenu :is(a, button):focus-visible { background: var(--accent); color: var(--accent-ink); outline: 0; }
+.rk-startmenu svg { width: 1.5rem; height: 1.5rem; flex: none; }
+.rk-sep { height: 0; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 3px 2px; }
+@media (max-width: 699px) {
+  .rk-win { resize: none; }
+  .rk-task span { display: none; }
+  .rk-task { flex: 0 0 auto; padding: 0 0.5rem; }
+  .rk-icons { grid-template-rows: repeat(auto-fill, 6rem); }
+  .rk-clock { display: none; }
+}
+
+/* experience: file explorer */
+html[data-theme="retro"] .rk-explorer ~ .experience__timeline, html[data-theme="retro"] .rk-wizard ~ .projects__grid, html[data-theme="retro"] .rk-wizard ~ .projects__cta, html[data-theme="retro"] .rk-inbox ~ .contributions__grid { display: none; }
+.rk-pathbar, .rk-statusbar { background: #fff; box-shadow: var(--bevel-in); padding: 0.3rem 0.6rem; font-size: 0.85rem; margin: 0 0 0.5rem; max-width: none; }
+.rk-statusbar { margin: 0.5rem 0 0; background: var(--surface); }
+.rk-explorer__body { display: grid; gap: 0.5rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+.rk-explorer__list, .rk-inbox__list { width: 100%; border-collapse: collapse; background: #fff; box-shadow: var(--bevel-in); font-size: 0.9rem; }
+.rk-explorer__list th, .rk-inbox__list th { background: var(--surface); box-shadow: var(--bevel-out); text-align: left; padding: 0.3rem 0.6rem; font-weight: 700; }
+.rk-explorer__list td, .rk-inbox__list td { padding: 0 0.6rem; vertical-align: middle; }
+.rk-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; min-height: 2.75rem; text-align: left; color: var(--ink); font-weight: 700; }
+.rk-row svg { width: 1.4rem; height: 1.4rem; flex: none; }
+.rk-row[aria-current="true"] { background: var(--accent); color: var(--accent-ink); }
+tr:has(.rk-row[aria-current="true"]) td { background: var(--accent); color: var(--accent-ink); }
+.rk-explorer__preview, .rk-inbox__preview { background: #fff; box-shadow: var(--bevel-in); padding: 1rem; max-height: 36rem; overflow: auto; }
+.rk-explorer__preview h3 { margin-bottom: 0.25rem; }
+.rk-explorer__preview ul { display: grid; gap: 0.6rem; margin-block: 0.75rem; padding-left: 1.1rem; list-style: square; }
+.rk-explorer__preview p, .rk-inbox__preview p { margin-bottom: 0.6rem; }
+.rk-meta { color: var(--ink-2); font-size: 0.875rem; }
+.rk-links a { margin-right: 1rem; font-weight: 700; }
+.rk-inbox__preview { margin-top: 0.5rem; max-height: none; }
+@media (max-width: 899px) { .rk-explorer__body { grid-template-columns: 1fr; } .rk-explorer__list thead th:nth-child(3), .rk-explorer__list td:nth-child(3) { display: none; } .rk-inbox__list td:nth-child(3), .rk-inbox__list th:nth-child(3) { display: none; } }
+
+/* projects: installer wizard */
+.rk-wizard { display: grid; grid-template-columns: 11rem minmax(0, 1fr); background: var(--surface); box-shadow: var(--bevel-in); }
+.rk-wizard__side { display: grid; align-content: center; justify-items: center; gap: 0.75rem; padding: 1rem; background: linear-gradient(#000080, #1084d0); color: #fff; }
+.rk-wizard__art svg { width: 4rem; height: 4rem; }
+.rk-wizard__name { font-family: var(--ff-display); font-size: 1.4rem; }
+.rk-wizard__main { padding: 1rem 1.25rem; background: #fff; min-height: 26rem; }
+.rk-wizard__main img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top left; box-shadow: var(--bevel-in); padding: 3px; margin: 0.75rem 0; background: #fff; }
+.rk-wizard__main h3 { margin-block: 0.25rem 0.5rem; }
+.rk-wizard__buttons { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem; padding: 0.75rem; border-top: 2px groove #fff; }
+.rk-wizard__buttons .btn[disabled] { color: #808080; pointer-events: none; text-shadow: 1px 1px 0 #fff; }
+@media (max-width: 699px) { .rk-wizard { grid-template-columns: 1fr; } .rk-wizard__side { display: none; } }
+
+/* contact: new message */
+html[data-theme="retro"] .contact__wrapper { grid-template-columns: 1fr; }
+html[data-theme="retro"] .contact__form { background: var(--surface); box-shadow: none; padding: 0; gap: 0.5rem; }
+html[data-theme="retro"] .contact__to { display: flex; gap: 0.5rem; align-items: center; margin: 0; padding: 0.4rem 0.6rem; background: #fff; box-shadow: var(--bevel-in); font-size: 0.95rem; max-width: none; }
+html[data-theme="retro"] .contact__to span { font-weight: 700; width: 5rem; }
+html[data-theme="retro"] .contact__field { grid-template-columns: 5.5rem minmax(0, 1fr); align-items: start; column-gap: 0.5rem; }
+html[data-theme="retro"] .contact__label { padding-top: 0.75rem; text-align: left; }
+html[data-theme="retro"] .contact__error { grid-column: 2; }
+html[data-theme="retro"] .contact__textarea { min-height: 11rem; }
+html[data-theme="retro"] .contact__info { order: 2; }
+@media (max-width: 599px) { html[data-theme="retro"] .contact__field { grid-template-columns: 1fr; } }
+.rk-inbox__list, .rk-explorer__list { table-layout: fixed; }
+.rk-inbox__list td, .rk-explorer__list td { overflow-wrap: anywhere; }
+@media (max-width: 599px) {
+  .rk-inbox__list th:nth-child(2), .rk-inbox__list td:nth-child(2) { display: none; }
+  .rk-row span { overflow-wrap: anywhere; }
+}
+
+/* retro tidy-ups */
+@media (min-width: 900px) { html[data-theme="retro"] .hero__layout { grid-template-columns: minmax(0, 1fr) 17rem; } }
+html[data-theme="retro"] .hero__aside { width: 100%; margin-right: var(--win-pad); }
+@media (min-width: 900px) { html[data-theme="retro"] .hero__sticker { width: 6.5rem; left: -2.5rem; } }
+@media (max-width: 899px) { html[data-theme="retro"] .hero__sticker { width: 5rem; left: auto; right: -0.5rem; bottom: -1rem; } }
+.rk-explorer__body { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); }
+.rk-explorer__list th:nth-child(1) { width: 46%; } .rk-explorer__list th:nth-child(2) { width: 34%; } .rk-explorer__list th:nth-child(3) { width: 20%; }
+.rk-wizard__main p { margin-bottom: 0.75rem; }
+.rk-wizard__main h3 { font-size: 1.3rem; line-height: 1.2; }
+html[data-theme="retro"] .contact__error:empty { display: none; }
+html[data-theme="retro"] .contact__label { padding-top: 0.8rem; }
+html[data-theme="retro"] .hero__aside { width: auto; margin-right: var(--win-pad); }
+@media (max-width: 899px) {
+  .rk-explorer__body { grid-template-columns: 1fr; }
+  html[data-theme="retro"] .hero__aside { width: min(100%, 14rem); }
+}
+.rk-wizard__main img { max-width: 40rem; }
+
+/* ═════ Retro desktop, round 2: a desktop worth looking at ═════ */
+.rk-icons { grid-template-rows: repeat(auto-fill, 5.5rem); grid-auto-columns: 5.5rem; gap: 0 0.25rem; }
+.rk-icon { outline: 0; }
+.rk-icon svg { width: 2.25rem; height: 2.25rem; }
+.rk-icon:focus-visible span { background: var(--accent); outline: 1px dotted #fff; }
+
+/* wallpaper + gadgets sit under the windows */
+.rk-widgets { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.rk-wall { position: absolute; right: 3rem; bottom: 2.5rem; width: min(24rem, 34vw); text-align: right; font-family: var(--ff-display); color: #1fb4bf; }
+.rk-wall svg { width: 100%; height: auto; display: block; margin-left: auto; image-rendering: pixelated; }
+.rk-wall__name { margin: 1rem 0 0.15rem; font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: #bff0f4; text-shadow: 3px 3px 0 #0a565d; }
+.rk-wall__line { margin: 0; font-size: clamp(0.85rem, 1.2vw, 1.05rem); color: #8fd9e0; font-family: var(--ff-body); text-shadow: 1px 1px 0 #0a565d; }
+.rk-gadget { position: absolute; right: 1.25rem; width: 15.5rem; background: var(--surface); box-shadow: var(--bevel-out), 4px 4px 0 rgba(0, 0, 0, 0.55); padding: 3px; font-family: var(--ff-body); color: var(--ink); }
+.rk-gadget h2 { margin: 0; padding: 0.2rem 0.5rem; background: var(--accent); color: #fff; font-family: var(--ff-display); font-size: 0.95rem; font-weight: 400; text-transform: none; letter-spacing: 0; line-height: 1.4; }
+.rk-gadget--cal { top: 1rem; }
+.rk-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 0.5rem; background: #fff; margin-top: 3px; box-shadow: var(--bevel-in); text-align: center; font-size: 0.8rem; }
+.rk-cal b { font-weight: 700; padding-bottom: 2px; border-bottom: 1px solid #808080; margin-bottom: 2px; }
+.rk-cal span { padding: 2px 0; }
+.rk-cal .is-today { background: var(--accent); color: #fff; font-weight: 700; }
+.rk-gadget dl { margin: 3px 0 0; padding: 0.4rem 0.5rem; background: #fff; box-shadow: var(--bevel-in); font-size: 0.82rem; display: grid; gap: 0.2rem; }
+.rk-gadget dl div { display: grid; grid-template-columns: 3.2rem 1fr; gap: 0.4rem; }
+.rk-gadget dt { color: #404040; }
+.rk-gadget dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.rk-gadget p { margin: 0.35rem 0.25rem 0.1rem; font-size: 0.8rem; }
+@media (max-width: 899px), (max-height: 640px) { .rk-gadget { display: none; } .rk-wall { right: 1rem; bottom: 1rem; width: 62vw; } }
+
+/* screensaver */
+.rk-saver { position: fixed; inset: 0; z-index: 800; background: #000; overflow: hidden; }
+.rk-saver[hidden] { display: none; }
+.rk-saver__x { position: absolute; left: 0; top: 0; width: calc(100% - 9rem); height: calc(100% - 5.6rem); animation: rk-bx 11s linear infinite alternate; }
+.rk-saver__y { width: 9rem; animation: rk-by 7s linear infinite alternate; }
+.rk-saver svg { width: 100%; display: block; image-rendering: pixelated; }
+@keyframes rk-bx { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes rk-by { from { transform: translateY(0); } to { transform: translateY(calc(100vh - 5.6rem - 4rem)); } }
+
+/* minimize / restore: shrink toward the taskbar button */
+@keyframes rk-min { to { transform: translate(var(--dx), var(--dy)) scale(0.1); opacity: 0.3; } }
+@keyframes rk-restore { from { transform: translate(var(--dx), var(--dy)) scale(0.1); opacity: 0.3; } }
+.rk-win--min-anim { animation: rk-min 230ms steps(6, end) forwards; }
+.rk-win--restore-anim { animation: rk-restore 230ms steps(6, end); }
+
+/* per-window fixes at any size */
+.rk-win[data-win="hero"] .hero__layout { padding: 0; }
+@container (max-width: 899px) { .rk-explorer__list th:nth-child(3), .rk-explorer__list td:nth-child(3) { display: none; } .rk-explorer__list th:nth-child(1) { width: 52%; } .rk-explorer__list th:nth-child(2) { width: 48%; } }
+.rk-wizard__main img { max-height: 17rem; }
+.rk-wizard__buttons { position: sticky; bottom: 0; background: var(--surface); z-index: 1; }
+.rk-props { display: none !important; }
+
+/* wide / maximized layouts: each window uses the space instead of leaving it grey */
+@container (min-width: 900px) {
+  .rk-win[data-win="hero"] .hero__layout { grid-template-columns: minmax(0, 1fr) 22rem !important; gap: 2.5rem; min-height: 26rem; align-content: center; }
+  .rk-win[data-win="hero"] .hero__name { font-size: clamp(3rem, 7.5cqi, 6.5rem); }
+  .rk-win[data-win="hero"] .hero__tagline { font-size: 1.2rem; }
+  .rk-win[data-win="hero"] .hero__aside { width: 100%; }
+  .rk-win[data-win="hero"] .hero__sticker { width: 8.5rem; left: -3.5rem; }
+
+  .rk-win[data-win="about"] .rk-win__body > .container { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); column-gap: 2.5rem; align-items: start; }
+  .rk-win[data-win="about"] .section-title, .rk-win[data-win="about"] .section-subtitle { grid-column: 1 / -1; }
+  .rk-win[data-win="about"] .about__grid { grid-column: 1; }
+  .rk-win[data-win="about"] .about__bio { font-size: 1.2rem; }
+  .rk-win[data-win="about"] .rk-props { display: block !important; grid-column: 2; background: #fff; box-shadow: var(--bevel-in); padding: 1rem; }
+  .rk-props__head { display: flex; align-items: center; gap: 0.6rem; font-family: var(--ff-display); font-size: 1.1rem; margin: 0 0 0.75rem; padding-bottom: 0.6rem; border-bottom: 2px groove #fff; max-width: none; }
+  .rk-props__head svg { width: 2.25rem; height: 2.25rem; }
+  .rk-props dl { margin: 0; display: grid; gap: 0.55rem; }
+  .rk-props dl div { display: grid; grid-template-columns: 5rem 1fr; gap: 0.5rem; }
+  .rk-props dt { color: #404040; } .rk-props dd { margin: 0; font-weight: 700; }
+
+  .rk-win[data-win="skills"] .skills__groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .rk-win[data-win="skills"] .skills__group { display: block !important; background: #fff; box-shadow: var(--bevel-in); padding: 1rem; border-top: 0; }
+  .rk-win[data-win="skills"] .skills__list { margin-top: 0.75rem; }
+
+  .rk-win[data-win="patent"] .patent__card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important; column-gap: 2rem; max-width: 66rem; width: 100%; margin-inline: auto; padding: 1.75rem; }
+  .rk-win[data-win="patent"] .patent__card > .patent__header, .rk-win[data-win="patent"] .patent__card > .patent__title { grid-column: 1 !important; }
+  .rk-win[data-win="patent"] .patent__card > .patent__body { grid-column: 2 !important; grid-row: 1 / span 2 !important; }
+  .rk-win[data-win="patent"] .patent__card > .patent__tags, .rk-win[data-win="patent"] .patent__card > .patent__links { grid-column: 2 !important; }
+  .rk-win[data-win="patent"] .patent__title { font-size: 1.9rem; }
+
+  .rk-win[data-win="contributions"] .rk-inbox { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0 0.75rem; align-items: start; }
+  .rk-win[data-win="contributions"] .rk-inbox .rk-pathbar { grid-column: 1 / -1; }
+  .rk-win[data-win="contributions"] .rk-inbox__preview { margin-top: 0; min-height: 22rem; }
+  .rk-win[data-win="contributions"] .rk-inbox__list td:nth-child(3), .rk-win[data-win="contributions"] .rk-inbox__list th:nth-child(3) { display: none; }
+
+  .rk-win[data-win="contact"] .contact__wrapper { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr) !important; align-items: start; gap: 1.5rem; }
+  .rk-win[data-win="contact"] .contact__form { order: 0; }
+  .rk-win[data-win="contact"] .contact__info { order: 1; background: #fff; box-shadow: var(--bevel-in); padding: 1rem; margin-top: 0; }
+
+  .rk-win[data-win="projects"] .rk-wizard__main img { max-height: 21rem; }
+}
+.rk-wall { width: min(17rem, 26vw); bottom: 3.25rem; right: 3.5rem; }
+.rk-icon span { white-space: nowrap; }
+/* maximized windows centre their content vertically (the body is the container, so this lives outside @container) */
+.rk-win--max[data-win="hero"] .rk-win__body, .rk-win--max[data-win="patent"] .rk-win__body { display: flex; flex-direction: column; }
+.rk-win--max[data-win="hero"] .rk-win__body > .container, .rk-win--max[data-win="patent"] .rk-win__body > .container { margin-block: auto; width: 100%; }
+@container (min-width: 900px) { .rk-win[data-win="about"] .about__grid { grid-row: auto !important; } .rk-win[data-win="about"] .rk-props { grid-row: auto; } }
+.rk-win[data-win="projects"] .rk-win__body { padding-bottom: 0; }
+
+/* scenery wallpaper fills the desktop; no monogram, no name */
+.rk-wall { position: absolute; inset: 0; width: auto; right: 0; bottom: 0; text-align: initial; }
+.rk-wall svg { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; image-rendering: pixelated; }
+.rk-saver__x { width: calc(100% - 6rem); height: calc(100% - 6rem); }
+.rk-saver__y { width: 6rem; }
+@keyframes rk-by { from { transform: translateY(0); } to { transform: translateY(calc(100vh - 12rem)); } }
+.rk-saver svg { width: 100%; height: auto; }
