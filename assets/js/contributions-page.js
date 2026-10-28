@@ -27,6 +27,8 @@ function formatDate(dateStr) {
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 
+const STATS_MIN_PRS = 6;
+
 function uniqueRepos(contribs) {
   return new Set(contribs.map((c) => c.repo));
 }
@@ -37,6 +39,13 @@ function renderStats() {
   const totalPRs  = allContributions.length;
   const totalRepos = uniqueRepos(allContributions).size;
 
+  if (totalPRs < STATS_MIN_PRS) {
+    statsContainer.innerHTML = '';
+    statsContainer.hidden = true;
+    return;
+  }
+
+  statsContainer.hidden = false;
   statsContainer.innerHTML = `
     <div class="contributions__stat reveal">
       <span class="contributions__stat-number">${totalPRs}</span>
