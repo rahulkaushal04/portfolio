@@ -1,4 +1,4 @@
-const PREVIEW_BULLETS = 3;
+const PREVIEW_BULLETS = 1;
 
 let timeline;
 let entries = [];
@@ -57,6 +57,11 @@ function itemHTML(entry, index) {
         <ul class="experience__description" id="${listId}">${preview}${extra}</ul>
         ${toggle}
         <div class="experience__tags">${tags}</div>
+        <button class="experience__expand" type="button" aria-expanded="false" aria-controls="${listId}"
+                aria-label="Details: ${escapeHTML(entry.role)}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
       </div>
     </div>`;
 }
@@ -108,6 +113,16 @@ function groupHTML(group) {
 }
 
 function handleInteraction(e) {
+  // Professional shows roles as an expandable ledger; the other themes keep their cards.
+  const row = e.target.closest('.experience__expand, .experience__role-row, .experience__date');
+  if (row && document.documentElement.dataset.theme === 'professional') {
+    const item = row.closest('.experience__item');
+    const open = !item.classList.contains('is-open');
+    item.classList.toggle('is-open', open);
+    item.querySelector('.experience__expand').setAttribute('aria-expanded', String(open));
+    return;
+  }
+
   const btn = e.target.closest('.experience__toggle');
   if (!btn) return;
 

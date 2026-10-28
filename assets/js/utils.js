@@ -4,7 +4,6 @@ export function showToast(message, type = 'success', duration = 3000) {
 
   const toast = document.createElement('div');
   toast.className = `toast toast--${type}`;
-  toast.setAttribute('role', 'status');
   toast.textContent = message;
 
   container.appendChild(toast);

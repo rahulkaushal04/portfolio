@@ -1,5 +1,5 @@
 import { initAnimations } from './animations.js';
-import { initCursor }     from './cursor.js';
+import { initTheme }      from './theme.js';
 
 let allProjects = [];
 let activeCat   = 'all';
@@ -60,7 +60,7 @@ function cardHTML(project) {
   if (project.githubUrl) {
     actions += `
       <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer"
-         class="projects__card-link" aria-label="GitHub repo for ${escapeHTML(project.title)}">
+         class="projects__card-link" aria-label="Code for ${escapeHTML(project.title)} on GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
              fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
@@ -89,7 +89,7 @@ function cardHTML(project) {
         </div>
       </div>
       <div class="projects__card-body">
-        <h3 class="projects__card-title">${escapeHTML(project.title)}</h3>
+        <h2 class="projects__card-title">${escapeHTML(project.title)}</h2>
         <p class="projects__card-description">${escapeHTML(project.description)}</p>
         <div class="projects__card-tags">${tags}</div>
         <div class="projects__card-actions">${actions}</div>
@@ -194,17 +194,6 @@ function onClearFilters() {
   render();
 }
 
-function initScrollProgress() {
-  const bar = document.getElementById('scrollProgress');
-  if (!bar) return;
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100: 0;
-    bar.style.width = `${pct}%`;
-  }, { passive: true });
-}
-
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -231,8 +220,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   toolbar      = document.querySelector('.projects-page__toolbar');
 
   initAnimations();
-  initCursor();
-  initScrollProgress();
+  initTheme();
   initBackToTop();
   setFooterYear();
 

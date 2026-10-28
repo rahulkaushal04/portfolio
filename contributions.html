@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="professional">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,36 @@
   <meta name="description" content="Merged pull requests by Rahul Kaushal to open source Python libraries, including Meta's exca experiment-caching library and aio-libs/async-lru.">
   <meta name="author" content="Rahul Kaushal">
   <meta name="theme-color" content="#0B0D12">
+
+  <script>
+    /* Theme before first paint: saved choice, else system light/dark on Professional. Also loads only that theme's fonts. */
+    (function () {
+      var d = document.documentElement, t, m;
+      var G = 'https://fonts.googleapis.com/css2?display=swap&';
+      var F = {
+        retro: G + 'family=Pixelify+Sans:wght@500;700',
+        professional: G + 'family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600',
+        hallownest: G + 'family=Cinzel:wght@500;700&family=Spectral:ital,wght@0,400;0,500;1,400',
+        souls: G + 'family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400',
+        grandline: G + 'family=Bangers&family=Nunito:wght@400;600;700'
+      };
+      var C = { retro: '#0e7c86', professional: '#f3f5f4', 'professional-dark': '#0f1311', hallownest: '#070a12', souls: '#0c0a08', grandline: '#f2e3bf' };
+      try { t = localStorage.getItem('rk-theme'); m = localStorage.getItem('rk-mode'); } catch (e) {}
+      if (!F[t]) t = 'professional';
+      if (t === 'professional') {
+        if (m !== 'light' && m !== 'dark') m = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.setAttribute('data-mode', m);
+      }
+      d.setAttribute("data-theme", t); d.classList.add("js");
+      var k = t === 'professional' && m === 'dark' ? 'professional-dark' : t;
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', C[k]);
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = F[t]; l.id = 'themeFonts';
+      document.head.appendChild(l);
+      window.__rk = { fonts: F, colors: C };
+    })();
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Open Source Contributions - Rahul Kaushal">
@@ -22,21 +52,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="assets/css/variables.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/hero.css">
-  <link rel="stylesheet" href="assets/css/about.css">
-  <link rel="stylesheet" href="assets/css/skills.css">
-  <link rel="stylesheet" href="assets/css/experience.css">
-  <link rel="stylesheet" href="assets/css/projects.css">
-  <link rel="stylesheet" href="assets/css/contributions.css">
-  <link rel="stylesheet" href="assets/css/contact.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -84,20 +103,40 @@
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="ambient" id="ambient" aria-hidden="true"><canvas></canvas></div>
 
   <header class="navbar navbar--subpage" id="navbar">
     <nav class="container flex-between">
-      <a href="index.html" class="navbar__logo" aria-label="Back to portfolio">
-        <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
+      <a href="index.html" class="navbar__logo" aria-label="RK, back to portfolio">
+        <span class="navbar__logo-text">RK.</span>
       </a>
 
-      <a href="index.html#contributions" class="btn btn-outline contributions-page__back-btn">
+      <div class="navbar__actions flex-center gap-4">
+        <div class="theme" id="themeSwitch">
+          <button class="theme__btn" id="themeBtn" type="button" aria-expanded="false" aria-controls="themePanel">
+            <span class="theme__swatch" aria-hidden="true"></span>
+            <span class="theme__label">Theme</span>
+          </button>
+          <div class="theme__panel" id="themePanel" hidden>
+            <div class="theme__group" role="radiogroup" aria-label="Theme">
+              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="professional"><span class="theme__dots" aria-hidden="true"></span>Professional</button>
+              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="retro"><span class="theme__dots" aria-hidden="true"></span>Retro</button>
+              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="hallownest"><span class="theme__dots" aria-hidden="true"></span>Hallownest</button>
+              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="souls"><span class="theme__dots" aria-hidden="true"></span>Lands Between</button>
+              <button type="button" role="radio" aria-checked="false" class="theme__opt" data-theme-opt="grandline"><span class="theme__dots" aria-hidden="true"></span>Grand Line</button>
+            </div>
+            <button type="button" role="switch" aria-checked="false" class="theme__mode" id="themeMode">Dark mode</button>
+            <button type="button" role="switch" aria-checked="false" class="theme__mode theme__motion" id="themeMotion">Reduce motion</button>
+          </div>
+        </div>
+        <a href="index.html#contributions" class="btn btn-outline contributions-page__back-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
         <span>Back to Portfolio</span>
       </a>
+      </div>
     </nav>
   </header>
 
@@ -163,11 +202,11 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer band">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <span class="footer__logo">RK.</span>
           <p class="footer__blurb">
             ML platform and backend engineer in Bengaluru, currently working on
             the deployment platform for Honeywell's edge Kubernetes appliances.

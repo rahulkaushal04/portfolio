@@ -27,8 +27,8 @@ no `node_modules`.
 ├── contributions.html      # Open source listing
 ├── robots.txt / sitemap.xml
 ├── assets/
-│   ├── css/                # One partial per section, linked from each <head>
-│   ├── js/                 # ES modules, one per section
+│   ├── css/                # tokens.css (themes), base.css (components), themes.css (per-world extras)
+│   ├── js/                 # ES modules; theme.js owns the switcher, ambient layer and cursor
 │   └── images/             # companies/, projects/, skills/
 ├── data/                   # meta, skills, experience, projects, contributions
 └── resume/
@@ -66,30 +66,46 @@ which shows the first two featured entries. The search and filter toolbar on
 `projects.html` stays hidden until there are at least six projects, since filtering
 two items is noise.
 
+## Themes
+
+Five worlds share one document: **Professional** (default, light and dark), **Retro**,
+**Hallownest**, **Lands Between** and **Grand Line**. The three game and anime worlds take
+mood, palette and ornament only; all art is original CSS and SVG.
+
+- Every world is a block of CSS custom properties in `assets/css/tokens.css`, selected by
+  `html[data-theme]` (Professional also uses `data-mode`). Components in `base.css` read
+  tokens and never hardcode colour. `themes.css` holds what tokens cannot express
+  (window chrome, frames, bands, boot overlays).
+- An inline script in each `<head>` applies the saved theme (`localStorage`, in try/catch)
+  or the system light/dark preference on the first visit, before first paint, and loads
+  only that theme's fonts.
+- `assets/js/theme.js` runs the navbar switcher, the View Transitions swap, the canvas
+  ambient layer (motes in Hallownest, embers in Lands Between), the cursor effects and the
+  one-time boot overlay. All of it is skipped under `prefers-reduced-motion`, `saveData`,
+  or very low CPU or memory.
+- `node scripts/contrast.mjs` checks every text/UI token pair against WCAG AA in every
+  world. Run it after touching `tokens.css`.
+- To add a world: add a token block, an option in the switcher markup (three pages), its
+  font URL and theme-color in the inline script, and any structure in `themes.css`.
+
 ## Conventions worth keeping
 
-- **CSS partials are `<link>`ed, not `@import`ed.** `@import` serialises the
-  downloads behind `main.css`. Order matters: `variables` and `reset` first,
-  `main.css` last, since it holds base and utility rules that must win.
-- **`--clr-accent` is for text and borders. `--clr-accent-solid` is for filled
-  backgrounds.** White text on the lighter accent only reaches 3.2:1.
-- **`--clr-border` is decorative. `--clr-border-strong` is for real controls**
-  that need 3:1 under WCAG 1.4.11.
-- **Interactive elements carry `min-height: 44px`.**
-- **`will-change` is applied only while an element is animating**, then removed.
-  Leaving it on idle elements held a compositor layer open for every card on the
-  page and caused sections to lay out without ever painting.
-- **No animation runs unconditionally.** The particle field pauses when the hero
-  scrolls out of view and when the tab is hidden, and every animated component
-  honours `prefers-reduced-motion`.
+- **Tokens, not colours.** If a colour is not in `tokens.css`, it does not belong in a component.
+- **`--accent` is text-safe on `--bg` and `--surface`; `--accent-ink` is the text colour on a
+  filled accent. `--line` is decorative; `--line-strong` is for controls (3:1).**
+- **Interactive elements are at least 44px tall.**
+- **The first screen enters by CSS animation only**, so LCP never waits for JavaScript.
+- **No animation runs unconditionally.** Ambient loops pause when the tab is hidden, and
+  everything honours `prefers-reduced-motion`.
+- **Long unbroken strings wrap** (`overflow-wrap: anywhere`) and grid children set
+  `min-width: 0`. Break-test new data with very long repo names and titles.
 
 ## Features
 
 - Responsive, mobile first
 - Scroll reveal via IntersectionObserver, with a fallback sweep for fast scrolls
-- Canvas particle field in the hero, paused when off-screen
-- Custom cursor on pointer devices, disabled under reduced motion
-- Native cross-document view transitions
+- Five switchable design worlds with a saved choice and no flash on load
+- Per-world ambient layer and cursor, disabled under reduced motion
 - Full keyboard support: skip link, focus trap in the mobile menu, visible focus rings
 - Open Graph and Twitter cards, JSON-LD `Person` schema, sitemap
 - Easter eggs, code-split and loaded only on the first plausible keystroke

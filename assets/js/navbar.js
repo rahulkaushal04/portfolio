@@ -1,5 +1,4 @@
 let navbar;
-let scrollProgress;
 let hamburger;
 let mobileMenu;
 let backdrop;
@@ -12,13 +11,6 @@ let lastFocused = null;
 
 const SCROLL_THRESHOLD = 80;
 const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
-
-function updateScrollProgress() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPct = docHeight > 0 ? (scrollTop / docHeight) * 100: 0;
-  if (scrollProgress) scrollProgress.style.width = `${scrollPct}%`;
-}
 
 function handleNavbarScroll() {
   if (!navbar) return;
@@ -127,7 +119,6 @@ function trapFocus(e) {
 
 export function initNavbar() {
   navbar         = document.getElementById('navbar');
-  scrollProgress = document.getElementById('scrollProgress');
   hamburger      = document.getElementById('navHamburger');
   mobileMenu     = document.getElementById('mobileMenu');
   backdrop       = document.getElementById('navBackdrop');
@@ -138,11 +129,9 @@ export function initNavbar() {
   sectionEls = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
   window.addEventListener('scroll', () => {
-    updateScrollProgress();
     handleNavbarScroll();
   }, { passive: true });
 
-  updateScrollProgress();
   handleNavbarScroll();
 
   if (sectionEls.length > 0) {
@@ -170,7 +159,7 @@ export function initNavbar() {
 
     document.addEventListener('keydown', trapFocus);
 
-    window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+    window.matchMedia('(min-width: 1101px)').addEventListener('change', (e) => {
       if (e.matches && isMenuOpen()) closeMobileMenu();
     });
   }

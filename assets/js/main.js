@@ -7,8 +7,7 @@ import { initProjects }       from './projects.js';
 import { initContributions } from './contributions.js';
 import { initContact }    from './contact.js';
 
-import { initParticles }  from './particles.js';
-import { initCursor }     from './cursor.js';
+import { initTheme }      from './theme.js';
 
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
@@ -56,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContributions();
   initContact();
 
-  initParticles();
-  initCursor();
+  initTheme();
 
   initBackToTop();
   setFooterYear();
