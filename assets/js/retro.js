@@ -141,7 +141,7 @@ function mountDesktop() {
   root.className = 'rk-retro-only rk-desktop';
   root.id = 'rkDesktop';
   root.innerHTML = `<nav class="rk-icons" aria-label="Desktop">${WINDOWS.map(([id, label, , ic]) => `<button type="button" class="rk-icon" data-open="${id}">${icon(ic)}<span>${label}</span></button>`).join('')}
-    <a class="rk-icon" href="resume/Rahul_Resume.pdf" download>${icon('pdf')}<span>Resume</span></a></nav>
+    <a class="rk-icon" href="resume/Rahul_Resume.pdf" target="_blank" rel="noopener noreferrer">${icon('pdf')}<span>Resume</span></a></nav>
     <div class="rk-area" id="rkArea"></div>`;
   const bar = document.createElement('div');
   bar.className = 'rk-retro-only rk-taskbar';
@@ -150,7 +150,7 @@ function mountDesktop() {
   const startItems = [
     ...WINDOWS.map(([id, label, , ic]) => `<li><button type="button" data-open="${id}">${icon(ic)}<span>${label}</span></button></li>`),
     '<li class="rk-sep" role="separator"></li>',
-    `<li><a href="resume/Rahul_Resume.pdf" download>${icon('pdf')}<span>Resume (PDF)</span></a></li>`,
+    `<li><a href="resume/Rahul_Resume.pdf" target="_blank" rel="noopener noreferrer">${icon('pdf')}<span>Resume (PDF)</span></a></li>`,
     `<li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>GitHub</span></a></li>`,
     `<li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>LinkedIn</span></a></li>`,
     '<li class="rk-sep" role="separator"></li>',
