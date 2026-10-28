@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-  Served for any unmatched route at any depth, so relative and absolute asset
-  paths are both unreliable here. Keep this page self-contained.
--->
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="retro">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +8,7 @@
 
   <title>404 - Page Not Found | Rahul Kaushal</title>
   <meta name="description" content="This page does not exist. Head back to the portfolio.">
-  <meta name="theme-color" content="#0B0D12">
+  <meta name="theme-color" content="#0e7c86">
 
   <style>
     :root {
@@ -25,6 +21,9 @@
       --clr-text-muted:  #8A91A6;
       --clr-border:      #2E323F;
     }
+
+
+    html[data-theme="retro"] { --clr-bg: #0e7c86; --clr-text: #fff; --clr-text-soft: #fff; --clr-text-muted: #fff; --clr-border: #fff; --clr-accent: #fff; --clr-accent-solid: #000080; --clr-accent-strong: #0000a8; --clr-on-accent: #fff; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -103,7 +102,7 @@
     }
 
     .btn--primary {
-      color: #fff;
+      color: var(--clr-on-accent, #fff);
       background-color: var(--clr-accent-solid);
     }
 
@@ -114,7 +113,7 @@
       border: 1.5px solid var(--clr-accent);
     }
 
-    .btn--outline:hover { background-color: rgba(79, 142, 247, 0.14); }
+    .btn--outline:hover { background-color: color-mix(in srgb, var(--clr-accent) 16%, transparent); }
 
     .btn:focus-visible {
       outline: 2px solid var(--clr-text);
@@ -150,7 +149,6 @@
     </p>
 
     <div class="error-page__actions">
-      <!-- Absolute: the 404 can be served from any path. -->
       <a href="https://rahulkaushal04.github.io/portfolio/" class="btn btn--primary">Back to portfolio</a>
       <a href="https://rahulkaushal04.github.io/portfolio/projects.html" class="btn btn--outline">See projects</a>
     </div>

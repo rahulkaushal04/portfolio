@@ -78,8 +78,6 @@ function groupByCompany(list) {
 
 function groupHTML(group) {
   const size = group.logoSize ?? 40;
-  // Wordmarks are far wider than tall; a square height attribute reserves the
-  // wrong box and the layout jumps when the image lands.
   const logoH = group.logoHeight ?? size;
   const roleCount = group.entries.length;
 

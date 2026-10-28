@@ -18,7 +18,6 @@ export function initAnimations() {
       el.classList.remove('is-animating');
     }, { once: true });
 
-    // transitionend never fires if the element was already at its end state.
     setTimeout(() => el.classList.remove('is-animating'), 900);
   }
 
@@ -48,11 +47,8 @@ export function initAnimations() {
 
   observeAll();
 
-  // Lets dynamic modules register freshly injected .reveal elements.
   window.__reObserveReveals = observeAll;
 
-  // A fast scroll can carry an element across the viewport between observer
-  // checks, so it never fires and the element stays hidden. Sweep for those.
   if (!reducedMotion) {
     let ticking = false;
 

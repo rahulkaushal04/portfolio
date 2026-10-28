@@ -1,5 +1,5 @@
 import { initAnimations } from './animations.js';
-import { initCursor }     from './cursor.js';
+import { initTheme }      from './theme.js';
 
 let allContributions = [];
 let activeRepo       = 'all';
@@ -98,7 +98,7 @@ function cardHTML(contribution) {
         </span>`}
       </div>
 
-      <h3 class="contributions__pr-title">
+      <h2 class="contributions__pr-title">
         <a href="${contribution.prUrl}" target="_blank" rel="noopener noreferrer"
            class="contributions__pr-link">
           ${escapeHTML(contribution.prTitle)}
@@ -110,7 +110,7 @@ function cardHTML(contribution) {
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg>
         </a>
-      </h3>
+      </h2>
 
       <p class="contributions__description">${escapeHTML(contribution.description)}</p>
 
@@ -206,17 +206,6 @@ function onClearFilters() {
   render();
 }
 
-function initScrollProgress() {
-  const bar = document.getElementById('scrollProgress');
-  if (!bar) return;
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100: 0;
-    bar.style.width = `${pct}%`;
-  }, { passive: true });
-}
-
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -244,8 +233,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   toolbar        = document.querySelector('.contributions-page__toolbar');
 
   initAnimations();
-  initCursor();
-  initScrollProgress();
+  initTheme();
   initBackToTop();
   setFooterYear();
 

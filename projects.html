@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="retro">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Rahul Kaushal</title>
   <meta name="description" content="Python tools Rahul Kaushal built and maintains, including DepKeeper, a dependency CLI for requirements.txt, and Now Boarding Scheduler, a MILP-based board game session planner.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0B0D12">
+  <meta name="theme-color" content="#0e7c86">
+
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Pixelify+Sans:wght@500;700">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects - Rahul Kaushal">
@@ -22,21 +25,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="assets/css/variables.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/hero.css">
-  <link rel="stylesheet" href="assets/css/about.css">
-  <link rel="stylesheet" href="assets/css/skills.css">
-  <link rel="stylesheet" href="assets/css/experience.css">
-  <link rel="stylesheet" href="assets/css/projects.css">
-  <link rel="stylesheet" href="assets/css/contributions.css">
-  <link rel="stylesheet" href="assets/css/contact.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rahulkaushal04.github.io/portfolio/" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://rahulkaushal04.github.io/portfolio/projects.html" }
+    ]
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -83,23 +85,21 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
   <header class="navbar navbar--subpage" id="navbar">
     <nav class="container flex-between">
-      <a href="index.html" class="navbar__logo" aria-label="Back to portfolio">
-        <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
+      <a href="index.html" class="navbar__logo" aria-label="Home, back to portfolio">
+        <span class="navbar__logo-text">Home</span>
       </a>
 
-      <a href="index.html#projects" class="btn btn-outline projects-page__back-btn">
+      <div class="navbar__actions flex-center gap-4">
+        <a href="index.html#projects" class="btn btn-outline projects-page__back-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
         <span>Back to Portfolio</span>
       </a>
+      </div>
     </nav>
   </header>
 
@@ -163,11 +163,11 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer band">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <span class="footer__logo">Thanks for visiting.</span>
           <p class="footer__blurb">
             ML platform and backend engineer in Bengaluru, currently working on
             the deployment platform for Honeywell's edge Kubernetes appliances.
@@ -218,7 +218,6 @@
 
   <noscript>
     <style>
-      .cursor-dot, .scroll-progress { display: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
     </style>
   </noscript>

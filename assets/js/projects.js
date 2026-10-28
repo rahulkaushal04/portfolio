@@ -42,7 +42,7 @@ function cardHTML(project) {
   if (project.githubUrl) {
     actions += `
       <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer"
-         class="projects__card-link" aria-label="GitHub repo for ${project.title}">
+         class="projects__card-link" aria-label="Code for ${project.title} on GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
              fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
@@ -86,7 +86,6 @@ function renderProjects() {
 
   grid.innerHTML = featured.map(cardHTML).join('');
 }
-
 
 export async function initProjects() {
   grid = document.getElementById('projectsGrid');

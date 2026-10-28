@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="retro">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,10 @@
   <title>Rahul Kaushal - Platform and Backend Engineer</title>
   <meta name="description" content="Advanced Software Engineer at Honeywell, working on the deployment software behind an edge Kubernetes platform. Go and Ansible, after two years on Honeywell's ML platform.">
   <meta name="author" content="Rahul Kaushal">
-  <meta name="theme-color" content="#0B0D12">
+  <meta name="theme-color" content="#0e7c86">
+
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Pixelify+Sans:wght@500;700">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rahul Kaushal - Platform and Backend Engineer">
@@ -29,26 +32,15 @@
   <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-  <link rel="preload" as="image" href="assets/images/profile_short.webp" fetchpriority="high">
+
+  <link rel="preload" as="image" href="assets/images/profile_main.webp" fetchpriority="high">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="assets/css/variables.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/hero.css">
-  <link rel="stylesheet" href="assets/css/about.css">
-  <link rel="stylesheet" href="assets/css/skills.css">
-  <link rel="stylesheet" href="assets/css/experience.css">
-  <link rel="stylesheet" href="assets/css/patent.css">
-  <link rel="stylesheet" href="assets/css/projects.css">
-  <link rel="stylesheet" href="assets/css/contributions.css">
-  <link rel="stylesheet" href="assets/css/contact.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
 
   <script type="application/ld+json">
   {
@@ -130,19 +122,10 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <div class="availability-banner">
-    <span class="availability-banner__dot" aria-hidden="true"></span>
-    Open to backend and platform roles. <a href="#contact">Get in touch</a>
-  </div>
-
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
   <header class="navbar" id="navbar">
     <nav class="container flex-between">
-      <a href="#hero" class="navbar__logo" aria-label="Go to top">
-        <span class="navbar__logo-text">RK<span class="text-gradient">.</span></span>
+      <a href="#hero" class="navbar__logo" aria-label="Home, go to top">
+        <span class="navbar__logo-text">Home</span>
       </a>
 
       <ul class="navbar__links" id="navLinks">
@@ -157,7 +140,7 @@
 
       <div class="navbar__actions flex-center gap-4">
         <div class="navbar__resume-wrap">
-          <a href="resume/Rahul_Resume.pdf" download class="btn btn-primary navbar__resume-btn">
+          <a href="resume/Rahul_Resume.pdf" download class="btn btn-outline navbar__resume-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
@@ -228,11 +211,8 @@
 
   <main id="main-content">
     <section id="hero" class="hero" aria-labelledby="heroName">
-      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
-
       <div class="container hero__layout">
         <div class="hero__main">
-          <p class="hero__greeting reveal">Hi, I'm</p>
 
           <h1 class="hero__name headline-signal reveal" id="heroName">Rahul Kaushal<span class="headline-signal__blip" aria-hidden="true">_</span></h1>
 
@@ -280,13 +260,8 @@
               </svg>
             </a>
           </div>
-        </div>
 
-        <aside class="hero__aside reveal" data-delay="2">
-          <div class="hero__avatar bracket-frame">
-            <img src="assets/images/profile_short.webp" alt="Rahul Kaushal" width="440" height="440" fetchpriority="high" decoding="async" class="hero__avatar-img">
-          </div>
-          <dl class="hero__specs">
+          <dl class="hero__specs reveal">
             <div class="hero__spec">
               <dt>Team</dt>
               <dd>Forge Platform</dd>
@@ -300,7 +275,22 @@
               <dd>2023</dd>
             </div>
           </dl>
-        </aside>
+        </div>
+
+        <div class="hero__aside reveal" id="heroFigure" data-delay="2">
+          <figure class="hero__portrait">
+            <img src="assets/images/profile_main.webp" alt="Rahul Kaushal" width="471" height="620" fetchpriority="high" decoding="async">
+          </figure>
+          <div class="hero__sticker" aria-hidden="true">
+          <svg class="hero__object hero__object--retro" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+            <rect class="o-body" x="14" y="14" width="212" height="164"/>
+            <rect class="o-screen" x="32" y="32" width="176" height="128"/>
+            <g class="o-px"><rect x="46" y="48" width="92" height="8"/><rect x="46" y="68" width="132" height="8"/><rect x="46" y="88" width="64" height="8"/><rect x="46" y="108" width="112" height="8"/><rect class="o-blink" x="46" y="130" width="14" height="16"/></g>
+            <rect class="o-body" x="84" y="178" width="72" height="18"/><rect class="o-body" x="52" y="196" width="136" height="16"/>
+            <rect class="o-led" x="190" y="186" width="12" height="8"/>
+          </svg>
+        </div>
+        </div>
       </div>
     </section>
 
@@ -310,11 +300,6 @@
         <h2 class="section-title reveal" id="aboutTitle">How I Work</h2>
 
         <div class="about__grid">
-          <div class="about__avatar-card reveal">
-            <div class="bracket-frame">
-              <img src="assets/images/profile_main.webp" alt="Rahul Kaushal" width="471" height="620" loading="lazy" decoding="async" class="about__avatar-img">
-            </div>
-          </div>
 
           <div class="about__bio reveal">
             <p>
@@ -340,11 +325,10 @@
       </div>
     </section>
 
-    <section id="skills" class="skills" aria-labelledby="skillsTitle">
+    <section id="skills" class="skills band" aria-labelledby="skillsTitle">
       <div class="container">
         <span class="section-label">Skills</span>
         <h2 class="section-title reveal" id="skillsTitle">What I Build With</h2>
-        <p class="section-subtitle reveal">Grouped by the job each one does.</p>
 
         <div class="skills__groups" id="skillsGroups">
           <noscript>
@@ -414,11 +398,11 @@
       </div>
     </section>
 
-    <section id="patent" class="patent" aria-labelledby="patentTitle">
+    <section id="patent" class="patent band" aria-labelledby="patentTitle">
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Patent</span>
-          <h2 class="section-title reveal" id="patentTitle">Granted</h2>
+          <h2 class="section-title reveal" id="patentTitle">Patent granted</h2>
           <p class="section-subtitle reveal">Filed from the multi-tenant platform work at Honeywell.</p>
         </div>
 
@@ -514,7 +498,7 @@
       <div class="container">
         <div class="section-header--left">
           <span class="section-label">Open Source</span>
-          <h2 class="section-title reveal" id="contributionsTitle">Merged upstream</h2>
+          <h2 class="section-title reveal" id="contributionsTitle">Open source</h2>
           <p class="section-subtitle reveal">Reviewed and merged by maintainers.</p>
         </div>
 
@@ -550,11 +534,12 @@
     <section id="contact" class="contact" aria-labelledby="contactTitle">
       <div class="container">
         <span class="section-label">Contact</span>
-        <h2 class="section-title reveal" id="contactTitle">Get in touch</h2>
-        <p class="section-subtitle reveal">I read every message. The ones about backend, platform and MLOps roles get answered first.</p>
+        <h2 class="section-title reveal" id="contactTitle">Say hello</h2>
+        <p class="section-subtitle reveal">I read every message. Say hello, ask about a project, or tell me what I got wrong.</p>
 
         <div class="contact__wrapper">
           <form class="contact__form card reveal" id="contactForm" action="https://formspree.io/f/mykdbjpw" method="POST" novalidate>
+            <p class="contact__to rk-retro-only"><span>To:</span> <a href="mailto:kaushalrahul15@gmail.com">kaushalrahul15@gmail.com</a></p>
             <div class="contact__field">
               <label for="contactName" class="contact__label">Name</label>
               <input
@@ -608,16 +593,6 @@
           </form>
 
           <div class="contact__info reveal">
-            <div class="contact__availability-chip">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
-                <line x1="12" y1="12" x2="12" y2="16"></line>
-                <line x1="10" y1="14" x2="14" y2="14"></line>
-              </svg>
-              <span>Open to new roles</span>
-              <span class="contact__avail-dot" aria-hidden="true"></span>
-            </div>
 
             <a class="contact__email" href="mailto:kaushalrahul15@gmail.com">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -661,11 +636,11 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer band">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <span class="footer__logo">RK<span class="text-gradient">.</span></span>
+          <span class="footer__logo">Thanks for visiting.</span>
           <p class="footer__blurb">
             Platform and backend engineer in Bengaluru, currently working on
             the deployment platform for Honeywell's edge Kubernetes appliances.
@@ -718,7 +693,7 @@
 
   <noscript>
     <style>
-      .hero__typewriter, .cursor-dot, .scroll-progress, .hero__canvas { display: none !important; }
+      .hero__typewriter, .hero__canvas { display: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
     </style>
     <div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#F59E0B;color:#0B0D12;text-align:center;z-index:10000;font-weight:600;">

@@ -7,8 +7,7 @@ import { initProjects }       from './projects.js';
 import { initContributions } from './contributions.js';
 import { initContact }    from './contact.js';
 
-import { initParticles }  from './particles.js';
-import { initCursor }     from './cursor.js';
+import { initTheme }      from './theme.js';
 
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
@@ -56,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContributions();
   initContact();
 
-  initParticles();
-  initCursor();
+  initTheme();
 
   initBackToTop();
   setFooterYear();
@@ -76,7 +74,6 @@ function loadEasterEggsOnDemand() {
     import('./easter-eggs.js')
       .then(({ initEasterEggs }) => {
         initEasterEggs();
-        // Replay the keystroke that triggered the load.
         window.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
         document.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
       })

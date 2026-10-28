@@ -1,0 +1,72 @@
+@font-face { font-family: "Pixelify Fallback"; src: local("Courier New"); size-adjust: 84.8%; }
+
+:root {
+  
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4.5rem; --s-9: 7rem; --s-10: 10.5rem;
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --maxw: 80rem;
+  --density: 1;
+  --section-gap: calc(clamp(3.5rem, 7vw, 6.5rem) * var(--density));
+  --measure: 66ch;
+
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-lead: 1.25rem;
+  --fs-h3: clamp(1.25rem, 2.2vw, 1.6rem);
+  --fs-h2: clamp(2.3rem, 6.4vw, 5rem);
+  --fs-hero: clamp(3rem, 12vw, 9.5rem);
+  --hero-scale: 1;
+  --z-content: 1;
+  --z-nav: 100;
+  --z-menu: 200;
+  --z-boot: 900;
+
+  --dur: 200ms;
+  --dur-slow: 500ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --rise: 10px;
+
+  --logo-plate: #ffffff; 
+  --scrim: rgba(0, 0, 0, 0.6);
+  --shadow-float: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="retro"] {
+  color-scheme: light;
+  --bg: #0e7c86;
+  --on-bg: #ffffff;
+  --surface: #c9c9c9;
+  --ink: #000000;
+  --ink-2: #2b2b2b;
+  --accent: #000080;
+  --accent-ink: #ffffff;
+  --pop: #a00000;
+  --line: #808080;
+  --line-strong: #404040;
+  --focus: #a00000;
+
+  --ff-display: "Pixelify Sans", "Pixelify Fallback", "Courier New", monospace;
+  --ff-body: Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  --fw-display: 700;
+  --case-display: none;
+  --track-display: 0;
+  --lh-display: 1;
+  --hero-scale: 0.86;
+
+  --r: 0;
+  --r-lg: 0;
+  --bw: 2px;
+  --shadow: 2px 2px 0 #000;
+  --shadow-hover: 2px 2px 0 #000;
+  --dur: 0ms;
+  --dur-slow: 0ms;
+  --ease: steps(4, end);
+  --rise: 0px;
+  --density: 0.8;
+  --fs-body: 1rem;
+  --win-pad: clamp(0.75rem, 2.5vw, 1.75rem);
+}
+
+html[data-theme="retro"] { --hover: #ffffff; --field: #ffffff; }

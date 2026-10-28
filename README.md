@@ -27,8 +27,8 @@ no `node_modules`.
 ├── contributions.html      # Open source listing
 ├── robots.txt / sitemap.xml
 ├── assets/
-│   ├── css/                # One partial per section, linked from each <head>
-│   ├── js/                 # ES modules, one per section
+│   ├── css/                # tokens.css (themes), base.css (components), themes.css (per-world extras)
+│   ├── js/                 # ES modules; retro.js builds the desktop
 │   └── images/             # companies/, projects/, skills/
 ├── data/                   # meta, skills, experience, projects, contributions
 └── resume/
@@ -66,30 +66,31 @@ which shows the first two featured entries. The search and filter toolbar on
 `projects.html` stays hidden until there are at least six projects, since filtering
 two items is noise.
 
+## Retro desktop
+
+The home page is a 90s desktop. Icons, the Start menu and the taskbar open each section in a draggable window with working minimize, maximize and close. The Welcome window opens first, and a link such as `#experience` opens that window instead.
+
+- `assets/js/retro.js` builds the desktop. It moves each section's real content into a window, so the contact form and other behaviour keep working, and builds the explorer (Experience), installer wizard (Projects) and inbox (Open source) from `data/*.json`.
+- `assets/js/theme.js` loads the desktop and plays the one-time BIOS intro (any key skips it). It is skipped under `prefers-reduced-motion`.
+- `assets/css/tokens.css` holds the Retro colour, type and spacing tokens. `base.css` has the components and `themes.css` the desktop, windows and taskbar.
+- `projects.html`, `contributions.html` and `404.html` use the same Retro styling without the desktop.
+- `node scripts/contrast.mjs` checks the Retro token pairs against WCAG AA. Run it after editing `tokens.css`.
+
 ## Conventions worth keeping
 
-- **CSS partials are `<link>`ed, not `@import`ed.** `@import` serialises the
-  downloads behind `main.css`. Order matters: `variables` and `reset` first,
-  `main.css` last, since it holds base and utility rules that must win.
-- **`--clr-accent` is for text and borders. `--clr-accent-solid` is for filled
-  backgrounds.** White text on the lighter accent only reaches 3.2:1.
-- **`--clr-border` is decorative. `--clr-border-strong` is for real controls**
-  that need 3:1 under WCAG 1.4.11.
-- **Interactive elements carry `min-height: 44px`.**
-- **`will-change` is applied only while an element is animating**, then removed.
-  Leaving it on idle elements held a compositor layer open for every card on the
-  page and caused sections to lay out without ever painting.
-- **No animation runs unconditionally.** The particle field pauses when the hero
-  scrolls out of view and when the tab is hidden, and every animated component
-  honours `prefers-reduced-motion`.
+- **Tokens, not colours.** If a colour is not in `tokens.css`, it does not belong in a component.
+- **- **Interactive elements are at least 44px tall.**
+- **The first screen enters by CSS animation only**, so LCP never waits for JavaScript.
+- **No animation runs unconditionally.** Ambient loops pause when the tab is hidden, and
+  everything honours `prefers-reduced-motion`.
+- **Long unbroken strings wrap** (`overflow-wrap: anywhere`) and grid children set
+  `min-width: 0`. Break-test new data with very long repo names and titles.
 
 ## Features
 
 - Responsive, mobile first
 - Scroll reveal via IntersectionObserver, with a fallback sweep for fast scrolls
-- Canvas particle field in the hero, paused when off-screen
-- Custom cursor on pointer devices, disabled under reduced motion
-- Native cross-document view transitions
+- A working 90s desktop: windows, taskbar, Start menu and a BIOS intro
 - Full keyboard support: skip link, focus trap in the mobile menu, visible focus rings
 - Open Graph and Twitter cards, JSON-LD `Person` schema, sitemap
 - Easter eggs, code-split and loaded only on the first plausible keystroke
