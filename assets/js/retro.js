@@ -1,21 +1,14 @@
 
-const SECTIONS = [
-  ['about', 'About', 'doc'],
-  ['skills', 'Skills', 'chip'],
-  ['experience', 'Experience', 'folder'],
-  ['patent', 'Patent', 'pdf'],
-  ['projects', 'Projects', 'folder'],
-  ['contributions', 'Open source', 'globe'],
-  ['contact', 'Contact', 'mail'],
-];
-
 const ICONS = {
-  doc: '<path d="M6 2h14l6 6v22H6z" fill="#fff" stroke="#000" stroke-width="2"/><path d="M20 2v6h6" fill="#c9c9c9" stroke="#000" stroke-width="2"/><path d="M10 14h12M10 18h12M10 22h8" stroke="#000" stroke-width="2"/>',
-  pdf: '<path d="M6 2h14l6 6v22H6z" fill="#fff" stroke="#000" stroke-width="2"/><path d="M20 2v6h6" fill="#c9c9c9" stroke="#000" stroke-width="2"/><rect x="9" y="16" width="14" height="8" fill="#a00000"/>',
-  chip: '<rect x="8" y="8" width="16" height="16" fill="#c9c9c9" stroke="#000" stroke-width="2"/><path d="M12 4v4M16 4v4M20 4v4M12 24v4M16 24v4M20 24v4M4 12h4M4 16h4M4 20h4M24 12h4M24 16h4M24 20h4" stroke="#000" stroke-width="2"/><rect x="12" y="12" width="8" height="8" fill="#000080"/>',
-  folder: '<path d="M2 8h10l3 3h15v17H2z" fill="#f2d24a" stroke="#000" stroke-width="2"/><path d="M2 14h28" stroke="#000" stroke-width="2"/>',
-  globe: '<circle cx="16" cy="16" r="13" fill="#0e7c86" stroke="#000" stroke-width="2"/><path d="M3 16h26M16 3c-6 6-6 20 0 26M16 3c6 6 6 20 0 26" fill="none" stroke="#fff" stroke-width="2"/>',
-  mail: '<rect x="3" y="7" width="26" height="18" fill="#fff" stroke="#000" stroke-width="2"/><path d="M3 8l13 10L29 8" fill="none" stroke="#000" stroke-width="2"/>',
+  monitor: '<rect x="3" y="4" width="26" height="19" fill="#dcdcdc" stroke="#000" stroke-width="1.6"/><rect x="6" y="7" width="20" height="13" fill="#0e3b6f"/><path d="M6 7h20v3H6z" fill="#1f6fd0"/><path d="M8 12h9M8 15h12M8 18h6" stroke="#9fe3ff" stroke-width="1.6"/><path d="M12 23h8l1 4H11z" fill="#b5b5b5" stroke="#000" stroke-width="1.4"/><path d="M8 28h16" stroke="#000" stroke-width="2"/><path d="M4 5h24" stroke="#fff" stroke-width="1"/>',
+  note: '<rect x="6" y="4" width="21" height="25" fill="#fff6a8" stroke="#000" stroke-width="1.6"/><path d="M6 9h21" stroke="#e0b800" stroke-width="1.6"/><path d="M10 14h13M10 18h13M10 22h9" stroke="#3a6ea5" stroke-width="1.4"/><g fill="#555" stroke="#000" stroke-width="1"><rect x="3" y="7" width="6" height="3"/><rect x="3" y="13" width="6" height="3"/><rect x="3" y="19" width="6" height="3"/><rect x="3" y="25" width="6" height="3"/></g>',
+  chip: '<g stroke="#000" stroke-width="1.4"><path d="M10 3v4M14 3v4M18 3v4M22 3v4M10 25v4M14 25v4M18 25v4M22 25v4M3 10h4M3 14h4M3 18h4M3 22h4M25 10h4M25 14h4M25 18h4M25 22h4" fill="none"/></g><path d="M10 3v4M14 3v4M18 3v4M22 3v4M10 25v4M14 25v4M18 25v4M22 25v4M3 10h4M3 14h4M3 18h4M3 22h4M25 10h4M25 14h4M25 18h4M25 22h4" stroke="#f2c94c" stroke-width="2" fill="none"/><rect x="6" y="6" width="20" height="20" fill="#1c4d35" stroke="#000" stroke-width="1.6"/><rect x="9" y="9" width="14" height="14" fill="#2f7d57"/><path d="M9 9h14" stroke="#7ad9a4" stroke-width="1.4"/><circle cx="12" cy="12" r="1.5" fill="#000"/><path d="M14 16h6M14 19h4" stroke="#bff0d4" stroke-width="1.4"/>',
+  folder: '<path d="M2 7h11l3 3h14v18H2z" fill="#d9a520" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 12h28v16H2z" fill="#f6d55c" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 13.5h25" stroke="#fff3b0" stroke-width="1.4"/><path d="M3 27h26" stroke="#b9861a" stroke-width="1.4"/>',
+  briefcase: '<path d="M11 9V6h10v3" fill="none" stroke="#000" stroke-width="1.8"/><rect x="3" y="9" width="26" height="18" fill="#a8622b" stroke="#000" stroke-width="1.6"/><path d="M3 9h26v7H3z" fill="#c98342"/><path d="M3 16h26" stroke="#000" stroke-width="1.6"/><rect x="13" y="14" width="6" height="5" fill="#f2c94c" stroke="#000" stroke-width="1.4"/><path d="M4.5 10.5h23" stroke="#e8b27a" stroke-width="1.2"/>',
+  cert: '<rect x="3" y="5" width="26" height="19" fill="#fff8e0" stroke="#000" stroke-width="1.6"/><rect x="6" y="8" width="20" height="13" fill="none" stroke="#b9861a" stroke-width="1.2"/><path d="M9 12h14M9 15h10" stroke="#3a6ea5" stroke-width="1.5"/><circle cx="23" cy="20" r="4" fill="#d6342b" stroke="#000" stroke-width="1.4"/><path d="M21 23l-1 6 3-2 3 2-1-6" fill="#d6342b" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>',
+  globe: '<circle cx="16" cy="16" r="13" fill="#1d6fd1" stroke="#000" stroke-width="1.6"/><path d="M8 9c3-2 6-1 7 1s-1 4-3 4-3 3-1 5-2 3-4 0-3-8 1-10zM19 6c3 0 6 2 8 6-2 1-3 0-4 2s-4 1-4-2 0-5 0-6zM18 20c3-1 7 0 8 2-2 4-6 5-8 4s-1-5 0-6z" fill="#3fae58"/><path d="M6 8c3-3 8-5 13-4" stroke="#bfe3ff" stroke-width="1.4" fill="none"/><circle cx="16" cy="16" r="13" fill="none" stroke="#000" stroke-width="1.6"/>',
+  mail: '<rect x="3" y="7" width="26" height="19" fill="#fdfdfd" stroke="#000" stroke-width="1.6"/><path d="M3 8l13 10L29 8" fill="#d8e6f7" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><rect x="21" y="10" width="6" height="5" fill="#d6342b" stroke="#000" stroke-width="1.2"/><path d="M3 25l9-8M29 25l-9-8" stroke="#8a8a8a" stroke-width="1.2"/>',
+  pdf: '<path d="M6 2h14l7 7v21H6z" fill="#fff" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 2v7h7" fill="#d4d4d4" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><rect x="6" y="15" width="21" height="8" fill="#d6342b" stroke="#000" stroke-width="1.4"/><path d="M9 19h3M14 17v4M14 17h2.5a1.2 1.2 0 010 2.4H14M20 17h-2v4h2" stroke="#fff" stroke-width="1.2" fill="none"/><path d="M10 26h13" stroke="#8a8a8a" stroke-width="1.4"/>',
 };
 const icon = (name) => `<svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
 
@@ -25,13 +18,13 @@ const getJSON = (f) => fetch(`data/${f}`).then((r) => r.json()).catch(() => []);
 let built = false;
 
 const WINDOWS = [
-  ['hero', 'Welcome', 'welcome.exe', 'doc', [800, 640]],
-  ['about', 'About', 'about.txt', 'doc', [720, 560]],
+  ['hero', 'Welcome', 'welcome.exe', 'monitor', [800, 640]],
+  ['about', 'About', 'about.txt', 'note', [720, 560]],
   ['skills', 'Skills', 'skills.ini', 'chip', [780, 600]],
-  ['experience', 'Experience', 'experience.log', 'folder', [960, 640]],
-  ['patent', 'Patent', 'patent.pdf', 'pdf', [780, 560]],
+  ['experience', 'Experience', 'experience.log', 'briefcase', [960, 640]],
+  ['patent', 'Patent', 'patent.pdf', 'cert', [780, 560]],
   ['projects', 'Projects', 'projects', 'folder', [860, 680]],
-  ['contributions', 'Open source', 'open_source', 'mail', [860, 620]],
+  ['contributions', 'Open source', 'open_source', 'globe', [860, 620]],
   ['contact', 'Contact', 'new_message', 'mail', [740, 640]],
 ];
 
@@ -39,22 +32,32 @@ let desk = null;
 const MOBILE = () => innerWidth < 700;
 
 function wallpaper() {
-  const cols = 160, rows = 90, step = 4;
-  const hills = (base, amp, seed, fill) => {
+  const cols = 160, rows = 90;
+  const rect = (x, y, w, h, f, o = 1) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}"${o < 1 ? ` opacity="${o}"` : ''}/>`;
+  const bands = ['#06424c', '#08505a', '#0a5f69', '#0d6f79', '#118089', '#18919a', '#25a2a8', '#3bb3b5', '#5cc4c0', '#86d6cd'];
+  let sky = '';
+  bands.forEach((c, i) => { sky += rect(0, i * 6, cols, 7, c); });
+  const star = (x, y) => rect(x, y, 1, 1, '#d9fbff', 0.8);
+  const stars = [[8, 3], [22, 9], [37, 4], [51, 12], [66, 6], [83, 3], [97, 10], [118, 5], [137, 11], [151, 4], [29, 16], [74, 18], [126, 17]].map(([x, y]) => star(x, y)).join('');
+  const cloud = (x, y, u, o) => ['..####..', '.######.', '########', '.######.'].map((row, j) => [...row].map((c, i) => (c === '#' ? rect(x + i * u, y + j * u, u, u, '#eafcff', o) : '')).join('')).join('');
+  const ridge = (base, amp, seed, fill, snow) => {
     let r = '';
-    for (let x = 0; x < cols; x += step) {
-      const h = Math.round((base + amp * Math.sin((x + seed) / 17) + amp * 0.5 * Math.sin((x + seed) / 7.3)) / 2) * 2;
-      r += `<rect x="${x}" y="${rows - h}" width="${step}" height="${h}" fill="${fill}"/>`;
+    for (let x = 0; x < cols; x += 2) {
+      const h = Math.round(base + amp * Math.sin((x + seed) / 13) + amp * 0.55 * Math.sin((x + seed) / 5.1) + amp * 0.3 * Math.sin((x + seed) / 2.7));
+      r += rect(x, rows - h, 2, h, fill);
+      if (snow && h > snow) r += rect(x, rows - h, 2, Math.min(3, h - snow), '#e6fbff');
     }
     return r;
   };
-  const cloud = (x, y, u, o) => {
-    const shape = ['..####..', '.######.', '########', '.######.'];
-    return shape.map((row, j) => [...row].map((c, i) => (c === '#' ? `<rect x="${x + i * u}" y="${y + j * u}" width="${u}" height="${u}" fill="#fff" opacity="${o}"/>` : '')).join('')).join('');
+  const pine = (x, y, h, f) => {
+    let r = rect(x, y - 2, 1, 3, '#052b30');
+    for (let i = 0; i < h; i++) r += rect(x - Math.ceil((h - i) / 2) + 1, y - 2 - i * 2, Math.ceil((h - i) / 2) * 2 - 1, 2, f);
+    return r;
   };
-  return `<svg viewBox="0 0 ${cols} ${rows}" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" aria-hidden="true" focusable="false">
-    ${cloud(18, 12, 3, 0.55)}${cloud(70, 26, 2.4, 0.42)}${cloud(104, 40, 3.2, 0.5)}
-    ${hills(24, 10, 0, '#0d747d')}${hills(16, 8, 40, '#0a5d65')}${hills(8, 5, 90, '#08474e')}</svg>`;
+  const pines = [[6, 6], [11, 8], [16, 5], [24, 7], [124, 7], [131, 9], [138, 6], [147, 8], [154, 5]].map(([x, h], i) => pine(x, rows - 18 + (i % 3), h, i % 2 ? '#063e45' : '#05353b')).join('');
+  let water = rect(0, rows - 11, cols, 11, '#063a42');
+  for (let i = 0; i < 9; i++) water += rect(14 + i * 17, rows - 8 + (i % 3) * 3, 6 + (i % 4) * 2, 1, '#8fe3dc', 0.45);
+  return `<svg viewBox="0 0 ${cols} ${rows}" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" aria-hidden="true" focusable="false">${sky}${stars}${cloud(20, 14, 3, 0.7)}${cloud(88, 26, 2, 0.55)}${cloud(122, 12, 3, 0.6)}${ridge(30, 11, 0, '#0b4651', 36)}${ridge(21, 8, 40, '#0a5c63')}${ridge(14, 5, 90, '#074049')}${pines}${water}</svg>`;
 }
 
 function buildGadgets(root) {
@@ -78,14 +81,57 @@ function buildSaver() {
   saver.className = 'rk-saver';
   saver.hidden = true;
   saver.setAttribute('aria-hidden', 'true');
-  saver.innerHTML = `<div class="rk-saver__x"><div class="rk-saver__y">${icon('folder').replace('width="32" height="32"', '')}</div></div>`;
+  const canvas = document.createElement('canvas');
+  saver.appendChild(canvas);
   document.body.appendChild(saver);
-  let timer;
-  const wake = () => { saver.hidden = true; clearTimeout(timer); timer = setTimeout(() => { saver.hidden = false; }, 60000); };
+  const ctx = canvas.getContext('2d');
+  const TRAIL = ['#ffffff', '#d9fbff', '#7fdcd6', '#3fa8ae'];
+  let stars = [], W = 0, H = 0, raf = 0, last = 0, timer;
+
+  const reset = (s, spread) => {
+    s.x = (Math.random() - 0.5) * W * 2;
+    s.y = (Math.random() - 0.5) * H * 2;
+    s.z = spread ? Math.random() * W : W;
+    s.pz = s.z;
+  };
+  const size = () => {
+    W = canvas.width = Math.ceil(innerWidth / 3);
+    H = canvas.height = Math.ceil(innerHeight / 3);
+    stars = Array.from({ length: 360 }, () => { const s = {}; reset(s, true); return s; });
+  };
+  const frame = (t) => {
+    const dt = Math.min(0.05, (t - last) / 1000 || 0.016);
+    last = t;
+    ctx.fillStyle = 'rgba(2, 8, 14, 0.55)';
+    ctx.fillRect(0, 0, W, H);
+    const speed = W * 0.28 * dt;
+    for (const s of stars) {
+      s.pz = s.z;
+      s.z -= speed;
+      if (s.z < 1) { reset(s, false); continue; }
+      const x = (s.x / s.z) * (W / 2) + W / 2, y = (s.y / s.z) * (H / 2) + H / 2;
+      const px = (s.x / s.pz) * (W / 2) + W / 2, py = (s.y / s.pz) * (H / 2) + H / 2;
+      if (x < 0 || x >= W || y < 0 || y >= H) { reset(s, false); continue; }
+      const near = 1 - s.z / W;
+      ctx.fillStyle = TRAIL[Math.min(3, Math.floor((1 - near) * 4))];
+      const len = Math.max(1, Math.round(near * 3));
+      ctx.fillRect(Math.round(Math.min(x, px)), Math.round(Math.min(y, py)), Math.max(1, Math.abs(Math.round(x - px))) , Math.max(1, Math.round(near * 3)));
+      if (near > 0.8) ctx.fillRect(Math.round(x), Math.round(y) - len, 1, len * 2);
+    }
+    raf = requestAnimationFrame(frame);
+  };
+  const start = () => { size(); ctx.fillStyle = '#02080e'; ctx.fillRect(0, 0, W, H); last = performance.now(); raf = requestAnimationFrame(frame); };
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+  const wake = () => {
+    if (!saver.hidden) { saver.hidden = true; stop(); }
+    clearTimeout(timer);
+    timer = setTimeout(() => { if (document.hidden) return; saver.hidden = false; start(); }, 60000);
+  };
   const evs = ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'];
   evs.forEach((e) => document.addEventListener(e, wake, { passive: true }));
   wake();
-  return () => { clearTimeout(timer); evs.forEach((e) => document.removeEventListener(e, wake)); saver.remove(); };
+  return () => { clearTimeout(timer); stop(); evs.forEach((e) => document.removeEventListener(e, wake)); saver.remove(); };
 }
 
 function mountDesktop() {
@@ -336,7 +382,7 @@ async function buildExplorer() {
   wrap.className = 'rk-retro-only rk-explorer';
   const rows = entries.map((e, i) => {
     const current = e.endDate.trim().toLowerCase() === 'present';
-    return `<tr><td><button type="button" class="rk-row" data-i="${i}" aria-current="${i === 0}">${icon('doc')}<span>${esc(e.role)}</span></button></td><td>${esc(e.startDate)} to ${esc(e.endDate)}</td><td>${current ? 'Current' : 'Past'}</td></tr>`;
+    return `<tr><td><button type="button" class="rk-row" data-i="${i}" aria-current="${i === 0}">${icon('note')}<span>${esc(e.role)}</span></button></td><td>${esc(e.startDate)} to ${esc(e.endDate)}</td><td>${current ? 'Current' : 'Past'}</td></tr>`;
   }).join('');
   wrap.innerHTML = `
     <p class="rk-pathbar">Address: C:\\${esc(entries[0].company)}\\Roles</p>
@@ -432,7 +478,7 @@ function buildProps() {
   const el = document.createElement('aside');
   el.className = 'rk-retro-only rk-props';
   el.setAttribute('aria-label', 'Properties');
-  el.innerHTML = `<p class="rk-props__head">${icon('doc')}<span>about.txt</span></p><dl>${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
+  el.innerHTML = `<p class="rk-props__head">${icon('note')}<span>about.txt</span></p><dl>${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
   host.after(el);
 }
 

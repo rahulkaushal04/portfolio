@@ -245,9 +245,6 @@ html[data-theme="retro"] .hero__aside { width: auto; margin-right: var(--win-pad
 @media (max-width: 899px), (max-height: 640px) { .rk-gadget { display: none; } .rk-wall { right: 1rem; bottom: 1rem; width: 62vw; } }
 .rk-saver { position: fixed; inset: 0; z-index: 800; background: #000; overflow: hidden; }
 .rk-saver[hidden] { display: none; }
-.rk-saver__x { position: absolute; left: 0; top: 0; width: calc(100% - 9rem); height: calc(100% - 5.6rem); animation: rk-bx 11s linear infinite alternate; }
-.rk-saver__y { width: 9rem; animation: rk-by 7s linear infinite alternate; }
-.rk-saver svg { width: 100%; display: block; image-rendering: pixelated; }
 @keyframes rk-bx { from { transform: translateX(0); } to { transform: translateX(100%); } }
 @keyframes rk-by { from { transform: translateY(0); } to { transform: translateY(calc(100vh - 5.6rem - 4rem)); } }
 @keyframes rk-min { to { transform: translate(var(--dx), var(--dy)) scale(0.1); opacity: 0.3; } }
@@ -306,10 +303,7 @@ html[data-theme="retro"] .hero__aside { width: auto; margin-right: var(--win-pad
 .rk-win[data-win="projects"] .rk-win__body { padding-bottom: 0; }
 .rk-wall { position: absolute; inset: 0; width: auto; right: 0; bottom: 0; text-align: initial; }
 .rk-wall svg { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; image-rendering: pixelated; }
-.rk-saver__x { width: calc(100% - 6rem); height: calc(100% - 6rem); }
-.rk-saver__y { width: 6rem; }
 @keyframes rk-by { from { transform: translateY(0); } to { transform: translateY(calc(100vh - 12rem)); } }
-.rk-saver svg { width: 100%; height: auto; }
 @container (min-width: 760px) {
   .hero__layout { grid-template-columns: minmax(0, 1fr) 14rem !important; align-items: center; }
   .skills__group { grid-template-columns: 11rem minmax(0, 1fr) !important; }
@@ -317,3 +311,14 @@ html[data-theme="retro"] .hero__aside { width: auto; margin-right: var(--win-pad
   .experience__roles { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }
 
+.rk-saver canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+.rk-icon svg { width: 2.5rem; height: 2.5rem; filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.45)); }
+.rk-icon:hover svg, .rk-icon:focus-visible svg { filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.45)) brightness(1.08); }
+.rk-icon span { background: rgba(4, 40, 46, 0.55); }
+.rk-icons { grid-template-rows: repeat(auto-fill, 5.7rem); grid-auto-columns: 6.25rem; }
+.rk-icon { width: 6rem; gap: 0.25rem; font-size: 0.85rem; }
+.rk-icon svg { width: 3.25rem; height: 3.25rem; }
+@media (max-height: 760px) {
+  .rk-icons { grid-template-rows: repeat(auto-fill, 5.2rem); }
+  .rk-icon svg { width: 2.75rem; height: 2.75rem; }
+}
