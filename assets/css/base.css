@@ -353,27 +353,6 @@ color: var(--accent);
 .navbar__logo-text { font: inherit;
 }
 
-.matrix-rain-canvas { position: fixed;
-inset: 0;
-z-index: 800;
-pointer-events: none;
-transition: opacity 600ms;
-}
-.hire-me-banner { position: fixed;
-inset: 0;
-z-index: 850;
-display: grid;
-place-content: center;
-background: var(--scrim);
-pointer-events: none;
-}
-.hire-me-banner__text { font-family: var(--ff-display);
-font-size: clamp(2rem, 8vw, 5rem);
-color: var(--accent-ink);
-background: var(--accent);
-padding: 0.2em 0.6em;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 .js .reveal { opacity: 1; transform: none; }
