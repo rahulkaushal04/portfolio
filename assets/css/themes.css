@@ -322,3 +322,8 @@ html[data-theme="retro"] .hero__aside { width: auto; margin-right: var(--win-pad
   .rk-icons { grid-template-rows: repeat(auto-fill, 5.2rem); }
   .rk-icon svg { width: 2.75rem; height: 2.75rem; }
 }
+
+.rk-cats { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+.rk-cat { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.rk-cat canvas { display: block; image-rendering: pixelated; pointer-events: none; }
+.rk-cat--black canvas { filter: drop-shadow(0 0 2px rgba(200, 240, 240, 0.6)); }
