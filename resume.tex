@@ -11,8 +11,8 @@
 
 \usepackage[
   letterpaper,
-  top=0.34in,
-  bottom=0.34in,
+  top=0.4in,
+  bottom=0.4in,
   left=0.45in,
   right=0.45in
 ]{geometry}
@@ -100,11 +100,11 @@
   {\small Bengaluru, India} \\[3pt]
   \headerlink{kaushalrahul15@gmail.com}{mailto:kaushalrahul15@gmail.com}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{linkedin.com/in/rahul-kaushal04}{https://www.linkedin.com/in/rahul-kaushal04/}
+  \headerlink{LinkedIn}{https://www.linkedin.com/in/rahul-kaushal04/}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{github.com/rahulkaushal04}{https://github.com/rahulkaushal04}
+  \headerlink{GitHub}{https://github.com/rahulkaushal04}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{rahulkaushal04.github.io/portfolio}{https://rahulkaushal04.github.io/portfolio}
+  \headerlink{Portfolio}{https://rahulkaushal04.github.io/portfolio}
   \\[2pt]
   {\color{seprule}\rule{0.55\textwidth}{0.4pt}}
 \end{center}
@@ -119,9 +119,9 @@ Backend and platform software engineer with 3+ years at Honeywell building Pytho
 \begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, topsep=2pt, parsep=0pt]
   \small\baselineskip=10pt\relax
   \item {\textbf{Languages:} Python, Go, SQL, Bash}
-  \item \small{\textbf{Backend \& APIs:} FastAPI, REST APIs, WebSocket, asyncio, microservices, event-driven architecture, multi-tenant systems, Pydantic, SQLAlchemy, pytest, Behave (BDD), Locust}
-  \item \small{\textbf{Cloud \& DevOps:} Kubernetes (MicroK8s, AKS), Docker, Ansible, CI/CD (GitHub Actions), Linux, Azure (Event Hub, IoT Hub, Blob Storage), Ceph, Pacemaker/Corosync, Prometheus, Grafana, Git}
-  \item \small{\textbf{Data \& ML:} PySpark, Databricks, Delta Lake, Spark Structured Streaming, ETL pipelines, PostgreSQL, PGVector, MLflow, MLOps, LangChain, LLM/RAG, Azure OpenAI, Vertex AI}
+  \item \small{\textbf{Backend \& APIs:} FastAPI, REST APIs, WebSocket, asyncio, microservices, event-driven architecture, multi-tenant systems, Pydantic, SQLAlchemy, automated testing (pytest, Behave BDD, Locust)}
+  \item \small{\textbf{Cloud \& DevOps:} Kubernetes (MicroK8s, AKS), Docker, Ansible, CI/CD (GitHub Actions), Linux, Azure (Event Hub, IoT Hub, Blob Storage), infrastructure automation, high availability (Pacemaker/Corosync), Ceph, monitoring (Prometheus, Grafana), Git}
+  \item \small{\textbf{Data \& ML:} PySpark, Databricks, Delta Lake, Spark Structured Streaming, ETL pipelines, PostgreSQL, PGVector, embeddings, MLflow, MLOps, LangChain, LLM/RAG, Azure OpenAI, Vertex AI}
   \end{itemize}
 
 % Professional experience
@@ -132,9 +132,9 @@ Backend and platform software engineer with 3+ years at Honeywell building Pytho
     {Advanced Software Engineer}{May 2026 -- Present}
     {Honeywell \textbar{} Bengaluru, India}{}
   \resumeItemListStart
-    \resumeItem{Part of a performance effort that cut incremental-update install time 32.5\% (90m11s to 60m51s on a 44-package run): merged 13 install sequences into 9, halved a fixed 120s datastore pause and moved extraction to parallel \texttt{pigz}.}
-    \resumeItem{Worked on EdgeOrchestrator, the Go control-plane service with a REST/WebSocket API and Ansible-driven install and upgrade workflows over MicroK8s, Ceph and Pacemaker. Playbooks run via argument arrays (nothing reaches a shell) and a marker file stops a crashed self-update from reporting success.}
-    \resumeItem{Helped root-cause a watchdog restart loop wedging idle appliances (Calico IPs left unreleased after hard MicroK8s stops). Fixes: registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after more than 5 in 24 hours.}
+    \resumeItem{Contributed to a performance effort that cut incremental-update install time 32.5\% (90m11s to 60m51s on a 44-package run) by merging 13 install sequences into 9, halving a fixed 120s datastore pause and extracting with parallel \texttt{pigz}.}
+    \resumeItem{Contributed to EdgeOrchestrator, the Go control-plane service (REST/WebSocket API) that drives Ansible installs and upgrades across 6 deployment profiles and 2 HA topologies on MicroK8s, Ceph and Pacemaker. Playbooks run without a shell, and a marker file stops a crashed self-update reporting success.}
+    \resumeItem{Co-diagnosed a watchdog restart loop wedging idle appliances (Calico IPs left unreleased after hard MicroK8s stops); fixes: registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after more than 5 in 24 hours.}
     \resumeItem{Collaborated on ForgeLinkLite, a cross-platform Go agent for Azure DPS enrollment and IoT Hub connectivity (AMQP over WebSocket, certificate auth) with active/passive failover.}
   \resumeItemListEnd
   \toolsLine{Go, Kubernetes (MicroK8s), Ansible, Ceph, Pacemaker/Corosync, Azure IoT Hub}
@@ -143,7 +143,7 @@ Backend and platform software engineer with 3+ years at Honeywell building Pytho
     {Software Engineer II}{Jul 2024 -- Apr 2026}
     {Honeywell \textbar{} Bengaluru, India}{}
   \resumeItemListStart
-    \resumeItem{Built the deployment service on the ForgeML MLOps platform (8 microservices, 10+ tenant workspaces) that routes models to Databricks Serving, AKS or edge devices through one REST API, with Pydantic discriminated-union validation and two independent asyncio status monitors.}
+    \resumeItem{Built the model deployment service on ForgeML (8 microservices, 10+ tenant workspaces), routing models to Databricks Serving, AKS or edge devices through one REST API with Pydantic discriminated-union validation and two asyncio status monitors.}
     \resumeItem{Wrote an asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and checkpoints committed only after a successful write. Upserts mean a crash replay never duplicates rows.}
     \resumeItem{Integrated five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) into model registration behind one Strategy Pattern interface.}
     \resumeItem{Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell's Forge DSL, built the versioned prompt store and tuning-job tracking, and validated output against the original rules with domain experts (about 90\% correct).}
@@ -157,7 +157,7 @@ Backend and platform software engineer with 3+ years at Honeywell building Pytho
   \resumeItemListStart
     \resumeItem{Contributed to 15+ PySpark ETL pipelines on Databricks ingesting 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, with timestamp-watermark incremental loads.}
     \resumeItem{Built a Spark Structured Streaming pipeline over PDFs in Blob Storage: a Delta MERGE per micro-batch for SCD Type 2 history, detection of source deletions, and Change Data Feed so the vectorization job reads only changed rows.}
-    \resumeItem{On the Maintenance Assist LLM chatbot, worked on the agent executor (per-tenant YAML config), async guardrails that cancel unsafe responses mid-stream, a PGVector memory store, and an Azure OpenAI LLM-as-judge evaluation over 1,000+ question-answer pairs.}
+    \resumeItem{Contributed to the Maintenance Assist LLM chatbot: agent executor (per-tenant YAML config), async guardrails that cancel unsafe responses mid-stream, a PGVector memory store, and an Azure OpenAI LLM-as-judge evaluation over 1,000+ question-answer pairs.}
     \resumeItem{Wrote the SQL transformations for field service analytics (resolution trends, contract and maintenance metrics, NPS) that feed the customer-facing DSP dashboard.}
   \resumeItemListEnd
   \toolsLine{PySpark, Databricks, Delta Lake, PostgreSQL, LangChain, PGVector, Azure OpenAI, MLflow}
