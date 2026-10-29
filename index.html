@@ -226,9 +226,9 @@
           </p>
 
           <p class="hero__tagline reveal">
-            I work on the software that installs, updates and keeps Honeywell's edge Kubernetes
-            platform running, on appliances that ship fully offline or cloud-connected. Written
-            in Go, deployed with Ansible.
+            I build the software that installs, updates and keeps Honeywell's edge Kubernetes
+            platform running, including on appliances that never touch the internet. Mostly Go
+            and Ansible.
           </p>
 
           <div class="hero__cta reveal gap-4">
@@ -304,18 +304,20 @@
 
           <div class="about__bio reveal">
             <p>
-              I care about what I'm building, and about my team and company, but especially
-              that users don't run into problems because of something I shipped. I test things
-              properly before I ship them, and I'd rather spend the extra time getting the
-              architecture right early than pay for it after the fact: changing direction
-              costs the team, the existing code, and my own time.
+              I like shipping things that don't come back to bite the people using them. That
+              mostly means testing properly before release and spending a bit more time on the
+              design up front, because changing direction later costs the team, the code and
+              my own evenings.
             </p>
             <p>
-              When I like an open source project, I read through its codebase. Sometimes that
-              turns up a bug, and I send a PR over it, some get merged, some don't. That's where
-              the patches to <em>facebookresearch/exca</em> and <em>aio-libs/async-lru</em> came
-              from, and why I still maintain DepKeeper and want to put out more open source work
-              of my own.
+              I studied Biotechnology and Data Science at IIT Madras, then joined Honeywell in
+              2023 working on data pipelines. From there I moved to building ML platform
+              services, and now I work on the deployment side of the edge platform. Each move
+              meant learning a new stack, which I enjoy more than I probably should.
+            </p>
+            <p>
+              I also read the code of open source projects I use. Sometimes I find a bug and send
+              a fix; a couple have been merged. I maintain a small tool of my own too.
             </p>
             <p>
               Outside of work, I'm usually playing Elden Ring or Hollow Knight.
@@ -404,7 +406,7 @@
         <div class="section-header--left">
           <span class="section-label">Patent</span>
           <h2 class="section-title reveal" id="patentTitle">Patent granted</h2>
-          <p class="section-subtitle reveal">Filed from the multi-tenant platform work at Honeywell.</p>
+          <p class="section-subtitle reveal">Co-invented while working on Honeywell's multi-tenant platform.</p>
         </div>
 
         <article class="patent__card reveal">
@@ -434,14 +436,14 @@
 
           <div class="patent__body">
             <p>
-              Filed while working on Honeywell's multi-tenant cloud platform. The problem was
-              keeping each customer's data fully separate when everyone shares the same backend,
-              without spinning up a separate database per customer.
+              Filed while working on Honeywell's multi-tenant cloud platform, with two
+              co-inventors. The problem: keeping each customer's data separate when everyone
+              shares the same backend, without a separate database per customer.
             </p>
             <p>
-              The patent covers doing that at the data level. Records get tagged and filtered,
-              then split and routed to the right tenant by customer, product or a custom
-              rule. No separate schema or database needed per tenant.
+              The patent handles it at the data level. Records carry tenant information and get
+              split and routed to the right tenant by customer, product or a custom rule, so no
+              separate schema or database is needed per tenant.
             </p>
           </div>
 
