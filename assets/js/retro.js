@@ -8,13 +8,11 @@ const ICONS = {
   cert: '<rect x="3" y="5" width="26" height="19" fill="#fff8e0" stroke="#000" stroke-width="1.6"/><rect x="6" y="8" width="20" height="13" fill="none" stroke="#b9861a" stroke-width="1.2"/><path d="M9 12h14M9 15h10" stroke="#3a6ea5" stroke-width="1.5"/><circle cx="23" cy="20" r="4" fill="#d6342b" stroke="#000" stroke-width="1.4"/><path d="M21 23l-1 6 3-2 3 2-1-6" fill="#d6342b" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>',
   globe: '<circle cx="16" cy="16" r="13" fill="#1d6fd1" stroke="#000" stroke-width="1.6"/><path d="M8 9c3-2 6-1 7 1s-1 4-3 4-3 3-1 5-2 3-4 0-3-8 1-10zM19 6c3 0 6 2 8 6-2 1-3 0-4 2s-4 1-4-2 0-5 0-6zM18 20c3-1 7 0 8 2-2 4-6 5-8 4s-1-5 0-6z" fill="#3fae58"/><path d="M6 8c3-3 8-5 13-4" stroke="#bfe3ff" stroke-width="1.4" fill="none"/><circle cx="16" cy="16" r="13" fill="none" stroke="#000" stroke-width="1.6"/>',
   mail: '<rect x="3" y="7" width="26" height="19" fill="#fdfdfd" stroke="#000" stroke-width="1.6"/><path d="M3 8l13 10L29 8" fill="#d8e6f7" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><rect x="21" y="10" width="6" height="5" fill="#d6342b" stroke="#000" stroke-width="1.2"/><path d="M3 25l9-8M29 25l-9-8" stroke="#8a8a8a" stroke-width="1.2"/>',
-  cat: '<path d="M5 4l5 5h12l5-5v14c0 6-4.5 10-11 10S5 24 5 18z" fill="#e8892b" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 6l3 3M25 6l-3 3" stroke="#f4a9a0" stroke-width="1.6"/><rect x="10" y="14" width="3" height="3" fill="#20140a"/><rect x="19" y="14" width="3" height="3" fill="#20140a"/><path d="M14 20h4l-2 2z" fill="#e46a6a"/><path d="M16 22v2M3 18h5M24 18h5" stroke="#000" stroke-width="1.2"/>',
   pdf: '<path d="M6 2h14l7 7v21H6z" fill="#fff" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 2v7h7" fill="#d4d4d4" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><rect x="6" y="15" width="21" height="8" fill="#d6342b" stroke="#000" stroke-width="1.4"/><path d="M9 19h3M14 17v4M14 17h2.5a1.2 1.2 0 010 2.4H14M20 17h-2v4h2" stroke="#fff" stroke-width="1.2" fill="none"/><path d="M10 26h13" stroke="#8a8a8a" stroke-width="1.4"/>',
 };
 const icon = (name) => `<svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* storage blocked */ } } };
 const getJSON = (f) => fetch(`data/${f}`).then((r) => r.json()).catch(() => []);
 
 let built = false;
@@ -156,7 +154,6 @@ function mountDesktop() {
     `<li><a href="https://github.com/rahulkaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>GitHub</span></a></li>`,
     `<li><a href="https://www.linkedin.com/in/rahul-kaushal04" target="_blank" rel="noopener noreferrer">${icon('globe')}<span>LinkedIn</span></a></li>`,
     '<li class="rk-sep" role="separator"></li>',
-    `<li><button type="button" data-act="cats">${icon('cat')}<span>Hide cats</span></button></li>`,
     `<li><button type="button" data-act="closeall">${icon('folder')}<span>Close all windows</span></button></li>`,
   ].join('');
   bar.innerHTML = `<button type="button" class="rk-start" id="rkStart" aria-expanded="false" aria-controls="rkStartMenu"><span class="rk-start__logo" aria-hidden="true"></span>Start</button>
@@ -279,7 +276,6 @@ function mountDesktop() {
     const opener = e.target.closest('[data-open]');
     if (opener && (root.contains(opener) || bar.contains(opener))) { closeMenu(false); open(opener.dataset.open); return; }
     const act = e.target.closest('[data-act]')?.dataset.act;
-    if (act === 'cats') { closeMenu(false); toggleCats(); return; }
     if (act === 'closeall') { closeMenu(false); wins.forEach((w) => w.open && close(w, false)); return; }
     if (e.target.closest('.rk-startmenu a')) { closeMenu(false); return; }
     const task = e.target.closest('.rk-task');
@@ -355,16 +351,7 @@ function mountDesktop() {
   buildGadgets(root);
   const stopSaver = buildSaver();
 
-  const catsBtn = bar.querySelector('[data-act="cats"] span');
-  const syncCats = () => { if (catsBtn) catsBtn.textContent = store.get('rk-cats') === 'off' ? 'Show cats' : 'Hide cats'; };
-  const toggleCats = () => {
-    const off = store.get('rk-cats') !== 'off';
-    store.set('rk-cats', off ? 'off' : 'on');
-    syncCats();
-    import('./cats.js').then((m) => (off ? m.stopCats() : m.startCats())).catch(() => {});
-  };
-  syncCats();
-  if (store.get('rk-cats') !== 'off') import('./cats.js').then((m) => m.startCats()).catch(() => {});
+  import('./cats.js').then((m) => m.startCats()).catch(() => {});
 
   const hash = location.hash.slice(1);
   open(wins.has(hash) ? hash : 'hero');
