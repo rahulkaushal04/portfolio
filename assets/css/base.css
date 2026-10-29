@@ -186,6 +186,7 @@ section[id], .projects-page__hero, .projects-page__listing, .contributions-page_
 .patent__body { display: grid; gap: var(--s-4); }
 .patent__tags { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .patent__tags li { padding: 0.15em 0.8em; border: var(--bw) solid var(--line-strong); border-radius: var(--r); font-size: 0.875rem; color: var(--ink-2); }
+.patent__links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
 .patent__link { font-weight: 700; }
 .projects__grid { display: grid; gap: clamp(3rem, 8vw, 7rem); }
 .projects__card { display: grid; gap: var(--s-5); }

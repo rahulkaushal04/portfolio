@@ -30,8 +30,7 @@
       },
       {
         "name": "SQLAlchemy",
-        "icon": "sqlalchemy.webp",
-        "iconSize": 70
+        "icon": "sqlalchemy.svg"
       },
       {
         "name": "Bash",
@@ -46,8 +45,7 @@
     "items": [
       {
         "name": "Databricks",
-        "icon": "databricks.webp",
-        "iconSize": 60
+        "icon": "databricks.svg"
       },
       {
         "name": "PySpark",
@@ -55,17 +53,15 @@
       },
       {
         "name": "MLflow",
-        "icon": "mlflow.webp",
-        "iconSize": 60
+        "icon": "mlflow.svg"
       },
       {
         "name": "LLM / RAG",
-        "icon": "llm-rag.webp",
-        "iconSize": 80
+        "icon": "llm-rag.svg"
       },
       {
         "name": "LangChain",
-        "icon": "langchain.webp"
+        "icon": "langchain.svg"
       }
     ]
   },
@@ -88,7 +84,7 @@
       },
       {
         "name": "GitHub Actions",
-        "icon": "github-actions.webp"
+        "icon": "github-actions.svg"
       },
       {
         "name": "Prometheus",
@@ -104,7 +100,7 @@
       },
       {
         "name": "Pacemaker/Corosync",
-        "icon": "_placeholder.svg"
+        "icon": "pacemaker-corosync.svg"
       },
       {
         "name": "Git",

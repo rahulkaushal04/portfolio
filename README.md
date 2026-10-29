@@ -35,7 +35,7 @@ Hand-written HTML, CSS and JavaScript. No framework, no build step, no dependenc
 
 <br>
 
-Two pixel cats live on the desktop. Watch them nap, groom each other, squabble and chase a ball of yarn, or play with them yourself: pet them, pick them up and throw them, toss the yarn.
+My two cats, in pixels, live on the desktop. Watch them nap and play, or pet them, pick them up and throw the yarn.
 
 <br>
 
