@@ -47,3 +47,7 @@ resume.pdf
 *.out
 *.fls
 *.fdb_latexmk
+
+# Agent skills (local tooling)
+.agents/
+skills-lock.json
