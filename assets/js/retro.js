@@ -3,6 +3,7 @@ const ICONS = {
   monitor: '<rect x="3" y="4" width="26" height="19" fill="#dcdcdc" stroke="#000" stroke-width="1.6"/><rect x="6" y="7" width="20" height="13" fill="#0e3b6f"/><path d="M6 7h20v3H6z" fill="#1f6fd0"/><path d="M8 12h9M8 15h12M8 18h6" stroke="#9fe3ff" stroke-width="1.6"/><path d="M12 23h8l1 4H11z" fill="#b5b5b5" stroke="#000" stroke-width="1.4"/><path d="M8 28h16" stroke="#000" stroke-width="2"/><path d="M4 5h24" stroke="#fff" stroke-width="1"/>',
   note: '<rect x="6" y="4" width="21" height="25" fill="#fff6a8" stroke="#000" stroke-width="1.6"/><path d="M6 9h21" stroke="#e0b800" stroke-width="1.6"/><path d="M10 14h13M10 18h13M10 22h9" stroke="#3a6ea5" stroke-width="1.4"/><g fill="#555" stroke="#000" stroke-width="1"><rect x="3" y="7" width="6" height="3"/><rect x="3" y="13" width="6" height="3"/><rect x="3" y="19" width="6" height="3"/><rect x="3" y="25" width="6" height="3"/></g>',
   chip: '<g stroke="#000" stroke-width="1.4"><path d="M10 3v4M14 3v4M18 3v4M22 3v4M10 25v4M14 25v4M18 25v4M22 25v4M3 10h4M3 14h4M3 18h4M3 22h4M25 10h4M25 14h4M25 18h4M25 22h4" fill="none"/></g><path d="M10 3v4M14 3v4M18 3v4M22 3v4M10 25v4M14 25v4M18 25v4M22 25v4M3 10h4M3 14h4M3 18h4M3 22h4M25 10h4M25 14h4M25 18h4M25 22h4" stroke="#f2c94c" stroke-width="2" fill="none"/><rect x="6" y="6" width="20" height="20" fill="#1c4d35" stroke="#000" stroke-width="1.6"/><rect x="9" y="9" width="14" height="14" fill="#2f7d57"/><path d="M9 9h14" stroke="#7ad9a4" stroke-width="1.4"/><circle cx="12" cy="12" r="1.5" fill="#000"/><path d="M14 16h6M14 19h4" stroke="#bff0d4" stroke-width="1.4"/>',
+  setup: '<path d="M4 4h24v24H4z" fill="#c0c0c0" stroke="#000" stroke-width="1.6"/><path d="M4 4h24v5H4z" fill="#000080"/><circle cx="16" cy="19" r="7.5" fill="#e8e8f0" stroke="#000" stroke-width="1.4"/><circle cx="16" cy="19" r="2.2" fill="#c0c0c0" stroke="#000" stroke-width="1.2"/><path d="M10.5 16.5a6.5 6.5 0 0 1 6-3" stroke="#4aa3df" stroke-width="1.6" fill="none"/><path d="M21.5 22a6.5 6.5 0 0 1-5 2.5" stroke="#d6342b" stroke-width="1.6" fill="none"/>',
   folder: '<path d="M2 7h11l3 3h14v18H2z" fill="#d9a520" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 12h28v16H2z" fill="#f6d55c" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 13.5h25" stroke="#fff3b0" stroke-width="1.4"/><path d="M3 27h26" stroke="#b9861a" stroke-width="1.4"/>',
   briefcase: '<path d="M11 9V6h10v3" fill="none" stroke="#000" stroke-width="1.8"/><rect x="3" y="9" width="26" height="18" fill="#a8622b" stroke="#000" stroke-width="1.6"/><path d="M3 9h26v7H3z" fill="#c98342"/><path d="M3 16h26" stroke="#000" stroke-width="1.6"/><rect x="13" y="14" width="6" height="5" fill="#f2c94c" stroke="#000" stroke-width="1.4"/><path d="M4.5 10.5h23" stroke="#e8b27a" stroke-width="1.2"/>',
   cert: '<rect x="3" y="5" width="26" height="19" fill="#fff8e0" stroke="#000" stroke-width="1.6"/><rect x="6" y="8" width="20" height="13" fill="none" stroke="#b9861a" stroke-width="1.2"/><path d="M9 12h14M9 15h10" stroke="#3a6ea5" stroke-width="1.5"/><circle cx="23" cy="20" r="4" fill="#d6342b" stroke="#000" stroke-width="1.4"/><path d="M21 23l-1 6 3-2 3 2-1-6" fill="#d6342b" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>',
@@ -22,8 +23,8 @@ const WINDOWS = [
   ['about', 'About', 'about.txt', 'note', [720, 560]],
   ['skills', 'Skills', 'skills.ini', 'chip', [780, 600]],
   ['experience', 'Experience', 'experience.log', 'briefcase', [960, 640]],
-  ['patent', 'Patent', 'patent.pdf', 'cert', [780, 560]],
-  ['projects', 'Projects', 'projects', 'folder', [860, 680]],
+  ['patent', 'Patent', 'patent.pdf', 'cert', [780, 640]],
+  ['projects', 'Projects', 'setup.exe', 'setup', [860, 680]],
   ['contributions', 'Open source', 'open_source', 'globe', [860, 620]],
   ['contact', 'Contact', 'new_message', 'mail', [740, 640]],
 ];
@@ -222,7 +223,7 @@ function mountDesktop() {
         const { w: aw, h: ah } = areaSize();
         const iconsW = root.querySelector('.rk-icons').scrollWidth;
         const left = (aw >= 900 ? iconsW + 36 : 12) + (cascade % 6) * 30;
-        w.rect = { w: w.size[0], h: w.size[1], l: left, t: 16 + (cascade % 6) * 30 };
+        w.rect = { w: w.size[0], h: w.size[1], l: left, t: 100 + (cascade % 6) * 30 };
         cascade++;
         clampRect(w);
         applyRect(w);
@@ -351,6 +352,8 @@ function mountDesktop() {
   buildGadgets(root);
   const stopSaver = buildSaver();
 
+  import('./cats.js').then((m) => m.startCats()).catch(() => {});
+
   const hash = location.hash.slice(1);
   open(wins.has(hash) ? hash : 'hero');
   const onHash = () => { const h = location.hash.slice(1); if (wins.has(h)) open(h); };
@@ -361,6 +364,7 @@ function mountDesktop() {
     cleanup() {
       clearInterval(clockTimer);
       stopSaver();
+      import('./cats.js').then((m) => m.stopCats()).catch(() => {});
       document.removeEventListener('click', onClick, true);
       document.removeEventListener('pointerdown', onDown);
       removeEventListener('resize', onResize);
@@ -415,7 +419,7 @@ async function buildWizard() {
   const wrap = document.createElement('div');
   wrap.className = 'rk-retro-only rk-wizard';
   wrap.innerHTML = `
-    <div class="rk-wizard__side" aria-hidden="true"><span class="rk-wizard__art">${icon('folder')}</span><span class="rk-wizard__name">Setup</span></div>
+    <div class="rk-wizard__side" aria-hidden="true"><span class="rk-wizard__art">${icon('setup')}</span><span class="rk-wizard__name">Setup</span></div>
     <div class="rk-wizard__main" aria-live="polite"></div>
     <div class="rk-wizard__buttons"><button type="button" class="btn" data-act="back">&lt; Back</button><button type="button" class="btn btn-primary" data-act="next">Next &gt;</button><a class="btn" href="projects.html">View all projects</a></div>`;
   host.before(wrap);
@@ -426,7 +430,7 @@ async function buildWizard() {
   const render = () => {
     const p = steps[i];
     back.disabled = i === 0;
-    next.disabled = i === steps.length - 1;
+    next.textContent = i === steps.length - 1 ? 'Finish' : 'Next >';
     if (!p) { main.innerHTML = '<h3>Setup complete</h3><p>Those are the featured projects. The full list has everything else.</p>'; return; }
     main.innerHTML = `<p class="rk-meta">Step ${i + 1} of ${steps.length}${p.status ? ' · ' + esc(p.status) : ''}</p><h3>${esc(p.title)}</h3>
       <img src="${esc(p.thumbnail)}" alt="" width="680" height="383" loading="lazy">
@@ -436,6 +440,7 @@ async function buildWizard() {
   wrap.addEventListener('click', (e) => {
     const b = e.target.closest('[data-act]');
     if (!b) return;
+    if (b.dataset.act === 'next' && i === steps.length - 1) { wrap.closest('.rk-win')?.querySelector('[data-w="close"]')?.click(); return; }
     i = Math.max(0, Math.min(steps.length - 1, i + (b.dataset.act === 'next' ? 1 : -1)));
     render();
   });

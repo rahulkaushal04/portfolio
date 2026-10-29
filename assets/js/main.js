@@ -60,25 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   setFooterYear();
   initSmoothScroll();
-
-  loadEasterEggsOnDemand();
 });
-
-function loadEasterEggsOnDemand() {
-  const triggerKeys = new Set(['ArrowUp', 'm', 'M', 'd', 'D', 'b', 'B']);
-
-  const onKey = (e) => {
-    if (!triggerKeys.has(e.key)) return;
-    window.removeEventListener('keydown', onKey);
-
-    import('./easter-eggs.js')
-      .then(({ initEasterEggs }) => {
-        initEasterEggs();
-        window.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
-        document.dispatchEvent(new KeyboardEvent('keydown', { key: e.key }));
-      })
-      .catch(() => {});
-  };
-
-  window.addEventListener('keydown', onKey);
-}

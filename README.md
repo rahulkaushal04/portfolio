@@ -27,6 +27,18 @@ Hand-written HTML, CSS and JavaScript. No framework, no build step, no dependenc
 
 <br>
 
+## Meet Phoebe and Coco
+
+<div align="center">
+<img src="docs/screenshots/cats.webp" alt="Two pixel-art cats, one orange and one black, sitting face to face on the desktop" width="520">
+</div>
+
+<br>
+
+My two cats, in pixels, live on the desktop. Watch them nap and play, or pet them, pick them up and throw the yarn.
+
+<br>
+
 ## The idea
 
 Most portfolios are a long scroll of cards. This one is an operating system.

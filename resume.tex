@@ -4,13 +4,15 @@
 \documentclass[letterpaper,9pt]{extarticle}
 
 \usepackage[T1]{fontenc}
+\input{glyphtounicode}
+\pdfgentounicode=1
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
 \usepackage[
   letterpaper,
-  top=0.34in,
-  bottom=0.34in,
+  top=0.4in,
+  bottom=0.4in,
   left=0.45in,
   right=0.45in
 ]{geometry}
@@ -20,14 +22,14 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
 \usepackage[english]{babel}
-\usepackage{fontawesome5}
 
 \usepackage[
   hidelinks,
   bookmarks=false,
   pdftitle={Rahul Kaushal -- Resume},
   pdfauthor={Rahul Kaushal},
-  pdfsubject={Software Engineer Resume}
+  pdfsubject={Software Engineer Resume},
+  pdfkeywords={Python, Go, Kubernetes, Azure, Databricks, FastAPI, backend, platform, data engineering, MLOps}
 ]{hyperref}
 
 % Colors
@@ -37,16 +39,14 @@
 \definecolor{dotgray}{RGB}{180, 180, 180}
 
 % Macros
-\newcommand{\headerlink}[3]{%
-  \href{#3}{\textcolor{iconcolor}{#1}\hspace{2pt}\textcolor{linkblue}{#2}}%
-}
+\newcommand{\headerlink}[2]{\href{#2}{\textcolor{linkblue}{#1}}}
 
 \newcommand{\resumeItem}[1]{%
   \item\small{#1}%
 }
 
 \newcommand{\resumeSubheading}[4]{%
-  \vspace{4pt}\item
+  \vspace{2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & \textit{\small #2} \\[1pt]
       \textit{\small #3} & \textit{\small #4} \\
@@ -91,31 +91,38 @@
 \titleformat{\section}{%
   \scshape\raggedright\large\color{MidnightBlue}%
 }{}{0em}{}[\color{seprule}\titlerule]
-\titlespacing*{\section}{0pt}{5pt}{5pt}
+\titlespacing*{\section}{0pt}{4pt}{3pt}
 
 \begin{document}
 
 \begin{center}
-  {\Huge \scshape Rahul Kaushal} \\[7pt]
-  \headerlink{\faEnvelope}{kaushalrahul15@gmail.com}{mailto:kaushalrahul15@gmail.com}
+  {\Huge \scshape Rahul Kaushal} \\[3pt]
+  {\small Bengaluru, India} \\[3pt]
+  \headerlink{kaushalrahul15@gmail.com}{mailto:kaushalrahul15@gmail.com}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{\faLinkedin}{rahul-kaushal04}{https://www.linkedin.com/in/rahul-kaushal04/}
+  \headerlink{LinkedIn}{https://www.linkedin.com/in/rahul-kaushal04/}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{\faGithub}{rahulkaushal04}{https://github.com/rahulkaushal04}
+  \headerlink{GitHub}{https://github.com/rahulkaushal04}
   \enspace\textcolor{dotgray}{$\cdot$}\enspace
-  \headerlink{\faGlobe}{Portfolio}{https://rahulkaushal04.github.io/portfolio}
-  \\[3pt]
+  \headerlink{Portfolio}{https://rahulkaushal04.github.io/portfolio}
+  \\[2pt]
   {\color{seprule}\rule{0.55\textwidth}{0.4pt}}
 \end{center}
+
+% Summary
+\section{Summary}
+{\small\baselineskip=10pt\relax
+Backend and platform software engineer with 3+ years at Honeywell building Python and Go backend services, data pipelines and edge platform software (REST/WebSocket APIs, event-driven processing, Kubernetes, Ansible, CI/CD) on Azure, Databricks and on-prem appliances. Also worked on MLOps platforms and LLM/RAG applications. Co-inventor on a US patent.\par}
 
 % Technical skills
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, topsep=2pt, parsep=0pt]
   \small\baselineskip=10pt\relax
-  \item {\textbf{Languages \& Backend:} Python, Go, SQL, Bash, FastAPI, asyncio, Pydantic, SQLAlchemy, REST/WebSocket APIs, pytest, Behave (BDD), Locust}
-  \item \small{\textbf{Data \& ML:} PySpark, Databricks, Delta Lake, Spark Structured Streaming, PostgreSQL, PGVector, MLflow, LangChain, LLM/RAG, Azure OpenAI, Vertex AI}
-  \item \small{\textbf{Infrastructure:} Kubernetes (MicroK8s, AKS), Docker, Ansible, Ceph, Pacemaker/Corosync, Azure (Event Hub, IoT Hub, Blob Storage), GitHub Actions, Prometheus/Grafana}
-\end{itemize}
+  \item {\textbf{Languages:} Python, Go, SQL, Bash}
+  \item \small{\textbf{Backend \& APIs:} FastAPI, REST APIs, WebSocket, asyncio, microservices, event-driven architecture, multi-tenant systems, Pydantic, SQLAlchemy, automated testing (pytest, Behave BDD, Locust)}
+  \item \small{\textbf{Cloud \& DevOps:} Kubernetes (MicroK8s, AKS), Docker, Ansible, CI/CD (GitHub Actions), Linux, Azure (Event Hub, IoT Hub, Blob Storage), infrastructure automation, high availability (Pacemaker/Corosync), Ceph, monitoring (Prometheus, Grafana), Git}
+  \item \small{\textbf{Data \& ML:} PySpark, Databricks, Delta Lake, Spark Structured Streaming, ETL pipelines, PostgreSQL, PGVector, embeddings, MLflow, MLOps, LangChain, LLM/RAG, Azure OpenAI, Vertex AI}
+  \end{itemize}
 
 % Professional experience
 \section{Professional Experience}
@@ -123,35 +130,35 @@
 
   \resumeSubheading
     {Advanced Software Engineer}{May 2026 -- Present}
-    {Honeywell}{}
+    {Honeywell \textbar{} Bengaluru, India}{}
   \resumeItemListStart
-    \resumeItem{Contributed to the performance work that cut incremental-update install time 32.5\% (averaged 90m11s to 60m51s on a 44-package run). The biggest cost was a fixed datastore-drain pause; no package's install script came close. We consolidated 13 sequences into 9, halved the pause, and moved extraction to \texttt{pigz}.}
-    \resumeItem{Worked on EdgeOrchestrator, the team's Go control-plane service, working on its REST/WebSocket API and the Ansible-driven deploy and upgrade path over the MicroK8s, Ceph and Pacemaker stack. Playbooks run as a subprocess with an argument array (nothing reaches a shell), and a marker file stops a crashed self-update from reporting success.}
-    \resumeItem{Helped root-cause a watchdog feedback loop wedging idle appliances. A hard MicroK8s kill left Calico IPAM allocations unreleased until the address pool ran out, and the watchdog's restart re-triggered it. Fixed with registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after 5 escalations in 24h.}
-    \resumeItem{Collaborated on ForgeLinkLite, a cross-platform Go agent handling Azure DPS enrollment and IoT Hub connectivity over AMQP-over-WebSocket with certificate auth, a KeePass credential vault, and active/passive handshake failover.}
+    \resumeItem{Contributed to a performance effort that cut incremental-update install time 32.5\% (90m11s to 60m51s on a 44-package run) by merging 13 install sequences into 9, halving a fixed 120s datastore pause and extracting with parallel \texttt{pigz}.}
+    \resumeItem{Contributed to EdgeOrchestrator, the Go control-plane service (REST/WebSocket API) that drives Ansible installs and upgrades across 6 deployment profiles and 2 HA topologies on MicroK8s, Ceph and Pacemaker. Playbooks run without a shell, and a marker file stops a crashed self-update reporting success.}
+    \resumeItem{Co-diagnosed a watchdog restart loop wedging idle appliances (Calico IPs left unreleased after hard MicroK8s stops); fixes: registry image pre-caching, a Recreate rollout for the single-writer volume, and a circuit breaker halting auto-restarts after more than 5 in 24 hours.}
+    \resumeItem{Collaborated on ForgeLinkLite, a cross-platform Go agent for Azure DPS enrollment and IoT Hub connectivity (AMQP over WebSocket, certificate auth) with active/passive failover.}
   \resumeItemListEnd
   \toolsLine{Go, Kubernetes (MicroK8s), Ansible, Ceph, Pacemaker/Corosync, Azure IoT Hub}
 
   \resumeSubheading
     {Software Engineer II}{Jul 2024 -- Apr 2026}
-    {Honeywell}{}
+    {Honeywell \textbar{} Bengaluru, India}{}
   \resumeItemListStart
-    \resumeItem{Built the deployment path routing models to Databricks Serving, AKS or edge devices from one API, with discriminated-union request types validating each target's config at the boundary and status tracked by two independent asyncio tasks.}
-    \resumeItem{Wrote the asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and Blob checkpoints committed only after a successful write. Delivery is at-least-once with upsert writes. A crash replay overwrites rows without duplicating them.}
-    \resumeItem{Routed model registrations through five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) behind one Strategy Pattern interface. Adding a sixth would mean a new class, not another conditional.}
-    \resumeItem{Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell's Forge DSL, with a versioned prompt store and tuning-job state machine. A translation counted as correct only if it produced the same results as the original rule, checked by the domain experts who supplied the training pairs.}
-    \resumeItem{Shipped the SkySpark migration service (SCRAM auth, Zinc/Trio parsing, parallel writes that roughly halved write time) and the team's Behave suite of 50+ scenarios across six workflow domains, run in parallel per tenant, plus Locust load tests.}
+    \resumeItem{Built the model deployment service on ForgeML (8 microservices, 10+ tenant workspaces), routing models to Databricks Serving, AKS or edge devices through one REST API with Pydantic discriminated-union validation and two asyncio status monitors.}
+    \resumeItem{Wrote an asyncio Event Hub processor: three parsers behind a Factory Pattern, concurrent PostgreSQL and Unity Catalog writes, and checkpoints committed only after a successful write. Upserts mean a crash replay never duplicates rows.}
+    \resumeItem{Integrated five security scanners (Coverity, Black Duck, Twistlock, ModelScan, AST parser) into model registration behind one Strategy Pattern interface.}
+    \resumeItem{Fine-tuned Gemini on Vertex AI to translate SkySpark Axon rules into Honeywell's Forge DSL, built the versioned prompt store and tuning-job tracking, and validated output against the original rules with domain experts (about 90\% correct).}
+    \resumeItem{Shipped the SkySpark migration service (SCRAM auth, Zinc/Trio parsing, parallel writes that roughly halved write time) and a Behave suite of 50+ scenarios run in parallel per tenant, plus Locust load tests.}
   \resumeItemListEnd
   \toolsLine{Python, FastAPI, Databricks, Azure Kubernetes (AKS), Google Vertex AI, MLflow, Azure Event Hub, PostgreSQL}
 
   \resumeSubheading
     {Data Engineer II}{Jun 2023 -- Jun 2024}
-    {Honeywell}{}
+    {Honeywell \textbar{} Bengaluru, India}{}
   \resumeItemListStart
-    \resumeItem{Contributed to 15+ PySpark ingestion pipelines on Databricks across 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, using timestamp watermarking for incremental loads.}
-    \resumeItem{Engineered a Spark Structured Streaming pipeline over PDF arrivals in Blob Storage using foreachBatch to run a per-micro-batch Delta MERGE INTO for SCD Type 2 upserts, reconciliation against processed records to catch source deletions, and Change Data Feed to let the vectorization job read only changed rows.}
-    \resumeItem{On the Maintenance Assist chatbot, worked on the agent executor (tool selection, chat history, summarization) with a YAML config that let each tenant run its own LLM and prompts without a code change. Also helped build async guardrails and a PGVector memory store that retrieves turns by max inner product similarity.}
-    \resumeItem{Wrote the SQL transformations for field service analytics (incident resolution trends, contract and maintenance metrics, NPS) that feed the customer-facing DSP dashboard.}
+    \resumeItem{Contributed to 15+ PySpark ETL pipelines on Databricks ingesting 12+ source systems (SQL Server, Salesforce, SharePoint, field-service databases) into Delta Lake, with timestamp-watermark incremental loads.}
+    \resumeItem{Built a Spark Structured Streaming pipeline over PDFs in Blob Storage: a Delta MERGE per micro-batch for SCD Type 2 history, detection of source deletions, and Change Data Feed so the vectorization job reads only changed rows.}
+    \resumeItem{Contributed to the Maintenance Assist LLM chatbot: agent executor (per-tenant YAML config), async guardrails that cancel unsafe responses mid-stream, a PGVector memory store, and an Azure OpenAI LLM-as-judge evaluation over 1,000+ question-answer pairs.}
+    \resumeItem{Wrote the SQL transformations for field service analytics (resolution trends, contract and maintenance metrics, NPS) that feed the customer-facing DSP dashboard.}
   \resumeItemListEnd
   \toolsLine{PySpark, Databricks, Delta Lake, PostgreSQL, LangChain, PGVector, Azure OpenAI, MLflow}
 
@@ -162,8 +169,8 @@
 \resumeSubHeadingListStart
 
   \osEntry
-    {\textbf{Data management in a multi-tenant environment} $|$ \href{https://thepatentplace.com/iplibrary/patent-pdf/12717808/}{US 12,717,808}}{Issued Aug 2026}
-    {Tenant isolation at the data level on a shared multi-tenant backend: records carry tenant metadata and are split and routed by customer, product or a custom rule, instead of a separate schema or database per tenant.}
+    {\textbf{Data management in a multi-tenant environment} $|$ \href{https://thepatentplace.com/iplibrary/patent-pdf/12717808/}{US 12,717,808 B2}}{Issued Aug 2026}
+    {Co-inventor (3 inventors, Honeywell). Tenant isolation at the data level on a shared multi-tenant backend: records carry tenant metadata and are split and routed by customer, product or a custom rule, with no separate schema or database per tenant.}
 
 \resumeSubHeadingListEnd
 
@@ -173,7 +180,7 @@
 
   \osEntry
     {\textbf{\href{https://github.com/rahulkaushal04/depkeeper}{DepKeeper}} $|$ \emph{Python, Click, httpx, asyncio}}{2025 -- Present}
-    {A CLI that upgrades \texttt{requirements.txt} without crossing a major version boundary, preserving your upper bounds and exclusions. Every change previews as a dry run first, and re-running it is idempotent. On PyPI under Apache 2.0.}
+    {Author and maintainer of a CLI that updates \texttt{requirements.txt} without crossing a major version, preserving your upper bounds. Dry-run preview, idempotent. On PyPI, Apache 2.0. Merged PRs: \href{https://github.com/aio-libs/async-lru/pull/746}{aio-libs/async-lru} (new \texttt{cache\_contains()} API) and \href{https://github.com/facebookresearch/exca/pull/206}{facebookresearch/exca} (five bug fixes).}
 
 \resumeSubHeadingListEnd
 
